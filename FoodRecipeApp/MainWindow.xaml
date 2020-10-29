@@ -46,14 +46,18 @@
                 <Button Height="40" Width="120" x:Name="FoodButton" Click="FoodButton_Click" BorderThickness="0" Content="Food"/>
                 <Button Height="40" Width="120" x:Name="DrinksButton" Click="DrinksButton_Click" BorderThickness="0" Content="Drinks"/>
             </StackPanel>
-            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="0,0,5,0">
-                <TextBox Margin="3,0,5,0" Width="205" Height="30" Padding="3" FontSize="14">Search</TextBox>
-                <Button Width="30" BorderThickness="0" Padding="6" Background="White">
-                    <Image Source="Images/deleteText.png"></Image>
-                </Button>
-                <Button Width="30" BorderThickness="0" Padding="4" Background="White">
-                    <Image Source="Images/searchText.png"></Image>
-                </Button>
+            <StackPanel DockPanel.Dock="Right">
+                <Border CornerRadius="6" Margin="0,3,5,0" BorderBrush="Gray" BorderThickness="3" DockPanel.Dock="Top">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Margin="3,0,0,0" Width="205" Height="30" VerticalContentAlignment="Center" Padding="3" FontSize="14" BorderThickness="0">Search</TextBox>
+                        <Button Width="30" BorderThickness="0" Padding="8" Background="White">
+                            <Image Source="Images/deleteText.png"></Image>
+                        </Button>
+                        <Button Width="30" BorderThickness="0" Padding="7" Background="White">
+                            <Image Source="Images/searchText.png"></Image>
+                        </Button>
+                    </StackPanel>
+                </Border>
             </StackPanel>
             <TextBlock></TextBlock>
         </DockPanel>

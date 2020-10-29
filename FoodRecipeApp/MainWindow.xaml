@@ -47,13 +47,13 @@
                 <Button Height="40" Width="120" x:Name="DrinksButton" Click="DrinksButton_Click" BorderThickness="0" Content="Drinks"/>
             </StackPanel>
             <StackPanel DockPanel.Dock="Right">
-                <Border CornerRadius="6" Margin="0,3,5,0" BorderBrush="Gray" BorderThickness="3" DockPanel.Dock="Top">
+                <Border CornerRadius="6" Margin="0,3,5,0" BorderBrush="Gray" Padding="0,0,2,0" BorderThickness="3">
                     <StackPanel Orientation="Horizontal">
                         <TextBox Margin="3,0,0,0" Width="205" Height="30" VerticalContentAlignment="Center" Padding="3" FontSize="14" BorderThickness="0">Search</TextBox>
-                        <Button Width="30" BorderThickness="0" Padding="8" Background="White">
+                        <Button Width="30" BorderThickness="0" Padding="8" Background="White" Height="29">
                             <Image Source="Images/deleteText.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                         </Button>
-                        <Button Width="30" BorderThickness="0" Padding="7" Background="White">
+                        <Button Width="30" BorderThickness="0" Padding="7" Background="White" Height="29">
                             <Image Source="Images/searchText.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                         </Button>
                     </StackPanel>
@@ -75,9 +75,9 @@
                             <ImageBrush ImageSource="Images/playerImage01.jpg" RenderOptions.BitmapScalingMode="HighQuality"/>
                         </Rectangle.Fill>
                     </Rectangle>
-                    <TextBlock Name="FoodName_0" Width="181" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1">
+                    <TextBlock Name="FoodName_0" Width="177" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1">
                         Mỳ quảng</TextBlock>
-                    <Button Height="20" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click">
+                    <Button Height="24" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click" Padding="2.8">
                         <Button.Content>
                             <Image Source="Images/unloved.png" RenderOptions.BitmapScalingMode="HighQuality"/>
                         </Button.Content>

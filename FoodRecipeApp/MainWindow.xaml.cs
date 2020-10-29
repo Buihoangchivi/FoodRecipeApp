@@ -110,7 +110,7 @@ namespace FoodRecipeApp
 				for (int i = 0; i < imageFoodArray.Length - 3; i++)
 				{
 					imageFoodArray[i].Width = 190;
-					foodNameArray[i].Width = 169;
+					foodNameArray[i].Width = 165;
 				}
 				Food_12.Visibility = Visibility.Visible;
 				Food_13.Visibility = Visibility.Visible;
@@ -126,7 +126,7 @@ namespace FoodRecipeApp
 				for (int i = 0; i < imageFoodArray.Length - 3; i++)
 				{
 					imageFoodArray[i].Width = 202;
-					foodNameArray[i].Width = 181;
+					foodNameArray[i].Width = 177;
 				}
 				Food_12.Visibility = Visibility.Collapsed;
 				Food_13.Visibility = Visibility.Collapsed;
@@ -180,6 +180,7 @@ namespace FoodRecipeApp
 				)
 			};
 
+			RenderOptions.SetBitmapScalingMode(img, BitmapScalingMode.HighQuality);
 			//Thay đổi ảnh
 			Button button = (Button)sender;
 			button.Content = img;

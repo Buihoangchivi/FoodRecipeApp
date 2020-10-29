@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,34 @@ namespace FoodRecipeApp
 		private Rectangle[] imageFoodArray;
 		private TextBlock[] foodNameArray;
 
+		class FoodInfomation
+		{
+			public string Name { get; set; }
+			public string Image { get; set; }
+		}
+
+		class FoodImageDAO
+		{
+			public static BindingList<FoodInfomation> GetAll()
+			{
+				var result = new BindingList<FoodInfomation>()
+				{
+					new FoodInfomation() { Name="Chu Tùng Nhân", Image="/Images/playerImage01.jpg" },
+					new FoodInfomation() { Name="Nguyen Ánh Du", Image="/Images/playerImage02.jpg" },
+					new FoodInfomation() { Name="Lều Bách Khánh", Image="/Images/playerImage03.jpg" },
+					new FoodInfomation() { Name="Thiều Duy Hành", Image="/Images/playerImage04.jpg" },
+					new FoodInfomation() { Name="Nhiệm Băng Đoan", Image="/Images/playerImage05.jpg" },
+					new FoodInfomation() { Name="Mang Đình Từ", Image="/Images/playerImage06.jpg" },
+					new FoodInfomation() { Name="Bùi Tuyền", Image="/Images/playerImage07.jpg" },
+					new FoodInfomation() { Name="Triệu Triều Hải", Image="/Images/playerImage08.jpg" },
+					new FoodInfomation() { Name="Tạ Đoan Huệ", Image="/Images/playerImage09.jpg" },
+					new FoodInfomation() { Name="Đào Sương Thư", Image="/Images/playerImage10.jpg" }
+				};
+
+				return result;
+			}
+		}
+
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -48,21 +77,21 @@ namespace FoodRecipeApp
 
 			//Default buttons
 			clickedTypeButton = AllButton;
-			clickedTypeButton.Background = Brushes.LightSkyBlue;
+			//clickedTypeButton.Background = Brushes.LightSkyBlue;
 			clickedControlButton = HomeButton;
-			clickedControlButton.Background = Brushes.LightSkyBlue;
+			//clickedControlButton.Background = Brushes.LightSkyBlue;
 		}
 
 		private void changeClickedTypeButton(Button button)
 		{
-			//clickedTypeButton.Background = Brushes.LightGray;
+			//clickedTypeButton.Background = Brushes.DarkSlateGray;
 			//clickedTypeButton = button;
 			//button.Background = Brushes.LightSkyBlue;
 		}
 
 		private void changeClickedControlButton(Button button)
 		{
-			//clickedControlButton.Background = Brushes.LightGray;
+			//clickedControlButton.Background = Brushes.SlateGray;
 			//clickedControlButton = button;
 			//button.Background = Brushes.LightSkyBlue;
 		}
@@ -100,6 +129,11 @@ namespace FoodRecipeApp
 		{
 			changeClickedTypeButton(DrinksButton);
 		}
+
+		BindingList<FoodInfomation> _list = new BindingList<FoodInfomation>();
+
+		//_list = FoodImageDAO.GetAll();
+		//foodImageListView.ItemsSource = _list;
 
 		private void Menu_Click(object sender, RoutedEventArgs e)
 		{
@@ -139,6 +173,8 @@ namespace FoodRecipeApp
 		{
 			if (checkFavoriteIsClicked == false)
 			{
+				FoodUniformGrid.Visibility = Visibility.Collapsed;
+				TypeBar.Visibility = Visibility.Collapsed;
 				//var bitmap = new BitmapImage(
 				//	new Uri(
 				//		"Images/playerImage04.jpg",

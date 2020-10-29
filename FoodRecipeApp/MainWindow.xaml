@@ -5,8 +5,375 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoodRecipeApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="650" Width="1100">
+    <DockPanel LastChildFill="True">
+        <StackPanel x:Name="ControlStackPanel" DockPanel.Dock="Left" Background="LightGray" Width="200">
+            <Button Name="Menu" Height="40" BorderThickness="0" Click="Menu_Click" HorizontalContentAlignment="Left">
+                <Image Source="Images/menuImage.png" Width="20" Margin="10,0"></Image>
+            </Button>
+            <Button Height="40" Name="HomeButton" Click="HomeButton_Click" BorderThickness="0" HorizontalContentAlignment="Left" Padding="0,1,1,1">
+                <WrapPanel>
+                    <TextBlock Width="5" Height="40" Background="Red"></TextBlock>
+                    <Image Source="Images/homeImage.png" Width="20" Margin="10,0"></Image>
+                    <TextBlock VerticalAlignment="Center" Width="153" FontSize="15">Home</TextBlock>
+                </WrapPanel>
+            </Button>
+            <Button Height="40" Name="FavoriteButton" Click="FavoriteButton_Click" BorderThickness="0" HorizontalContentAlignment="Left">
+                <WrapPanel>
+                    <TextBlock Width="5" Height="40"></TextBlock>
+                    <Image Source="Images/favoriteImage.png" Width="20" Margin="10,0"></Image>
+                    <TextBlock VerticalAlignment="Center" Width="153" FontSize="15">Favorite</TextBlock>
+                </WrapPanel>
+            </Button>
+            <Button Height="40" Name="AddDishButton" Click="AddDishButton_Click" BorderThickness="0" HorizontalContentAlignment="Left">
+                <WrapPanel>
+                    <TextBlock Width="5" Height="40"></TextBlock>
+                    <Image Source="Images/addImage.png" Width="20" Margin="10,0"></Image>
+                    <TextBlock VerticalAlignment="Center" Width="153" FontSize="15">Add</TextBlock>
+                </WrapPanel>
+            </Button>
+            <Button Height="40" Name="IngredientButton" Click="IngredientButton_Click" BorderThickness="0" HorizontalContentAlignment="Left">
+                <WrapPanel>
+                    <TextBlock Width="5" Height="40"></TextBlock>
+                    <Image Source="Images/IngredientImage.png" Width="20" Margin="10,0"></Image>
+                    <TextBlock VerticalAlignment="Center" Width="153" FontSize="15">Ingredient</TextBlock>
+                </WrapPanel>
+            </Button>
+        </StackPanel>
+        <DockPanel Name="TypeBar" Height="40" DockPanel.Dock="Top" LastChildFill="True">
+            <StackPanel Margin="15,0,0,0" Orientation="Horizontal" Width="590" DockPanel.Dock="Left">
+                <Button Height="40" Width="120" x:Name="AllButton" Click="AllButton_Click" BorderThickness="0" Content="All"/>
+                <Button Height="40" Width="120" x:Name="FoodButton" Click="FoodButton_Click" BorderThickness="0" Content="Food"/>
+                <Button Height="40" Width="120" x:Name="DrinksButton" Click="DrinksButton_Click" BorderThickness="0" Content="Drinks"/>
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="0,0,5,0">
+                <TextBox Margin="3,0,5,0" Width="205" Height="30" Padding="3" FontSize="14">Search</TextBox>
+                <Button Width="30" BorderThickness="0" Padding="6" Background="White">
+                    <Image Source="Images/deleteText.png"></Image>
+                </Button>
+                <Button Width="30" BorderThickness="0" Padding="4" Background="White">
+                    <Image Source="Images/searchText.png"></Image>
+                </Button>
+            </StackPanel>
+            <TextBlock></TextBlock>
+        </DockPanel>
+
+        <UniformGrid Name="FoodUniformGrid" Columns="4" Margin="15">
+            <Button Name="Food_0" Background="White" Margin="0,0,10,0" Click="FoodImage_Click" BorderThickness="0" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <WrapPanel>
+                    <Rectangle Name="Image_0" RadiusX="10" RadiusY="10" Width="202" Height="150">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Images/playerImage01.jpg"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Name="FoodName_0" Width="181" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1">
+                        Mỳ quảng</TextBlock>
+                    <Button Height="20" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click">
+                        <Button.Content>
+                            <Image Source="Images/unloved.png"/>
+                        </Button.Content>
+                    </Button>
+                </WrapPanel>
+            </Button>
+            <Button Name="Food_1" Background="White" Margin="0,0,10,0" Click="FoodImage_Click" BorderThickness="0" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <WrapPanel>
+                    <Rectangle Name="Image_1" RadiusX="10" RadiusY="10" Width="202" Height="150">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Images/playerImage01.jpg"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Name="FoodName_1" Width="181" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1">
+                        Mỳ quảng</TextBlock>
+                    <Button Height="20" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click">
+                        <Button.Content>
+                            <Image Source="Images/unloved.png"/>
+                        </Button.Content>
+                    </Button>
+                </WrapPanel>
+            </Button>
+            <Button Name="Food_2" Background="White" Margin="0,0,10,0" Click="FoodImage_Click" BorderThickness="0" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <WrapPanel>
+                    <Rectangle Name="Image_2" RadiusX="10" RadiusY="10" Width="202" Height="150">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Images/playerImage01.jpg"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Name="FoodName_2" Width="181" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1">
+                        Mỳ quảng</TextBlock>
+                    <Button Height="20" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click">
+                        <Button.Content>
+                            <Image Source="Images/unloved.png"/>
+                        </Button.Content>
+                    </Button>
+                </WrapPanel>
+            </Button>
+            <Button Name="Food_3" Background="White" Margin="0,0,10,0" Click="FoodImage_Click" BorderThickness="0" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <WrapPanel>
+                    <Rectangle Name="Image_3" RadiusX="10" RadiusY="10" Width="202" Height="150">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Images/playerImage01.jpg"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Name="FoodName_3" Width="181" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1">
+                        Mỳ quảng</TextBlock>
+                    <Button Height="20" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click">
+                        <Button.Content>
+                            <Image Source="Images/unloved.png"/>
+                        </Button.Content>
+                    </Button>
+                </WrapPanel>
+            </Button>
+            <Button Name="Food_4" Background="White" Margin="0,0,10,0" Click="FoodImage_Click" BorderThickness="0" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <WrapPanel>
+                    <Rectangle Name="Image_4" RadiusX="10" RadiusY="10" Width="202" Height="150">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Images/playerImage01.jpg"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Name="FoodName_4" Width="181" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1">
+                        Mỳ quảng</TextBlock>
+                    <Button Height="20" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click">
+                        <Button.Content>
+                            <Image Source="Images/unloved.png"/>
+                        </Button.Content>
+                    </Button>
+                </WrapPanel>
+            </Button>
+            <Button Name="Food_5" Background="White" Margin="0,0,10,0" Click="FoodImage_Click" BorderThickness="0" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <WrapPanel>
+                    <Rectangle Name="Image_5" RadiusX="10" RadiusY="10" Width="202" Height="150">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Images/playerImage01.jpg"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Name="FoodName_5" Width="181" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1">
+                        Mỳ quảng</TextBlock>
+                    <Button Height="20" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click">
+                        <Button.Content>
+                            <Image Source="Images/unloved.png"/>
+                        </Button.Content>
+                    </Button>
+                </WrapPanel>
+            </Button>
+            <Button Name="Food_6" Background="White" Margin="0,0,10,0" Click="FoodImage_Click" BorderThickness="0" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <WrapPanel>
+                    <Rectangle Name="Image_6" RadiusX="10" RadiusY="10" Width="202" Height="150">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Images/playerImage01.jpg"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Name="FoodName_6" Width="181" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1">
+                        Mỳ quảng</TextBlock>
+                    <Button Height="20" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click">
+                        <Button.Content>
+                            <Image Source="Images/unloved.png"/>
+                        </Button.Content>
+                    </Button>
+                </WrapPanel>
+            </Button>
+            <Button Name="Food_7" Background="White" Margin="0,0,10,0" Click="FoodImage_Click" BorderThickness="0" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <WrapPanel>
+                    <Rectangle Name="Image_7" RadiusX="10" RadiusY="10" Width="202" Height="150">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Images/playerImage01.jpg"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Name="FoodName_7" Width="181" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1">
+                        Mỳ quảng</TextBlock>
+                    <Button Height="20" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click">
+                        <Button.Content>
+                            <Image Source="Images/unloved.png"/>
+                        </Button.Content>
+                    </Button>
+                </WrapPanel>
+            </Button>
+            <Button Name="Food_8" Background="White" Margin="0,0,10,0" Click="FoodImage_Click" BorderThickness="0" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <WrapPanel>
+                    <Rectangle Name="Image_8" RadiusX="10" RadiusY="10" Width="202" Height="150">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Images/playerImage01.jpg"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Name="FoodName_8" Width="181" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1">
+                        Mỳ quảng</TextBlock>
+                    <Button Height="20" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click">
+                        <Button.Content>
+                            <Image Source="Images/unloved.png"/>
+                        </Button.Content>
+                    </Button>
+                </WrapPanel>
+            </Button>
+            <Button Name="Food_9" Background="White" Margin="0,0,10,0" Click="FoodImage_Click" BorderThickness="0" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <WrapPanel>
+                    <Rectangle Name="Image_9" RadiusX="10" RadiusY="10" Width="202" Height="150">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Images/playerImage01.jpg"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Name="FoodName_9" Width="181" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1">
+                        Mỳ quảng</TextBlock>
+                    <Button Height="20" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click">
+                        <Button.Content>
+                            <Image Source="Images/unloved.png"/>
+                        </Button.Content>
+                    </Button>
+                </WrapPanel>
+            </Button>
+            <Button Name="Food_10" Background="White" Margin="0,0,10,0" Click="FoodImage_Click" BorderThickness="0" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <WrapPanel>
+                    <Rectangle Name="Image_10" RadiusX="10" RadiusY="10" Width="202" Height="150">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Images/playerImage01.jpg"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Name="FoodName_10" Width="181" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1">
+                        Mỳ quảng</TextBlock>
+                    <Button Height="20" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click">
+                        <Button.Content>
+                            <Image Source="Images/unloved.png"/>
+                        </Button.Content>
+                    </Button>
+                </WrapPanel>
+            </Button>
+            <Button Name="Food_11" Background="White" Margin="0,0,10,0" Click="FoodImage_Click" BorderThickness="0" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <WrapPanel>
+                    <Rectangle Name="Image_11" RadiusX="10" RadiusY="10" Width="202" Height="150">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Images/playerImage01.jpg"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Name="FoodName_11" Width="181" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1">
+                        Mỳ quảng</TextBlock>
+                    <Button Height="20" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click">
+                        <Button.Content>
+                            <Image Source="Images/unloved.png"/>
+                        </Button.Content>
+                    </Button>
+                </WrapPanel>
+            </Button>
+            <Button Name="Food_12" Background="White" Margin="0,0,10,0" Click="FoodImage_Click" BorderThickness="0" Visibility="Collapsed" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <WrapPanel>
+                    <Rectangle Name="Image_12" RadiusX="10" RadiusY="10" Width="190" Height="150">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Images/playerImage01.jpg"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Name="FoodName_12" Width="169" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1">
+                        Mỳ quảng</TextBlock>
+                    <Button Height="20" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click">
+                        <Button.Content>
+                            <Image Source="Images/unloved.png"/>
+                        </Button.Content>
+                    </Button>
+                </WrapPanel>
+            </Button>
+            <Button Name="Food_13" Background="White" Margin="0,0,10,0" Click="FoodImage_Click" BorderThickness="0" Visibility="Collapsed" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <WrapPanel>
+                    <Rectangle Name="Image_13" RadiusX="10" RadiusY="10" Width="190" Height="150">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Images/playerImage01.jpg"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Name="FoodName_13" Width="169" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1">
+                        Mỳ quảng</TextBlock>
+                    <Button Height="20" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click">
+                        <Button.Content>
+                            <Image Source="Images/unloved.png"/>
+                        </Button.Content>
+                    </Button>
+                </WrapPanel>
+            </Button>
+            <Button Name="Food_14" Background="White" Margin="0,0,10,0" Click="FoodImage_Click" BorderThickness="0" Visibility="Collapsed" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <WrapPanel>
+                    <Rectangle Name="Image_14" RadiusX="10" RadiusY="10" Width="190" Height="150">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Images/playerImage01.jpg"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Name="FoodName_14" Width="169" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1">
+                        Mỳ quảng</TextBlock>
+                    <Button Height="20" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click">
+                        <Button.Content>
+                            <Image Source="Images/unloved.png"/>
+                        </Button.Content>
+                    </Button>
+                </WrapPanel>
+            </Button>
+        </UniformGrid>
+    </DockPanel>
 </Window>

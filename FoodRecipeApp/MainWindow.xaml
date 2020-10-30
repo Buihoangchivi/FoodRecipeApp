@@ -3,14 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FoodRecipeApp"
+        xmlns:local="clr-namespace:FoodRecipeApp" xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="1100" MinWidth="890" MinHeight="500">
-    <ScrollViewer>
+        Title="MainWindow" Height="650" Width="1152" MinWidth="910" MinHeight="500" Loaded="Window_Loaded">
+    <ScrollViewer VerticalScrollBarVisibility="Hidden">
         <DockPanel LastChildFill="True">
-            <StackPanel x:Name="ControlStackPanel" DockPanel.Dock="Left" Background="LightGray" Width="200">
+            <StackPanel x:Name="ControlStackPanel" DockPanel.Dock="Left" Background="LightGray" Width="250">
                 <Button Name="Menu" Height="40" BorderThickness="0" Click="Menu_Click" HorizontalContentAlignment="Left">
-                    <Image Source="Images/menuImage.png" Width="20" Margin="10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                    <WrapPanel>
+                        <TextBlock Width="4" Height="40"></TextBlock>
+                        <Image Source="Images/menuImage.png" Width="20" Margin="10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                    </WrapPanel>
                 </Button>
                 <Button Height="40" Name="HomeButton" Click="HomeButton_Click" BorderThickness="0" HorizontalContentAlignment="Left" Padding="0,1,1,1">
                     <WrapPanel>
@@ -42,29 +45,33 @@
                 </Button>
             </StackPanel>
 
-            <DockPanel Name="TypeBar" Height="40" DockPanel.Dock="Top" LastChildFill="True" Visibility="Collapsed">
-                <StackPanel Margin="15,0,0,0" Orientation="Horizontal" Width="590" DockPanel.Dock="Left">
+            <DockPanel Name="TypeBar" Height="40" Margin="15,0" DockPanel.Dock="Top" LastChildFill="True" Visibility="Visible">
+                <StackPanel  Orientation="Horizontal" Width="590" DockPanel.Dock="Left">
                     <Button Height="40" Width="120" x:Name="AllButton" Click="AllButton_Click" BorderThickness="0" Content="All"/>
                     <Button Height="40" Width="120" x:Name="FoodButton" Click="FoodButton_Click" BorderThickness="0" Content="Food"/>
                     <Button Height="40" Width="120" x:Name="DrinksButton" Click="DrinksButton_Click" BorderThickness="0" Content="Drinks"/>
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Right">
                     <Border CornerRadius="6" Margin="0,3,5,0" BorderBrush="Gray" Padding="0,0,2,0" BorderThickness="3">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBox Margin="3,0,0,0" Width="205" Height="30" VerticalContentAlignment="Center" Padding="3" FontSize="14" BorderThickness="0">Search</TextBox>
-                            <Button Width="30" BorderThickness="0" Padding="8" Background="White" Height="29">
-                                <Image Source="Images/deleteText.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                            </Button>
-                            <Button Width="30" BorderThickness="0" Padding="7" Background="White" Height="29">
-                                <Image Source="Images/searchText.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                            </Button>
-                        </StackPanel>
+                        <DockPanel LastChildFill="True">
+                            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                                <Button Width="30" BorderThickness="0" Padding="8" Background="White" Height="29">
+                                    <Image Source="Images/deleteText.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                </Button>
+                                <Button Width="30" BorderThickness="0" Padding="7" Background="White" Height="29">
+                                    <Image Source="Images/searchText.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                </Button>
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBox Margin="3,0,0,0" Width="205" Height="30" VerticalContentAlignment="Center" Padding="3" FontSize="14" BorderThickness="0">Search</TextBox>
+                            </StackPanel>
+                        </DockPanel>
                     </Border>
                 </StackPanel>
                 <TextBlock></TextBlock>
             </DockPanel>
 
-            <UniformGrid Name="FoodUniformGrid" Columns="4" Margin="15" Visibility="Collapsed">
+            <!--<UniformGrid Name="FoodUniformGrid" Columns="4" Margin="15" Visibility="Visible">
                 <Button Name="Food_0" Background="White" Margin="0,0,10,0" Click="FoodImage_Click" BorderThickness="0" >
                     <Button.Resources>
                         <Style TargetType="Border">
@@ -380,9 +387,81 @@
                         </Button>
                     </WrapPanel>
                 </Button>
-            </UniformGrid>
+            </UniformGrid>-->
 
-            <Grid Margin="15" Visibility="Visible">
+            <Grid Margin="15">
+                <ItemsControl Name="foodButtonItemsControl">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Width="204" Background="White" Margin="0,0,8,10" Click="FoodImage_Click" BorderThickness="0" >
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Button.Resources>
+                                <WrapPanel>
+                                    <Rectangle RadiusX="10" RadiusY="10" Width="202" Height="150">
+                                        <Rectangle.Fill>
+                                            <ImageBrush ImageSource="{Binding Image}" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                    <TextBlock Text="{Binding Name}" Width="175" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1"></TextBlock>
+                                    <Button Height="24" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click" Padding="2.8">
+                                        <Button.Content>
+                                            <Image Source="Images/unloved.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                        </Button.Content>
+                                    </Button>
+                                </WrapPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+
+            <!--<Grid>
+                <ListView Name="foodButtonListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <WrapPanel>
+                                <Button Width="50" Height="50">ahihi</Button>
+                                --><!--<Button Width="203" Background="White" Margin="0,0,3,0" Click="FoodImage_Click" BorderThickness="0" Padding="0" >
+                                    --><!--<Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Button.Resources>--><!--
+                                    <WrapPanel>
+                                        <Rectangle RadiusX="10" RadiusY="10" Width="202" Height="150">
+                                            <Rectangle.Fill>
+                                                <ImageBrush ImageSource="{Binding Image}" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+                                        <TextBlock Width="177" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1">
+                        Mỳ quảng</TextBlock>
+                                        <Button Height="24" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click" Padding="2.8">
+                                            <Button.Content>
+                                                <Image Source="Images/unloved.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                            </Button.Content>
+                                        </Button>
+                                    </WrapPanel>
+                                </Button>--><!--
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>-->
+
+            <Grid Name="detailFoodGrid" Margin="15" Visibility="Collapsed">
                 <Grid.RowDefinitions>
                     <RowDefinition MinHeight="300"></RowDefinition>
                     <RowDefinition MinHeight="150"></RowDefinition>

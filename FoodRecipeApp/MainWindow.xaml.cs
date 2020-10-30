@@ -21,8 +21,9 @@ namespace FoodRecipeApp
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private Button clickedTypeButton, clickedControlButton;
+		private Button clickedControlButton;
 		private bool checkFavoriteIsClicked, isMinimizeMenu;
+		private BindingList<FoodInfomation> _list = new BindingList<FoodInfomation>();
 
 		class FoodInfomation
 		{
@@ -51,36 +52,56 @@ namespace FoodRecipeApp
 
 				return result;
 			}
+
+			public static BindingList<FoodInfomation> GetHalf()
+			{
+				var result = new BindingList<FoodInfomation>()
+				{
+					new FoodInfomation() { Name="Chu Tùng Nhân", Image="Images/playerImage01.jpg", Favorite=false },
+					new FoodInfomation() { Name="Nguyen Ánh Du", Image="Images/playerImage02.jpg", Favorite=false },
+					new FoodInfomation() { Name="Lều Bách Khánh", Image="Images/playerImage03.jpg", Favorite=false },
+					new FoodInfomation() { Name="Thiều Duy Hành", Image="Images/playerImage04.jpg", Favorite=false },
+					new FoodInfomation() { Name="Nhiệm Băng Đoan", Image="Images/playerImage05.jpg", Favorite=false }
+				};
+
+				return result;
+			}
+
+			public static BindingList<FoodInfomation> GetLast()
+			{
+				var result = new BindingList<FoodInfomation>()
+				{
+					new FoodInfomation() { Name="Mang Đình Từ", Image="Images/playerImage06.jpg", Favorite=false },
+					new FoodInfomation() { Name="Bùi Tuyền", Image="Images/playerImage07.jpg", Favorite=false },
+					new FoodInfomation() { Name="Triệu Triều Hải", Image="Images/playerImage08.jpg", Favorite=false },
+					new FoodInfomation() { Name="Tạ Đoan Huệ", Image="Images/playerImage09.jpg", Favorite=false },
+					new FoodInfomation() { Name="Đào Sương Thư", Image="Images/playerImage10.jpg", Favorite=false }
+				};
+
+				return result;
+			}
 		}
 
-		private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
-		{
-			if (e.ChangedButton == MouseButton.Left)
-				if (e.ClickCount == 2)
-				{
-					AdjustWindowSize();
-				}
-				else
-				{
-					Application.Current.MainWindow.DragMove();
-				}
-		}
-
+		//Cài đặt nút đóng cửa sổ
 		private void CloseButton_Click(object sender, RoutedEventArgs e)
 		{
 			Application.Current.Shutdown();
 		}
 
+		//Cài đặt nút phóng to/ thu nhỏ cửa sổ
 		private void MaximizeButton_Click(object sender, RoutedEventArgs e)
 		{
 			AdjustWindowSize();
 		}
 
+		//Cài đặt nút ẩn cửa sổ
 		private void MinimizeButton_Click(object sender, RoutedEventArgs e)
 		{
 			this.WindowState = WindowState.Minimized;
 		}
 
+		//Thay đổi kích thước cửa sổ
+		//Nếu đang ở trạng thái phóng to thì thu nhỏ và ngược lại
 		private void AdjustWindowSize()
 		{
 			var imgName = "";
@@ -112,6 +133,14 @@ namespace FoodRecipeApp
 			MaxButton.Content = img;
 		}
 
+		//Cài đặt để có thể di chuyển cửa sổ khi nhấn giữ chuột và kéo Title Bar
+		private void DockPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			var move = sender as System.Windows.Controls.DockPanel;
+			var win = Window.GetWindow(move);
+			win.DragMove();
+		}
+
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -133,61 +162,106 @@ namespace FoodRecipeApp
 			isMinimizeMenu = false;
 
 			//Default buttons
-			clickedTypeButton = AllButton;
+			//clickedTypeButton = AllButton;
 			//clickedTypeButton.Background = Brushes.LightSkyBlue;
 			clickedControlButton = HomeButton;
 			//clickedControlButton.Background = Brushes.LightSkyBlue;
 		}
 
-		private void changeClickedTypeButton(Button button)
+		private void changeClickedTypeButton(object sender, RoutedEventArgs e)
 		{
 			//clickedTypeButton.Background = Brushes.DarkSlateGray;
 			//clickedTypeButton = button;
 			//button.Background = Brushes.LightSkyBlue;
+
+			var button = (Button)sender;
+
+			//Hiển thị các món ăn thuộc loại thức ăn được chọn
+			if (button == AllButton)
+			{
+				_list = FoodImageDAO.GetAll();
+				foodButtonItemsControl.ItemsSource = _list;
+			}
+			else if (button == FoodButton)
+			{
+				_list = FoodImageDAO.GetHalf();
+				foodButtonItemsControl.ItemsSource = _list;
+			}
+			else if (button == DrinksButton)
+			{
+				_list = FoodImageDAO.GetLast();
+				foodButtonItemsControl.ItemsSource = _list;
+			}
+			else
+			{
+				//Do nothing
+			}
 		}
 
-		private void changeClickedControlButton(Button button)
+		private void changeClickedControlButton(object sender, RoutedEventArgs e)
 		{
 			//clickedControlButton.Background = Brushes.SlateGray;
 			//clickedControlButton = button;
 			//button.Background = Brushes.LightSkyBlue;
-		}
 
-		private void HomeButton_Click(object sender, RoutedEventArgs e)
-		{
-			changeClickedControlButton(HomeButton);
-		}
+			var button = (Button)sender;
+			
+			if (button != clickedControlButton)
+			{
+				//Đóng giao diện cũ trước khi nhấn nút
+				if (clickedControlButton == HomeButton)
+				{
+					TypeBar.Visibility = Visibility.Collapsed;
+					foodButtonItemsControl.Visibility = Visibility.Collapsed;
+				}
+				else if (clickedControlButton == FavoriteButton)
+				{
 
-		private void FavoriteButton_Click(object sender, RoutedEventArgs e)
-		{
-			changeClickedControlButton(FavoriteButton);
-		}
+				}
+				else if (clickedControlButton == AddDishButton)
+				{
 
-		private void AddDishButton_Click(object sender, RoutedEventArgs e)
-		{
-			changeClickedControlButton(AddDishButton);
-		}
+				}
+				else if (clickedControlButton == IngredientButton)
+				{
 
-		private void IngredientButton_Click(object sender, RoutedEventArgs e)
-		{
-			changeClickedControlButton(IngredientButton);
-		}
+				}
+				else
+				{
+					//Do nothing
+				}
 
-		private void AllButton_Click(object sender, RoutedEventArgs e)
-		{
-			changeClickedTypeButton(AllButton);
-		}
+				//Mở giao diện mới sau khi nhấn nút
+				if (button == HomeButton)
+				{
+					TypeBar.Visibility = Visibility.Visible;
+					foodButtonItemsControl.Visibility = Visibility.Visible;
+				}
+				else if (button == FavoriteButton)
+				{
 
-		private void FoodButton_Click(object sender, RoutedEventArgs e)
-		{
-			changeClickedTypeButton(FoodButton);
-		}
-		private void DrinksButton_Click(object sender, RoutedEventArgs e)
-		{
-			changeClickedTypeButton(DrinksButton);
-		}
+				}
+				else if (button == AddDishButton)
+				{
 
-		BindingList<FoodInfomation> _list = new BindingList<FoodInfomation>();
+				}
+				else if (button == IngredientButton)
+				{
+
+				}
+				else
+				{
+					//Do nothing
+				}
+
+				//Cập nhật lại nút được chọn
+				clickedControlButton = button;
+			}
+			else
+			{
+				//Do nothing
+			}
+		}
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{

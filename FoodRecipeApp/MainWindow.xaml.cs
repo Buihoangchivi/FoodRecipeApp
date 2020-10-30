@@ -23,8 +23,6 @@ namespace FoodRecipeApp
 	{
 		private Button clickedTypeButton, clickedControlButton;
 		private bool checkFavoriteIsClicked, isMinimizeMenu;
-		private Rectangle[] imageFoodArray;
-		private TextBlock[] foodNameArray;
 
 		class FoodInfomation
 		{
@@ -53,6 +51,65 @@ namespace FoodRecipeApp
 
 				return result;
 			}
+		}
+
+		private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
+		{
+			if (e.ChangedButton == MouseButton.Left)
+				if (e.ClickCount == 2)
+				{
+					AdjustWindowSize();
+				}
+				else
+				{
+					Application.Current.MainWindow.DragMove();
+				}
+		}
+
+		private void CloseButton_Click(object sender, RoutedEventArgs e)
+		{
+			Application.Current.Shutdown();
+		}
+
+		private void MaximizeButton_Click(object sender, RoutedEventArgs e)
+		{
+			AdjustWindowSize();
+		}
+
+		private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+		{
+			this.WindowState = WindowState.Minimized;
+		}
+
+		private void AdjustWindowSize()
+		{
+			var imgName = "";
+
+			if (this.WindowState == WindowState.Maximized)
+			{
+				this.WindowState = WindowState.Normal;
+				imgName = "Images/maximize.png";
+			}
+			else
+			{
+				this.WindowState = WindowState.Maximized;
+				imgName = "Images/restoreDown.png";
+			}
+
+			//Lấy nguồn ảnh
+			Image img = new Image
+			{
+				Source = new BitmapImage(new Uri(
+						imgName,
+						UriKind.Relative)
+				)
+			};
+
+			//Thiết lập ảnh chất lượng cao
+			RenderOptions.SetBitmapScalingMode(img, BitmapScalingMode.HighQuality);
+
+			//Thay đổi icon
+			MaxButton.Content = img;
 		}
 
 		public MainWindow()
@@ -204,6 +261,14 @@ namespace FoodRecipeApp
 			favoriteButton.Content = image;
 		}
 
+		private void BackButton_Click(object sender, RoutedEventArgs e)
+		{
+			detailFoodGrid.Visibility = Visibility.Collapsed;
+			TypeBar.Visibility = Visibility.Visible;
+			foodButtonItemsControl.Visibility = Visibility.Visible;
+			BackButton.Visibility = Visibility.Collapsed;
+		}
+
 		private void FoodImage_Click(object sender, RoutedEventArgs e)
 		{
 			if (checkFavoriteIsClicked == false)
@@ -230,6 +295,9 @@ namespace FoodRecipeApp
 
 				//Hiển thị các ảnh khác của món ăn
 				foodImageListView.ItemsSource = _list;
+
+				//Hiển thị nút quay lại
+				BackButton.Visibility = Visibility.Visible;
 			}
 			else
 			{

@@ -23,59 +23,42 @@ namespace FoodRecipeApp
 	{
 		private Button clickedControlButton;
 		private bool checkFavoriteIsClicked, isMinimizeMenu;
-		private BindingList<FoodInfomation> _list = new BindingList<FoodInfomation>();
+		private List<FoodInfomation> _list = new List<FoodInfomation>();
+		private CollectionView view;
+		public enum FoodType { Food, Drinks };
+
+		class Condition
+		{
+			public bool Favorite;
+			public FoodType? Type;
+		}
+
+		private Condition FilterCondition = new Condition { Favorite = false, Type = null };
 
 		class FoodInfomation
 		{
 			public string Name { get; set; }
 			public string Image { get; set; }
 			public bool Favorite { get; set; }
+			public FoodType Type { get; set; }
 		}
 
 		class FoodImageDAO
 		{
-			public static BindingList<FoodInfomation> GetAll()
+			public static List<FoodInfomation> GetAll()
 			{
-				var result = new BindingList<FoodInfomation>()
+				var result = new List<FoodInfomation>()
 				{
-					new FoodInfomation() { Name="Chu Tùng Nhân", Image="Images/playerImage01.jpg", Favorite=false },
-					new FoodInfomation() { Name="Nguyen Ánh Du", Image="Images/playerImage02.jpg", Favorite=false },
-					new FoodInfomation() { Name="Lều Bách Khánh", Image="Images/playerImage03.jpg", Favorite=false },
-					new FoodInfomation() { Name="Thiều Duy Hành", Image="Images/playerImage04.jpg", Favorite=false },
-					new FoodInfomation() { Name="Nhiệm Băng Đoan", Image="Images/playerImage05.jpg", Favorite=false },
-					new FoodInfomation() { Name="Mang Đình Từ", Image="Images/playerImage06.jpg", Favorite=false },
-					new FoodInfomation() { Name="Bùi Tuyền", Image="Images/playerImage07.jpg", Favorite=false },
-					new FoodInfomation() { Name="Triệu Triều Hải", Image="Images/playerImage08.jpg", Favorite=false },
-					new FoodInfomation() { Name="Tạ Đoan Huệ", Image="Images/playerImage09.jpg", Favorite=false },
-					new FoodInfomation() { Name="Đào Sương Thư", Image="Images/playerImage10.jpg", Favorite=false }
-				};
-
-				return result;
-			}
-
-			public static BindingList<FoodInfomation> GetHalf()
-			{
-				var result = new BindingList<FoodInfomation>()
-				{
-					new FoodInfomation() { Name="Chu Tùng Nhân", Image="Images/playerImage01.jpg", Favorite=false },
-					new FoodInfomation() { Name="Nguyen Ánh Du", Image="Images/playerImage02.jpg", Favorite=false },
-					new FoodInfomation() { Name="Lều Bách Khánh", Image="Images/playerImage03.jpg", Favorite=false },
-					new FoodInfomation() { Name="Thiều Duy Hành", Image="Images/playerImage04.jpg", Favorite=false },
-					new FoodInfomation() { Name="Nhiệm Băng Đoan", Image="Images/playerImage05.jpg", Favorite=false }
-				};
-
-				return result;
-			}
-
-			public static BindingList<FoodInfomation> GetLast()
-			{
-				var result = new BindingList<FoodInfomation>()
-				{
-					new FoodInfomation() { Name="Mang Đình Từ", Image="Images/playerImage06.jpg", Favorite=false },
-					new FoodInfomation() { Name="Bùi Tuyền", Image="Images/playerImage07.jpg", Favorite=false },
-					new FoodInfomation() { Name="Triệu Triều Hải", Image="Images/playerImage08.jpg", Favorite=false },
-					new FoodInfomation() { Name="Tạ Đoan Huệ", Image="Images/playerImage09.jpg", Favorite=false },
-					new FoodInfomation() { Name="Đào Sương Thư", Image="Images/playerImage10.jpg", Favorite=false }
+					new FoodInfomation() { Name="Chu Tùng Nhân", Image="Images/playerImage01.jpg", Favorite=false, Type=FoodType.Food },
+					new FoodInfomation() { Name="Nguyen Ánh Du", Image="Images/playerImage02.jpg", Favorite=true , Type=FoodType.Food },
+					new FoodInfomation() { Name="Lều Bách Khánh", Image="Images/playerImage03.jpg", Favorite=false , Type=FoodType.Drinks },
+					new FoodInfomation() { Name="Thiều Duy Hành", Image="Images/playerImage04.jpg", Favorite=true , Type=FoodType.Drinks },
+					new FoodInfomation() { Name="Nhiệm Băng Đoan", Image="Images/playerImage05.jpg", Favorite=false , Type=FoodType.Food },
+					new FoodInfomation() { Name="Mang Đình Từ", Image="Images/playerImage06.jpg", Favorite=false , Type=FoodType.Food },
+					new FoodInfomation() { Name="Bùi Tuyền", Image="Images/playerImage07.jpg", Favorite=false , Type=FoodType.Drinks },
+					new FoodInfomation() { Name="Triệu Triều Hải", Image="Images/playerImage08.jpg", Favorite=false , Type=FoodType.Drinks },
+					new FoodInfomation() { Name="Tạ Đoan Huệ", Image="Images/playerImage09.jpg", Favorite=false , Type=FoodType.Food },
+					new FoodInfomation() { Name="Đào Sương Thư", Image="Images/playerImage10.jpg", Favorite=false , Type=FoodType.Food }
 				};
 
 				return result;
@@ -168,6 +151,13 @@ namespace FoodRecipeApp
 			//clickedControlButton.Background = Brushes.LightSkyBlue;
 		}
 
+		//Cập nhật lại thay đổi từ dữ liệu lên màn hình
+		private void UpdateUIFromData()
+		{
+			view.Filter = Filter;
+			CollectionViewSource.GetDefaultView(foodButtonItemsControl.ItemsSource).Refresh();
+		}
+
 		private void changeClickedTypeButton(object sender, RoutedEventArgs e)
 		{
 			//clickedTypeButton.Background = Brushes.DarkSlateGray;
@@ -179,23 +169,23 @@ namespace FoodRecipeApp
 			//Hiển thị các món ăn thuộc loại thức ăn được chọn
 			if (button == AllButton)
 			{
-				_list = FoodImageDAO.GetAll();
-				foodButtonItemsControl.ItemsSource = _list;
+				FilterCondition.Type = null;
 			}
 			else if (button == FoodButton)
 			{
-				_list = FoodImageDAO.GetHalf();
-				foodButtonItemsControl.ItemsSource = _list;
+				FilterCondition.Type = FoodType.Food;
 			}
 			else if (button == DrinksButton)
 			{
-				_list = FoodImageDAO.GetLast();
-				foodButtonItemsControl.ItemsSource = _list;
+				FilterCondition.Type = FoodType.Drinks;
 			}
 			else
 			{
 				//Do nothing
 			}
+
+			//Cập nhật lại giao diện
+			UpdateUIFromData();
 		}
 
 		private void changeClickedControlButton(object sender, RoutedEventArgs e)
@@ -231,15 +221,26 @@ namespace FoodRecipeApp
 					//Do nothing
 				}
 
+				//Xóa màu của thanh đang được chọn
+				var wrapPanel = (WrapPanel)clickedControlButton.Content;
+				var collection = wrapPanel.Children;
+				var block = (TextBlock)collection[0];
+				var text = (TextBlock)collection[2];
+				block.Background = Brushes.Transparent;
+				text.Foreground = Brushes.Black;
+
 				//Mở giao diện mới sau khi nhấn nút
 				if (button == HomeButton)
 				{
+					FilterCondition.Favorite = false;
 					TypeBar.Visibility = Visibility.Visible;
 					foodButtonItemsControl.Visibility = Visibility.Visible;
 				}
 				else if (button == FavoriteButton)
 				{
-
+					FilterCondition.Favorite = true;
+					TypeBar.Visibility = Visibility.Visible;
+					foodButtonItemsControl.Visibility = Visibility.Visible;
 				}
 				else if (button == AddDishButton)
 				{
@@ -253,9 +254,20 @@ namespace FoodRecipeApp
 				{
 					//Do nothing
 				}
-
+				
 				//Cập nhật lại nút được chọn
 				clickedControlButton = button;
+
+				//Hiển thị màu của thanh mới vừa được chọn
+				wrapPanel = (WrapPanel)clickedControlButton.Content;
+				collection = wrapPanel.Children;
+				block = (TextBlock)collection[0];
+				text = (TextBlock)collection[2];
+				block.Background = Brushes.Red;
+				text.Foreground = Brushes.Red;
+
+				//Cập nhật lại giao diện
+				UpdateUIFromData();
 			}
 			else
 			{
@@ -263,10 +275,30 @@ namespace FoodRecipeApp
 			}
 		}
 
+		private bool Filter(object item)
+		{
+			bool result;
+			var foodInfo = (FoodInfomation)item;
+			if (FilterCondition.Favorite == true && foodInfo.Favorite == false)
+			{
+				result = false;
+			}
+			else if (FilterCondition.Type != null && FilterCondition.Type != foodInfo.Type)
+			{
+				result = false;
+			}
+			else
+			{
+				result = true;
+			}
+			return result;
+		}
+
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 			_list = FoodImageDAO.GetAll();
 			foodButtonItemsControl.ItemsSource = _list;
+			view = (CollectionView)CollectionViewSource.GetDefaultView(foodButtonItemsControl.ItemsSource);
 		}
 
 		private void Menu_Click(object sender, RoutedEventArgs e)
@@ -274,31 +306,11 @@ namespace FoodRecipeApp
 			if (isMinimizeMenu == false)
 			{
 				ControlStackPanel.Width = 47;
-				//FoodUniformGrid.Columns = 5;
-				//for (int i = 0; i < imageFoodArray.Length - 3; i++)
-				//{
-				//	imageFoodArray[i].Width = 190;
-				//	foodNameArray[i].Width = 165;
-				//}
-				//Food_12.Visibility = Visibility.Visible;
-				//Food_13.Visibility = Visibility.Visible;
-				//Food_14.Visibility = Visibility.Visible;
-				//Image_0_0.Fill = new ImageBrush(new BitmapImage(
-				//	new Uri("Images/playerImage04.jpg", UriKind.Relative)));
 				isMinimizeMenu = true;
 			}
 			else
 			{
 				ControlStackPanel.Width = 250;
-				//FoodUniformGrid.Columns = 4;
-				//for (int i = 0; i < imageFoodArray.Length - 3; i++)
-				//{
-				//	imageFoodArray[i].Width = 202;
-				//	foodNameArray[i].Width = 177;
-				//}
-				//Food_12.Visibility = Visibility.Collapsed;
-				//Food_13.Visibility = Visibility.Collapsed;
-				//Food_14.Visibility = Visibility.Collapsed;
 				isMinimizeMenu = false;
 			}
 		}
@@ -375,36 +387,38 @@ namespace FoodRecipeApp
 			}
 			else
 			{
-				string imgName;
 				int index = GetElementIndexInArray((Button)sender);
 
 				//Nếu chưa yêu thích thì chuyển sang ảnh yêu thích và thêm vào danh sách yêu thích
 				if (_list[index].Favorite == true)
 				{
 					_list[index].Favorite = false;
-					imgName = "Images/unloved.png";
+					//imgName = "Images/unloved.png";
 				}
 				else //Nếu yêu thích rồi chuyển sang ảnh chưa yêu thích và xóa khỏi danh sách yêu thích
 				{
 					_list[index].Favorite = true;
-					imgName = "Images/favorite.png";
+					//imgName = "Images/favorite.png";
 				}
 
-				//Lấy nguồn ảnh
-				Image img = new Image
-				{
-					Source = new BitmapImage(new Uri(
-							imgName,
-							UriKind.Relative)
-					)
-				};
+				////Lấy nguồn ảnh
+				//Image img = new Image
+				//{
+				//	Source = new BitmapImage(new Uri(
+				//			imgName,
+				//			UriKind.Relative)
+				//	)
+				//};
 
-				//Thiết lập ảnh chất lượng cao
-				RenderOptions.SetBitmapScalingMode(img, BitmapScalingMode.HighQuality);
+				////Thiết lập ảnh chất lượng cao
+				//RenderOptions.SetBitmapScalingMode(img, BitmapScalingMode.HighQuality);
 
-				//Thay đổi ảnh
-				ChangeFavoriteState((Button)sender, img);
+				////Thay đổi ảnh
+				//ChangeFavoriteState((Button)sender, img);
 				checkFavoriteIsClicked = false;
+
+				//Cập nhật lại giao diện
+				UpdateUIFromData();
 			}
 		}
 

@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfStep xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Step>
+    <ID>1</ID>
+    <Order>1</Order>
+    <ImagePath>images/1_1.jpg</ImagePath>
+    <Content>Làm sốt muối ớt ướp thịt gà: cho vào cối xay hoặc giã nhuyễn 20gr sả, 20gr tỏi, 1 trái ớt sừng, 2 trái ớt hiểm, 30gr tôm khô ngâm nở và 15gr muối hột. Sau đó cho hỗn hợp vừa xay ra chén, trộn thêm 2 muỗng canh tương ớt, 2 muỗng canh dầu điều, 2 muỗng canh nước mắm, 1 muỗng canh mật ong, 1 muỗng canh bột ngọt (nếu không thích bột ngọt bạn có thể bỏ nguyên liệu này). Khi thấy hỗn hợp hoà quyện với nhau, sốt ướp lên màu đỏ đẹp mắt, cảm nhận được mùi thơm tỏi sả và tôm khô là được.</Content>
+  </Step>
+  <Step>
+    <ID>1</ID>
+    <Order>2</Order>
+    <ImagePath>images/1_2.jpg</ImagePath>
+    <Content>Cách chế biến gà nướng: Chọn gà ta để thịt chắc và dai hơn so với gà công nghiệp. Gà ta làm sạch, giữ đầu hoặc cắt bỏ tuỳ ý, xẻ giữa bụng và ép giữa xương sườn để gà nằm bè ra, việc này sẽ giúp quá trình nướng được nhanh hơn và gà chín đều hơn. Lấy sốt ướp mát xa đều lên bên trong và bên ngoài thân gà. Ướp gà ít nhất 2 tiếng để thấm gia vị.</Content>
+  </Step>
+  <Step>
+    <ID>1</ID>
+    <Order>3</Order>
+    <ImagePath>images/1_3.jpg</ImagePath>
+    <Content>Chuẩn bị sẵn bếp than hồng, nẹp gà cố định bằng những xiên nướng, cho gà lên bếp nướng và quay đều tay để gà được chín đều. Dùng que nhọn châm vào thịt gà trong lúc nướng để thịt chín đều. Sau khi nướng khoảng 30 phút, thịt gà bắt đầu chín vàng thơm thì rắc thêm ớt bột và nướng tiếp 10-15 phút nữa.</Content>
+  </Step>
+  <Step>
+    <ID>1</ID>
+    <Order>4</Order>
+    <ImagePath>images/1_4.jpg</ImagePath>
+    <Content>Gà đã chín thơm nồng cả gian bếp, chuẩn bị thêm rau răm, dưa leo và nước chấm (muối ớt xanh hoặc muối ớt đỏ) rồi cũng gia đình thưởng thức thôi. Đừng quên vài ổ bánh mì để bữa tiệc không chỉ ngon mà còn no nữa nhé.</Content>
+  </Step>
+  <Step>
+    <ID>1</ID>
+    <Order>5</Order>
+    <ImagePath>images/1_5.jpg</ImagePath>
+    <Content>Gà nướng muối ớt với thịt gà ngọt dai, lớp vỏ giòn cay the thấm gia vị. Kết hợp với rau răm và chấm với nước sốt cay cay ngọt ngọt rất là phù hợp. Món gà nướng muối ớt xanh này rất thích hợp cho những ngày lễ, gia đình quây quần bên nhau, những bữa tiệc nướng BBQ cuối tuần. Ghi lại công thức và trổ tài nướng gà cùng với Cooky bạn nhé!</Content>
+  </Step>
+  <Step>
+    <ID>2</ID>
+    <Order>1</Order>
+    <ImagePath>images/2_1.jpg</ImagePath>
+    <Content>Đậu hũ trắng cắt miếng vừa ăn. Xúc xích bò cắt lát mỏng xéo. Thịt nguội thái lát. (Có thể thêm thịt ba chỉ thái lát mỏng nếu thích). Hành boa rô cắt lát xéo. Thịt bò bằm nhỏ.</Content>
+  </Step>
+  <Step>
+    <ID>2</ID>
+    <Order>2</Order>
+    <ImagePath>images/2_2.jpg</ImagePath>
+    <Content>Xếp xúc xích, thịt nguội, hành tây, kim chi, đậu hũ, thịt bò bằm vào nồi. Thêm hỗn hợp gia vị lên trên. Thêm nước dùng hầm xương vào, đun sôi khoảng 5 phút. Nêm muối và tiêu cho vừa ăn. Thêm một miếng phô mai lên trên. Thêm hành boa rô lên. Khi ăn múc ra chén, dùng nóng.</Content>
+  </Step>
+  <Step>
+    <ID>2</ID>
+    <Order>3</Order>
+    <ImagePath>images/2_3.jpg</ImagePath>
+    <Content>Món lẩu có thể ăn cùng mì tôm hoặc cơm đều ngon. Vị cay thơm đặc trưng của lẩu thích hợp dùng trong những ngày trời trở lạnh nhé!</Content>
+  </Step>
+  <Step>
+    <ID>3</ID>
+    <Order>1</Order>
+    <ImagePath>images/3_1.jpg</ImagePath>
+    <Content>Mang mắm cá linh mua về, cho ra thớt bằm thật nhuyễn. Cách làm mắm chưng ngon: Nên chọn loại mắm cá linh đã ươm lâu, như vậy thịt cá sẽ mềm và mắm thơm hơn nhiều so với mắm mới ươm.</Content>
+  </Step>
+  <Step>
+    <ID>3</ID>
+    <Order>2</Order>
+    <ImagePath>images/3_2.jpg</ImagePath>
+    <Content>Chuẩn bị sẵn sàng các nguyên liệu làm mắm chưng : Hành tím bỏ vỏ cắt lát.Ớt cắt lát.Hành lá cắt nhỏ phần xanh.Đập 2 cái trứng vịt lấy cả lòng đỏ và trắng.Cho thịt bằm cho ra tô lớn để dễ trộn.</Content>
+  </Step>
+  <Step>
+    <ID>3</ID>
+    <Order>3</Order>
+    <ImagePath>images/3_3.jpg</ImagePath>
+    <Content>Mắm cá linh nhuyễn, cho ra tô, thêm vào 70ml nước nóng. Vừa khuấy vừa dùng muỗng dầm thật nhuyễn và đều cho cá tiết ra hết chất thơm của thịt mắm. Cho mắm vào rây, lọc kỹ lấy phần nước mắm. Bí quyết trong cách làm mắm chưng ngon là lấy khoảng 1/2 phần xương bằm nhuyễn của mắm, chưng cùng thịt, lúc ăn mắm chưng thịt sẽ ngon, đậm đà hơn.</Content>
+  </Step>
+  <Step>
+    <ID>3</ID>
+    <Order>4</Order>
+    <ImagePath>images/3_4.jpg</ImagePath>
+    <Content>Cách làm mắm chưng thịt ngon: Lần lượt cho tất cả các nguyên liệu đã sơ chế ở bước trên vào trộn chung với thịt bằm. Nêm vào cùng: 1/2 muỗng cafe tiêu xay, 3 muỗng cà phê đường, 1/2 muỗng bột ngọt.</Content>
+  </Step>
+  <Step>
+    <ID>3</ID>
+    <Order>5</Order>
+    <ImagePath>images/3_5.jpg</ImagePath>
+    <Content>Trộn đều tất cả lại với nhau. Lưu ý, hỗn hợp mắm thịt sau khi trộn sẽ sền sệt, nếu thấy quá lỏng, bạn cần tăng lượng thịt bằm hoặc trứng để mắm sau khi chưng không bị mềm nhũn quá nhé. Cách làm mắm chưng không bị dính là quét một lớp dầu ăn vào chén đó. Cho mắm vào chén, đầy gần miệng chén thôi, không đổ quá đầy, lúc hấp chín mắm chưng thịt sẽ còn nở cao hơn (chọn chén có thành cao), sau đó mang đi hấp cách thủy.</Content>
+  </Step>
+  <Step>
+    <ID>3</ID>
+    <Order>6</Order>
+    <ImagePath>images/3_6.jpg</ImagePath>
+    <Content>Chuẩn bị xửng hấp, cho chén mắm chưng thịt vào nồi, đậy nắp. Cho hẵn chén mắm từ lúc nước còn chưa nóng luôn. Trong quá trình hấp không mở nắp, để giữ được hơi nóng trong xửng làm chín mắm nhanh. Hấp khoảng 20 phút, mở nắp dùng tâm xâm vào giữa chén mắm, rút tâm nhanh về, nếu tâm khô ráo không dính, thịt mắm còn ướt là được.</Content>
+  </Step>
+  <Step>
+    <ID>3</ID>
+    <Order>7</Order>
+    <ImagePath>images/3_7.jpg</ImagePath>
+    <Content>Nhanh tay, tách 2 lòng đỏ trứng vịt, đánh đều lên. Cho lên mặt chén mắm, dùng muỗng dàn trãi đều trứng trên mặt chén. Đặt 1 lòng đỏ trứng muối giữ chén. Xếp ít ớt xung quanh cho đẹp. Tiếp tục đậy nắp hấp thêm 10 phút nữa.</Content>
+  </Step>
+  <Step>
+    <ID>3</ID>
+    <Order>8</Order>
+    <ImagePath>images/3_8.jpg</ImagePath>
+    <Content>Mắm chưng thịt thành phẩm có mùi thơm đặt trưng của mắm, ăn kèm chuối chát cắt lát nhớ thả vào tô nước muối cho khỏi bị đen. Dưa leo, rau sống, khế chua, cắt nhỏ vừa ăn. Lúc ăn gấp mỗi thứ rau một ít, ăn chung với cơm lúc mắm còn nóng sẽ cực ngon và hao cơm, nhất là vào những ngày trời mưa mưa, ăn cơm nóng kèm mắm chưng thịt bằm cá linh thì gì bằng. Cách làm mắm chưng thịt ngon, đơn giản này nhất định các bạn phải lưu lại nhé!!</Content>
+  </Step>
+  <Step>
+    <ID>4</ID>
+    <Order>1</Order>
+    <ImagePath>images/4_1.jpg</ImagePath>
+    <Content>Lấy trứng lòng đỏ trứng muối và rửa sạch, dùng một nồi lớn hấp cách thuỷ khoảng 15 phút cho trứng vừa chín thì nhắc xuống để nguội. Tiếp tục nghiền nhuyễn các lòng đỏ trứng muối đã hấp để chuẩn bị làm sốt. Cho 20ml dầu ăn và 1 muỗng cà phê tỏi băm vào, đến khi tỏi dậy mùi thơm thì cho trứng muối vào, cho thêm 2 muỗng canh đường, 1 muỗng canh nước mắm cho hương vị đậm đà. Đảo đều đến khi hỗn hợp sền sệt lại thì tắt bếp.</Content>
+  </Step>
+  <Step>
+    <ID>4</ID>
+    <Order>2</Order>
+    <ImagePath>images/4_2.jpg</ImagePath>
+    <Content>Cua sau khi mua về rửa sạch, tách mai và bỏ phần mang cua đi. Áo một lớp bột bắp lên cua. Cho chảo lên bếp và cho 100ml dầu ăn vào rồi đem cua chiên đến vừa chín thì gấp ra để ráo dầu.</Content>
+  </Step>
+  <Step>
+    <ID>4</ID>
+    <Order>3</Order>
+    <ImagePath>images/4_3.jpg</ImagePath>
+    <Content>Bắt chảo lên bếp, cho cua đã chiên vào, tiếp đến ta rưới phần sốt trứng muối đã làm lên trên, đão đều cho thịt cua thấm sốt. Dọn ra dĩa và thưởng thức thôi.</Content>
+  </Step>
+  <Step>
+    <ID>5</ID>
+    <Order>1</Order>
+    <ImagePath>images/5_1.jpg</ImagePath>
+    <Content>Tiếp tục đổ nước vào ninh sen, sen tươi rất mau chín nên sau khi nước sôi thì vặn lửa ở mức nhỏ nhất đun thêm 1-2 phút rồi tắt bếp. Hạt sen sẽ có độ chín bở mà lại không bị nát và làm đục nước.</Content>
+  </Step>
+  <Step>
+    <ID>5</ID>
+    <Order>2</Order>
+    <ImagePath>images/5_2.jpg</ImagePath>
+    <Content>Hạt sen sau khi đã bỏ hết tâm sen, rửa qua rồi cho vào nước lạnh đun sôi. Vớt sen ra xả nước cho bong hết lớp màng còn sót lại để khi ninh nước sen được trong.</Content>
+  </Step>
+  <Step>
+    <ID>5</ID>
+    <Order>3</Order>
+    <ImagePath>images/5_3.jpg</ImagePath>
+    <Content>Mỗi quả nhãn đặt một hạt sen vào bên trong làm nhân. Sau đó bóc nốt 1/2 phần vỏ còn lại, thả nhãn vào chén nước đun sôi để nguội, khuấy nhẹ cho rơi hết các bụi bẩn sót lại từ vỏ.</Content>
+  </Step>
+  <Step>
+    <ID>5</ID>
+    <Order>4</Order>
+    <ImagePath>images/5_4.jpg</ImagePath>
+    <Content>Bóc 1/2 vỏ quả nhãn, cầm vào phần chưa bóc vỏ, dùng dao nhọn lách quanh cùi nhãn để cắt rời hạt nhãn ra khỏi phần cùi. Lấy tăm hoặc vật nhọn chọc thẳng từ dưới đáy quả nhãn để đẩy phần hạt nhãn trồi lên.</Content>
+  </Step>
+  <Step>
+    <ID>5</ID>
+    <Order>5</Order>
+    <ImagePath>images/5_5.jpg</ImagePath>
+    <Content>Nước ninh hạt sen ta thả đường phèn, liều lượng tùy vào khẩu vị thích ăn ngọt của mỗi người. Đun nhỏ lửa, vừa đun vừa khuấy cho đường tan hết, thả các quả nhãn đã bọc hạt sen vào nồi rồi tắt bếp, mở vung đợi chè nguội.</Content>
+  </Step>
+  <Step>
+    <ID>5</ID>
+    <Order>6</Order>
+    <ImagePath>images/5_6.jpg</ImagePath>
+    <Content>Xếp nhãn vào chén, quay phần cùi có lộ hạt sen lên trên, múc nước đường vào là ta đã hoàn thành xong bát chè sen nhãn thanh mát rồi. Để nguội rồi cho vào ngăn mát tủ lạnh, ăn mát hoặc thêm vài viên đá nếu thích.</Content>
+  </Step>
+</ArrayOfStep>

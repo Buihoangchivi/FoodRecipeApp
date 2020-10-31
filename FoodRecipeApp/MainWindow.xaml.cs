@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+using System.Xml.Serialization;
+using System.Xml.Linq;
 
 namespace FoodRecipeApp
 {
@@ -24,7 +26,7 @@ namespace FoodRecipeApp
 	{
 		private Button clickedControlButton;
 		private bool checkFavoriteIsClicked, isMinimizeMenu;
-		private List<FoodInfomation> _list = new List<FoodInfomation>();
+		private List<Food> _list = new List<Food>();
 		private CollectionView view;
 		public enum FoodType { Food, Drinks };
 
@@ -36,35 +38,51 @@ namespace FoodRecipeApp
 
 		private Condition FilterCondition = new Condition { Favorite = false, Type = null };
 
-		class FoodInfomation
+		public partial class Food : INotifyPropertyChanged
 		{
-			public string Name { get; set; }
-			public string Image { get; set; }
-			public bool Favorite { get; set; }
+			public int ID { get; set; }              //ID món ăn 
+			public string Name { get; set; }            // Tên món ăn
+			public string Ingredients { get; set; }        //Danh sách nguyên liệu
+			public bool IsFavorite { get; set; }        //Món yêu thích
+			public DateTime DateAdd { get; set; }       //ngày thêm
+
+			private string _imagePath;                  //đường dẫn ảnh của bước
+			public string ImagePath
+			{
+				get
+				{
+					return _imagePath;
+				}
+				set
+				{
+					_imagePath = value;
+					if (PropertyChanged != null)
+					{
+						PropertyChanged(this, new PropertyChangedEventArgs("ImagePath"));
+					}
+				}
+			}
+			public string VideoLink { get; set; }
+			public string Level { get; set; }
+
 			public FoodType Type { get; set; }
+
+			public event PropertyChangedEventHandler PropertyChanged;
+
 		}
 
-		class FoodImageDAO
+		/*class FoodImageDAO
 		{
-			public static List<FoodInfomation> GetAll()
+			public static List<Food> GetAll()
 			{
-				var result = new List<FoodInfomation>()
+				var result = new List<Food>()
 				{
-					new FoodInfomation() { Name="Chu Tùng Nhân", Image="Images/playerImage01.jpg", Favorite=false, Type=FoodType.Food },
-					new FoodInfomation() { Name="Nguyen Ánh Du", Image="Images/playerImage02.jpg", Favorite=true , Type=FoodType.Food },
-					new FoodInfomation() { Name="Lều Bách Khánh", Image="Images/playerImage03.jpg", Favorite=false , Type=FoodType.Drinks },
-					new FoodInfomation() { Name="Thiều Duy Hành", Image="Images/playerImage04.jpg", Favorite=true , Type=FoodType.Drinks },
-					new FoodInfomation() { Name="Nhiệm Băng Đoan", Image="Images/playerImage05.jpg", Favorite=false , Type=FoodType.Food },
-					new FoodInfomation() { Name="Mang Đình Từ", Image="Images/playerImage06.jpg", Favorite=false , Type=FoodType.Food },
-					new FoodInfomation() { Name="Bùi Tuyền", Image="Images/playerImage07.jpg", Favorite=false , Type=FoodType.Drinks },
-					new FoodInfomation() { Name="Triệu Triều Hải", Image="Images/playerImage08.jpg", Favorite=false , Type=FoodType.Drinks },
-					new FoodInfomation() { Name="Tạ Đoan Huệ", Image="Images/playerImage09.jpg", Favorite=false , Type=FoodType.Food },
-					new FoodInfomation() { Name="Đào Sương Thư", Image="Images/playerImage10.jpg", Favorite=false , Type=FoodType.Food }
+					
 				};
 
 				return result;
 			}
-		}
+		}*/
 
 		//Cài đặt nút đóng cửa sổ
 		private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -129,7 +147,7 @@ namespace FoodRecipeApp
 		{
 			InitializeComponent();
 
-			Display("https://www.youtube.com/watch?v=qGRU3sRbaYw");
+
 			//imageFoodArray = new Rectangle[] {
 			//	Image_0, Image_1, Image_2, Image_3,
 			//	Image_4, Image_5, Image_6, Image_7,
@@ -245,6 +263,18 @@ namespace FoodRecipeApp
 				}
 				else if (button == AddDishButton)
 				{
+					var newFood = new Food() { ID = _list.Count + 1 };
+					var newScreen = new AddRecipeWindow(newFood);
+					newScreen.ShowDialog();
+					if (newScreen.DialogResult == true)
+					{
+						_list.Add(newFood);
+						MessageBox.Show("Thêm món thành công!!");
+					}
+					else
+					{
+						MessageBox.Show("Chưa món nào được thêm!!");
+					}
 
 				}
 				else if (button == IngredientButton)
@@ -279,8 +309,8 @@ namespace FoodRecipeApp
 		private bool Filter(object item)
 		{
 			bool result;
-			var foodInfo = (FoodInfomation)item;
-			if (FilterCondition.Favorite == true && foodInfo.Favorite == false)
+			var foodInfo = (Food)item;
+			if (FilterCondition.Favorite == true && foodInfo.IsFavorite == false)
 			{
 				result = false;
 			}
@@ -297,7 +327,14 @@ namespace FoodRecipeApp
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			_list = FoodImageDAO.GetAll();
+			//Đọc dữ liệu từ data
+			var folderPath = AddRecipeWindow.GetAppDomain();
+			var dataFilePath = $"{folderPath}\\data\\Food.xml";
+			XmlSerializer xs = new XmlSerializer(typeof(List<Food>));
+			using (var reader = new StreamReader(@"data\Food.xml"))
+			{
+				_list = (List<Food>)xs.Deserialize(reader);
+			}
 			foodButtonItemsControl.ItemsSource = _list;
 			view = (CollectionView)CollectionViewSource.GetDefaultView(foodButtonItemsControl.ItemsSource);
 		}
@@ -320,15 +357,17 @@ namespace FoodRecipeApp
 		{
 			var wrapPanel = (WrapPanel)button.Content;
 			var collection = wrapPanel.Children;
-			var rectangle = (Rectangle)collection[0];
-			var imageBrush = (ImageBrush)rectangle.Fill;
-			var imageSource = imageBrush.ImageSource;
-			var imageSourceString = imageSource.ToString();
-			var imageName = imageSourceString.Substring(23);
+			//var rectangle = (Rectangle)collection[0];
+			//var imageBrush = (ImageBrush)rectangle.Fill;
+			//var imageSource = imageBrush.ImageSource;
+			//var imageSourceString = imageSource.ToString();
+			//var imageName = imageSourceString.Substring(23);
+			var txbName = collection[1] as TextBlock;
+			var foodName = txbName.Text;
 			var result = 0;
 			for (int i = 0; i < _list.Count; i++)
 			{
-				if (imageName == _list[i].Image)
+				if (foodName == _list[i].Name)
 				{
 					result = i;
 					break;
@@ -367,7 +406,7 @@ namespace FoodRecipeApp
 				var index = GetElementIndexInArray((Button)sender);
 				var bitmap = new BitmapImage(
 					new Uri(
-						_list[index].Image,
+						_list[index].ImagePath,
 						UriKind.Relative)
 				);
 
@@ -391,14 +430,14 @@ namespace FoodRecipeApp
 				int index = GetElementIndexInArray((Button)sender);
 
 				//Nếu chưa yêu thích thì chuyển sang ảnh yêu thích và thêm vào danh sách yêu thích
-				if (_list[index].Favorite == true)
+				if (_list[index].IsFavorite == true)
 				{
-					_list[index].Favorite = false;
+					_list[index].IsFavorite = false;
 					//imgName = "Images/unloved.png";
 				}
 				else //Nếu yêu thích rồi chuyển sang ảnh chưa yêu thích và xóa khỏi danh sách yêu thích
 				{
-					_list[index].Favorite = true;
+					_list[index].IsFavorite = true;
 					//imgName = "Images/favorite.png";
 				}
 
@@ -421,21 +460,6 @@ namespace FoodRecipeApp
 				//Cập nhật lại giao diện
 				UpdateUIFromData();
 			}
-		}
-
-		private Regex YouTubeURLIDRegex = new Regex(@"[\?&]v=(?<v>[^&]+)");
-		public void Display(string url)
-		{
-			Match m = YouTubeURLIDRegex.Match(url);
-			String id = m.Groups["v"].Value;
-			string url1 = "http://www.youtube.com/embed/" + id;
-			string page =
-				 "<html>"
-				+ "<head><meta http-equiv='X-UA-Compatible' content='IE=11' />"
-				+ "<body>" + "\r\n"
-				+ "<iframe src=\"" + url1 + "\" width=\"700\" height=\"400\" frameborder=\"0\" allowfullscreen></iframe>"
-				+ "</body></html>";
-			VideoPlayer.NavigateToString(page);
 		}
 
 		private void Favorite_Click(object sender, RoutedEventArgs e)

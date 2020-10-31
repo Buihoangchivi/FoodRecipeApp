@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -128,7 +129,7 @@ namespace FoodRecipeApp
 		{
 			InitializeComponent();
 
-
+			Display("https://www.youtube.com/watch?v=qGRU3sRbaYw");
 			//imageFoodArray = new Rectangle[] {
 			//	Image_0, Image_1, Image_2, Image_3,
 			//	Image_4, Image_5, Image_6, Image_7,
@@ -195,7 +196,7 @@ namespace FoodRecipeApp
 			//button.Background = Brushes.LightSkyBlue;
 
 			var button = (Button)sender;
-			
+
 			if (button != clickedControlButton)
 			{
 				//Đóng giao diện cũ trước khi nhấn nút
@@ -254,7 +255,7 @@ namespace FoodRecipeApp
 				{
 					//Do nothing
 				}
-				
+
 				//Cập nhật lại nút được chọn
 				clickedControlButton = button;
 
@@ -362,7 +363,7 @@ namespace FoodRecipeApp
 				foodButtonItemsControl.Visibility = Visibility.Collapsed;
 				TypeBar.Visibility = Visibility.Collapsed;
 				detailFoodGrid.Visibility = Visibility.Visible;
-			
+
 				var index = GetElementIndexInArray((Button)sender);
 				var bitmap = new BitmapImage(
 					new Uri(
@@ -420,6 +421,21 @@ namespace FoodRecipeApp
 				//Cập nhật lại giao diện
 				UpdateUIFromData();
 			}
+		}
+
+		private Regex YouTubeURLIDRegex = new Regex(@"[\?&]v=(?<v>[^&]+)");
+		public void Display(string url)
+		{
+			Match m = YouTubeURLIDRegex.Match(url);
+			String id = m.Groups["v"].Value;
+			string url1 = "http://www.youtube.com/embed/" + id;
+			string page =
+				 "<html>"
+				+ "<head><meta http-equiv='X-UA-Compatible' content='IE=11' />"
+				+ "<body>" + "\r\n"
+				+ "<iframe src=\"" + url1 + "\" width=\"700\" height=\"400\" frameborder=\"0\" allowfullscreen></iframe>"
+				+ "</body></html>";
+			VideoPlayer.NavigateToString(page);
 		}
 
 		private void Favorite_Click(object sender, RoutedEventArgs e)

@@ -753,8 +753,94 @@ namespace FoodRecipeApp
 			}
 		}
 
-		/*Lấy danh sách móna ăn của view*/
-		private void GetFilterList()
+		public static T GetChildOfType<T>(DependencyObject depObj) where T : DependencyObject
+		{
+			if (depObj == null) return null;
+
+			for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+			{
+				var child = VisualTreeHelper.GetChild(depObj, i);
+
+				var result = (child as T) ?? GetChildOfType<T>(child);
+				if (result != null) return result;
+			}
+			return null;
+		}
+
+		private void Cb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+			ComboBox cmb = (ComboBox)sender;
+
+			cmb.IsDropDownOpen = true;
+
+			if (!string.IsNullOrEmpty(cmb.Text))
+			{
+				string fullText = cmb.Text.Insert(GetChildOfType<TextBox>(cmb).CaretIndex, e.Text);
+				cmb.ItemsSource = _list.Where(s => s.Name.IndexOf(fullText, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
+			}
+			else if (!string.IsNullOrEmpty(e.Text))
+			{
+				cmb.ItemsSource = _list.Where(s => s.Name.IndexOf(e.Text, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
+			}
+			else
+			{
+				cmb.ItemsSource = _list;
+			}
+		}
+
+        private void PreviewKeyUp_EnhanceComboSearch(object sender, KeyEventArgs e)
+        {
+			if (e.Key == Key.Back || e.Key == Key.Delete)
+			{
+				ComboBox cmb = (ComboBox)sender;
+
+				cmb.IsDropDownOpen = true;
+
+				if (!string.IsNullOrEmpty(cmb.Text))
+				{
+					cmb.ItemsSource = _list.Where(s => s.Name.IndexOf(cmb.Text, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
+				}
+				else
+				{
+					cmb.ItemsSource = _list;
+				}
+			}
+		}
+
+        private void Pasting_EnhanceComboSearch(object sender, DataObjectPastingEventArgs e)
+        {
+			ComboBox cmb = (ComboBox)sender;
+
+			cmb.IsDropDownOpen = true;
+
+			string pastedText = (string)e.DataObject.GetData(typeof(string));
+			string fullText = cmb.Text.Insert(GetChildOfType<TextBox>(cmb).CaretIndex, pastedText);
+
+			if (!string.IsNullOrEmpty(fullText))
+			{
+				cmb.ItemsSource = _list.Where(s => s.Name.IndexOf(fullText, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
+			}
+			else
+			{
+				cmb.ItemsSource = _list;
+			}
+		}
+
+        private void dockingContentControl_KeyDown(object sender, KeyEventArgs e)
+        {
+			if (e.Key == Key.Down)
+			{
+				cb.SelectedIndex++;
+			}
+			
+			
+			
+
+
+		}
+
+        /*Lấy danh sách móna ăn của view*/
+        private void GetFilterList()
 		{
 			FoodOnScreen = new List<FoodInfomation>();
 			foreach (var food in view)

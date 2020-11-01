@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 using Microsoft.Win32;
 
 namespace FoodRecipeApp
@@ -188,21 +189,9 @@ namespace FoodRecipeApp
 		{
 			InitializeComponent();
 
-			Display("https://www.youtube.com/watch?v=qGRU3sRbaYw");
-			newFood = new FoodInfomation() { ID = 6, Type = FoodType.Food};
-			this.DataContext = newFood;
-
-			//imageFoodArray = new Rectangle[] {
-			//	Image_0, Image_1, Image_2, Image_3,
-			//	Image_4, Image_5, Image_6, Image_7,
-			//	Image_8, Image_9, Image_10, Image_11,
-			//	Image_12, Image_13, Image_14};
-
-			//foodNameArray = new TextBlock[] {
-			//	FoodName_0, FoodName_1, FoodName_2, FoodName_3,
-			//	FoodName_4, FoodName_5, FoodName_6, FoodName_7,
-			//	FoodName_8, FoodName_9, FoodName_10, FoodName_11,
-			//	FoodName_12, FoodName_13, FoodName_14};
+			//Display("https://www.youtube.com/watch?v=qGRU3sRbaYw");
+			newFood = new FoodInfomation() { ID = 60, Type = FoodType.Food};
+			//this.DataContext = newFood;
 
 			checkFavoriteIsClicked = false;
 			isMinimizeMenu = false;
@@ -262,18 +251,14 @@ namespace FoodRecipeApp
 			if (button != clickedControlButton)
 			{
 				//Đóng giao diện cũ trước khi nhấn nút
-				if (clickedControlButton == HomeButton)
+				if (clickedControlButton == HomeButton || clickedControlButton == FavoriteButton)
 				{
 					TypeBar.Visibility = Visibility.Collapsed;
 					foodButtonItemsControl.Visibility = Visibility.Collapsed;
 				}
-				else if (clickedControlButton == FavoriteButton)
-				{
-
-				}
 				else if (clickedControlButton == AddDishButton)
 				{
-
+					AddFood.Visibility = Visibility.Collapsed;
 				}
 				else if (clickedControlButton == IngredientButton)
 				{
@@ -307,9 +292,10 @@ namespace FoodRecipeApp
 				}
 				else if (button == AddDishButton)
 				{
-					newFood = new FoodInfomation { ID = _list.Count + 1, Level = "Dễ" };
-					//AddFood.ItemsSource = newFood;
-
+					newFood = new FoodInfomation { ID = 60, Level = "Dễ" };
+					AddFood.Visibility = Visibility.Visible;
+					AddFood.DataContext = newFood;
+					AddDirectionItemsControl.ItemsSource = ListSteps;
 				}
 				else if (button == IngredientButton)
 				{
@@ -361,11 +347,14 @@ namespace FoodRecipeApp
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			//_list = FoodImageDAO.GetAll();
-			//foodButtonItemsControl.ItemsSource = _list;
-			//view = (CollectionView)CollectionViewSource.GetDefaultView(foodButtonItemsControl.ItemsSource);
-
-			AddDirectionItemsControl.ItemsSource = ListSteps;
+			//Đọc dữ liệu từ data
+			XmlSerializer xs = new XmlSerializer(typeof(List<FoodInfomation>));
+			using (var reader = new StreamReader(@"data\Food.xml"))
+			{
+				_list = (List<FoodInfomation>)xs.Deserialize(reader);
+			}
+			foodButtonItemsControl.ItemsSource = _list;
+			view = (CollectionView)CollectionViewSource.GetDefaultView(foodButtonItemsControl.ItemsSource);
 
 		}
 
@@ -386,16 +375,17 @@ namespace FoodRecipeApp
 		private int GetElementIndexInArray(Button button)
 		{
 			var wrapPanel = (WrapPanel)button.Content;
-			var collection = wrapPanel.Children;
-			var rectangle = (Rectangle)collection[0];
-			var imageBrush = (ImageBrush)rectangle.Fill;
-			var imageSource = imageBrush.ImageSource;
-			var imageSourceString = imageSource.ToString();
-			var imageName = imageSourceString.Substring(23);
+			//var collection = wrapPanel.Children;
+			//var rectangle = (Rectangle)collection[0];
+			//var imageBrush = (ImageBrush)rectangle.Fill;
+			//var imageSource = imageBrush.ImageSource;
+			//var imageSourceString = imageSource.ToString();
+			//var imageName = imageSourceString.Substring(23);
+			var curFood = wrapPanel.DataContext as FoodInfomation;
 			var result = 0;
 			for (int i = 0; i < _list.Count; i++)
 			{
-				if (imageName == _list[i].ImagePath)
+				if (curFood == _list[i])
 				{
 					result = i;
 					break;
@@ -585,17 +575,18 @@ namespace FoodRecipeApp
 			string folderPath = GetAppDomain();
 			string filePath = $"{folderPath}data\\Food.xml";
 			XDocument doc = XDocument.Load(filePath);
-			doc.Element("ArrayOfFood").Add(
+			doc.Element("ArrayOfFoodInfomation").Add(
 					new XElement
 					(
-							"Food",
+							"FoodInfomation",
 							new XElement("ID", newFood.ID),
 							new XElement("Name", newFood.Name),
 							new XElement("Ingredients", newFood.Ingredients),
 							new XElement("IsFavorite", newFood.IsFavorite),
 							new XElement("DateAdd", newFood.DateAdd),
 							new XElement("ImagePath", newFood.ImagePath),
-							new XElement("VideoLink", newFood.VideoLink)
+							new XElement("VideoLink", newFood.VideoLink),
+							new XElement("Type", newFood.Type)
 					)
 			);
 			doc.Save(filePath);
@@ -638,6 +629,10 @@ namespace FoodRecipeApp
 			SaveStepsImages();
 
 			SaveStepData();
+
+			_list.Add(newFood);
+			foodButtonItemsControl.ItemsSource = _list;
+			view = (CollectionView)CollectionViewSource.GetDefaultView(foodButtonItemsControl.ItemsSource);
 		}
 
 		private void Favorite_Click(object sender, RoutedEventArgs e)

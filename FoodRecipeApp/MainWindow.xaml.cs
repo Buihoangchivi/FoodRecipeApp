@@ -187,6 +187,7 @@ namespace FoodRecipeApp
 			InitializeComponent();
 
 			Display("https://www.youtube.com/watch?v=qGRU3sRbaYw");
+			newFood = new FoodInfomation();
 			this.DataContext = newFood;
 
 			//imageFoodArray = new Rectangle[] {
@@ -359,8 +360,8 @@ namespace FoodRecipeApp
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 			//_list = FoodImageDAO.GetAll();
-			foodButtonItemsControl.ItemsSource = _list;
-			view = (CollectionView)CollectionViewSource.GetDefaultView(foodButtonItemsControl.ItemsSource);
+			//foodButtonItemsControl.ItemsSource = _list;
+			//view = (CollectionView)CollectionViewSource.GetDefaultView(foodButtonItemsControl.ItemsSource);
 
 			AddDirectionItemsControl.ItemsSource = ListSteps;
 
@@ -536,12 +537,12 @@ namespace FoodRecipeApp
 			fileDialog.Title = "Select Image";
 			if (fileDialog.ShowDialog() == true)
 			{
-				var itemsControl = FindParent<ItemsControl>(sender as DependencyObject);
+				var container = FindParent<StackPanel>(sender as DependencyObject);
 				string filePath = fileDialog.FileName;
-				if (itemsControl != null)
+				if (container != null)
 				{
-					var currData = itemsControl.DataContext as Step;
-					currData.ImagePath = filePath;
+					var currData = container.DataContext as Step;
+					currData.ImagePath = filePath;					
 				}
 			}
 		}

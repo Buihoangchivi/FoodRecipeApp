@@ -24,13 +24,55 @@ namespace FoodRecipeApp
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class MainWindow : Window, INotifyPropertyChanged
 	{
+		public event PropertyChangedEventHandler PropertyChanged;
+
 		private Button clickedControlButton;
 		private bool checkFavoriteIsClicked, isMinimizeMenu;
 		private List<FoodInfomation> _list = new List<FoodInfomation>();
 		private CollectionView view;
 		public enum FoodType { Food, Drinks };
+
+		private List<FoodInfomation> FoodOnScreen;                        //Danh sách food để hiện trên màn hình
+
+		private int FoodperPage = 12;                           //Số món ăn mỗi trang
+
+		private int _totalPage = 0;                             //Tổng số trang
+
+		public int TotalPage
+		{
+			get
+			{
+				return _totalPage;
+			}
+			set
+			{
+				_totalPage = value;
+				if (PropertyChanged != null)
+				{
+					PropertyChanged(this, new PropertyChangedEventArgs("TotalPage"));
+				}
+			}
+		}
+
+		private int _currentPage = 1;                           //Trang hiện tại
+
+		public int CurrentPage
+		{
+			get
+			{
+				return _currentPage;
+			}
+			set
+			{
+				_currentPage = value;
+				if (PropertyChanged != null)
+				{
+					PropertyChanged(this, new PropertyChangedEventArgs("CurrentPage"));
+				}
+			}
+		}
 
 		class Condition
 		{
@@ -203,11 +245,41 @@ namespace FoodRecipeApp
 			//clickedControlButton.Background = Brushes.LightSkyBlue;
 		}
 
+		////Cập nhật lại thay đổi từ dữ liệu lên màn hình
+		//private void UpdateUIFromData()
+		//{
+		//	view.Filter = Filter;
+		//	CollectionViewSource.GetDefaultView(foodButtonItemsControl.ItemsSource).Refresh();
+		//}
+
 		//Cập nhật lại thay đổi từ dữ liệu lên màn hình
 		private void UpdateUIFromData()
 		{
 			view.Filter = Filter;
-			CollectionViewSource.GetDefaultView(foodButtonItemsControl.ItemsSource).Refresh();
+
+			/*Lấy danh sách thức ăn đã được lọc để khởi tạo lại số trang */
+			GetFilterList();
+			TotalPage = ((FoodOnScreen.Count - 1) / FoodperPage) + 1;
+			CurrentPage = 1;
+			var Foods = FoodOnScreen.Take(FoodperPage);
+			foodButtonItemsControl.ItemsSource = Foods;
+
+			//CollectionViewSource.GetDefaultView(foodButtonItemsControl.ItemsSource).Refresh();
+		}
+
+		/*Cập nhật lại danh sách món ăn trên màn hình sau khi nhấn thích*/
+		private void UpdateFoodStatus()
+		{
+			view.Filter = Filter;
+			GetFilterList();
+			TotalPage = ((FoodOnScreen.Count - 1) / FoodperPage) + 1;
+			if (CurrentPage > TotalPage)
+			{
+				CurrentPage--;
+			}
+			/*Lấy danh sách thức ăn đã được lọc để khởi tạo lại số trang */
+			var Foods = FoodOnScreen.Skip((CurrentPage - 1) * FoodperPage).Take(FoodperPage);
+			foodButtonItemsControl.ItemsSource = Foods;
 		}
 
 		private void changeClickedTypeButton(object sender, RoutedEventArgs e)
@@ -348,13 +420,22 @@ namespace FoodRecipeApp
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 			//Đọc dữ liệu từ data
+
 			XmlSerializer xs = new XmlSerializer(typeof(List<FoodInfomation>));
 			using (var reader = new StreamReader(@"data\Food.xml"))
 			{
 				_list = (List<FoodInfomation>)xs.Deserialize(reader);
 			}
-			foodButtonItemsControl.ItemsSource = _list;
-			view = (CollectionView)CollectionViewSource.GetDefaultView(foodButtonItemsControl.ItemsSource);
+			FoodOnScreen = _list;
+			TotalPage = (_list.Count - 1) / FoodperPage + 1;
+
+			this.DataContext = this;	//Binding Số trang
+
+			/*Lấy danh sách food*/
+			var foods = FoodOnScreen.Take(FoodperPage);
+			foodButtonItemsControl.ItemsSource = foods;
+			//view = (CollectionView)CollectionViewSource.GetDefaultView(foodButtonItemsControl.ItemsSource);
+			view = (CollectionView)CollectionViewSource.GetDefaultView(_list);
 
 		}
 
@@ -476,7 +557,7 @@ namespace FoodRecipeApp
 				checkFavoriteIsClicked = false;
 
 				//Cập nhật lại giao diện
-				UpdateUIFromData();
+				UpdateFoodStatus();
 			}
 		}
 
@@ -638,6 +719,37 @@ namespace FoodRecipeApp
 		private void Favorite_Click(object sender, RoutedEventArgs e)
 		{
 			checkFavoriteIsClicked = true;
+		}
+
+		private void btnNextPage_Click(object sender, RoutedEventArgs e)
+		{
+			if (CurrentPage < TotalPage)
+			{
+				var foods = FoodOnScreen.Skip(CurrentPage * FoodperPage).Take(FoodperPage);
+				CurrentPage++;
+				foodButtonItemsControl.ItemsSource = foods;
+			}
+		}
+
+		/*Về trang trước*/
+		private void btnPrevPage_Click(object sender, RoutedEventArgs e)
+		{
+			if (CurrentPage > 1)
+			{
+				CurrentPage--;
+				var foods = FoodOnScreen.Skip((CurrentPage - 1) * FoodperPage).Take(FoodperPage);
+				foodButtonItemsControl.ItemsSource = foods;
+			}
+		}
+
+		/*Lấy danh sách móna ăn của view*/
+		private void GetFilterList()
+		{
+			FoodOnScreen = new List<FoodInfomation>();
+			foreach (var food in view)
+			{
+				FoodOnScreen.Add((FoodInfomation)food);
+			}
 		}
 	}
 }

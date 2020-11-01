@@ -35,6 +35,14 @@
             </Button>
             <TextBlock></TextBlock>
         </DockPanel>
+            <!--nút phân trang-->
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Name="tbCurrentPage" Text="{Binding CurrentPage}" FontSize="20"></TextBlock>
+            <TextBlock FontSize="20">/</TextBlock>
+            <TextBlock Name="tbTotalPage" Text="{Binding TotalPage}" FontSize="20"></TextBlock>
+            <Button Click="btnPrevPage_Click" Width="100">Prev</Button>
+            <Button  Click="btnNextPage_Click" Width="100">Next</Button>
+        </StackPanel>
 
         <!--Menu Control-->
         <StackPanel x:Name="ControlStackPanel" DockPanel.Dock="Left" Background="LightGray" Width="250">

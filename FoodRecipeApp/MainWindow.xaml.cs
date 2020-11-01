@@ -97,6 +97,8 @@ namespace FoodRecipeApp
 
 			public FoodType Type { get; set; }
 
+			public string Discription { get; set; }
+
 			public event PropertyChangedEventHandler PropertyChanged;
 
 		}
@@ -187,7 +189,7 @@ namespace FoodRecipeApp
 			InitializeComponent();
 
 			Display("https://www.youtube.com/watch?v=qGRU3sRbaYw");
-			newFood = new FoodInfomation();
+			newFood = new FoodInfomation() { ID = 6, Type = FoodType.Food};
 			this.DataContext = newFood;
 
 			//imageFoodArray = new Rectangle[] {
@@ -507,12 +509,12 @@ namespace FoodRecipeApp
 		{
 			if (ListSteps.Count == 0)
 			{
-				var newStep = new Step() { ID = _list.Count + 1, Order = 1 };
+				var newStep = new Step() { ID = newFood.ID, Order = 1 };
 				ListSteps.Add(newStep);
 			}
 			else
 			{
-				var newStep = new Step() { ID = _list.Count + 1, Order = ListSteps[ListSteps.Count - 1].Order + 1 };
+				var newStep = new Step() { ID = newFood.ID, Order = ListSteps[ListSteps.Count - 1].Order + 1 };
 				ListSteps.Add(newStep);
 			}
 		}

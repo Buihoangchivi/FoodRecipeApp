@@ -242,7 +242,6 @@ namespace FoodRecipeApp
 			InitializeComponent();
 
 			//Display("https://www.youtube.com/watch?v=qGRU3sRbaYw");
-			newFood = new FoodInfomation() { ID = 60, Type = FoodType.Food};
 			//this.DataContext = newFood;
 
 			checkFavoriteIsClicked = false;
@@ -374,7 +373,9 @@ namespace FoodRecipeApp
 				}
 				else if (button == AddDishButton)
 				{
-					newFood = new FoodInfomation { ID = 60, Level = "Dễ" };
+					SortFoodList();
+					var index = GetMinID();
+					newFood = new FoodInfomation() { ID = index, Type = FoodType.Food };
 					AddFood.Visibility = Visibility.Visible;
 					AddFood.DataContext = newFood;
 					AddDirectionItemsControl.ItemsSource = ListSteps;
@@ -406,6 +407,40 @@ namespace FoodRecipeApp
 			{
 				//Do nothing
 			}
+		}
+
+		private void SortFoodList()
+		{
+			FoodInfomation temp;
+			for (int i = 0; i < _list.Count - 1; i++)
+			{
+				for (int j = i + 1; j < _list.Count; j++)
+				{
+					if (_list[i].ID > _list[j].ID)
+					{
+						temp = _list[i];
+						_list[i] = _list[j];
+						_list[j] = temp;
+					}
+				}
+			}
+		}
+
+		private int GetMinID()
+		{
+			int result = 1;
+			for (int i = 0; i < _list.Count; i++)
+			{
+				if (result < _list[i].ID)
+				{
+					break;
+				}
+				else
+				{
+					result++;
+				}
+			}
+			return result;
 		}
 
 		private bool Filter(object item)
@@ -830,13 +865,8 @@ namespace FoodRecipeApp
         {
 			if (e.Key == Key.Down)
 			{
-				cb.SelectedIndex++;
+				SearchComboBox.SelectedIndex++;
 			}
-			
-			
-			
-
-
 		}
 
         /*Lấy danh sách móna ăn của view*/

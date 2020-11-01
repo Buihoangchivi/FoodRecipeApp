@@ -35,14 +35,6 @@
             </Button>
             <TextBlock></TextBlock>
         </DockPanel>
-            <!--nút phân trang-->
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
-            <TextBlock Name="tbCurrentPage" Text="{Binding CurrentPage}" FontSize="20"></TextBlock>
-            <TextBlock FontSize="20">/</TextBlock>
-            <TextBlock Name="tbTotalPage" Text="{Binding TotalPage}" FontSize="20"></TextBlock>
-            <Button Click="btnPrevPage_Click" Width="100">Prev</Button>
-            <Button  Click="btnNextPage_Click" Width="100">Next</Button>
-        </StackPanel>
 
         <!--Menu Control-->
         <StackPanel x:Name="ControlStackPanel" DockPanel.Dock="Left" Background="LightGray" Width="250">
@@ -83,6 +75,15 @@
             </Button>
         </StackPanel>
 
+        <!--nút phân trang-->
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Name="tbCurrentPage" Text="{Binding CurrentPage}" FontSize="20"></TextBlock>
+            <TextBlock FontSize="20">/</TextBlock>
+            <TextBlock Name="tbTotalPage" Text="{Binding TotalPage}" FontSize="20"></TextBlock>
+            <Button Click="btnPrevPage_Click" Width="100">Prev</Button>
+            <Button  Click="btnNextPage_Click" Width="100">Next</Button>
+        </StackPanel>
+
         <!--Thanh để lọc loại thức ăn-->
         <DockPanel Name="TypeBar" Height="40" Margin="15,0" DockPanel.Dock="Top" LastChildFill="True" Visibility="Visible">
             <StackPanel Orientation="Horizontal" Width="590" DockPanel.Dock="Left">
@@ -102,11 +103,12 @@
                             </Button>
                         </StackPanel>
                         <StackPanel>
-                            <ComboBox IsTextSearchEnabled="False" IsEditable="True" x:Name="cb"
+                            <ComboBox IsTextSearchEnabled="False" IsEditable="True" x:Name="SearchComboBox"
                                       PreviewTextInput="Cb_OnPreviewTextInput"
                                       PreviewKeyUp="PreviewKeyUp_EnhanceComboSearch"
                                       DataObject.Pasting="Pasting_EnhanceComboSearch"
-                                      KeyDown="dockingContentControl_KeyDown" Height="32" Width="196"  >
+                                      KeyDown="dockingContentControl_KeyDown" Height="32" Width="190" 
+                                      BorderThickness="0" VerticalContentAlignment="Center">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -124,70 +126,72 @@
         </DockPanel>
 
         <!--Hình ảnh và tên các món ăn-->
-        <Grid Margin="15,10,0,0">
-            <ItemsControl Name="foodButtonItemsControl" Visibility="Visible">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Width="204" Background="White" Margin="0,0,8,10" Click="FoodImage_Click" BorderThickness="0" >
-                            <Button.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="10"/>
-                                </Style>
-                            </Button.Resources>
-                            <WrapPanel>
-                                <Rectangle RadiusX="10" RadiusY="10" Width="202" Height="150">
-                                    <Rectangle.Fill>
-                                        <ImageBrush ImageSource="{Binding ImagePath, Converter={StaticResource converter}}" RenderOptions.BitmapScalingMode="HighQuality"/>
-                                    </Rectangle.Fill>
-                                </Rectangle>
-                                <TextBlock Text="{Binding Name}" Width="175" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1"></TextBlock>
-                                <Button Height="24" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click" Padding="2.8">
-                                    <Button.Content>
-                                        <WrapPanel>
-                                            <Image Source="Images/unloved.png" RenderOptions.BitmapScalingMode="HighQuality">
-                                                <Image.Style>
-                                                    <Style TargetType="Image">
-                                                        <Setter Property="Visibility" Value="Collapsed" />
-                                                        <Style.Triggers>
-                                                            <MultiDataTrigger>
-                                                                <MultiDataTrigger.Conditions>
-                                                                    <Condition Binding="{Binding IsFavorite}" Value="False" />
-                                                                </MultiDataTrigger.Conditions>
-                                                                <Setter Property="Visibility" Value="Visible" />
-                                                            </MultiDataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </Image.Style>
-                                            </Image>
-                                            <Image Source="Images/favorite.png" RenderOptions.BitmapScalingMode="HighQuality">
-                                                <Image.Style>
-                                                    <Style TargetType="Image">
-                                                        <Setter Property="Visibility" Value="Collapsed" />
-                                                        <Style.Triggers>
-                                                            <MultiDataTrigger>
-                                                                <MultiDataTrigger.Conditions>
-                                                                    <Condition Binding="{Binding IsFavorite}" Value="True" />
-                                                                </MultiDataTrigger.Conditions>
-                                                                <Setter Property="Visibility" Value="Visible" />
-                                                            </MultiDataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </Image.Style>
-                                            </Image>
-                                        </WrapPanel>
-                                    </Button.Content>
-                                </Button>
-                            </WrapPanel>
-                        </Button>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Hidden">
+            <Grid Margin="15,6,0,0">
+                <ItemsControl Name="foodButtonItemsControl" Visibility="Visible">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Width="204" Background="White" Margin="0,0,8,10" Click="FoodImage_Click" BorderThickness="0" >
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Button.Resources>
+                                <WrapPanel>
+                                    <Rectangle RadiusX="10" RadiusY="10" Width="202" Height="145">
+                                        <Rectangle.Fill>
+                                            <ImageBrush ImageSource="{Binding ImagePath, Converter={StaticResource converter}}" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                    <TextBlock Text="{Binding Name}" Width="175" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1"></TextBlock>
+                                    <Button Height="24" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click" Padding="2.8">
+                                        <Button.Content>
+                                            <WrapPanel>
+                                                <Image Source="Images/unloved.png" RenderOptions.BitmapScalingMode="HighQuality">
+                                                    <Image.Style>
+                                                        <Style TargetType="Image">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                            <Style.Triggers>
+                                                                <MultiDataTrigger>
+                                                                    <MultiDataTrigger.Conditions>
+                                                                        <Condition Binding="{Binding IsFavorite}" Value="False" />
+                                                                    </MultiDataTrigger.Conditions>
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </MultiDataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Image.Style>
+                                                </Image>
+                                                <Image Source="Images/favorite.png" RenderOptions.BitmapScalingMode="HighQuality">
+                                                    <Image.Style>
+                                                        <Style TargetType="Image">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                            <Style.Triggers>
+                                                                <MultiDataTrigger>
+                                                                    <MultiDataTrigger.Conditions>
+                                                                        <Condition Binding="{Binding IsFavorite}" Value="True" />
+                                                                    </MultiDataTrigger.Conditions>
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </MultiDataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Image.Style>
+                                                </Image>
+                                            </WrapPanel>
+                                        </Button.Content>
+                                    </Button>
+                                </WrapPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </ScrollViewer>
 
         <!--Chi tiết món ăn-->
         <ScrollViewer Name="detailFoodGrid" Visibility="Collapsed">

@@ -168,9 +168,19 @@ namespace FoodRecipeApp
 		//	}
 		//}
 
+		/*Lưu lại danh sách món ăn*/
+		private void SaveListFood()
+        {
+			XmlSerializer xs = new XmlSerializer(typeof(List<FoodInfomation>));
+			TextWriter writer = new StreamWriter(@"data\Food.xml");
+			xs.Serialize(writer, _list);
+			writer.Close();
+		}
+		
 		//Cài đặt nút đóng cửa sổ
 		private void CloseButton_Click(object sender, RoutedEventArgs e)
 		{
+			SaveListFood();
 			Application.Current.Shutdown();
 		}
 
@@ -712,8 +722,9 @@ namespace FoodRecipeApp
 			SaveStepData();
 
 			_list.Add(newFood);
-			foodButtonItemsControl.ItemsSource = _list;
-			view = (CollectionView)CollectionViewSource.GetDefaultView(foodButtonItemsControl.ItemsSource);
+			//foodButtonItemsControl.ItemsSource = _list;
+			view = (CollectionView)CollectionViewSource.GetDefaultView(_list);
+			UpdateUIFromData();
 		}
 
 		private void Favorite_Click(object sender, RoutedEventArgs e)

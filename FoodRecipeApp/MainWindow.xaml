@@ -252,8 +252,8 @@
         </ScrollViewer>
 
         <!--Thêm món ăn-->
-        <ScrollViewer Name="AddFood" Visibility="Visible">
-            <Grid>
+        <ScrollViewer Visibility="Visible">
+            <Grid Name="AddFood">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -264,9 +264,11 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
+                
                 <StackPanel Grid.Row="0" Grid.Column="0">
                     <TextBlock Padding="5" FontSize="20" Foreground="ForestGreen">Title</TextBlock>
-                    <TextBox Name="FoodTitleTextBox" Margin="5,0,20,5" Padding="5" FontSize="14" VerticalContentAlignment="Center" TextWrapping="Wrap" BorderThickness="2"></TextBox>
+                    <TextBox Name="FoodTitleTextBox" Margin="5,0,20,5" Padding="5" FontSize="14" Text="{Binding Name}"
+                             VerticalContentAlignment="Center" TextWrapping="Wrap" BorderThickness="2"></TextBox>
                     <TextBlock Padding="5" FontSize="20" Foreground="ForestGreen">Level</TextBlock>
                     <ComboBox Name="LevelComboBox" Margin="5,0,20,8" 
                           SelectedItem="{Binding Level}"
@@ -284,7 +286,8 @@
                         </ComboBoxItem>
                     </ComboBox>
                     <TextBlock Padding="5" FontSize="20" Foreground="ForestGreen">Link Youtube</TextBlock>
-                    <TextBox Name="YoutubeLinkTextBox" Margin="5,0,20,5" Padding="5" FontSize="14" VerticalContentAlignment="Center" TextWrapping="Wrap" BorderThickness="2"></TextBox>
+                    <TextBox Name="YoutubeLinkTextBox" Margin="5,0,20,5" Padding="5" FontSize="14" Text="{Binding VideoLink}"
+                             VerticalContentAlignment="Center" TextWrapping="Wrap" BorderThickness="2"></TextBox>
                 </StackPanel>
                 <Grid Grid.Row="0" Grid.Column="1">
                     <Grid.RowDefinitions>
@@ -293,22 +296,28 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Horizontal">
                         <TextBlock Padding="5" FontSize="20" Foreground="ForestGreen">Photos</TextBlock>
-                        <Button Margin="20,0,0,0" Background="White" BorderThickness="0">
+                        <Button Margin="20,0,0,0" Background="White" BorderThickness="0" Name="AddPrimaryFoodPhoto" Click="AddPrimaryFoodPhoto_Click">
                             <WrapPanel Margin="15,0">
-                                <Image Source="Images/addImage.png" Width="20" Margin="0,0,10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                <Image Source="Images/addImage.png" Width="20" Margin="0,0,10,0"
+                                       RenderOptions.BitmapScalingMode="HighQuality"></Image>
                                 <TextBlock VerticalAlignment="Center" FontSize="15">Add photo</TextBlock>
                             </WrapPanel>
                         </Button>
                     </StackPanel>
-                    <Image Name="PrimaryFoodImage" Grid.Row="1" MaxHeight="200" Margin="70,20" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                    <Image Name="PrimaryFoodImage" Grid.Row="1" MaxHeight="200" Margin="70,20" Source="{Binding ImagePath}"
+                           RenderOptions.BitmapScalingMode="HighQuality"></Image>
                 </Grid>
                 <StackPanel Grid.Row="1" Grid.Column="0">
                     <TextBlock Padding="5" FontSize="20" Foreground="ForestGreen">Description</TextBlock>
-                    <TextBox Name="DescriptionTextBox" AcceptsReturn="True" Margin="5,0,20,5" Height="300" Padding="5" FontSize="14" VerticalContentAlignment="Top" TextWrapping="Wrap" BorderThickness="2" VerticalScrollBarVisibility="Auto"/>
+                    <TextBox Name="DescriptionTextBox" AcceptsReturn="True" Margin="5,0,20,5" Height="300" Padding="5" FontSize="14" 
+                             VerticalContentAlignment="Top" TextWrapping="Wrap" BorderThickness="2" VerticalScrollBarVisibility="Auto"
+                             Text="{Binding Discription}"/>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Grid.Column="1">
                     <TextBlock Padding="5" FontSize="20" Foreground="ForestGreen">Ingredients</TextBlock>
-                    <TextBox Name="IngredientTextBox" AcceptsReturn="True" Margin="5,0,20,5" Height="300" Padding="5" FontSize="14" VerticalContentAlignment="Top" TextWrapping="Wrap" BorderThickness="2" VerticalScrollBarVisibility="Auto"/>
+                    <TextBox Name="IngredientTextBox" AcceptsReturn="True" Margin="5,0,20,5" Height="300" Padding="5" 
+                             FontSize="14" VerticalContentAlignment="Top" TextWrapping="Wrap" BorderThickness="2" 
+                             Text="{Binding Ingredients}" VerticalScrollBarVisibility="Auto"/>
                 </StackPanel>
                 <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
                     <TextBlock Padding="5" FontSize="20" Foreground="ForestGreen">Directions</TextBlock>
@@ -334,11 +343,12 @@
                                         <TextBlock Text="Step" FontSize="18"/>
                                     </WrapPanel>
                                     <WrapPanel Grid.Row="0" Grid.Column="1">
-                                        <TextBlock Text="1" FontSize="18"></TextBlock>
+                                        <TextBlock FontSize="18" Text="{Binding Order}"></TextBlock>
                                     </WrapPanel>
                                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Content" FontSize="18" Margin="15,0,0,0"/>
-                                    <TextBox Grid.Row="1" Grid.Column="1" AcceptsReturn="True" Margin="0,5,20,20" Height="150" Padding="5" FontSize="14" 
-                                 VerticalContentAlignment="Top" TextWrapping="Wrap" BorderThickness="2" VerticalScrollBarVisibility="Auto"/>
+                                    <TextBox Grid.Row="1" Grid.Column="1" AcceptsReturn="True" Margin="0,5,20,20" Height="150" Padding="5" 
+                                             FontSize="14" VerticalContentAlignment="Top" TextWrapping="Wrap" BorderThickness="2" 
+                                             VerticalScrollBarVisibility="Auto" Text="{Binding Content}"/>
                                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Photo" FontSize="18" Margin="15,5,0,0"/>
                                     <Grid Grid.Row="2" Grid.Column="1" Margin="0,0,20,20">
                                         <Grid.ColumnDefinitions>
@@ -346,25 +356,29 @@
                                             <ColumnDefinition></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
                                         <StackPanel Orientation="Horizontal">
-                                            <Button Margin="20,0,0,0" Background="White" BorderThickness="0" Height="35" VerticalAlignment="Top">
+                                            <Button Margin="20,0,0,0" Background="White" BorderThickness="0" Name="AddOtherFoodPhoto" Click="AddOtherFoodPhoto_Click"
+                                                    Height="35" VerticalAlignment="Top">
                                                 <WrapPanel Margin="15,0">
                                                     <Image Source="Images/addImage.png" Width="20" Margin="0,0,10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                                                     <TextBlock VerticalAlignment="Center" FontSize="15">Add photo</TextBlock>
                                                 </WrapPanel>
                                             </Button>
                                         </StackPanel>
-                                        <Image Name="DirectionFoodImage" Grid.Column="1" HorizontalAlignment="Center" Margin="70,20" Source="Images/playerImage02.jpg" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                        <Image Name="DirectionFoodImage" Grid.Column="1" HorizontalAlignment="Center" Source="{Binding ImagePath}"
+                                               Margin="70,20" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                                     </Grid>
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    <Button Grid.ColumnSpan="2" HorizontalAlignment="Center" Background="White" BorderThickness="0" Height="35" Margin="0,0,0,15">
+                    <Button Grid.ColumnSpan="2" HorizontalAlignment="Center" Background="White" Name="AddStepButton" Click="AddStepButton_Click"
+                            BorderThickness="0" Height="35" Margin="0,0,0,15">
                         <WrapPanel Margin="15,0">
                             <Image Source="Images/addImage.png" Width="20" Margin="0,0,10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                             <TextBlock VerticalAlignment="Center" FontSize="15">Add direction</TextBlock>
                         </WrapPanel>
                     </Button>
+                    <Button Name="SaveFood" Click="SaveFood_Click">Save</Button>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

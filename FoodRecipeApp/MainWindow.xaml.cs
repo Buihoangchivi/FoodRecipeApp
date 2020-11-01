@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -14,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
+using Microsoft.Win32;
 
 namespace FoodRecipeApp
 {
@@ -36,35 +39,89 @@ namespace FoodRecipeApp
 
 		private Condition FilterCondition = new Condition { Favorite = false, Type = null };
 
-		class FoodInfomation
+		class Step : INotifyPropertyChanged
 		{
-			public string Name { get; set; }
-			public string Image { get; set; }
-			public bool Favorite { get; set; }
-			public FoodType Type { get; set; }
-		}
+			public event PropertyChangedEventHandler PropertyChanged;
 
-		class FoodImageDAO
-		{
-			public static List<FoodInfomation> GetAll()
+			public int ID { get; set; }                 //ID món ăn
+			public int Order { get; set; }              //thứ tự bước
+
+			private string _imagePath;                  //đường dẫn ảnh của bước
+			public string ImagePath
 			{
-				var result = new List<FoodInfomation>()
+				get
 				{
-					new FoodInfomation() { Name="Chu Tùng Nhân", Image="Images/playerImage01.jpg", Favorite=false, Type=FoodType.Food },
-					new FoodInfomation() { Name="Nguyen Ánh Du", Image="Images/playerImage02.jpg", Favorite=true , Type=FoodType.Food },
-					new FoodInfomation() { Name="Lều Bách Khánh", Image="Images/playerImage03.jpg", Favorite=false , Type=FoodType.Drinks },
-					new FoodInfomation() { Name="Thiều Duy Hành", Image="Images/playerImage04.jpg", Favorite=true , Type=FoodType.Drinks },
-					new FoodInfomation() { Name="Nhiệm Băng Đoan", Image="Images/playerImage05.jpg", Favorite=false , Type=FoodType.Food },
-					new FoodInfomation() { Name="Mang Đình Từ", Image="Images/playerImage06.jpg", Favorite=false , Type=FoodType.Food },
-					new FoodInfomation() { Name="Bùi Tuyền", Image="Images/playerImage07.jpg", Favorite=false , Type=FoodType.Drinks },
-					new FoodInfomation() { Name="Triệu Triều Hải", Image="Images/playerImage08.jpg", Favorite=false , Type=FoodType.Drinks },
-					new FoodInfomation() { Name="Tạ Đoan Huệ", Image="Images/playerImage09.jpg", Favorite=false , Type=FoodType.Food },
-					new FoodInfomation() { Name="Đào Sương Thư", Image="Images/playerImage10.jpg", Favorite=false , Type=FoodType.Food }
-				};
-
-				return result;
+					return _imagePath;
+				}
+				set
+				{
+					_imagePath = value;
+					if (PropertyChanged != null)
+					{
+						PropertyChanged(this, new PropertyChangedEventArgs("ImagePath"));
+					}
+				}
 			}
+			public string Content { get; set; }         //mô tả bước
 		}
+
+		BindingList<Step> ListSteps = new BindingList<Step>();
+		FoodInfomation newFood;                     //Món ăn thêm
+
+		public partial class FoodInfomation : INotifyPropertyChanged
+		{
+			public int ID { get; set; }              //ID món ăn 
+			public string Name { get; set; }            // Tên món ăn
+			public string Ingredients { get; set; }        //Danh sách nguyên liệu
+			public bool IsFavorite { get; set; }        //Món yêu thích
+			public DateTime DateAdd { get; set; }       //ngày thêm
+
+			private string _imagePath;                  //đường dẫn ảnh của bước
+			public string ImagePath
+			{
+				get
+				{
+					return _imagePath;
+				}
+				set
+				{
+					_imagePath = value;
+					if (PropertyChanged != null)
+					{
+						PropertyChanged(this, new PropertyChangedEventArgs("ImagePath"));
+					}
+				}
+			}
+			public string VideoLink { get; set; }
+			public string Level { get; set; }
+
+			public FoodType Type { get; set; }
+
+			public event PropertyChangedEventHandler PropertyChanged;
+
+		}
+
+		//class FoodImageDAO
+		//{
+		//	public static List<FoodInfomation> GetAll()
+		//	{
+		//		var result = new List<FoodInfomation>()
+		//		{
+		//			new FoodInfomation() { Name="Chu Tùng Nhân", Image="Images/playerImage01.jpg", Favorite=false, Type=FoodType.Food },
+		//			new FoodInfomation() { Name="Nguyen Ánh Du", Image="Images/playerImage02.jpg", Favorite=true , Type=FoodType.Food },
+		//			new FoodInfomation() { Name="Lều Bách Khánh", Image="Images/playerImage03.jpg", Favorite=false , Type=FoodType.Drinks },
+		//			new FoodInfomation() { Name="Thiều Duy Hành", Image="Images/playerImage04.jpg", Favorite=true , Type=FoodType.Drinks },
+		//			new FoodInfomation() { Name="Nhiệm Băng Đoan", Image="Images/playerImage05.jpg", Favorite=false , Type=FoodType.Food },
+		//			new FoodInfomation() { Name="Mang Đình Từ", Image="Images/playerImage06.jpg", Favorite=false , Type=FoodType.Food },
+		//			new FoodInfomation() { Name="Bùi Tuyền", Image="Images/playerImage07.jpg", Favorite=false , Type=FoodType.Drinks },
+		//			new FoodInfomation() { Name="Triệu Triều Hải", Image="Images/playerImage08.jpg", Favorite=false , Type=FoodType.Drinks },
+		//			new FoodInfomation() { Name="Tạ Đoan Huệ", Image="Images/playerImage09.jpg", Favorite=false , Type=FoodType.Food },
+		//			new FoodInfomation() { Name="Đào Sương Thư", Image="Images/playerImage10.jpg", Favorite=false , Type=FoodType.Food }
+		//		};
+
+		//		return result;
+		//	}
+		//}
 
 		//Cài đặt nút đóng cửa sổ
 		private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -130,6 +187,8 @@ namespace FoodRecipeApp
 			InitializeComponent();
 
 			Display("https://www.youtube.com/watch?v=qGRU3sRbaYw");
+			this.DataContext = newFood;
+
 			//imageFoodArray = new Rectangle[] {
 			//	Image_0, Image_1, Image_2, Image_3,
 			//	Image_4, Image_5, Image_6, Image_7,
@@ -245,6 +304,8 @@ namespace FoodRecipeApp
 				}
 				else if (button == AddDishButton)
 				{
+					newFood = new FoodInfomation { ID = _list.Count + 1, Level = "Dễ" };
+					//AddFood.ItemsSource = newFood;
 
 				}
 				else if (button == IngredientButton)
@@ -280,7 +341,7 @@ namespace FoodRecipeApp
 		{
 			bool result;
 			var foodInfo = (FoodInfomation)item;
-			if (FilterCondition.Favorite == true && foodInfo.Favorite == false)
+			if (FilterCondition.Favorite == true && foodInfo.IsFavorite == false)
 			{
 				result = false;
 			}
@@ -297,9 +358,12 @@ namespace FoodRecipeApp
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			_list = FoodImageDAO.GetAll();
+			//_list = FoodImageDAO.GetAll();
 			foodButtonItemsControl.ItemsSource = _list;
 			view = (CollectionView)CollectionViewSource.GetDefaultView(foodButtonItemsControl.ItemsSource);
+
+			AddDirectionItemsControl.ItemsSource = ListSteps;
+
 		}
 
 		private void Menu_Click(object sender, RoutedEventArgs e)
@@ -328,7 +392,7 @@ namespace FoodRecipeApp
 			var result = 0;
 			for (int i = 0; i < _list.Count; i++)
 			{
-				if (imageName == _list[i].Image)
+				if (imageName == _list[i].ImagePath)
 				{
 					result = i;
 					break;
@@ -367,7 +431,7 @@ namespace FoodRecipeApp
 				var index = GetElementIndexInArray((Button)sender);
 				var bitmap = new BitmapImage(
 					new Uri(
-						_list[index].Image,
+						_list[index].ImagePath,
 						UriKind.Relative)
 				);
 
@@ -391,14 +455,14 @@ namespace FoodRecipeApp
 				int index = GetElementIndexInArray((Button)sender);
 
 				//Nếu chưa yêu thích thì chuyển sang ảnh yêu thích và thêm vào danh sách yêu thích
-				if (_list[index].Favorite == true)
+				if (_list[index].IsFavorite == true)
 				{
-					_list[index].Favorite = false;
+					_list[index].IsFavorite = false;
 					//imgName = "Images/unloved.png";
 				}
 				else //Nếu yêu thích rồi chuyển sang ảnh chưa yêu thích và xóa khỏi danh sách yêu thích
 				{
-					_list[index].Favorite = true;
+					_list[index].IsFavorite = true;
 					//imgName = "Images/favorite.png";
 				}
 
@@ -436,6 +500,141 @@ namespace FoodRecipeApp
 				+ "<iframe src=\"" + url1 + "\" width=\"700\" height=\"400\" frameborder=\"0\" allowfullscreen></iframe>"
 				+ "</body></html>";
 			VideoPlayer.NavigateToString(page);
+		}
+
+		private void AddStepButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (ListSteps.Count == 0)
+			{
+				var newStep = new Step() { ID = _list.Count + 1, Order = 1 };
+				ListSteps.Add(newStep);
+			}
+			else
+			{
+				var newStep = new Step() { ID = _list.Count + 1, Order = ListSteps[ListSteps.Count - 1].Order + 1 };
+				ListSteps.Add(newStep);
+			}
+		}
+
+		private void AddPrimaryFoodPhoto_Click(object sender, RoutedEventArgs e)
+		{
+			var fileDialog = new OpenFileDialog();
+			fileDialog.Filter = "Image Files(*.JPG*)|*.JPG";
+			fileDialog.Title = "Select Image";
+
+			if (fileDialog.ShowDialog() == true)
+			{
+				string filePath = fileDialog.FileName;
+				newFood.ImagePath = filePath;
+			}
+		}
+
+		private void AddOtherFoodPhoto_Click(object sender, RoutedEventArgs e)
+		{
+			var fileDialog = new OpenFileDialog();
+			fileDialog.Filter = "Image Files(*.JPG*)|*.JPG";
+			fileDialog.Title = "Select Image";
+			if (fileDialog.ShowDialog() == true)
+			{
+				var itemsControl = FindParent<ItemsControl>(sender as DependencyObject);
+				string filePath = fileDialog.FileName;
+				if (itemsControl != null)
+				{
+					var currData = itemsControl.DataContext as Step;
+					currData.ImagePath = filePath;
+				}
+			}
+		}
+
+		private static T FindParent<T>(DependencyObject dependencyObject) where T : DependencyObject
+		{
+			var parent = VisualTreeHelper.GetParent(dependencyObject);
+
+			if (parent == null) return null;
+
+			var parentT = parent as T;
+			return parentT ?? FindParent<T>(parent);
+		}
+
+		/* Get current app domain*/
+		public static string GetAppDomain()
+		{
+			string absolutePath;
+			absolutePath = AppDomain.CurrentDomain.BaseDirectory;
+			return absolutePath;
+		}
+
+		private void SaveStepsImages()
+		{
+			string newPath;
+			string newFolder = GetAppDomain();
+			foreach (Step step in ListSteps)
+			{
+				string stepPicName = $"{step.ID}_{step.Order.ToString()}.jpg";
+				newPath = $"{newFolder}\\images\\{stepPicName}";
+				File.Copy(step.ImagePath, newPath);
+				step.ImagePath = $"images\\{stepPicName}";
+			}
+		}
+
+		private void SaveFoodData()
+		{
+			string folderPath = GetAppDomain();
+			string filePath = $"{folderPath}data\\Food.xml";
+			XDocument doc = XDocument.Load(filePath);
+			doc.Element("ArrayOfFood").Add(
+					new XElement
+					(
+							"Food",
+							new XElement("ID", newFood.ID),
+							new XElement("Name", newFood.Name),
+							new XElement("Ingredients", newFood.Ingredients),
+							new XElement("IsFavorite", newFood.IsFavorite),
+							new XElement("DateAdd", newFood.DateAdd),
+							new XElement("ImagePath", newFood.ImagePath),
+							new XElement("VideoLink", newFood.VideoLink)
+					)
+			);
+			doc.Save(filePath);
+		}
+
+		private void SaveStepData()
+		{
+			string folderPath = GetAppDomain();
+			string filePath = $"{folderPath}data\\Step.xml";
+			XDocument doc = XDocument.Load(filePath);
+			foreach (Step step in ListSteps)
+			{
+				doc.Element("ArrayOfStep").Add(
+						new XElement
+						(
+								"Step",
+								new XElement("ID", step.ID),
+								new XElement("Order", step.Order),
+								new XElement("ImagePath", step.ImagePath),
+								new XElement("Content", step.Content)
+						)
+				);
+			}
+			doc.Save(filePath);
+		}
+
+		private void SaveFood_Click(object sender, RoutedEventArgs e)
+		{
+			newFood.DateAdd = DateTime.Now;
+
+			string newFolder = GetAppDomain();
+			string foodPicName = $"{newFood.ID}.jpg";
+			string newPath = $"{newFolder}\\images\\{foodPicName}";
+
+			File.Copy(newFood.ImagePath, newPath);
+			newFood.ImagePath = $"images\\{foodPicName}";
+
+			SaveFoodData();
+
+			SaveStepsImages();
+
+			SaveStepData();
 		}
 
 		private void Favorite_Click(object sender, RoutedEventArgs e)

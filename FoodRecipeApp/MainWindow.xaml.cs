@@ -107,9 +107,29 @@ namespace FoodRecipeApp
 			public string Content { get; set; }         //mô tả bước
 		}
 
-		BindingList<Step> ListSteps = new BindingList<Step>();
-		FoodInfomation newFood;                     //Món ăn thêm
+		class Grocery
+		{
+			public string GroceryName { get; set; }
+			public bool IsDone { get; set; }
+		}
 
+		class Ingredient
+		{
+			public string IngredientName { get; set; }                 //Tên danh sách nguyên liệu cần mua
+			public BindingList<Grocery> GroceriesList { get; set; }              //Tên các nguyên liệu trong danh sách trên
+		}
+
+		BindingList<Step> ListStep = new BindingList<Step>();
+		FoodInfomation newFood;                     //Món ăn thêm
+		BindingList<Ingredient> ListIngredient = new BindingList<Ingredient>()
+		{
+			new Ingredient { IngredientName="a", GroceriesList= new BindingList<Grocery>
+			{ new Grocery { GroceryName="1jasjk Gaj a'o jao REAajsf" }, new Grocery { GroceryName="2" }, new Grocery { GroceryName="3" } } },
+			new Ingredient { IngredientName="b" , GroceriesList= new BindingList<Grocery>
+			{ new Grocery { GroceryName="4" }, new Grocery { GroceryName="5" }, new Grocery { GroceryName="6" } } },
+			new Ingredient { IngredientName="c" , GroceriesList= new BindingList<Grocery>
+			{ new Grocery { GroceryName="7" }, new Grocery { GroceryName="8" }, new Grocery { GroceryName="9" } } }
+		};
 		public partial class FoodInfomation : INotifyPropertyChanged
 		{
 			public int ID { get; set; }              //ID món ăn 
@@ -169,13 +189,13 @@ namespace FoodRecipeApp
 
 		/*Lưu lại danh sách món ăn*/
 		private void SaveListFood()
-        {
+		{
 			XmlSerializer xs = new XmlSerializer(typeof(List<FoodInfomation>));
 			TextWriter writer = new StreamWriter(@"data\Food.xml");
 			xs.Serialize(writer, _list);
 			writer.Close();
 		}
-		
+
 		//Cài đặt nút đóng cửa sổ
 		private void CloseButton_Click(object sender, RoutedEventArgs e)
 		{
@@ -343,7 +363,7 @@ namespace FoodRecipeApp
 				}
 				else if (clickedControlButton == IngredientButton)
 				{
-
+					IngredientList.Visibility = Visibility.Collapsed;
 				}
 				else
 				{
@@ -380,11 +400,11 @@ namespace FoodRecipeApp
 					newFood = new FoodInfomation() { ID = index };
 					AddFood.Visibility = Visibility.Visible;
 					AddFood.DataContext = newFood;
-					AddDirectionItemsControl.ItemsSource = ListSteps;
+					AddDirectionItemsControl.ItemsSource = ListStep;
 				}
 				else if (button == IngredientButton)
 				{
-
+					IngredientList.Visibility = Visibility.Visible;
 				}
 				else
 				{
@@ -476,13 +496,14 @@ namespace FoodRecipeApp
 			FoodOnScreen = _list;
 			TotalPage = (_list.Count - 1) / FoodperPage + 1;
 
-			this.DataContext = this;	//Binding Số trang
+			this.DataContext = this;    //Binding Số trang
 
 			/*Lấy danh sách food*/
 			var foods = FoodOnScreen.Take(FoodperPage);
 			foodButtonItemsControl.ItemsSource = foods;
 			//view = (CollectionView)CollectionViewSource.GetDefaultView(foodButtonItemsControl.ItemsSource);
 			view = (CollectionView)CollectionViewSource.GetDefaultView(_list);
+			IngredientListItemsControl.ItemsSource = ListIngredient;
 
 		}
 
@@ -629,15 +650,15 @@ namespace FoodRecipeApp
 
 		private void AddStepButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (ListSteps.Count == 0)
+			if (ListStep.Count == 0)
 			{
 				var newStep = new Step() { ID = newFood.ID, Order = 1 };
-				ListSteps.Add(newStep);
+				ListStep.Add(newStep);
 			}
 			else
 			{
-				var newStep = new Step() { ID = newFood.ID, Order = ListSteps[ListSteps.Count - 1].Order + 1 };
-				ListSteps.Add(newStep);
+				var newStep = new Step() { ID = newFood.ID, Order = ListStep[ListStep.Count - 1].Order + 1 };
+				ListStep.Add(newStep);
 			}
 		}
 
@@ -666,7 +687,7 @@ namespace FoodRecipeApp
 				if (container != null)
 				{
 					var currData = container.DataContext as Step;
-					currData.ImagePath = filePath;					
+					currData.ImagePath = filePath;
 				}
 			}
 		}
@@ -693,7 +714,7 @@ namespace FoodRecipeApp
 		{
 			string newPath;
 			string newFolder = GetAppDomain();
-			foreach (Step step in ListSteps)
+			foreach (Step step in ListStep)
 			{
 				string stepPicName = $"{step.ID}_{step.Order.ToString()}.jpg";
 				newPath = $"{newFolder}\\images\\{stepPicName}";
@@ -730,7 +751,7 @@ namespace FoodRecipeApp
 			string folderPath = GetAppDomain();
 			string filePath = $"{folderPath}data\\Step.xml";
 			XDocument doc = XDocument.Load(filePath);
-			foreach (Step step in ListSteps)
+			foreach (Step step in ListStep)
 			{
 				doc.Element("ArrayOfStep").Add(
 						new XElement
@@ -811,7 +832,7 @@ namespace FoodRecipeApp
 		}
 
 		private void Cb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
+		{
 			ComboBox cmb = (ComboBox)sender;
 
 			cmb.IsDropDownOpen = true;
@@ -831,8 +852,8 @@ namespace FoodRecipeApp
 			}
 		}
 
-        private void PreviewKeyUp_EnhanceComboSearch(object sender, KeyEventArgs e)
-        {
+		private void PreviewKeyUp_EnhanceComboSearch(object sender, KeyEventArgs e)
+		{
 			if (e.Key == Key.Back || e.Key == Key.Delete)
 			{
 				ComboBox cmb = (ComboBox)sender;
@@ -850,8 +871,8 @@ namespace FoodRecipeApp
 			}
 		}
 
-        private void Pasting_EnhanceComboSearch(object sender, DataObjectPastingEventArgs e)
-        {
+		private void Pasting_EnhanceComboSearch(object sender, DataObjectPastingEventArgs e)
+		{
 			ComboBox cmb = (ComboBox)sender;
 
 			cmb.IsDropDownOpen = true;
@@ -869,8 +890,8 @@ namespace FoodRecipeApp
 			}
 		}
 
-        private void dockingContentControl_KeyDown(object sender, KeyEventArgs e)
-        {
+		private void dockingContentControl_KeyDown(object sender, KeyEventArgs e)
+		{
 			if (e.Key == Key.Down)
 			{
 				SearchComboBox.SelectedIndex++;
@@ -880,6 +901,57 @@ namespace FoodRecipeApp
 		private void CancelFood_Click(object sender, RoutedEventArgs e)
 		{
 
+		}
+
+		private void IngredientListName_Click(object sender, RoutedEventArgs e)
+		{
+			var button = (Button)sender;
+			var content = (string)button.Content;
+			for (int i = 0; i < ListIngredient.Count; i++)
+			{
+				if (ListIngredient[i].IngredientName == content)
+				{
+					GroceriesListItemsControl.ItemsSource = ListIngredient[i].GroceriesList;
+					IngredientNameTextBlock.DataContext = ListIngredient[i];
+					break;
+				}
+			}
+		}
+
+		//Xử lý khi nhấn nút thêm 1 List nguyên liệu mới
+		private void AddIngredientList_Click(object sender, RoutedEventArgs e)
+		{
+			var text = IngredientListTextBox.Text;
+			if (text != "")
+			{
+				ListIngredient.Add(new Ingredient { IngredientName = text });
+			}
+			else
+			{
+				//Do nothing
+			}
+		}
+
+		//Xử lý khi nhấn nút thêm 1 nguyên liệu mới cho List đang được chọn
+		private void AddGroceryItem_Click(object sender, RoutedEventArgs e)
+		{
+			var text = GroceriesTextBox.Text;
+			if (text != "")
+			{
+				var ingredientListName = IngredientNameTextBlock.Text;
+				for (int i = 0; i < ListIngredient.Count; i++)
+				{
+					if (ListIngredient[i].IngredientName == ingredientListName)
+					{
+						ListIngredient[i].GroceriesList.Add(new Grocery { GroceryName = text, IsDone = false });
+						break;
+					}
+				}
+			}
+			else
+			{
+				//Do nothing
+			}
 		}
 
 		/*Lấy danh sách móna ăn của view*/

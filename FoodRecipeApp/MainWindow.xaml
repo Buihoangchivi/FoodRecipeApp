@@ -70,7 +70,7 @@
                 <WrapPanel>
                     <TextBlock Width="5" Height="40"></TextBlock>
                     <Image Source="Images/IngredientImage.png" Width="20" Margin="10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                    <TextBlock VerticalAlignment="Center" Width="153" FontSize="15">Ingredient</TextBlock>
+                    <TextBlock VerticalAlignment="Center" Width="153" FontSize="15">Ingredient List</TextBlock>
                 </WrapPanel>
             </Button>
         </StackPanel>
@@ -279,6 +279,8 @@
             </Grid>
         </ScrollViewer>
 
+        
+
         <!--Thêm món ăn-->
         <ScrollViewer Name="AddFood" Visibility="Collapsed">
             <Grid>
@@ -297,7 +299,7 @@
                     <TextBlock Padding="5" FontSize="20" Foreground="ForestGreen">Title</TextBlock>
                     <TextBox Name="FoodTitleTextBox" Margin="5,0,20,5" Padding="5" FontSize="14" Text="{Binding Name}"
                              VerticalContentAlignment="Center" TextWrapping="Wrap" BorderThickness="2"></TextBox>
-                    
+
                     <TextBlock Padding="5" FontSize="20" Foreground="ForestGreen">Link Youtube</TextBlock>
                     <TextBox Name="YoutubeLinkTextBox" Margin="5,0,20,5" Padding="5" FontSize="14" Text="{Binding VideoLink}"
                              VerticalContentAlignment="Center" TextWrapping="Wrap" BorderThickness="2"></TextBox>
@@ -334,7 +336,7 @@
                             </ComboBox>
                         </StackPanel>
                     </Grid>
-                    
+
                 </StackPanel>
                 <Grid Grid.Row="0" Grid.Column="1">
                     <Grid.RowDefinitions>
@@ -447,6 +449,104 @@
                 </StackPanel>
             </Grid>
         </ScrollViewer>
+
+        <!--Thêm nguyên liệu-->
+        <ScrollViewer Name="IngredientList" VerticalScrollBarVisibility="Hidden" Visibility="Collapsed">
+            <Grid Margin="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Padding="5" FontSize="20">Lists</TextBlock>
+
+                <TextBlock Name="IngredientNameTextBlock" Grid.Row="0" Grid.Column="1" Padding="5" FontSize="20" Text="{Binding IngredientName}"></TextBlock>
+
+                <!--Khung thêm tên 1 List-->
+                <WrapPanel Grid.Row="1" Grid.Column="0" Margin="5">
+                    <TextBox Name="IngredientListTextBox" Width="198" Padding="5" FontSize="14" VerticalAlignment="Center"></TextBox>
+                    <Button Grid.Column="2" Background="White" BorderThickness="0" Name="AddIngredientList"
+                            Click="AddIngredientList_Click" Height="32" VerticalAlignment="Center" Margin="5,0,0,0">
+                        <Button.Content>
+                            <Image Source="Images/addImage.png" Width="15" Margin="10,0" 
+                                       RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                        </Button.Content>
+                    </Button>
+                </WrapPanel>
+
+                <!--Khung thêm các công việc bên trong List đang chọn-->
+                <Grid Grid.Row="1" Grid.Column="1" Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="42"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" Name="GroceriesTextBox" Padding="5" FontSize="14" VerticalAlignment="Center"></TextBox>
+                    <Button Grid.Column="1" Background="White" BorderThickness="0" Name="AddGroceryItem"
+                            Click="AddGroceryItem_Click" Height="32" VerticalAlignment="Center" Margin="5,0,0,0">
+                        <Button.Content>
+                            <Image Source="Images/addImage.png" Width="15" Margin="10,0" 
+                                       RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                        </Button.Content>
+                    </Button>
+                </Grid>
+
+                <ItemsControl Grid.Row="2" Grid.Column="0" Name="IngredientListItemsControl">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+
+                            <Button Name="IngredientListName" Content="{Binding IngredientName}" Width="250" Height="50" 
+                                    Background="LimeGreen" BorderThickness="0" Margin="5" Click="IngredientListName_Click"></Button>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <ItemsControl Grid.Row="2" Grid.Column="1" Name="GroceriesListItemsControl">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <CheckBox IsChecked="{Binding IsDone}" Grid.Column="0" Margin="5" VerticalAlignment="Center" BorderThickness="2"></CheckBox>
+                                <TextBlock Grid.Column="1" Text="{Binding GroceryName}" Padding="5" FontSize="14" VerticalAlignment="Center"></TextBlock>
+                                <Button Grid.Column="2" Background="White" BorderThickness="0" Name="CancelFood"
+                                        Click="CancelFood_Click" Height="35" VerticalAlignment="Center">
+                                    <WrapPanel Margin="10,0">
+                                        <Image Source="Images/editImage.png" Width="15" Margin="0,0,10,0" 
+                                       RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                        <TextBlock VerticalAlignment="Center" FontSize="14">Edit</TextBlock>
+                                    </WrapPanel>
+                                </Button>
+
+                            </Grid>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+            </Grid>
+        </ScrollViewer>
+
     </DockPanel>
 
 </Window>

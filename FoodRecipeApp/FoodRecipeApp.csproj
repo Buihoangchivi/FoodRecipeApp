@@ -105,6 +105,7 @@
     <Content Include="Images\deleteText.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\editImage.png" />
     <Content Include="Images\favorite.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

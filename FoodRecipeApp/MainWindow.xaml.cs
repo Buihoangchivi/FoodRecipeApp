@@ -924,7 +924,7 @@ namespace FoodRecipeApp
 			var text = IngredientListTextBox.Text;
 			if (text != "")
 			{
-				ListIngredient.Add(new Ingredient { IngredientName = text });
+				ListIngredient.Add(new Ingredient { IngredientName = text, GroceriesList = new BindingList<Grocery>() });
 			}
 			else
 			{

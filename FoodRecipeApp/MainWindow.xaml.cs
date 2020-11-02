@@ -924,7 +924,29 @@ namespace FoodRecipeApp
 			var text = IngredientListTextBox.Text;
 			if (text != "")
 			{
-				ListIngredient.Add(new Ingredient { IngredientName = text, GroceriesList = new BindingList<Grocery>() });
+				var isExist = false;
+				for (int i = 0; i < ListIngredient.Count; i++)
+				{
+					if (text == ListIngredient[i].IngredientName)
+					{
+						isExist = true;
+						break;
+					}
+				}
+				
+				//Tên đã tồn tại, người dùng phải nhập lại
+				if (isExist == true)
+				{
+					MessageBox.Show(
+					"List name already exists, please enter another name!",
+					"Announcement",
+					MessageBoxButton.OK,
+					MessageBoxImage.Warning);
+				}
+				else
+				{
+					ListIngredient.Add(new Ingredient { IngredientName = text, GroceriesList = new BindingList<Grocery>() });
+				}
 			}
 			else
 			{
@@ -939,12 +961,23 @@ namespace FoodRecipeApp
 			if (text != "")
 			{
 				var ingredientListName = IngredientNameTextBlock.Text;
-				for (int i = 0; i < ListIngredient.Count; i++)
+				if (ingredientListName == "")
 				{
-					if (ListIngredient[i].IngredientName == ingredientListName)
+					MessageBox.Show(
+					"Please select a list to add ingredients!",
+					"Announcement",
+					MessageBoxButton.OK,
+					MessageBoxImage.Warning);
+				}
+				else
+				{
+					for (int i = 0; i < ListIngredient.Count; i++)
 					{
-						ListIngredient[i].GroceriesList.Add(new Grocery { GroceryName = text, IsDone = false });
-						break;
+						if (ListIngredient[i].IngredientName == ingredientListName)
+						{
+							ListIngredient[i].GroceriesList.Add(new Grocery { GroceryName = text, IsDone = false });
+							break;
+						}
 					}
 				}
 			}

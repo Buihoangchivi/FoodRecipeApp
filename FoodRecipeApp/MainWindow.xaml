@@ -75,7 +75,7 @@
             </Button>
         </StackPanel>
 
-        <!--nút phân trang-->
+        <!--Nút phân trang-->
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
             <TextBlock Name="tbCurrentPage" Text="{Binding CurrentPage}" FontSize="20"></TextBlock>
             <TextBlock FontSize="20">/</TextBlock>
@@ -292,7 +292,7 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                
+
                 <StackPanel Grid.Row="0" Grid.Column="0">
                     <TextBlock Padding="5" FontSize="20" Foreground="ForestGreen">Title</TextBlock>
                     <TextBox Name="FoodTitleTextBox" Margin="5,0,20,5" Padding="5" FontSize="14" Text="{Binding Name}"
@@ -360,7 +360,7 @@
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="100"/>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="750"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition/>
@@ -373,15 +373,16 @@
                                     <WrapPanel Grid.Row="0" Grid.Column="1">
                                         <TextBlock FontSize="18" Text="{Binding Order}"></TextBlock>
                                     </WrapPanel>
+
                                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Content" FontSize="18" Margin="15,0,0,0"/>
-                                    <TextBox Grid.Row="1" Grid.Column="1" AcceptsReturn="True" Margin="0,5,20,20" Height="150" Padding="5" 
+                                    <TextBox Grid.Row="1" Grid.Column="1" AcceptsReturn="True" Margin="0,5,0,20" Height="150" Padding="5" 
                                              FontSize="14" VerticalContentAlignment="Top" TextWrapping="Wrap" BorderThickness="2" 
                                              VerticalScrollBarVisibility="Auto" Text="{Binding Content}"/>
                                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Photo" FontSize="18" Margin="15,5,0,0"/>
-                                    <Grid Grid.Row="2" Grid.Column="1" Margin="0,0,20,20">
+                                    <Grid Grid.Row="2" Grid.Column="1" Margin="0,0,0,20">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="175"></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition Width="575"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
                                         <StackPanel Orientation="Horizontal">
                                             <Button Margin="20,0,0,0" Background="White" BorderThickness="0" Name="AddOtherFoodPhoto" Click="AddOtherFoodPhoto_Click"
@@ -392,8 +393,8 @@
                                                 </WrapPanel>
                                             </Button>
                                         </StackPanel>
-                                        <Image Name="DirectionFoodImage" Grid.Column="1" HorizontalAlignment="Center" Source="{Binding ImagePath}"
-                                               Margin="70,20" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                        <Image Name="DirectionFoodImage" Grid.Column="1" HorizontalAlignment="Center" MaxHeight="250"
+                                               Source="{Binding ImagePath}" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                                     </Grid>
                                 </Grid>
                             </DataTemplate>

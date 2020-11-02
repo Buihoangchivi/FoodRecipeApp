@@ -159,6 +159,7 @@
     <Content Include="Images\restoreDown.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\saveImage.png" />
     <Content Include="Images\searchText.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

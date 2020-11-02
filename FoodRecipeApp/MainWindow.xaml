@@ -76,7 +76,7 @@
         </StackPanel>
 
         <!--Nút phân trang-->
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel x:Name="PaginationBar" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
             <TextBlock Name="tbCurrentPage" Text="{Binding CurrentPage}" FontSize="20"></TextBlock>
             <TextBlock FontSize="20">/</TextBlock>
             <TextBlock Name="tbTotalPage" Text="{Binding TotalPage}" FontSize="20"></TextBlock>
@@ -297,25 +297,44 @@
                     <TextBlock Padding="5" FontSize="20" Foreground="ForestGreen">Title</TextBlock>
                     <TextBox Name="FoodTitleTextBox" Margin="5,0,20,5" Padding="5" FontSize="14" Text="{Binding Name}"
                              VerticalContentAlignment="Center" TextWrapping="Wrap" BorderThickness="2"></TextBox>
-                    <TextBlock Padding="5" FontSize="20" Foreground="ForestGreen">Level</TextBlock>
-                    <ComboBox Name="LevelComboBox" Margin="5,0,20,8" 
-                          SelectedItem="{Binding Level}"
-                          IsSynchronizedWithCurrentItem="True"
-                          Width="80" 
-                          HorizontalAlignment="Left">
-                        <ComboBoxItem IsSelected="True">
-                            Dễ
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            Trung bình
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            Khó
-                        </ComboBoxItem>
-                    </ComboBox>
+                    
                     <TextBlock Padding="5" FontSize="20" Foreground="ForestGreen">Link Youtube</TextBlock>
                     <TextBox Name="YoutubeLinkTextBox" Margin="5,0,20,5" Padding="5" FontSize="14" Text="{Binding VideoLink}"
                              VerticalContentAlignment="Center" TextWrapping="Wrap" BorderThickness="2"></TextBox>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Padding="5" FontSize="20" Foreground="ForestGreen">Level</TextBlock>
+                            <ComboBox Name="LevelComboBox" Margin="5,0,20,8" Width="100" FontSize="14" HorizontalAlignment="Left">
+                                <ComboBoxItem IsSelected="True">
+                                    Easy
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    Normal
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    Difficult
+                                </ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Padding="5" FontSize="20" Foreground="ForestGreen">Type</TextBlock>
+                            <ComboBox Name="TypeComboBox" Margin="5,0,20,8" Width="100" FontSize="14" HorizontalAlignment="Left">
+                                <ComboBoxItem IsSelected="True">
+                                    Food
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    Drinks
+                                </ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+                    </Grid>
+                    
                 </StackPanel>
                 <Grid Grid.Row="0" Grid.Column="1">
                     <Grid.RowDefinitions>
@@ -407,7 +426,24 @@
                             <TextBlock VerticalAlignment="Center" FontSize="15">Add direction</TextBlock>
                         </WrapPanel>
                     </Button>
-                    <Button Name="SaveFood" Click="SaveFood_Click">Save</Button>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Margin="20,0,0,15" Background="White" BorderThickness="0" Name="SaveFood" 
+                                Click="SaveFood_Click" Height="35" VerticalAlignment="Top">
+                            <WrapPanel Margin="15,0">
+                                <Image Source="Images/saveImage.png" Width="20" Margin="0,0,10,0" 
+                                       RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                <TextBlock VerticalAlignment="Center" FontSize="15">Save</TextBlock>
+                            </WrapPanel>
+                        </Button>
+                        <Button Background="White" BorderThickness="0" Name="CancelFood" 
+                                Click="CancelFood_Click" Height="35" VerticalAlignment="Top">
+                            <WrapPanel Margin="15,0">
+                                <Image Source="Images/deleteText.png" Width="15" Margin="0,0,10,0" 
+                                       RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                <TextBlock VerticalAlignment="Center" FontSize="15">Cancel</TextBlock>
+                            </WrapPanel>
+                        </Button>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

@@ -32,7 +32,6 @@ namespace FoodRecipeApp
 		private bool checkFavoriteIsClicked, isMinimizeMenu;
 		private List<FoodInfomation> _list = new List<FoodInfomation>();
 		private CollectionView view;
-		public enum FoodType { Food, Drinks };
 
 		private List<FoodInfomation> FoodOnScreen;                        //Danh sách food để hiện trên màn hình
 
@@ -77,10 +76,10 @@ namespace FoodRecipeApp
 		class Condition
 		{
 			public bool Favorite;
-			public FoodType? Type;
+			public string Type;
 		}
 
-		private Condition FilterCondition = new Condition { Favorite = false, Type = null };
+		private Condition FilterCondition = new Condition { Favorite = false, Type = "" };
 
 		class Step : INotifyPropertyChanged
 		{
@@ -138,7 +137,7 @@ namespace FoodRecipeApp
 			public string VideoLink { get; set; }
 			public string Level { get; set; }
 
-			public FoodType Type { get; set; }
+			public string Type { get; set; }
 
 			public string Discription { get; set; }
 
@@ -302,15 +301,15 @@ namespace FoodRecipeApp
 			//Hiển thị các món ăn thuộc loại thức ăn được chọn
 			if (button == AllButton)
 			{
-				FilterCondition.Type = null;
+				FilterCondition.Type = "";
 			}
 			else if (button == FoodButton)
 			{
-				FilterCondition.Type = FoodType.Food;
+				FilterCondition.Type = "Food";
 			}
 			else if (button == DrinksButton)
 			{
-				FilterCondition.Type = FoodType.Drinks;
+				FilterCondition.Type = "Drinks";
 			}
 			else
 			{
@@ -336,6 +335,7 @@ namespace FoodRecipeApp
 				{
 					TypeBar.Visibility = Visibility.Collapsed;
 					foodButtonItemsControl.Visibility = Visibility.Collapsed;
+					PaginationBar.Visibility = Visibility.Collapsed;
 				}
 				else if (clickedControlButton == AddDishButton)
 				{
@@ -364,18 +364,20 @@ namespace FoodRecipeApp
 					FilterCondition.Favorite = false;
 					TypeBar.Visibility = Visibility.Visible;
 					foodButtonItemsControl.Visibility = Visibility.Visible;
+					PaginationBar.Visibility = Visibility.Visible;
 				}
 				else if (button == FavoriteButton)
 				{
 					FilterCondition.Favorite = true;
 					TypeBar.Visibility = Visibility.Visible;
 					foodButtonItemsControl.Visibility = Visibility.Visible;
+					PaginationBar.Visibility = Visibility.Visible;
 				}
 				else if (button == AddDishButton)
 				{
 					SortFoodList();
 					var index = GetMinID();
-					newFood = new FoodInfomation() { ID = index, Type = FoodType.Food };
+					newFood = new FoodInfomation() { ID = index };
 					AddFood.Visibility = Visibility.Visible;
 					AddFood.DataContext = newFood;
 					AddDirectionItemsControl.ItemsSource = ListSteps;
@@ -451,7 +453,7 @@ namespace FoodRecipeApp
 			{
 				result = false;
 			}
-			else if (FilterCondition.Type != null && FilterCondition.Type != foodInfo.Type)
+			else if (FilterCondition.Type != "" && FilterCondition.Type != foodInfo.Type)
 			{
 				result = false;
 			}
@@ -489,11 +491,15 @@ namespace FoodRecipeApp
 			if (isMinimizeMenu == false)
 			{
 				ControlStackPanel.Width = 47;
+				FoodperPage = 15;
+				UpdateFoodStatus();
 				isMinimizeMenu = true;
 			}
 			else
 			{
 				ControlStackPanel.Width = 250;
+				FoodperPage = 12;
+				UpdateFoodStatus();
 				isMinimizeMenu = false;
 			}
 		}
@@ -712,7 +718,8 @@ namespace FoodRecipeApp
 							new XElement("DateAdd", newFood.DateAdd),
 							new XElement("ImagePath", newFood.ImagePath),
 							new XElement("VideoLink", newFood.VideoLink),
-							new XElement("Type", newFood.Type)
+							new XElement("Type", newFood.Type),
+							new XElement("Level", newFood.Level)
 					)
 			);
 			doc.Save(filePath);
@@ -742,15 +749,16 @@ namespace FoodRecipeApp
 		private void SaveFood_Click(object sender, RoutedEventArgs e)
 		{
 			newFood.DateAdd = DateTime.Now;
-
+			var comboBoxItem = (ComboBoxItem)LevelComboBox.SelectedItem;
+			newFood.Level = (string)comboBoxItem.Content;
+			comboBoxItem = (ComboBoxItem)TypeComboBox.SelectedItem;
+			newFood.Type = (string)comboBoxItem.Content;
 			string newFolder = GetAppDomain();
 			string foodPicName = $"{newFood.ID}.jpg";
 			string newPath = $"{newFolder}\\images\\{foodPicName}";
 
 			File.Copy(newFood.ImagePath, newPath);
 			newFood.ImagePath = $"images\\{foodPicName}";
-
-			SaveFoodData();
 
 			SaveStepsImages();
 
@@ -869,8 +877,13 @@ namespace FoodRecipeApp
 			}
 		}
 
-        /*Lấy danh sách móna ăn của view*/
-        private void GetFilterList()
+		private void CancelFood_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		/*Lấy danh sách móna ăn của view*/
+		private void GetFilterList()
 		{
 			FoodOnScreen = new List<FoodInfomation>();
 			foreach (var food in view)

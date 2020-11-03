@@ -987,6 +987,33 @@ namespace FoodRecipeApp
 			}
 		}
 
+		private void IngredientListTextBox_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			var textBox = (TextBox)sender;
+			if (textBox.Text != "" && AddIngredientList.Visibility == Visibility.Collapsed)
+			{
+				AddIngredientList.Visibility = Visibility.Visible;
+			}
+			else if (textBox.Text == "" && AddIngredientList.Visibility == Visibility.Visible)
+			{
+				AddIngredientList.Visibility = Visibility.Collapsed;
+			}
+			
+		}
+
+		private void GroceriesTextBox_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			var textBox = (TextBox)sender;
+			if (textBox.Text != "" && AddGroceryItem.Visibility == Visibility.Collapsed)
+			{
+				AddGroceryItem.Visibility = Visibility.Visible;
+			}
+			else if (textBox.Text == "" && AddGroceryItem.Visibility == Visibility.Visible)
+			{
+				AddGroceryItem.Visibility = Visibility.Collapsed;
+			}
+		}
+
 		/*Lấy danh sách móna ăn của view*/
 		private void GetFilterList()
 		{

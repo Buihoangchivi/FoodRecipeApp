@@ -467,9 +467,10 @@
 
                     <!--Khung thêm tên 1 List-->
                     <WrapPanel Grid.Row="1" Grid.Column="0" Margin="5">
-                        <TextBox Name="IngredientListTextBox" Width="198" Padding="5" FontSize="14" VerticalAlignment="Center"></TextBox>
-                        <Button Grid.Column="2" Background="White" BorderThickness="0" Name="AddIngredientList"
-                            Click="AddIngredientList_Click" Height="32" VerticalAlignment="Center" Margin="5,0,0,0">
+                        <TextBox Name="IngredientListTextBox" Width="198" Padding="5" FontSize="14" 
+                                 VerticalAlignment="Center" TextChanged="IngredientListTextBox_TextChanged"></TextBox>
+                        <Button Grid.Column="2" Background="White" BorderThickness="0" Name="AddIngredientList" Visibility="Collapsed"
+                            Click="AddIngredientList_Click" Height="30" VerticalAlignment="Center" Margin="5,0,0,0">
                             <Button.Content>
                                 <Image Source="Images/addImage.png" Width="15" Margin="10,0" 
                                        RenderOptions.BitmapScalingMode="HighQuality"></Image>
@@ -478,14 +479,16 @@
                     </WrapPanel>
 
                     <!--Khung thêm các công việc bên trong List đang chọn-->
-                    <Grid Grid.Row="1" Grid.Column="1" Margin="5">
+                    <Grid Grid.Row="1" Grid.Column="1" Margin="16,5,5,5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                             <ColumnDefinition Width="42"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBox Grid.Column="0" Name="GroceriesTextBox" Padding="5" FontSize="14" VerticalAlignment="Center"></TextBox>
+                        <TextBox Grid.Column="0" Name="GroceriesTextBox" Padding="5" FontSize="14"
+                                 VerticalAlignment="Center" TextChanged="GroceriesTextBox_TextChanged"></TextBox>
                         <Button Grid.Column="1" Background="White" BorderThickness="0" Name="AddGroceryItem"
-                            Click="AddGroceryItem_Click" Height="32" VerticalAlignment="Center" Margin="5,0,0,0">
+                                Click="AddGroceryItem_Click" Height="30" VerticalAlignment="Center" 
+                                Margin="5,0,0,0" Visibility="Collapsed">
                             <Button.Content>
                                 <Image Source="Images/addImage.png" Width="15" Margin="10,0" 
                                        RenderOptions.BitmapScalingMode="HighQuality"></Image>
@@ -518,7 +521,7 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
 
-                                <Grid>
+                                <Grid Width="600">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30"></ColumnDefinition>
                                         <ColumnDefinition Width="1*"></ColumnDefinition>

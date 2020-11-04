@@ -76,12 +76,68 @@
         </StackPanel>
 
         <!--Nút phân trang-->
-        <StackPanel x:Name="PaginationBar" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
-            <TextBlock Name="tbCurrentPage" Text="{Binding CurrentPage}" FontSize="20"></TextBlock>
-            <TextBlock FontSize="20">/</TextBlock>
-            <TextBlock Name="tbTotalPage" Text="{Binding TotalPage}" FontSize="20"></TextBlock>
-            <Button Click="btnPrevPage_Click" Width="100">Prev</Button>
-            <Button  Click="btnNextPage_Click" Width="100">Next</Button>
+        <StackPanel x:Name="PaginationBar" DockPanel.Dock="Bottom" Orientation="Horizontal" 
+                    HorizontalAlignment="Right">
+
+            <!--Tổng số món ăn theo filter hiện tại-->
+            <TextBlock Text="{Binding TotalItem}" FontSize="18" Margin="0,0,10,4"></TextBlock>
+
+            <!--Nút quay về trang đầu-->
+            <Button Name="FirstPageButton" Click="FirstPageButton_Click" Width="26" Height="26" 
+                    Background="AntiqueWhite" BorderThickness="1" Margin="0,0,5,4">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="4"/>
+                    </Style>
+                </Button.Resources>
+                <WrapPanel Margin="4">
+                    <Image Source="Images/firstPage.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </WrapPanel>
+            </Button>
+
+            <!--Nút quay về trang trước-->
+            <Button Name="PreviousPageButton" Click="PreviousPageButton_Click" Width="26" Height="26" 
+                    Background="AntiqueWhite" BorderThickness="1" Margin="0,0,10,4">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="4"/>
+                    </Style>
+                </Button.Resources>
+                <WrapPanel Margin="5,4,3,4">
+                    <Image Source="Images/previous.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </WrapPanel>
+            </Button>
+
+            <TextBlock Text="{Binding CurrentPage}" FontSize="18"></TextBlock>
+            <TextBlock FontSize="18" Text=" of "></TextBlock>
+            <TextBlock Text="{Binding TotalPage}" FontSize="18" Margin="0,0,10,0"></TextBlock>
+
+            <!--Nút nhảy tới trang sau-->
+            <Button Name="NextPageButton" Click="NextPageButton_Click" Width="26" Height="26"
+                    Background="AntiqueWhite" BorderThickness="1" Margin="0,0,5,4">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="4"/>
+                    </Style>
+                </Button.Resources>
+                <WrapPanel Margin="3,4,5,4">
+                    <Image Source="Images/next.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </WrapPanel>
+            </Button>
+
+            <!--Nút nhảy tới trang cuối-->
+            <Button Name="LastPageButton" Click="LastPageButton_Click" Width="26" Height="26" 
+                    Background="AntiqueWhite" BorderThickness="1" Margin="0,0,20,4">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="4"/>
+                    </Style>
+                </Button.Resources>
+                <WrapPanel Margin="4">
+                    <Image Source="Images/lastPage.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </WrapPanel>
+            </Button>
+
         </StackPanel>
 
         <!--Thanh để lọc loại thức ăn-->
@@ -463,7 +519,7 @@
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Padding="5" FontSize="20">Lists</TextBlock>
 
-                    <TextBlock Name="IngredientNameTextBlock" Grid.Row="0" Grid.Column="1" Padding="5" FontSize="20" Text="{Binding IngredientName}"></TextBlock>
+                    <TextBlock Name="IngredientListNameTextBlock" Grid.Row="0" Grid.Column="1" Padding="5" FontSize="20" Text="{Binding IngredientName}"></TextBlock>
 
                     <!--Khung thêm tên 1 List-->
                     <WrapPanel Grid.Row="1" Grid.Column="0" Margin="5">
@@ -484,10 +540,10 @@
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                             <ColumnDefinition Width="42"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBox Grid.Column="0" Name="GroceriesTextBox" Padding="5" FontSize="14"
-                                 VerticalAlignment="Center" TextChanged="GroceriesTextBox_TextChanged"></TextBox>
-                        <Button Grid.Column="1" Background="White" BorderThickness="0" Name="AddGroceryItem"
-                                Click="AddGroceryItem_Click" Height="30" VerticalAlignment="Center" 
+                        <TextBox Grid.Column="0" Name="IngredientInListTextBox" Padding="5" FontSize="14"
+                                 VerticalAlignment="Center" TextChanged="IngredientInListTextBox_TextChanged"></TextBox>
+                        <Button Grid.Column="1" Background="White" BorderThickness="0" Name="AddIngredientInListItem"
+                                Click="AddIngredientInListItem_Click" Height="30" VerticalAlignment="Center" 
                                 Margin="5,0,0,0" Visibility="Collapsed">
                             <Button.Content>
                                 <Image Source="Images/addImage.png" Width="15" Margin="10,0" 
@@ -512,7 +568,7 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
 
-                    <ItemsControl Grid.Row="2" Grid.Column="1" Name="GroceriesListItemsControl">
+                    <ItemsControl Grid.Row="2" Grid.Column="1" Name="IngredientInListItemsControl">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel />
@@ -530,8 +586,8 @@
 
                                     <CheckBox IsChecked="{Binding IsDone}" Grid.Column="0" Margin="5" VerticalAlignment="Center" BorderThickness="2"></CheckBox>
                                     <TextBlock Grid.Column="1" Text="{Binding GroceryName}" Padding="5" FontSize="14" VerticalAlignment="Center"></TextBlock>
-                                    <Button Grid.Column="2" Background="White" BorderThickness="0" Name="CancelFood"
-                                        Click="CancelFood_Click" Height="35" VerticalAlignment="Center">
+                                    <Button Grid.Column="2" Background="White" BorderThickness="0" Name="EditIngredientInListButton"
+                                        Click="EditIngredientInListButton_Click" Height="35" VerticalAlignment="Center">
                                         <WrapPanel Margin="10,0">
                                             <Image Source="Images/editImage.png" Width="15" Margin="0,0,10,0" 
                                        RenderOptions.BitmapScalingMode="HighQuality"></Image>

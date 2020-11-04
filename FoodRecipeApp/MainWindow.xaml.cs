@@ -33,11 +33,14 @@ namespace FoodRecipeApp
 		private List<FoodInfomation> _list = new List<FoodInfomation>();
 		private CollectionView view;
 
-		private List<FoodInfomation> FoodOnScreen;                        //Danh sách food để hiện trên màn hình
+		//Danh sách food để hiện trên màn hình
+		private List<FoodInfomation> FoodOnScreen;
 
-		private int FoodperPage = 12;                           //Số món ăn mỗi trang
+		//Số món ăn mỗi trang
+		private int FoodperPage = 12;
 
-		private int _totalPage = 0;                             //Tổng số trang
+		//Tổng số trang
+		private int _totalPage = 0;                             
 
 		public int TotalPage
 		{
@@ -55,7 +58,8 @@ namespace FoodRecipeApp
 			}
 		}
 
-		private int _currentPage = 1;                           //Trang hiện tại
+		//Trang hiện tại
+		private int _currentPage = 1;
 
 		public int CurrentPage
 		{
@@ -69,6 +73,25 @@ namespace FoodRecipeApp
 				if (PropertyChanged != null)
 				{
 					PropertyChanged(this, new PropertyChangedEventArgs("CurrentPage"));
+				}
+			}
+		}
+
+		//Tổng số món ăn theo filter hiện tại
+		private string _totalItem = "0 item";
+
+		public string TotalItem
+		{
+			get
+			{
+				return _totalItem;
+			}
+			set
+			{
+				_totalItem = value;
+				if (PropertyChanged != null)
+				{
+					PropertyChanged(this, new PropertyChangedEventArgs("TotalItem"));
 				}
 			}
 		}
@@ -280,6 +303,34 @@ namespace FoodRecipeApp
 		//	CollectionViewSource.GetDefaultView(foodButtonItemsControl.ItemsSource).Refresh();
 		//}
 
+		private void UpdatePageButtonStatus()
+		{
+
+			//Vô hiệu hóa nút quay về trang trước và quay về trang đầu khi trang hiện tại là trang 1
+			if (CurrentPage == 1)
+			{
+				PreviousPageButton.IsEnabled = false;
+				FirstPageButton.IsEnabled = false;
+			}
+			else if (PreviousPageButton.IsEnabled == false)
+			{
+				PreviousPageButton.IsEnabled = true;
+				FirstPageButton.IsEnabled = true;
+			}
+
+			//Vô hiệu hóa nút đi tới trang sau và đi tới trang cuối khi trang hiện tại là trang cuối
+			if (CurrentPage == TotalPage)
+			{
+				NextPageButton.IsEnabled = false;
+				LastPageButton.IsEnabled = false;
+			}
+			else if (NextPageButton.IsEnabled == false)
+			{
+				NextPageButton.IsEnabled = true;
+				LastPageButton.IsEnabled = true;
+			}
+		}
+
 		//Cập nhật lại thay đổi từ dữ liệu lên màn hình
 		private void UpdateUIFromData()
 		{
@@ -289,10 +340,20 @@ namespace FoodRecipeApp
 			GetFilterList();
 			TotalPage = ((FoodOnScreen.Count - 1) / FoodperPage) + 1;
 			CurrentPage = 1;
+
 			var Foods = FoodOnScreen.Take(FoodperPage);
 			foodButtonItemsControl.ItemsSource = Foods;
 
-			//CollectionViewSource.GetDefaultView(foodButtonItemsControl.ItemsSource).Refresh();
+			TotalItem = FoodOnScreen.Count.ToString();
+			if (FoodOnScreen.Count > 1)
+			{
+				TotalItem += " items";
+			}
+			else
+			{
+				TotalItem += " item";
+			}
+			UpdatePageButtonStatus();
 		}
 
 		/*Cập nhật lại danh sách món ăn trên màn hình sau khi nhấn thích*/
@@ -308,6 +369,17 @@ namespace FoodRecipeApp
 			/*Lấy danh sách thức ăn đã được lọc để khởi tạo lại số trang */
 			var Foods = FoodOnScreen.Skip((CurrentPage - 1) * FoodperPage).Take(FoodperPage);
 			foodButtonItemsControl.ItemsSource = Foods;
+
+			TotalItem = FoodOnScreen.Count.ToString();
+			if (FoodOnScreen.Count > 1)
+			{
+				TotalItem += " items";
+			}
+			else
+			{
+				TotalItem += " item";
+			}
+			UpdatePageButtonStatus();
 		}
 
 		private void changeClickedTypeButton(object sender, RoutedEventArgs e)
@@ -494,7 +566,19 @@ namespace FoodRecipeApp
 				_list = (List<FoodInfomation>)xs.Deserialize(reader);
 			}
 			FoodOnScreen = _list;
+
+			//Khởi tạo phân trang
 			TotalPage = (_list.Count - 1) / FoodperPage + 1;
+			TotalItem = _list.Count.ToString();
+			if (FoodOnScreen.Count > 1)
+			{
+				TotalItem += " items";
+			}
+			else
+			{
+				TotalItem += " item";
+			}
+			UpdatePageButtonStatus();
 
 			this.DataContext = this;    //Binding Số trang
 
@@ -528,12 +612,6 @@ namespace FoodRecipeApp
 		private int GetElementIndexInArray(Button button)
 		{
 			var wrapPanel = (WrapPanel)button.Content;
-			//var collection = wrapPanel.Children;
-			//var rectangle = (Rectangle)collection[0];
-			//var imageBrush = (ImageBrush)rectangle.Fill;
-			//var imageSource = imageBrush.ImageSource;
-			//var imageSourceString = imageSource.ToString();
-			//var imageName = imageSourceString.Substring(23);
 			var curFood = wrapPanel.DataContext as FoodInfomation;
 			var result = 0;
 			for (int i = 0; i < _list.Count; i++)
@@ -796,7 +874,7 @@ namespace FoodRecipeApp
 			checkFavoriteIsClicked = true;
 		}
 
-		private void btnNextPage_Click(object sender, RoutedEventArgs e)
+		private void NextPageButton_Click(object sender, RoutedEventArgs e)
 		{
 			if (CurrentPage < TotalPage)
 			{
@@ -804,10 +882,11 @@ namespace FoodRecipeApp
 				CurrentPage++;
 				foodButtonItemsControl.ItemsSource = foods;
 			}
+			UpdatePageButtonStatus();
 		}
 
 		/*Về trang trước*/
-		private void btnPrevPage_Click(object sender, RoutedEventArgs e)
+		private void PreviousPageButton_Click(object sender, RoutedEventArgs e)
 		{
 			if (CurrentPage > 1)
 			{
@@ -815,6 +894,7 @@ namespace FoodRecipeApp
 				var foods = FoodOnScreen.Skip((CurrentPage - 1) * FoodperPage).Take(FoodperPage);
 				foodButtonItemsControl.ItemsSource = foods;
 			}
+			UpdatePageButtonStatus();
 		}
 
 		public static T GetChildOfType<T>(DependencyObject depObj) where T : DependencyObject
@@ -898,7 +978,7 @@ namespace FoodRecipeApp
 			}
 		}
 
-		private void CancelFood_Click(object sender, RoutedEventArgs e)
+		private void EditIngredientInListButton_Click(object sender, RoutedEventArgs e)
 		{
 
 		}
@@ -911,8 +991,8 @@ namespace FoodRecipeApp
 			{
 				if (ListIngredient[i].IngredientName == content)
 				{
-					GroceriesListItemsControl.ItemsSource = ListIngredient[i].GroceriesList;
-					IngredientNameTextBlock.DataContext = ListIngredient[i];
+					IngredientInListItemsControl.ItemsSource = ListIngredient[i].GroceriesList;
+					IngredientListNameTextBlock.DataContext = ListIngredient[i];
 					break;
 				}
 			}
@@ -955,12 +1035,12 @@ namespace FoodRecipeApp
 		}
 
 		//Xử lý khi nhấn nút thêm 1 nguyên liệu mới cho List đang được chọn
-		private void AddGroceryItem_Click(object sender, RoutedEventArgs e)
+		private void AddIngredientInListItem_Click(object sender, RoutedEventArgs e)
 		{
-			var text = GroceriesTextBox.Text;
+			var text = IngredientInListTextBox.Text;
 			if (text != "")
 			{
-				var ingredientListName = IngredientNameTextBlock.Text;
+				var ingredientListName = IngredientListNameTextBlock.Text;
 				if (ingredientListName == "")
 				{
 					MessageBox.Show(
@@ -1001,17 +1081,38 @@ namespace FoodRecipeApp
 			
 		}
 
-		private void GroceriesTextBox_TextChanged(object sender, TextChangedEventArgs e)
+		private void IngredientInListTextBox_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			var textBox = (TextBox)sender;
-			if (textBox.Text != "" && AddGroceryItem.Visibility == Visibility.Collapsed)
+			if (textBox.Text != "" && AddIngredientInListItem.Visibility == Visibility.Collapsed)
 			{
-				AddGroceryItem.Visibility = Visibility.Visible;
+				AddIngredientInListItem.Visibility = Visibility.Visible;
 			}
-			else if (textBox.Text == "" && AddGroceryItem.Visibility == Visibility.Visible)
+			else if (textBox.Text == "" && AddIngredientInListItem.Visibility == Visibility.Visible)
 			{
-				AddGroceryItem.Visibility = Visibility.Collapsed;
+				AddIngredientInListItem.Visibility = Visibility.Collapsed;
 			}
+		}
+
+		private void CancelFood_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void FirstPageButton_Click(object sender, RoutedEventArgs e)
+		{
+			CurrentPage = 1;
+			var foods = FoodOnScreen.Skip((CurrentPage - 1) * FoodperPage).Take(FoodperPage);
+			foodButtonItemsControl.ItemsSource = foods;
+			UpdatePageButtonStatus();
+		}
+
+		private void LastPageButton_Click(object sender, RoutedEventArgs e)
+		{
+			CurrentPage = TotalPage;
+			var foods = FoodOnScreen.Skip((CurrentPage - 1) * FoodperPage).Take(FoodperPage);
+			foodButtonItemsControl.ItemsSource = foods;
+			UpdatePageButtonStatus();
 		}
 
 		/*Lấy danh sách móna ăn của view*/

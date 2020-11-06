@@ -140,32 +140,32 @@ namespace FoodRecipeApp
 			public string Content { get; set; }         //mô tả bước
 		}
 
-		class Grocery
+		public class Ingredient
 		{
-			public string GroceryName { get; set; }
+			public string IngredientName { get; set; }
 			public bool IsDone { get; set; }
 		}
 
-		class Ingredient
+		public class Dish
 		{
-			public string IngredientName { get; set; }  //Tên danh sách nguyên liệu cần mua
-			public BindingList<Grocery> GroceriesList { get; set; } //Tên các nguyên liệu trong danh sách trên
+			public string DishName { get; set; }  //Tên danh sách nguyên liệu cần mua
+			public BindingList<Ingredient> GroceriesList { get; set; } //Tên các nguyên liệu trong danh sách trên
 		}
 
-		BindingList<Ingredient> ListIngredient = new BindingList<Ingredient>()
-		{
-			new Ingredient { IngredientName="a", GroceriesList= new BindingList<Grocery>
-			{ new Grocery { GroceryName="1jasjk Gaj a'o jao REAajsf" }, new Grocery { GroceryName="2" }, new Grocery { GroceryName="3" } } },
-			new Ingredient { IngredientName="b" , GroceriesList= new BindingList<Grocery>
-			{ new Grocery { GroceryName="4" }, new Grocery { GroceryName="5" }, new Grocery { GroceryName="6" } } },
-			new Ingredient { IngredientName="c" , GroceriesList= new BindingList<Grocery>
-			{ new Grocery { GroceryName="7" }, new Grocery { GroceryName="8" }, new Grocery { GroceryName="9" } } }
-		};
+        BindingList<Dish> ListDish = new BindingList<Dish>();
+		//{
+		//	new Dish { DishName="a", GroceriesList= new BindingList<Ingredient>
+		//	{ new Ingredient { IngredientName="1jasjk Gaj a'o jao REAajsf" }, new Ingredient { IngredientName="2" }, new Ingredient { IngredientName="3" } } },
+		//	new Dish { DishName="b" , GroceriesList= new BindingList<Ingredient>
+		//	{ new Ingredient { IngredientName="4" }, new Ingredient { IngredientName="5" }, new Ingredient { IngredientName="6" } } },
+		//	new Dish { DishName="c" , GroceriesList= new BindingList<Ingredient>
+		//	{ new Ingredient { IngredientName="7" }, new Ingredient { IngredientName="8" }, new Ingredient { IngredientName="9" } } }
+		//};
 		public partial class FoodInfomation : INotifyPropertyChanged
 		{
 			public int ID { get; set; }             //ID món ăn 
 			public string Name { get; set; }        //Tên món ăn
-			public string Ingredients { get; set; } //Danh sách nguyên liệu
+			public string Dishs { get; set; } //Danh sách nguyên liệu
 			public bool IsFavorite { get; set; }    //Món yêu thích
 			public string DateAdd { get; set; }     //Ngày thêm
 			public string VideoLink { get; set; }   //Link youtube
@@ -203,10 +203,19 @@ namespace FoodRecipeApp
 			writer.Close();
 		}
 
-		//Cài đặt nút đóng cửa sổ
-		private void CloseButton_Click(object sender, RoutedEventArgs e)
+        private void SaveListDish()
+        {
+            XmlSerializer xs = new XmlSerializer(typeof(BindingList<Dish>));
+            TextWriter writer = new StreamWriter(@"data\Dish.xml");
+            xs.Serialize(writer, ListDish);
+            writer.Close();
+        }
+
+        //Cài đặt nút đóng cửa sổ
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
 		{
 			SaveListFood();
+            SaveListDish();
 			Application.Current.Shutdown();
 		}
 
@@ -417,9 +426,9 @@ namespace FoodRecipeApp
 				{
 					AddFood.Visibility = Visibility.Collapsed;
 				}
-				else if (clickedControlButton == IngredientButton)
+				else if (clickedControlButton == DishButton)
 				{
-					IngredientList.Visibility = Visibility.Collapsed;
+					DishList.Visibility = Visibility.Collapsed;
 				}
 				else
 				{
@@ -459,9 +468,9 @@ namespace FoodRecipeApp
 					ListStep = new BindingList<Step>();
 					AddDirectionItemsControl.ItemsSource = ListStep;
 				}
-				else if (button == IngredientButton)
+				else if (button == DishButton)
 				{
-					IngredientList.Visibility = Visibility.Visible;
+					DishList.Visibility = Visibility.Visible;
 				}
 				else
 				{
@@ -544,12 +553,21 @@ namespace FoodRecipeApp
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 			//Đọc dữ liệu các món ăn từ data
-			XmlSerializer xs = new XmlSerializer(typeof(List<FoodInfomation>));
+			XmlSerializer xsFood = new XmlSerializer(typeof(List<FoodInfomation>));
 			using (var reader = new StreamReader(@"data\Food.xml"))
 			{
-				_list = (List<FoodInfomation>)xs.Deserialize(reader);
+				_list = (List<FoodInfomation>)xsFood.Deserialize(reader);
 			}
 			FoodOnScreen = _list;
+
+			XmlSerializer xsDish = new XmlSerializer(typeof(BindingList<Dish>));
+			using (var reader = new StreamReader(@"data\Dish.xml"))
+			{
+				ListDish = (BindingList<Dish>)xsDish.Deserialize(reader);
+			}
+
+
+
 
 			//Đọc dữ liệu các bước của từng món ăn từ data
 			List<Step> temp;
@@ -595,7 +613,7 @@ namespace FoodRecipeApp
 			var foods = FoodOnScreen.Take(FoodperPage);
 			foodButtonItemsControl.ItemsSource = foods;
 			view = (CollectionView)CollectionViewSource.GetDefaultView(_list);
-			IngredientListItemsControl.ItemsSource = ListIngredient;
+			DishListItemsControl.ItemsSource = ListDish;
 		}
 
 		private void Menu_Click(object sender, RoutedEventArgs e)
@@ -913,7 +931,7 @@ namespace FoodRecipeApp
 		//					"FoodInfomation",
 		//					new XElement("ID", newFood.ID),
 		//					new XElement("Name", newFood.Name),
-		//					new XElement("Ingredients", newFood.Ingredients),
+		//					new XElement("Dishs", newFood.Dishs),
 		//					new XElement("IsFavorite", newFood.IsFavorite),
 		//					new XElement("DateAdd", newFood.DateAdd),
 		//					new XElement("ImagePath", newFood.ImagePath),
@@ -1087,36 +1105,36 @@ namespace FoodRecipeApp
 			}
 		}
 
-		private void EditIngredientInListButton_Click(object sender, RoutedEventArgs e)
+		private void EditDishInListButton_Click(object sender, RoutedEventArgs e)
 		{
 
 		}
 
-		private void IngredientListName_Click(object sender, RoutedEventArgs e)
+		private void DishListName_Click(object sender, RoutedEventArgs e)
 		{
 			var button = (Button)sender;
 			var content = (string)button.Content;
-			for (int i = 0; i < ListIngredient.Count; i++)
+			for (int i = 0; i < ListDish.Count; i++)
 			{
-				if (ListIngredient[i].IngredientName == content)
+				if (ListDish[i].DishName == content)
 				{
-					IngredientInListItemsControl.ItemsSource = ListIngredient[i].GroceriesList;
-					IngredientListNameTextBlock.DataContext = ListIngredient[i];
+					DishInListItemsControl.ItemsSource = ListDish[i].GroceriesList;
+					DishListNameTextBlock.DataContext = ListDish[i];
 					break;
 				}
 			}
 		}
 
 		//Xử lý khi nhấn nút thêm 1 List nguyên liệu mới
-		private void AddIngredientList_Click(object sender, RoutedEventArgs e)
+		private void AddDishList_Click(object sender, RoutedEventArgs e)
 		{
-			var text = IngredientListTextBox.Text;
+			var text = DishListTextBox.Text;
 			if (text != "")
 			{
 				var isExist = false;
-				for (int i = 0; i < ListIngredient.Count; i++)
+				for (int i = 0; i < ListDish.Count; i++)
 				{
-					if (text == ListIngredient[i].IngredientName)
+					if (text == ListDish[i].DishName)
 					{
 						isExist = true;
 						break;
@@ -1134,7 +1152,7 @@ namespace FoodRecipeApp
 				}
 				else
 				{
-					ListIngredient.Add(new Ingredient { IngredientName = text, GroceriesList = new BindingList<Grocery>() });
+					ListDish.Add(new Dish { DishName = text, GroceriesList = new BindingList<Ingredient>() });
 				}
 			}
 			else
@@ -1144,27 +1162,27 @@ namespace FoodRecipeApp
 		}
 
 		//Xử lý khi nhấn nút thêm 1 nguyên liệu mới cho List đang được chọn
-		private void AddIngredientInListItem_Click(object sender, RoutedEventArgs e)
+		private void AddDishInListItem_Click(object sender, RoutedEventArgs e)
 		{
-			var text = IngredientInListTextBox.Text;
+			var text = DishInListTextBox.Text;
 			if (text != "")
 			{
-				var ingredientListName = IngredientListNameTextBlock.Text;
-				if (ingredientListName == "")
+				var DishListName = DishListNameTextBlock.Text;
+				if (DishListName == "")
 				{
 					MessageBox.Show(
-					"Please select a list to add ingredients!",
+					"Please select a list to add Dishs!",
 					"Announcement",
 					MessageBoxButton.OK,
 					MessageBoxImage.Warning);
 				}
 				else
 				{
-					for (int i = 0; i < ListIngredient.Count; i++)
+					for (int i = 0; i < ListDish.Count; i++)
 					{
-						if (ListIngredient[i].IngredientName == ingredientListName)
+						if (ListDish[i].DishName == DishListName)
 						{
-							ListIngredient[i].GroceriesList.Add(new Grocery { GroceryName = text, IsDone = false });
+							ListDish[i].GroceriesList.Add(new Ingredient { IngredientName = text, IsDone = false });
 							break;
 						}
 					}
@@ -1176,30 +1194,30 @@ namespace FoodRecipeApp
 			}
 		}
 
-		private void IngredientListTextBox_TextChanged(object sender, TextChangedEventArgs e)
+		private void DishListTextBox_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			var textBox = (TextBox)sender;
-			if (textBox.Text != "" && AddIngredientList.Visibility == Visibility.Collapsed)
+			if (textBox.Text != "" && AddDishList.Visibility == Visibility.Collapsed)
 			{
-				AddIngredientList.Visibility = Visibility.Visible;
+				AddDishList.Visibility = Visibility.Visible;
 			}
-			else if (textBox.Text == "" && AddIngredientList.Visibility == Visibility.Visible)
+			else if (textBox.Text == "" && AddDishList.Visibility == Visibility.Visible)
 			{
-				AddIngredientList.Visibility = Visibility.Collapsed;
+				AddDishList.Visibility = Visibility.Collapsed;
 			}
 
 		}
 
-		private void IngredientInListTextBox_TextChanged(object sender, TextChangedEventArgs e)
+		private void DishInListTextBox_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			var textBox = (TextBox)sender;
-			if (textBox.Text != "" && AddIngredientInListItem.Visibility == Visibility.Collapsed)
+			if (textBox.Text != "" && AddDishInListItem.Visibility == Visibility.Collapsed)
 			{
-				AddIngredientInListItem.Visibility = Visibility.Visible;
+				AddDishInListItem.Visibility = Visibility.Visible;
 			}
-			else if (textBox.Text == "" && AddIngredientInListItem.Visibility == Visibility.Visible)
+			else if (textBox.Text == "" && AddDishInListItem.Visibility == Visibility.Visible)
 			{
-				AddIngredientInListItem.Visibility = Visibility.Collapsed;
+				AddDishInListItem.Visibility = Visibility.Collapsed;
 			}
 		}
 
@@ -1229,7 +1247,13 @@ namespace FoodRecipeApp
 			if (e.Key==Key.Down)
             {
 				SearchComboBox.Focus();
-				SearchComboBox.IsDropDownOpen = true;
+				
+                SearchComboBox.SelectedIndex = 0;
+                SearchComboBox.IsDropDownOpen = true;
+            }
+            if (e.Key==Key.Escape)
+            {
+                SearchComboBox.IsDropDownOpen = false;
             }
         }
 

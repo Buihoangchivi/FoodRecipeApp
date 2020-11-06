@@ -175,9 +175,9 @@
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>
-                                <TextBox x:Name="searchTextBox" PreviewKeyDown="searchTextBox_PreviewKeyDown" Width="175" HorizontalAlignment="Left"> </TextBox>
+                                <TextBox x:Name="searchTextBox" PreviewKeyDown="searchTextBox_PreviewKeyDown" Width="175" HorizontalAlignment="Left"></TextBox>
                             </Grid>
-                            
+
                         </StackPanel>
                     </DockPanel>
                 </Border>
@@ -266,11 +266,11 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                
+
                 <!--Hình ảnh chính của món ăn-->
                 <Image Name="SelectedFoodImage" Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}" Margin="15,15,30,15"
                        RenderOptions.BitmapScalingMode="HighQuality" Grid.Row="0" Grid.Column="1"></Image>
-                
+
                 <Grid Margin="20,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
@@ -286,41 +286,78 @@
                     <TextBlock Name="SelectedFoodName" Padding="5" FontSize="20" Grid.Row="0" Text="{Binding Name}"
                                Grid.ColumnSpan="2" Foreground="ForestGreen"></TextBlock>
                     <!--Loại thức ăn-->
-                    <TextBlock Padding="5" FontSize="14" Grid.Row="1" Grid.Column="0" Foreground="Gray">Type</TextBlock>
+                    <TextBlock Padding="5" FontSize="16" Grid.Row="1" Grid.Column="0" Foreground="Gray">Type</TextBlock>
                     <TextBlock Padding="5" FontSize="14" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="{Binding Type}"></TextBlock>
-                    
+
                     <!--Mức độ khó của món ăn-->
-                    <TextBlock Padding="5" FontSize="14" Grid.Row="2" Grid.Column="0" Foreground="Gray">Level</TextBlock>
-                    <TextBlock Padding="5" FontSize="14" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Text="{Binding Level}"></TextBlock>
-                    
+                    <TextBlock Padding="5" FontSize="16" Grid.Row="2" Grid.Column="0" Foreground="Gray">Level</TextBlock>
+                    <TextBlock Padding="5" FontSize="15" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Text="{Binding Level}"></TextBlock>
+
                     <!--Ngày tạo dữ liệu món ăn-->
-                    <TextBlock Padding="5" FontSize="14" Grid.Row="3" Grid.Column="0" Foreground="Gray">Date time</TextBlock>
-                    <TextBlock Padding="5" FontSize="14" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Text="{Binding DateAdd}"></TextBlock>
-                    
+                    <TextBlock Padding="5" FontSize="16" Grid.Row="3" Grid.Column="0" Foreground="Gray">Date time</TextBlock>
+                    <TextBlock Padding="5" FontSize="15" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Text="{Binding DateAdd}"></TextBlock>
+
                     <!--Mô tả món ăn-->
-                    <TextBlock Padding="5" FontSize="14" Grid.Row="4" Grid.Column="0" Foreground="Gray">Description</TextBlock>
-                    <TextBlock Padding="5" FontSize="14" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Text="{Binding Discription}"></TextBlock>
+                    <TextBlock Padding="5" FontSize="16" Grid.Row="4" Grid.Column="0" Foreground="Gray">Description</TextBlock>
+                    <TextBlock Padding="5" FontSize="15" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Text="{Binding Discription}"></TextBlock>
                 </Grid>
                 <Grid Grid.Row="1" Grid.ColumnSpan="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
-                    
+
                     <!--Danh sách nguyên liệu của món ăn-->
                     <TextBlock Padding="5" FontSize="20" Grid.Row="0" Foreground="ForestGreen">Ingredients</TextBlock>
-                    <TextBlock Padding="5" FontSize="14" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Ingredients}"></TextBlock>
+                    <TextBlock Padding="5" FontSize="15" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Ingredients}"></TextBlock>
                 </Grid>
                 <Grid Name="StepsGrid" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,20,30,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
-                    
+
                     <!--Danh sách các bước của món ăn-->
                     <TextBlock Padding="5" FontSize="20" Grid.Row="0" Foreground="ForestGreen">Directions</TextBlock>
 
-                    <Grid Grid.Row="1" Margin="5,0" Name="DirectionsGrid">
+                    <!--Nút phân trang cho các bước-->
+                    <StackPanel DockPanel.Dock="Bottom" Grid.Row="1" Name="StepPaginationBar"
+                                    HorizontalAlignment="Right" Orientation="Horizontal" >
+
+                        <!--Nút quay về trang trước-->
+                        <Button Name="PreviousStepButton" Click="PreviousStepButton_Click" Width="26" Height="26" 
+                                    Background="AntiqueWhite" BorderThickness="1" Margin="0,0,10,4">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="4"/>
+                                </Style>
+                            </Button.Resources>
+                            <WrapPanel Margin="5,4,3,4">
+                                <Image Source="Images/previous.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                            </WrapPanel>
+                        </Button>
+
+                        <TextBlock Text="{Binding CurrentStep}" FontSize="18"></TextBlock>
+                        <TextBlock FontSize="18" Text=" of "></TextBlock>
+                        <TextBlock Text="{Binding TotalStep}" FontSize="18" Margin="0,0,10,0"></TextBlock>
+
+                        <!--Nút nhảy tới trang sau-->
+                        <Button Name="NextStepButton" Click="NextStepButton_Click" Width="26" Height="26"
+                                    Background="AntiqueWhite" BorderThickness="1" Margin="0,0,5,4">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="4"/>
+                                </Style>
+                            </Button.Resources>
+                            <WrapPanel Margin="3,4,5,4">
+                                <Image Source="Images/next.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                            </WrapPanel>
+                        </Button>
+
+                    </StackPanel>
+
+                    <Grid Grid.Row="2" Margin="5,0" Name="DirectionsGrid">
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
@@ -328,16 +365,16 @@
                         </Grid.RowDefinitions>
                         <!--Đang hiển thị bước thứ mấy-->
                         <WrapPanel>
-                            <TextBlock Padding="0,5" FontSize="16" Foreground="Gray" Text="Step "></TextBlock>
-                            <TextBlock Padding="0,5" FontSize="16" Foreground="Gray" TextWrapping="Wrap" Text="{Binding Order}"></TextBlock>
-                            <TextBlock Padding="0,5" FontSize="16" Foreground="Gray">:</TextBlock>
+                            <TextBlock Padding="0,5" FontSize="17" Foreground="Gray" Text="Step "></TextBlock>
+                            <TextBlock Padding="0,5" FontSize="17" Foreground="Gray" TextWrapping="Wrap" Text="{Binding Order}"></TextBlock>
+                            <TextBlock Padding="0,5" FontSize="17" Foreground="Gray">:</TextBlock>
                         </WrapPanel>
 
                         <!--Mô tả nội dung của bước-->
-                        <TextBlock Grid.Row="1" Padding="0,5" FontSize="14" TextWrapping="Wrap" Text="{Binding Content}"></TextBlock>
+                        <TextBlock Grid.Row="1" Padding="0,5" FontSize="15" TextWrapping="Wrap" Text="{Binding Content}"></TextBlock>
 
                         <!--Danh sách hình ảnh mô tả bước-->
-                        <ItemsControl Grid.Row="2" Name="ImagesPerStepItemsControl" Margin="0,5,0,25">
+                        <ItemsControl Grid.Row="2" Name="ImagesPerStepItemsControl" Margin="0,20">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapPanel />
@@ -346,16 +383,17 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel>
-                                        <Image Width="266" Margin="5,0,0,5" Height="200" Source="{Binding ImagePath, Converter={StaticResource converter}}"
-                                           RenderOptions.BitmapScalingMode="HighQuality" Stretch="Fill">
-                                        </Image>
+                                        <Border BorderBrush="DarkGray" BorderThickness="2" Margin="3.5">
+                                            <Image Width="260" Height="200" Source="{Binding ImagePath, Converter={StaticResource converter}}"
+                                           RenderOptions.BitmapScalingMode="HighQuality" Stretch="Fill"/>
+                                        </Border>
                                     </StackPanel>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
 
                     </Grid>
-                    
+
                 </Grid>
                 <!--<Grid Grid.Row="3" Grid.ColumnSpan="2">
                     <Grid.RowDefinitions>
@@ -392,7 +430,7 @@
             </Grid>
         </ScrollViewer>
 
-        <ScrollViewer  VerticalScrollBarVisibility="Hidden">
+        <ScrollViewer x:Name="AddFoodScrollViewer" VerticalScrollBarVisibility="Hidden">
             <StackPanel>
 
                 <!--Thêm món ăn-->
@@ -466,7 +504,7 @@
                                 </WrapPanel>
                             </Button>
                         </StackPanel>
-                        <Image Name="PrimaryFoodImage" Grid.Row="1" MaxHeight="200" Margin="70,20" Source="{Binding ImagePath}"
+                        <Image Name="PrimaryFoodImage" Grid.Row="1" MaxHeight="200" Margin="70,20" Source="{Binding PrimaryImagePath}"
                            RenderOptions.BitmapScalingMode="HighQuality"></Image>
                     </Grid>
                     <StackPanel Grid.Row="1" Grid.Column="0">
@@ -483,7 +521,8 @@
                     </StackPanel>
                     <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
                         <TextBlock Padding="5" FontSize="20" Foreground="ForestGreen">Directions</TextBlock>
-                        <ItemsControl Name="AddDirectionItemsControl">
+
+                        <ItemsControl Name="ImageStepItemsControl" Margin="0,5,0,25" Grid.Column="1">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapPanel />
@@ -500,11 +539,12 @@
                                             <RowDefinition/>
                                             <RowDefinition/>
                                             <RowDefinition/>
+                                            <RowDefinition/>
                                         </Grid.RowDefinitions>
-                                        <WrapPanel Grid.Row="0" Grid.Column="0" Margin="15,0,20,20">
+                                        <WrapPanel Grid.Row="0" Grid.Column="0" Margin="15,15,20,20">
                                             <TextBlock Text="Step" FontSize="18"/>
                                         </WrapPanel>
-                                        <WrapPanel Grid.Row="0" Grid.Column="1">
+                                        <WrapPanel Grid.Row="0" Grid.Column="1" Margin="0,15,0,0">
                                             <TextBlock FontSize="18" Text="{Binding Order}"></TextBlock>
                                         </WrapPanel>
 
@@ -513,27 +553,41 @@
                                              FontSize="14" VerticalContentAlignment="Top" TextWrapping="Wrap" BorderThickness="2" 
                                              VerticalScrollBarVisibility="Auto" Text="{Binding Content}"/>
                                         <TextBlock Grid.Row="2" Grid.Column="0" Text="Photo" FontSize="18" Margin="15,5,0,0"/>
-                                        <Grid Grid.Row="2" Grid.Column="1" Margin="0,0,0,20">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="175"></ColumnDefinition>
-                                                <ColumnDefinition Width="575"></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Button Margin="20,0,0,0" Background="White" BorderThickness="0" Name="AddStepFoodPhoto" Click="AddStepFoodPhoto_Click"
+
+                                        <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,0,0,20" Orientation="Horizontal">
+                                            <Button Background="White" BorderThickness="0" Name="AddStepFoodPhoto" Click="AddStepFoodPhoto_Click"
                                                     Height="35" VerticalAlignment="Top">
-                                                    <WrapPanel Margin="15,0">
-                                                        <Image Source="Images/addImage.png" Width="20" Margin="0,0,10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                                                        <TextBlock VerticalAlignment="Center" FontSize="15">Add photo</TextBlock>
-                                                    </WrapPanel>
-                                                </Button>
-                                            </StackPanel>
-                                            <Image Name="DirectionFoodImage" Grid.Column="1" HorizontalAlignment="Center" MaxHeight="250"
-                                               Source="{Binding ImagePath}" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                                        </Grid>
+                                                <WrapPanel Margin="15,0">
+                                                    <Image Source="Images/addImage.png" Width="20" Margin="0,0,10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                                    <TextBlock VerticalAlignment="Center" FontSize="15">Add photo</TextBlock>
+                                                </WrapPanel>
+                                            </Button>
+                                        </StackPanel>
+
+                                        <!--Danh sách hình ảnh mô tả bước-->
+                                        <ItemsControl Name="ImageListPerStepItemsControl" Margin="0,5,0,25" Grid.Row="3" Grid.ColumnSpan="2">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel>
+                                                        <Image Width="266" Margin="5,0,0,5" Height="200" 
+                                                                   Source="{Binding ImagePath}"
+                                                                   RenderOptions.BitmapScalingMode="HighQuality" Stretch="Fill">
+                                                        </Image>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
                                     </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
+
+                        <!--Nút thêm bước mới-->
                         <Button Grid.ColumnSpan="2" HorizontalAlignment="Center" Background="White" Name="AddStepButton" Click="AddStepButton_Click"
                             BorderThickness="0" Height="35" Margin="0,0,0,15">
                             <WrapPanel Margin="15,0">
@@ -541,6 +595,8 @@
                                 <TextBlock VerticalAlignment="Center" FontSize="15">Add direction</TextBlock>
                             </WrapPanel>
                         </Button>
+
+                        <!--Hai nút lưu và hủy thêm món-->
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Button Margin="20,0,0,15" Background="White" BorderThickness="0" Name="SaveFood" 
                                 Click="SaveFood_Click" Height="35" VerticalAlignment="Top">
@@ -658,7 +714,7 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </Grid>
-                
+
             </StackPanel>
         </ScrollViewer>
 

@@ -76,6 +76,38 @@ namespace FoodRecipeApp
 				}
 			}
 		}
+		private int _totalStep = 0;             //Tổng số bước
+		public int TotalStep
+		{
+			get
+			{
+				return _totalStep;
+			}
+			set
+			{
+				_totalStep = value;
+				if (PropertyChanged != null)
+				{
+					PropertyChanged(this, new PropertyChangedEventArgs("TotalStep"));
+				}
+			}
+		}
+		private int _currentStep = 1;           //Bước hiện tại
+		public int CurrentStep
+		{
+			get
+			{
+				return _currentStep;
+			}
+			set
+			{
+				_currentStep = value;
+				if (PropertyChanged != null)
+				{
+					PropertyChanged(this, new PropertyChangedEventArgs("CurrentStep"));
+				}
+			}
+		}
 		private string _totalItem = "0 item";   //Tổng số món ăn theo filter hiện tại
 		public string TotalItem
 		{
@@ -92,6 +124,7 @@ namespace FoodRecipeApp
 				}
 			}
 		}
+		private int CurrentElementIndex = 0;
 
 
 
@@ -349,6 +382,8 @@ namespace FoodRecipeApp
 				else if (clickedControlButton == AddDishButton)
 				{
 					AddFood.Visibility = Visibility.Collapsed;
+					AddFood.DataContext = null;
+					AddFoodScrollViewer.ScrollToHome();
 				}
 				else if (clickedControlButton == DishButton)
 				{
@@ -390,7 +425,7 @@ namespace FoodRecipeApp
 					AddFood.Visibility = Visibility.Visible;
 					AddFood.DataContext = newFood;
 					ListStep = new BindingList<Step>();
-					AddDirectionItemsControl.ItemsSource = ListStep;
+					ImageStepItemsControl.ItemsSource = ListStep;
 				}
 				else if (button == DishButton)
 				{
@@ -458,51 +493,16 @@ namespace FoodRecipeApp
 				PaginationBar.Visibility = Visibility.Collapsed;
 
 				//Lấy chỉ số của hình ảnh món ăn được nhấn
-				var index = GetElementIndexInArray((Button)sender);
-
-				////Tìm danh sách các bước của món ăn được chọn
-				//var stepBindingList = new BindingList<Step>();
-				//for (int i = 0; i < _foodStepsList.Count; i++)
-				//{
-				//	if (_foodStepsList[i][0].ID == ListFoodInfo[index].ID)
-				//	{
-				//		stepBindingList = _foodStepsList[i];
-				//		break;
-				//	}
-				//}
-
-				//if (stepBindingList.Count > 0)
-				//{
-				//	var step = stepBindingList[0];
-				//	var stepImageInList = new List<StepImagesInList>();
-				//	var tokens = GetStepImagePaths(step.ImagePath);
-
-				//	foreach (var token in tokens)
-				//	{
-				//		stepImageInList.Add(new StepImagesInList { StepImagesPath = token });
-				//	}
-
-				//	//Hiển thị các bước nếu số bước lớn hơn 0
-				//	OrderWrapPanel.Visibility = Visibility.Visible;
-
-				//	//Binding dữ liệu các hình ảnh của bước hiện tại đang được hiển thị trên màn hình
-				//	StepsGrid.DataContext = step;
-				//	ImagesPerStepItemsControl.ItemsSource = stepImageInList;
-				//}
-				//else
-				//{
-				//	//Không hiển thị các bước nếu số bước bằng 0
-				//	OrderWrapPanel.Visibility = Visibility.Collapsed;
-				//}
+				CurrentElementIndex = GetElementIndexInArray((Button)sender);
 
 				//Binding dữ liệu để hiển thị chi tiết món ăn
-				FoodDetailGrid.DataContext = ListFoodInfo[index];
+				FoodDetailGrid.DataContext = ListFoodInfo[CurrentElementIndex];
 
 				//Binding dữ liệu các hình ảnh của bước hiện tại đang được hiển thị trên màn hình
-				if (ListFoodInfo[index].Steps.Count > 0)
+				if (ListFoodInfo[CurrentElementIndex].Steps.Count > 0)
 				{
-					StepsGrid.DataContext = ListFoodInfo[index].Steps[0];
-					ImagesPerStepItemsControl.ItemsSource = ListFoodInfo[index].Steps[0].ImagesPathPerStep;
+					StepsGrid.DataContext = ListFoodInfo[CurrentElementIndex].Steps[0];
+					ImagesPerStepItemsControl.ItemsSource = ListFoodInfo[CurrentElementIndex].Steps[0].ImagesPathPerStep;
 					//Hiển thị các bước nếu số bước lớn hơn 0
 					DirectionsGrid.Visibility = Visibility.Visible;
 				}
@@ -512,9 +512,27 @@ namespace FoodRecipeApp
 					DirectionsGrid.Visibility = Visibility.Collapsed;
 				}
 
+				//Hiển thị thanh phân trang cho số bước
+				TotalStep = ListFoodInfo[CurrentElementIndex].Steps.Count;
+
+				//Chức năng lùi về bước trước bị vô hiệu hóa khi đang ở bước đầu tiên
+				PreviousStepButton.IsEnabled = false;
+
+				//Binding dữ liệu cho phân trang các bước của món ăn
+				StepPaginationBar.DataContext = this;
+
+				//Chức năng tiến lên bước sau bị vô hiệu hóa khi đang ở bước cuối cùng
+				if (CurrentStep == TotalStep)
+				{
+					NextStepButton.IsEnabled = false;
+				}
+				else
+				{
+					//Do nothing
+				}
 
 				//Hiển thị video mô tả món ăn
-				Display(ListFoodInfo[index].VideoLink);
+				Display(ListFoodInfo[CurrentElementIndex].VideoLink);
 
 				//Hiển thị màn hình chi tiết món ăn
 				FoodDetailScrollViewer.Visibility = Visibility.Visible;
@@ -601,16 +619,24 @@ namespace FoodRecipeApp
 			fileDialog.Multiselect = true;
 			fileDialog.Filter = "Image Files(*.JPG*)|*.JPG";
 			fileDialog.Title = "Select Image";
+			
 			if (fileDialog.ShowDialog() == true)
 			{
 				var container = FindParent<StackPanel>(sender as DependencyObject);
+				var grid = FindParent<Grid>(sender as DependencyObject);
 				if (container != null)
 				{
 					var currData = container.DataContext as Step;
 					var fileNames = fileDialog.FileNames;
+					currData.ImagesPathPerStep.Clear();
 					for (int i = 0; i < fileNames.Length; i++)
 					{
 						currData.ImagesPathPerStep.Add(new ImagePerStep() { ImagePath = fileNames[i] });
+					}
+					if (grid != null)
+					{
+						var subItemsControl = GetChildOfType<ItemsControl>(grid);
+						subItemsControl.ItemsSource = currData.ImagesPathPerStep;
 					}
 				}
 			}
@@ -786,6 +812,43 @@ namespace FoodRecipeApp
 			var foods = FoodOnScreen.Skip((CurrentPage - 1) * FoodperPage).Take(FoodperPage);
 			foodButtonItemsControl.ItemsSource = foods;
 			UpdatePageButtonStatus();
+		}
+
+		private void PreviousStepButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (CurrentStep == 2)
+			{
+				PreviousStepButton.IsEnabled = false;
+			}
+			else if (NextStepButton.IsEnabled == false)
+			{
+				NextStepButton.IsEnabled = true;
+			}
+
+			//Lùi về bước trước
+			CurrentStep--;
+
+			//Binging dữ liệu
+			StepsGrid.DataContext = ListFoodInfo[CurrentElementIndex].Steps[CurrentStep - 1];
+			ImagesPerStepItemsControl.ItemsSource = ListFoodInfo[CurrentElementIndex].Steps[CurrentStep - 1].ImagesPathPerStep;
+		}
+
+		private void NextStepButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (CurrentStep == TotalStep - 1)
+			{
+				NextStepButton.IsEnabled = false;
+			}
+			else if (PreviousStepButton.IsEnabled == false)
+			{
+				PreviousStepButton.IsEnabled = true;
+			}
+			//Tiến tới bước tiếp theo
+			CurrentStep++;
+
+			//Binging dữ liệu
+			StepsGrid.DataContext = ListFoodInfo[CurrentElementIndex].Steps[CurrentStep - 1];
+			ImagesPerStepItemsControl.ItemsSource = ListFoodInfo[CurrentElementIndex].Steps[CurrentStep - 1].ImagesPathPerStep;
 		}
 
 

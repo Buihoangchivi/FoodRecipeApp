@@ -588,6 +588,7 @@ namespace FoodRecipeApp
 			UpdatePageButtonStatus();
 
 			//Binding Số trang
+			SearchComboBox.ItemsSource = _list;
 			this.DataContext = this;
 
 			/*Lấy danh sách food*/
@@ -1223,8 +1224,17 @@ namespace FoodRecipeApp
 			UpdatePageButtonStatus();
 		}
 
-		/*Lấy danh sách móna ăn của view*/
-		private void GetFilterList()
+        private void searchTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+			if (e.Key==Key.Down)
+            {
+				SearchComboBox.Focus();
+				SearchComboBox.IsDropDownOpen = true;
+            }
+        }
+
+        /*Lấy danh sách móna ăn của view*/
+        private void GetFilterList()
 		{
 			FoodOnScreen = new List<FoodInfomation>();
 			foreach (var food in view)

@@ -32,10 +32,9 @@ namespace FoodRecipeApp
 
 		private Button clickedControlButton;
 		private bool checkFavoriteIsClicked, isMinimizeMenu;
-		private List<FoodInfomation> _list = new List<FoodInfomation>();
-		private List<BindingList<Step>> _foodStepsList = new List<BindingList<Step>>();
-		BindingList<Step> ListStep;
-		FoodInfomation newFood; //Món ăn thêm
+		private List<FoodInfomation> ListFoodInfo = new List<FoodInfomation>();	//Danh sách thông tin tất cả các món ăn
+		BindingList<Step> ListStep = new BindingList<Step>();					//Danh sách các bước của món ăn mới được thêm
+		FoodInfomation newFood;													//Món ăn mới được thêm
 		private CollectionView view;
 
 		//Danh sách food để hiện trên màn hình
@@ -101,9 +100,9 @@ namespace FoodRecipeApp
 			}
 		}
 
-		public class StepImagesInList
+		public class ImagePerStep
 		{
-			public string StepImagesPath { get; set; }
+			public string ImagePath { get; set; }
 		}
 
 		class Condition
@@ -114,45 +113,49 @@ namespace FoodRecipeApp
 
 		private Condition FilterCondition = new Condition { Favorite = false, Type = "" };
 
+		//Class các bước thực hiện trong một món ăn
 		public class Step : INotifyPropertyChanged
 		{
 			public event PropertyChangedEventHandler PropertyChanged;
 
 			public int ID { get; set; }                 //ID món ăn
 			public int Order { get; set; }              //thứ tự bước
+			public string Content { get; set; }         //mô tả bước
 
-			private string _imagePath;                  //đường dẫn ảnh của bước
-			public string ImagePath
+			private BindingList<ImagePerStep> _imagesPathPerStep;        //đường dẫn ảnh của bước
+			public BindingList<ImagePerStep> ImagesPathPerStep
 			{
 				get
 				{
-					return _imagePath;
+					return _imagesPathPerStep;
 				}
 				set
 				{
-					_imagePath = value;
+					_imagesPathPerStep = value;
 					if (PropertyChanged != null)
 					{
-						PropertyChanged(this, new PropertyChangedEventArgs("ImagePath"));
+						PropertyChanged(this, new PropertyChangedEventArgs("ImagesPathPerStep"));
 					}
 				}
 			}
-			public string Content { get; set; }         //mô tả bước
+
 		}
 
+		//Class nguyên liệu cần chuẩn bị cho một món ăn
 		public class Ingredient
 		{
 			public string IngredientName { get; set; }
 			public bool IsDone { get; set; }
 		}
 
+		//Class các món ăn cần mua nguyên liệu
 		public class Dish
 		{
-			public string DishName { get; set; }  //Tên danh sách nguyên liệu cần mua
-			public BindingList<Ingredient> GroceriesList { get; set; } //Tên các nguyên liệu trong danh sách trên
+			public string DishName { get; set; }                        //Tên danh sách nguyên liệu cần mua
+			public BindingList<Ingredient> GroceriesList { get; set; }  //Tên các nguyên liệu trong danh sách trên
 		}
 
-        BindingList<Dish> ListDish = new BindingList<Dish>();
+		BindingList<Dish> ListDish = new BindingList<Dish>();
 		//{
 		//	new Dish { DishName="a", GroceriesList= new BindingList<Ingredient>
 		//	{ new Ingredient { IngredientName="1jasjk Gaj a'o jao REAajsf" }, new Ingredient { IngredientName="2" }, new Ingredient { IngredientName="3" } } },
@@ -161,11 +164,13 @@ namespace FoodRecipeApp
 		//	new Dish { DishName="c" , GroceriesList= new BindingList<Ingredient>
 		//	{ new Ingredient { IngredientName="7" }, new Ingredient { IngredientName="8" }, new Ingredient { IngredientName="9" } } }
 		//};
+
+		//Class thông tin món ăn
 		public partial class FoodInfomation : INotifyPropertyChanged
 		{
 			public int ID { get; set; }             //ID món ăn 
 			public string Name { get; set; }        //Tên món ăn
-			public string Dishs { get; set; } //Danh sách nguyên liệu
+			public string Ingredients { get; set; }       //Danh sách nguyên liệu
 			public bool IsFavorite { get; set; }    //Món yêu thích
 			public string DateAdd { get; set; }     //Ngày thêm
 			public string VideoLink { get; set; }   //Link youtube
@@ -173,22 +178,23 @@ namespace FoodRecipeApp
 			public string Type { get; set; }        //Loại đồ ăn
 			public string Discription { get; set; } //Mô tả khái quát món ăn
 
-			private string _imagePath;              //Đường dẫn ảnh chính
-			public string ImagePath
+			private string _primaryImagePath;       //Đường dẫn ảnh chính
+			public string PrimaryImagePath
 			{
 				get
 				{
-					return _imagePath;
+					return _primaryImagePath;
 				}
 				set
 				{
-					_imagePath = value;
+					_primaryImagePath = value;
 					if (PropertyChanged != null)
 					{
-						PropertyChanged(this, new PropertyChangedEventArgs("ImagePath"));
+						PropertyChanged(this, new PropertyChangedEventArgs("PrimaryImagePath"));
 					}
 				}
 			}
+			public BindingList<Step> Steps { get; set; }	//Các bước thực hiện của món ăn
 
 			public event PropertyChangedEventHandler PropertyChanged;
 
@@ -199,23 +205,23 @@ namespace FoodRecipeApp
 		{
 			XmlSerializer xs = new XmlSerializer(typeof(List<FoodInfomation>));
 			TextWriter writer = new StreamWriter(@"data\Food.xml");
-			xs.Serialize(writer, _list);
+			xs.Serialize(writer, ListFoodInfo);
 			writer.Close();
 		}
 
-        private void SaveListDish()
-        {
-            XmlSerializer xs = new XmlSerializer(typeof(BindingList<Dish>));
-            TextWriter writer = new StreamWriter(@"data\Dish.xml");
-            xs.Serialize(writer, ListDish);
-            writer.Close();
-        }
+		private void SaveListDish()
+		{
+			XmlSerializer xs = new XmlSerializer(typeof(BindingList<Dish>));
+			TextWriter writer = new StreamWriter(@"data\Dish.xml");
+			xs.Serialize(writer, ListDish);
+			writer.Close();
+		}
 
-        //Cài đặt nút đóng cửa sổ
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+		//Cài đặt nút đóng cửa sổ
+		private void CloseButton_Click(object sender, RoutedEventArgs e)
 		{
 			SaveListFood();
-            SaveListDish();
+			SaveListDish();
 			Application.Current.Shutdown();
 		}
 
@@ -500,15 +506,15 @@ namespace FoodRecipeApp
 		private void SortFoodList()
 		{
 			FoodInfomation temp;
-			for (int i = 0; i < _list.Count - 1; i++)
+			for (int i = 0; i < ListFoodInfo.Count - 1; i++)
 			{
-				for (int j = i + 1; j < _list.Count; j++)
+				for (int j = i + 1; j < ListFoodInfo.Count; j++)
 				{
-					if (_list[i].ID > _list[j].ID)
+					if (ListFoodInfo[i].ID > ListFoodInfo[j].ID)
 					{
-						temp = _list[i];
-						_list[i] = _list[j];
-						_list[j] = temp;
+						temp = ListFoodInfo[i];
+						ListFoodInfo[i] = ListFoodInfo[j];
+						ListFoodInfo[j] = temp;
 					}
 				}
 			}
@@ -517,9 +523,9 @@ namespace FoodRecipeApp
 		private int GetMinID()
 		{
 			int result = 1;
-			for (int i = 0; i < _list.Count; i++)
+			for (int i = 0; i < ListFoodInfo.Count; i++)
 			{
-				if (result < _list[i].ID)
+				if (result < ListFoodInfo[i].ID)
 				{
 					break;
 				}
@@ -556,9 +562,9 @@ namespace FoodRecipeApp
 			XmlSerializer xsFood = new XmlSerializer(typeof(List<FoodInfomation>));
 			using (var reader = new StreamReader(@"data\Food.xml"))
 			{
-				_list = (List<FoodInfomation>)xsFood.Deserialize(reader);
+				ListFoodInfo = (List<FoodInfomation>)xsFood.Deserialize(reader);
 			}
-			FoodOnScreen = _list;
+			FoodOnScreen = ListFoodInfo;
 
 			XmlSerializer xsDish = new XmlSerializer(typeof(BindingList<Dish>));
 			using (var reader = new StreamReader(@"data\Dish.xml"))
@@ -570,31 +576,31 @@ namespace FoodRecipeApp
 
 
 			//Đọc dữ liệu các bước của từng món ăn từ data
-			List<Step> temp;
-			XmlSerializer xsStep = new XmlSerializer(typeof(List<Step>));
-			using (var reader = new StreamReader(@"data\Step.xml"))
-			{
-				temp = (List<Step>)xsStep.Deserialize(reader);
-			}
-			BindingList<Step> StepBL = new BindingList<Step>();
-			foreach (var step in temp)
-			{
-				if (StepBL.Count > 0 && StepBL[StepBL.Count - 1].ID != step.ID)
-				{
-					_foodStepsList.Add(StepBL);
-					StepBL = new BindingList<Step>();
-				}
-				else
-				{
-					//Do nothing
-				}
-				StepBL.Add(step);
-			}
-			_foodStepsList.Add(StepBL);
+			//List<Step> temp;
+			//XmlSerializer xsStep = new XmlSerializer(typeof(List<Step>));
+			//using (var reader = new StreamReader(@"data\Step.xml"))
+			//{
+			//	temp = (List<Step>)xsStep.Deserialize(reader);
+			//}
+			//BindingList<Step> StepBL = new BindingList<Step>();
+			//foreach (var step in temp)
+			//{
+			//	if (StepBL.Count > 0 && StepBL[StepBL.Count - 1].ID != step.ID)
+			//	{
+			//		_foodStepsList.Add(StepBL);
+			//		StepBL = new BindingList<Step>();
+			//	}
+			//	else
+			//	{
+			//		//Do nothing
+			//	}
+			//	StepBL.Add(step);
+			//}
+			//_foodStepsList.Add(StepBL);
 
 			//Khởi tạo phân trang
-			TotalPage = (_list.Count - 1) / FoodperPage + 1;
-			TotalItem = _list.Count.ToString();
+			TotalPage = (ListFoodInfo.Count - 1) / FoodperPage + 1;
+			TotalItem = ListFoodInfo.Count.ToString();
 			if (FoodOnScreen.Count > 1)
 			{
 				TotalItem += " items";
@@ -606,13 +612,13 @@ namespace FoodRecipeApp
 			UpdatePageButtonStatus();
 
 			//Binding Số trang
-			SearchComboBox.ItemsSource = _list;
+			SearchComboBox.ItemsSource = ListFoodInfo;
 			this.DataContext = this;
 
 			/*Lấy danh sách food*/
 			var foods = FoodOnScreen.Take(FoodperPage);
 			foodButtonItemsControl.ItemsSource = foods;
-			view = (CollectionView)CollectionViewSource.GetDefaultView(_list);
+			view = (CollectionView)CollectionViewSource.GetDefaultView(ListFoodInfo);
 			DishListItemsControl.ItemsSource = ListDish;
 		}
 
@@ -639,9 +645,9 @@ namespace FoodRecipeApp
 			var wrapPanel = (WrapPanel)button.Content;
 			var curFood = wrapPanel.DataContext as FoodInfomation;
 			var result = 0;
-			for (int i = 0; i < _list.Count; i++)
+			for (int i = 0; i < ListFoodInfo.Count; i++)
 			{
-				if (curFood == _list[i])
+				if (curFood == ListFoodInfo[i])
 				{
 					result = i;
 					break;
@@ -682,48 +688,61 @@ namespace FoodRecipeApp
 				//Lấy chỉ số của hình ảnh món ăn được nhấn
 				var index = GetElementIndexInArray((Button)sender);
 
-				//Tìm danh sách các bước của món ăn được chọn
-				var stepBindingList = new BindingList<Step>();
-				for (int i = 0; i < _foodStepsList.Count; i++)
+				////Tìm danh sách các bước của món ăn được chọn
+				//var stepBindingList = new BindingList<Step>();
+				//for (int i = 0; i < _foodStepsList.Count; i++)
+				//{
+				//	if (_foodStepsList[i][0].ID == ListFoodInfo[index].ID)
+				//	{
+				//		stepBindingList = _foodStepsList[i];
+				//		break;
+				//	}
+				//}
+
+				//if (stepBindingList.Count > 0)
+				//{
+				//	var step = stepBindingList[0];
+				//	var stepImageInList = new List<StepImagesInList>();
+				//	var tokens = GetStepImagePaths(step.ImagePath);
+
+				//	foreach (var token in tokens)
+				//	{
+				//		stepImageInList.Add(new StepImagesInList { StepImagesPath = token });
+				//	}
+
+				//	//Hiển thị các bước nếu số bước lớn hơn 0
+				//	OrderWrapPanel.Visibility = Visibility.Visible;
+
+				//	//Binding dữ liệu các hình ảnh của bước hiện tại đang được hiển thị trên màn hình
+				//	StepsGrid.DataContext = step;
+				//	ImagesPerStepItemsControl.ItemsSource = stepImageInList;
+				//}
+				//else
+				//{
+				//	//Không hiển thị các bước nếu số bước bằng 0
+				//	OrderWrapPanel.Visibility = Visibility.Collapsed;
+				//}
+
+				//Binding dữ liệu để hiển thị chi tiết món ăn
+				FoodDetailGrid.DataContext = ListFoodInfo[index];
+
+				//Binding dữ liệu các hình ảnh của bước hiện tại đang được hiển thị trên màn hình
+				if (ListFoodInfo[index].Steps.Count > 0)
 				{
-					if (_foodStepsList[i][0].ID == _list[index].ID)
-					{
-						stepBindingList = _foodStepsList[i];
-						break;
-					}
-				}
-
-				if (stepBindingList.Count > 0)
-				{
-					var step = stepBindingList[0];
-					var stepImageInList = new List<StepImagesInList>();
-					var tokens = GetStepImagePaths(step.ImagePath);
-
-					foreach (var token in tokens)
-					{
-						stepImageInList.Add(new StepImagesInList { StepImagesPath = token });
-					}
-
+					StepsGrid.DataContext = ListFoodInfo[index].Steps[0];
+					ImagesPerStepItemsControl.ItemsSource = ListFoodInfo[index].Steps[0].ImagesPathPerStep;
 					//Hiển thị các bước nếu số bước lớn hơn 0
-					OrderWrapPanel.Visibility = Visibility.Visible;
-
-					//Binding dữ liệu các hình ảnh của bước hiện tại đang được hiển thị trên màn hình
-					StepsGrid.DataContext = step;
-					ImagesPerStepItemsControl.ItemsSource = stepImageInList;
+					DirectionsGrid.Visibility = Visibility.Visible;
 				}
 				else
 				{
 					//Không hiển thị các bước nếu số bước bằng 0
-					OrderWrapPanel.Visibility = Visibility.Collapsed;
+					DirectionsGrid.Visibility = Visibility.Collapsed;
 				}
 
-				//Binding dữ liệu để hiển thị chi tiết món ăn
-				FoodDetailGrid.DataContext = _list[index];
-
-				//Chỉnh kích thước của các hình ảnh mô tả từng bước
 
 				//Hiển thị video mô tả món ăn
-				Display(_list[index].VideoLink);
+				Display(ListFoodInfo[index].VideoLink);
 
 				//Hiển thị màn hình chi tiết món ăn
 				FoodDetailScrollViewer.Visibility = Visibility.Visible;
@@ -736,14 +755,14 @@ namespace FoodRecipeApp
 				int index = GetElementIndexInArray((Button)sender);
 
 				//Nếu chưa yêu thích thì chuyển sang ảnh yêu thích và thêm vào danh sách yêu thích
-				if (_list[index].IsFavorite == true)
+				if (ListFoodInfo[index].IsFavorite == true)
 				{
-					_list[index].IsFavorite = false;
+					ListFoodInfo[index].IsFavorite = false;
 					//imgName = "Images/unloved.png";
 				}
 				else //Nếu yêu thích rồi chuyển sang ảnh chưa yêu thích và xóa khỏi danh sách yêu thích
 				{
-					_list[index].IsFavorite = true;
+					ListFoodInfo[index].IsFavorite = true;
 					//imgName = "Images/favorite.png";
 				}
 
@@ -787,12 +806,17 @@ namespace FoodRecipeApp
 		{
 			if (ListStep.Count == 0)
 			{
-				var newStep = new Step() { ID = newFood.ID, Order = 1, ImagePath = "" };
+				var newStep = new Step() { ID = newFood.ID, Order = 1, ImagesPathPerStep = new BindingList<ImagePerStep>() };
 				ListStep.Add(newStep);
 			}
 			else
 			{
-				var newStep = new Step() { ID = newFood.ID, Order = ListStep[ListStep.Count - 1].Order + 1, ImagePath = "" };
+				var newStep = new Step() 
+				{ 
+					ID = newFood.ID, 
+					Order = ListStep[ListStep.Count - 1].Order + 1,
+					ImagesPathPerStep = new BindingList<ImagePerStep>()
+				};
 				ListStep.Add(newStep);
 			}
 		}
@@ -806,7 +830,7 @@ namespace FoodRecipeApp
 			if (fileDialog.ShowDialog() == true)
 			{
 				string filePath = fileDialog.FileName;
-				newFood.ImagePath = filePath;
+				newFood.PrimaryImagePath = filePath;
 			}
 			else
 			{
@@ -853,14 +877,7 @@ namespace FoodRecipeApp
 					var fileNames = fileDialog.FileNames;
 					for (int i = 0; i < fileNames.Length; i++)
 					{
-						if (i == 0)
-						{
-							currData.ImagePath += fileNames[i];
-						}
-						else
-						{
-							currData.ImagePath += "\n" + fileNames[i];
-						}
+						currData.ImagesPathPerStep.Add(new ImagePerStep() { ImagePath = fileNames[i] });
 					}
 				}
 			}
@@ -902,20 +919,27 @@ namespace FoodRecipeApp
 
 			foreach (var step in ListStep)
 			{
-				var tokens = GetStepImagePaths(step.ImagePath);
-				step.ImagePath = "";
+				//var tokens = GetStepImagePaths(step.ImagePath);
+				//step.ImagePath = "";
 
-				for (int j = 0; j < tokens.Length; j++)
+				//for (int j = 0; j < tokens.Length; j++)
+				//{
+				//	string stepPicName = $"{step.ID}_Step{step.Order}_Image{j + 1}.jpg";
+				//	string newPath = $"{newFolder}\\images\\{stepPicName}";
+				//	File.Copy(tokens[j], newPath);
+				//	step.ImagePath += $"images\\{stepPicName}";
+
+				//	if (j < tokens.Length - 1)
+				//	{
+				//		step.ImagePath += "\n";
+				//	}
+				//}
+				for (int i = 0; i < step.ImagesPathPerStep.Count; i++)
 				{
-					string stepPicName = $"{step.ID}_Step{step.Order}_Image{j + 1}.jpg";
+					string stepPicName = $"{step.ID}_Step{step.Order}_Image{i + 1}.jpg";
 					string newPath = $"{newFolder}\\images\\{stepPicName}";
-					File.Copy(tokens[j], newPath);
-					step.ImagePath += $"images\\{stepPicName}";
-
-					if (j < tokens.Length - 1)
-					{
-						step.ImagePath += "\n";
-					}
+					File.Copy(step.ImagesPathPerStep[i].ImagePath, newPath);
+					step.ImagesPathPerStep[i].ImagePath = $"images\\{stepPicName}";
 				}
 			}
 		}
@@ -943,26 +967,26 @@ namespace FoodRecipeApp
 		//	doc.Save(filePath);
 		//}
 
-		private void SaveStepData()
-		{
-			string folderPath = GetAppDomain();
-			string filePath = $"{folderPath}data\\Step.xml";
-			XDocument doc = XDocument.Load(filePath);
-			foreach (Step step in ListStep)
-			{
-				doc.Element("ArrayOfStep").Add(
-						new XElement
-						(
-								"Step",
-								new XElement("ID", step.ID),
-								new XElement("Order", step.Order),
-								new XElement("ImagePath", step.ImagePath),
-								new XElement("Content", step.Content)
-						)
-				);
-			}
-			doc.Save(filePath);
-		}
+		//private void SaveStepData()
+		//{
+		//	string folderPath = GetAppDomain();
+		//	string filePath = $"{folderPath}data\\Step.xml";
+		//	XDocument doc = XDocument.Load(filePath);
+		//	foreach (Step step in ListStep)
+		//	{
+		//		doc.Element("ArrayOfStep").Add(
+		//				new XElement
+		//				(
+		//						"Step",
+		//						new XElement("ID", step.ID),
+		//						new XElement("Order", step.Order),
+		//						new XElement("StepImagePath", step.StepImagePath),
+		//						new XElement("Content", step.Content)
+		//				)
+		//		);
+		//	}
+		//	doc.Save(filePath);
+		//}
 
 		private void SaveFood_Click(object sender, RoutedEventArgs e)
 		{
@@ -975,10 +999,10 @@ namespace FoodRecipeApp
 			string foodPicName = $"{newFood.ID}.jpg";
 			string newPath = $"{newFolder}\\images\\{foodPicName}";
 
-			if (newFood.ImagePath != null)
+			if (newFood.PrimaryImagePath != null)
 			{
-				File.Copy(newFood.ImagePath, newPath);
-				newFood.ImagePath = $"images\\{foodPicName}";
+				File.Copy(newFood.PrimaryImagePath, newPath);
+				newFood.PrimaryImagePath = $"images\\{foodPicName}";
 			}
 			else
 			{
@@ -987,12 +1011,14 @@ namespace FoodRecipeApp
 
 			SaveStepsImages();
 
-			SaveStepData();
+			//SaveStepData();
 
-			_list.Add(newFood);
-			_foodStepsList.Add(ListStep);
-			//foodButtonItemsControl.ItemsSource = _list;
-			//view = (CollectionView)CollectionViewSource.GetDefaultView(_list);
+			newFood.Steps = ListStep;
+
+			ListFoodInfo.Add(newFood);
+			//_foodStepsList.Add(ListStep);
+			//foodButtonItemsControl.ItemsSource = ListFoodInfo;
+			//view = (CollectionView)CollectionViewSource.GetDefaultView(ListFoodInfo);
 			UpdateUIFromData();
 		}
 
@@ -1047,15 +1073,15 @@ namespace FoodRecipeApp
 			if (!string.IsNullOrEmpty(cmb.Text))
 			{
 				string fullText = cmb.Text.Insert(GetChildOfType<TextBox>(cmb).CaretIndex, e.Text);
-				cmb.ItemsSource = _list.Where(s => s.Name.IndexOf(fullText, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
+				cmb.ItemsSource = ListFoodInfo.Where(s => s.Name.IndexOf(fullText, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
 			}
 			else if (!string.IsNullOrEmpty(e.Text))
 			{
-				cmb.ItemsSource = _list.Where(s => s.Name.IndexOf(e.Text, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
+				cmb.ItemsSource = ListFoodInfo.Where(s => s.Name.IndexOf(e.Text, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
 			}
 			else
 			{
-				cmb.ItemsSource = _list;
+				cmb.ItemsSource = ListFoodInfo;
 			}
 		}
 
@@ -1069,11 +1095,11 @@ namespace FoodRecipeApp
 
 				if (!string.IsNullOrEmpty(cmb.Text))
 				{
-					cmb.ItemsSource = _list.Where(s => s.Name.IndexOf(cmb.Text, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
+					cmb.ItemsSource = ListFoodInfo.Where(s => s.Name.IndexOf(cmb.Text, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
 				}
 				else
 				{
-					cmb.ItemsSource = _list;
+					cmb.ItemsSource = ListFoodInfo;
 				}
 			}
 		}
@@ -1089,11 +1115,11 @@ namespace FoodRecipeApp
 
 			if (!string.IsNullOrEmpty(fullText))
 			{
-				cmb.ItemsSource = _list.Where(s => s.Name.IndexOf(fullText, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
+				cmb.ItemsSource = ListFoodInfo.Where(s => s.Name.IndexOf(fullText, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
 			}
 			else
 			{
-				cmb.ItemsSource = _list;
+				cmb.ItemsSource = ListFoodInfo;
 			}
 		}
 
@@ -1242,23 +1268,23 @@ namespace FoodRecipeApp
 			UpdatePageButtonStatus();
 		}
 
-        private void searchTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-			if (e.Key==Key.Down)
-            {
+		private void searchTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Down)
+			{
 				SearchComboBox.Focus();
-				
-                SearchComboBox.SelectedIndex = 0;
-                SearchComboBox.IsDropDownOpen = true;
-            }
-            if (e.Key==Key.Escape)
-            {
-                SearchComboBox.IsDropDownOpen = false;
-            }
-        }
 
-        /*Lấy danh sách móna ăn của view*/
-        private void GetFilterList()
+				SearchComboBox.SelectedIndex = 0;
+				SearchComboBox.IsDropDownOpen = true;
+			}
+			if (e.Key == Key.Escape)
+			{
+				SearchComboBox.IsDropDownOpen = false;
+			}
+		}
+
+		/*Lấy danh sách móna ăn của view*/
+		private void GetFilterList()
 		{
 			FoodOnScreen = new List<FoodInfomation>();
 			foreach (var food in view)

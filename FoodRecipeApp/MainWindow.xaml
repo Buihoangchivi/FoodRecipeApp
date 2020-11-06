@@ -205,7 +205,7 @@
                                 <WrapPanel>
                                     <Rectangle RadiusX="10" RadiusY="10" Width="202" Height="145">
                                         <Rectangle.Fill>
-                                            <ImageBrush ImageSource="{Binding ImagePath, Converter={StaticResource converter}}" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                            <ImageBrush ImageSource="{Binding PrimaryImagePath, Converter={StaticResource converter}}" RenderOptions.BitmapScalingMode="HighQuality"/>
                                         </Rectangle.Fill>
                                     </Rectangle>
                                     <TextBlock Text="{Binding Name}" Width="175" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1"></TextBlock>
@@ -268,7 +268,7 @@
                 </Grid.ColumnDefinitions>
                 
                 <!--Hình ảnh chính của món ăn-->
-                <Image Name="SelectedFoodImage" Source="{Binding ImagePath, Converter={StaticResource converter}}" Margin="15,15,30,15"
+                <Image Name="SelectedFoodImage" Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}" Margin="15,15,30,15"
                        RenderOptions.BitmapScalingMode="HighQuality" Grid.Row="0" Grid.Column="1"></Image>
                 
                 <Grid Margin="20,0">
@@ -320,14 +320,14 @@
                     <!--Danh sách các bước của món ăn-->
                     <TextBlock Padding="5" FontSize="20" Grid.Row="0" Foreground="ForestGreen">Directions</TextBlock>
 
-                    <Grid Grid.Row="1" Margin="5,0">
+                    <Grid Grid.Row="1" Margin="5,0" Name="DirectionsGrid">
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <!--Đang hiển thị bước thứ mấy-->
-                        <WrapPanel Name="OrderWrapPanel">
+                        <WrapPanel>
                             <TextBlock Padding="0,5" FontSize="16" Foreground="Gray" Text="Step "></TextBlock>
                             <TextBlock Padding="0,5" FontSize="16" Foreground="Gray" TextWrapping="Wrap" Text="{Binding Order}"></TextBlock>
                             <TextBlock Padding="0,5" FontSize="16" Foreground="Gray">:</TextBlock>
@@ -346,7 +346,7 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel>
-                                        <Image Width="266" Margin="5,0,0,5" Height="200" Source="{Binding StepImagesPath, Converter={StaticResource converter}}"
+                                        <Image Width="266" Margin="5,0,0,5" Height="200" Source="{Binding ImagePath, Converter={StaticResource converter}}"
                                            RenderOptions.BitmapScalingMode="HighQuality" Stretch="Fill">
                                         </Image>
                                     </StackPanel>

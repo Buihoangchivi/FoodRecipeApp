@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Security.RightsManagement;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -31,7 +33,7 @@ namespace FoodRecipeApp
 		private Button clickedControlButton;
 		private bool checkFavoriteIsClicked, isMinimizeMenu;
 		private List<FoodInfomation> _list = new List<FoodInfomation>();
-		private List<BindingList<Step>> FoodStepsList = new List<BindingList<Step>>();
+		private List<BindingList<Step>> _foodStepsList = new List<BindingList<Step>>();
 		BindingList<Step> ListStep;
 		FoodInfomation newFood; //Món ăn thêm
 		private CollectionView view;
@@ -43,7 +45,7 @@ namespace FoodRecipeApp
 		private int FoodperPage = 12;
 
 		//Tổng số trang
-		private int _totalPage = 0;                             
+		private int _totalPage = 0;
 
 		public int TotalPage
 		{
@@ -99,6 +101,11 @@ namespace FoodRecipeApp
 			}
 		}
 
+		public class StepImagesInList
+		{
+			public string StepImagesPath { get; set; }
+		}
+
 		class Condition
 		{
 			public bool Favorite;
@@ -141,8 +148,8 @@ namespace FoodRecipeApp
 
 		class Ingredient
 		{
-			public string IngredientName { get; set; }	//Tên danh sách nguyên liệu cần mua
-			public BindingList<Grocery> GroceriesList { get; set; }	//Tên các nguyên liệu trong danh sách trên
+			public string IngredientName { get; set; }  //Tên danh sách nguyên liệu cần mua
+			public BindingList<Grocery> GroceriesList { get; set; } //Tên các nguyên liệu trong danh sách trên
 		}
 
 		BindingList<Ingredient> ListIngredient = new BindingList<Ingredient>()
@@ -156,17 +163,17 @@ namespace FoodRecipeApp
 		};
 		public partial class FoodInfomation : INotifyPropertyChanged
 		{
-			public int ID { get; set; }				//ID món ăn 
-			public string Name { get; set; }		//Tên món ăn
-			public string Ingredients { get; set; }	//Danh sách nguyên liệu
-			public bool IsFavorite { get; set; }	//Món yêu thích
-			public string DateAdd { get; set; }		//Ngày thêm
+			public int ID { get; set; }             //ID món ăn 
+			public string Name { get; set; }        //Tên món ăn
+			public string Ingredients { get; set; } //Danh sách nguyên liệu
+			public bool IsFavorite { get; set; }    //Món yêu thích
+			public string DateAdd { get; set; }     //Ngày thêm
 			public string VideoLink { get; set; }   //Link youtube
 			public string Level { get; set; }       //Mức độ khó
 			public string Type { get; set; }        //Loại đồ ăn
 			public string Discription { get; set; } //Mô tả khái quát món ăn
 
-			private string _imagePath;              //Đường dẫn ảnh của bước
+			private string _imagePath;              //Đường dẫn ảnh chính
 			public string ImagePath
 			{
 				get
@@ -446,7 +453,7 @@ namespace FoodRecipeApp
 				{
 					SortFoodList();
 					var index = GetMinID();
-					newFood = new FoodInfomation() { ID = index };
+					newFood = new FoodInfomation() { ID = index, VideoLink = "" };
 					AddFood.Visibility = Visibility.Visible;
 					AddFood.DataContext = newFood;
 					ListStep = new BindingList<Step>();
@@ -556,7 +563,7 @@ namespace FoodRecipeApp
 			{
 				if (StepBL.Count > 0 && StepBL[StepBL.Count - 1].ID != step.ID)
 				{
-					FoodStepsList.Add(StepBL);
+					_foodStepsList.Add(StepBL);
 					StepBL = new BindingList<Step>();
 				}
 				else
@@ -565,7 +572,7 @@ namespace FoodRecipeApp
 				}
 				StepBL.Add(step);
 			}
-			FoodStepsList.Add(StepBL);
+			_foodStepsList.Add(StepBL);
 
 			//Khởi tạo phân trang
 			TotalPage = (_list.Count - 1) / FoodperPage + 1;
@@ -638,7 +645,7 @@ namespace FoodRecipeApp
 		private void BackButton_Click(object sender, RoutedEventArgs e)
 		{
 			BackButton.Visibility = Visibility.Collapsed;
-			detailFoodGrid.Visibility = Visibility.Collapsed;
+			FoodDetailScrollViewer.Visibility = Visibility.Collapsed;
 			TypeBar.Visibility = Visibility.Visible;
 			foodButtonItemsControl.Visibility = Visibility.Visible;
 			PaginationBar.Visibility = Visibility.Visible;
@@ -648,43 +655,59 @@ namespace FoodRecipeApp
 		{
 			if (checkFavoriteIsClicked == false)
 			{
+				//Đóng màn hình trước
 				foodButtonItemsControl.Visibility = Visibility.Collapsed;
 				TypeBar.Visibility = Visibility.Collapsed;
 				PaginationBar.Visibility = Visibility.Collapsed;
-				
+
+				//Lấy chỉ số của hình ảnh món ăn được nhấn
 				var index = GetElementIndexInArray((Button)sender);
-				FoodDetailGrid.DataContext = _list[index];
-				var step = new BindingList<Step>();
-				for (int i = 0; i < FoodStepsList.Count; i++)
+
+				//Tìm danh sách các bước của món ăn được chọn
+				var stepBindingList = new BindingList<Step>();
+				for (int i = 0; i < _foodStepsList.Count; i++)
 				{
-					if (FoodStepsList[i][0].ID == _list[index].ID)
+					if (_foodStepsList[i][0].ID == _list[index].ID)
 					{
-						step = FoodStepsList[i];
+						stepBindingList = _foodStepsList[i];
 						break;
 					}
 				}
-				StepContentItemsControl.ItemsSource = step;
+
+				if (stepBindingList.Count > 0)
+				{
+					var step = stepBindingList[0];
+					var stepImageInList = new List<StepImagesInList>();
+					var tokens = GetStepImagePaths(step.ImagePath);
+
+					foreach (var token in tokens)
+					{
+						stepImageInList.Add(new StepImagesInList { StepImagesPath = token });
+					}
+
+					//Hiển thị các bước nếu số bước lớn hơn 0
+					OrderWrapPanel.Visibility = Visibility.Visible;
+
+					//Binding dữ liệu các hình ảnh của bước hiện tại đang được hiển thị trên màn hình
+					StepsGrid.DataContext = step;
+					ImagesPerStepItemsControl.ItemsSource = stepImageInList;
+				}
+				else
+				{
+					//Không hiển thị các bước nếu số bước bằng 0
+					OrderWrapPanel.Visibility = Visibility.Collapsed;
+				}
+
+				//Binding dữ liệu để hiển thị chi tiết món ăn
+				FoodDetailGrid.DataContext = _list[index];
+
+				//Chỉnh kích thước của các hình ảnh mô tả từng bước
+
+				//Hiển thị video mô tả món ăn
 				Display(_list[index].VideoLink);
-				FoodOtherImageItemControl.ItemsSource = _list;
 
-				detailFoodGrid.Visibility = Visibility.Visible;
-				//var bitmap = new BitmapImage(
-				//	new Uri(
-				//		_list[index].ImagePath,
-				//		UriKind.Relative)
-				//);
-
-				////Thiết lập ảnh chất lượng cao
-				//RenderOptions.SetBitmapScalingMode(bitmap, BitmapScalingMode.HighQuality);
-
-				////Hiển thị ảnh chính của món ăn
-				//SelectedFoodImage.Source = bitmap;
-
-				////Hiển thị tên món ăn
-				//SelectedFoodName.Text = _list[index].Name;
-
-				////Hiển thị các ảnh khác của món ăn
-				//foodImageListView.ItemsSource = _list;
+				//Hiển thị màn hình chi tiết món ăn
+				FoodDetailScrollViewer.Visibility = Visibility.Visible;
 
 				//Hiển thị nút quay lại
 				BackButton.Visibility = Visibility.Visible;
@@ -745,12 +768,12 @@ namespace FoodRecipeApp
 		{
 			if (ListStep.Count == 0)
 			{
-				var newStep = new Step() { ID = newFood.ID, Order = 1 };
+				var newStep = new Step() { ID = newFood.ID, Order = 1, ImagePath = "" };
 				ListStep.Add(newStep);
 			}
 			else
 			{
-				var newStep = new Step() { ID = newFood.ID, Order = ListStep[ListStep.Count - 1].Order + 1 };
+				var newStep = new Step() { ID = newFood.ID, Order = ListStep[ListStep.Count - 1].Order + 1, ImagePath = "" };
 				ListStep.Add(newStep);
 			}
 		}
@@ -766,23 +789,63 @@ namespace FoodRecipeApp
 				string filePath = fileDialog.FileName;
 				newFood.ImagePath = filePath;
 			}
+			else
+			{
+				//Do nothing
+			}
+
 		}
 
-		private void AddOtherFoodPhoto_Click(object sender, RoutedEventArgs e)
+		private void AddStepFoodPhoto_Click(object sender, RoutedEventArgs e)
 		{
+			//
+			//if (fileDialog.ShowDialog() == true)
+			//{
+			//	var fileNames = fileDialog.FileNames;
+			//	string newFolder = GetAppDomain();
+			//	string foodPicName, newPath, filePath;
+			//	for (int i = 0; i < fileNames.Length; i++)
+			//	{
+			//		foodPicName = $"{newFood.ID}_OtherImage_{i}.jpg";
+			//		newPath = $"{newFolder}\\images\\{foodPicName}";
+			//		File.Copy(fileNames[i], newPath);
+			//		filePath = $"images\\{foodPicName}";
+			//		if (i == 0)
+			//		{
+			//			newFood.OtherImagePath += filePath;
+			//			newFood.ImagePath = fileNames[i];
+			//		}
+			//		else
+			//		{
+			//			newFood.OtherImagePath += "\n" + filePath;
+			//		}
+			//	}
+			//}
 			var fileDialog = new OpenFileDialog();
+			fileDialog.Multiselect = true;
 			fileDialog.Filter = "Image Files(*.JPG*)|*.JPG";
 			fileDialog.Title = "Select Image";
 			if (fileDialog.ShowDialog() == true)
 			{
 				var container = FindParent<StackPanel>(sender as DependencyObject);
-				string filePath = fileDialog.FileName;
 				if (container != null)
 				{
 					var currData = container.DataContext as Step;
-					currData.ImagePath = filePath;
+					var fileNames = fileDialog.FileNames;
+					for (int i = 0; i < fileNames.Length; i++)
+					{
+						if (i == 0)
+						{
+							currData.ImagePath += fileNames[i];
+						}
+						else
+						{
+							currData.ImagePath += "\n" + fileNames[i];
+						}
+					}
 				}
 			}
+
 		}
 
 		private static T FindParent<T>(DependencyObject dependencyObject) where T : DependencyObject
@@ -803,22 +866,37 @@ namespace FoodRecipeApp
 			return absolutePath;
 		}
 
+		private string[] GetStepImagePaths(string path)
+		{
+			const string enter = "\n";
+			var separators = new string[] { enter };
+			string[] tokens = path.Split(
+				separators,
+				StringSplitOptions.None
+			);
+			return tokens;
+		}
+
 		private void SaveStepsImages()
 		{
-			string newPath;
 			string newFolder = GetAppDomain();
-			foreach (Step step in ListStep)
+
+			foreach (var step in ListStep)
 			{
-				string stepPicName = $"{step.ID}_{step.Order.ToString()}.jpg";
-				newPath = $"{newFolder}\\images\\{stepPicName}";
-				if (step.ImagePath != null)
+				var tokens = GetStepImagePaths(step.ImagePath);
+				step.ImagePath = "";
+
+				for (int j = 0; j < tokens.Length; j++)
 				{
-					File.Copy(step.ImagePath, newPath);
-					step.ImagePath = $"images\\{stepPicName}";
-				}
-				else
-				{
-					//Do nothing
+					string stepPicName = $"{step.ID}_Step{step.Order}_Image{j + 1}.jpg";
+					string newPath = $"{newFolder}\\images\\{stepPicName}";
+					File.Copy(tokens[j], newPath);
+					step.ImagePath += $"images\\{stepPicName}";
+
+					if (j < tokens.Length - 1)
+					{
+						step.ImagePath += "\n";
+					}
 				}
 			}
 		}
@@ -893,6 +971,7 @@ namespace FoodRecipeApp
 			SaveStepData();
 
 			_list.Add(newFood);
+			_foodStepsList.Add(ListStep);
 			//foodButtonItemsControl.ItemsSource = _list;
 			//view = (CollectionView)CollectionViewSource.GetDefaultView(_list);
 			UpdateUIFromData();
@@ -1042,7 +1121,7 @@ namespace FoodRecipeApp
 						break;
 					}
 				}
-				
+
 				//Tên đã tồn tại, người dùng phải nhập lại
 				if (isExist == true)
 				{
@@ -1107,7 +1186,7 @@ namespace FoodRecipeApp
 			{
 				AddIngredientList.Visibility = Visibility.Collapsed;
 			}
-			
+
 		}
 
 		private void IngredientInListTextBox_TextChanged(object sender, TextChangedEventArgs e)

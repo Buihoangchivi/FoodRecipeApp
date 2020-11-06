@@ -45,28 +45,28 @@
                 </Button>
 
             </WrapPanel>
-            <Button Height="40" Name="HomeButton" Click="changeClickedControlButton" BorderThickness="0" HorizontalContentAlignment="Left" Padding="0,1,1,1">
+            <Button Height="40" Name="HomeButton" Click="changeClickedControlButton_Click" BorderThickness="0" HorizontalContentAlignment="Left" Padding="0,1,1,1">
                 <WrapPanel>
                     <TextBlock Width="4" Height="40" Background="Red"></TextBlock>
                     <Image Source="Images/homeImage.png" Width="20" Margin="10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                     <TextBlock VerticalAlignment="Center" Width="153" FontSize="15" Foreground="Red">Home</TextBlock>
                 </WrapPanel>
             </Button>
-            <Button Height="40" Name="FavoriteButton" Click="changeClickedControlButton" BorderThickness="0" HorizontalContentAlignment="Left">
+            <Button Height="40" Name="FavoriteButton" Click="changeClickedControlButton_Click" BorderThickness="0" HorizontalContentAlignment="Left">
                 <WrapPanel>
                     <TextBlock Width="5" Height="40"/>
                     <Image Source="Images/favoriteImage.png" Width="20" Margin="10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                     <TextBlock VerticalAlignment="Center" Width="153" FontSize="15">Favorite</TextBlock>
                 </WrapPanel>
             </Button>
-            <Button Height="40" Name="AddDishButton" Click="changeClickedControlButton" BorderThickness="0" HorizontalContentAlignment="Left">
+            <Button Height="40" Name="AddDishButton" Click="changeClickedControlButton_Click" BorderThickness="0" HorizontalContentAlignment="Left">
                 <WrapPanel>
                     <TextBlock Width="5" Height="40"></TextBlock>
                     <Image Source="Images/addImage.png" Width="20" Margin="10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                     <TextBlock VerticalAlignment="Center" Width="153" FontSize="15">Add</TextBlock>
                 </WrapPanel>
             </Button>
-            <Button Height="40" Name="DishButton" Click="changeClickedControlButton" BorderThickness="0" HorizontalContentAlignment="Left">
+            <Button Height="40" Name="DishButton" Click="changeClickedControlButton_Click" BorderThickness="0" HorizontalContentAlignment="Left">
                 <WrapPanel>
                     <TextBlock Width="5" Height="40"></TextBlock>
                     <Image Source="Images/IngredientImage.png" Width="20" Margin="10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
@@ -143,9 +143,9 @@
         <!--Thanh để lọc loại thức ăn-->
         <DockPanel Name="TypeBar" Height="40" Margin="15,0" DockPanel.Dock="Top" LastChildFill="True" Visibility="Visible">
             <StackPanel Orientation="Horizontal" Width="590" DockPanel.Dock="Left">
-                <Button Height="40" Width="120" x:Name="AllButton" Click="changeClickedTypeButton" BorderThickness="0" Content="All"/>
-                <Button Height="40" Width="120" x:Name="FoodButton" Click="changeClickedTypeButton" BorderThickness="0" Content="Food"/>
-                <Button Height="40" Width="120" x:Name="DrinksButton" Click="changeClickedTypeButton" BorderThickness="0" Content="Drinks"/>
+                <Button Height="40" Width="120" x:Name="AllButton" Click="changeClickedTypeButton_Click" BorderThickness="0" Content="All"/>
+                <Button Height="40" Width="120" x:Name="FoodButton" Click="changeClickedTypeButton_Click" BorderThickness="0" Content="Food"/>
+                <Button Height="40" Width="120" x:Name="DrinksButton" Click="changeClickedTypeButton_Click" BorderThickness="0" Content="Drinks"/>
             </StackPanel>
             <StackPanel DockPanel.Dock="Right" Width="269">
                 <Border CornerRadius="6" Margin="0,3,5,0" BorderBrush="Gray" Padding="0,0,2,0" BorderThickness="3">

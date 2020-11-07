@@ -32,7 +32,7 @@ namespace FoodRecipeApp
 		//---------------------------------------- Khai báo các biến toàn cục --------------------------------------------//
 
 		public event PropertyChangedEventHandler PropertyChanged;
-		private Button clickedControlButton;
+		private Button clickedControlButton, clickedDishButton;
 		private List<FoodInfomation> ListFoodInfo = new List<FoodInfomation>(); //Danh sách thông tin tất cả các món ăn
 		BindingList<Step> ListStep = new BindingList<Step>();                   //Danh sách các bước của món ăn mới được thêm
 		FoodInfomation newFood;                                                 //Món ăn mới được thêm
@@ -253,6 +253,7 @@ namespace FoodRecipeApp
 			//clickedTypeButton = AllButton;
 			//clickedTypeButton.Background = Brushes.LightSkyBlue;
 			clickedControlButton = HomeButton;
+			clickedDishButton = null;
 			//clickedControlButton.Background = Brushes.LightSkyBlue;
 		}
 
@@ -427,6 +428,11 @@ namespace FoodRecipeApp
 				else if (clickedControlButton == DishButton)
 				{
 					DishList.Visibility = Visibility.Collapsed;
+					clickedDishButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("LightGray");
+					var textBlock = GetChildOfType<TextBlock>(clickedDishButton);
+					textBlock.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("Black");
+					DishListNameTextBlock.DataContext = null;
+					DishInListItemsControl.ItemsSource = null;
 				}
 				else if (clickedControlButton == SettingButton)
 				{
@@ -780,11 +786,26 @@ namespace FoodRecipeApp
 
 		private void DishListName_Click(object sender, RoutedEventArgs e)
 		{
+			if (clickedDishButton != null)
+			{
+				clickedDishButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("LightGray");
+				var text = GetChildOfType<TextBlock>(clickedDishButton);
+				text.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("Black");
+			}
+			else
+			{
+				//Do nothing
+			}
+
 			var button = (Button)sender;
-			var content = (string)button.Content;
+			clickedDishButton = button;
+
+			button.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
+			var textBlock = GetChildOfType<TextBlock>(button);
+			textBlock.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("White");
 			for (int i = 0; i < ListDish.Count; i++)
 			{
-				if (ListDish[i].DishName == content)
+				if (ListDish[i].DishName == textBlock.Text)
 				{
 					DishInListItemsControl.ItemsSource = ListDish[i].GroceriesList;
 					DishListNameTextBlock.DataContext = ListDish[i];
@@ -1135,13 +1156,13 @@ namespace FoodRecipeApp
 		private void DishListTextBox_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			var textBox = (TextBox)sender;
-			if (textBox.Text != "" && AddDishList.Visibility == Visibility.Collapsed)
+			if (textBox.Text != "" && AddDishList.IsEnabled == false)
 			{
-				AddDishList.Visibility = Visibility.Visible;
+				AddDishList.IsEnabled = true;
 			}
-			else if (textBox.Text == "" && AddDishList.Visibility == Visibility.Visible)
+			else if (textBox.Text == "" && AddDishList.IsEnabled == true)
 			{
-				AddDishList.Visibility = Visibility.Collapsed;
+				AddDishList.IsEnabled = false;
 			}
 
 		}
@@ -1149,13 +1170,13 @@ namespace FoodRecipeApp
 		private void DishInListTextBox_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			var textBox = (TextBox)sender;
-			if (textBox.Text != "" && AddDishInListItem.Visibility == Visibility.Collapsed)
+			if (textBox.Text != "" && AddDishInListItem.IsEnabled == false)
 			{
-				AddDishInListItem.Visibility = Visibility.Visible;
+				AddDishInListItem.IsEnabled = true;
 			}
-			else if (textBox.Text == "" && AddDishInListItem.Visibility == Visibility.Visible)
+			else if (textBox.Text == "" && AddDishInListItem.IsEnabled == true)
 			{
-				AddDishInListItem.Visibility = Visibility.Collapsed;
+				AddDishInListItem.IsEnabled = false;
 			}
 		}
 

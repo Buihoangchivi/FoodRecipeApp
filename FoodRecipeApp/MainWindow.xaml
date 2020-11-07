@@ -633,14 +633,14 @@
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Padding="5" FontSize="20">Lists</TextBlock>
 
-                    <TextBlock Name="DishListNameTextBlock" Grid.Row="0" Grid.Column="1" Padding="20,5,5,5" 
-                               FontSize="20" Text="{Binding DishName}"></TextBlock>
+                    <TextBlock Name="DishListNameTextBlock" Grid.Row="0" Grid.Column="1" Padding="18,5,5,5" 
+                               FontSize="20" Text="{Binding DishName}" TextWrapping="Wrap"></TextBlock>
 
                     <!--Khung thêm tên 1 List-->
                     <WrapPanel Grid.Row="1" Grid.Column="0" Margin="5">
                         <TextBox Name="DishListTextBox" Width="198" Padding="5" FontSize="14" 
                                  VerticalAlignment="Center" TextChanged="DishListTextBox_TextChanged"></TextBox>
-                        <Button Grid.Column="2" Background="White" BorderThickness="0" Name="AddDishList" Visibility="Collapsed"
+                        <Button Grid.Column="2" Background="White" BorderThickness="0" Name="AddDishList" IsEnabled="False"
                             Click="AddDishList_Click" Height="30" VerticalAlignment="Center" Margin="5,0,0,0">
                             <Button.Content>
                                 <Image Source="Images/addImage.png" Width="15" Margin="10,0" 
@@ -659,7 +659,7 @@
                                  VerticalAlignment="Center" TextChanged="DishInListTextBox_TextChanged"></TextBox>
                         <Button Grid.Column="1" Background="White" BorderThickness="0" Name="AddDishInListItem"
                                 Click="AddDishInListItem_Click" Height="30" VerticalAlignment="Center" 
-                                Margin="5,0,0,0" Visibility="Collapsed">
+                                Margin="5,0,0,0" IsEnabled="False">
                             <Button.Content>
                                 <Image Source="Images/addImage.png" Width="15" Margin="10,0" 
                                        RenderOptions.BitmapScalingMode="HighQuality"></Image>
@@ -676,8 +676,12 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
 
-                                <Button Name="DishListName" Content="{Binding DishName}" Width="250" Height="50" 
-                                        BorderThickness="0" Margin="5" Click="DishListName_Click"></Button>
+                                <Button Width="245" Foreground="White" FontSize="16"
+                                        BorderThickness="0" Margin="5,5,0,5" Click="DishListName_Click" Background="LightGray"
+                                        HorizontalContentAlignment="Left" Padding="20,8,20,12">
+                                    <TextBlock Text="{Binding DishName}" TextWrapping="Wrap" Foreground="Black" 
+                                               FontFamily="Segoe UI Symbol"></TextBlock>
+                                </Button>
 
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -692,16 +696,10 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
 
-                                <Grid Width="600">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30"></ColumnDefinition>
-                                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-
-                                    <CheckBox IsChecked="{Binding IsDone}" Grid.Column="0" Margin="5" VerticalAlignment="Center" BorderThickness="2"></CheckBox>
-                                    <TextBlock Grid.Column="1" Text="{Binding IngredientName}" Padding="5" FontSize="14" VerticalAlignment="Center"></TextBlock>
-                                    <Button Grid.Column="2" Background="White" BorderThickness="0" Name="EditDishInListButton"
+                                <DockPanel LastChildFill="True" Margin="10,0,15,5">
+                                    <CheckBox DockPanel.Dock="Left" IsChecked="{Binding IsDone}" Grid.Column="0" Margin="5" 
+                                              VerticalAlignment="Center" BorderThickness="2"></CheckBox>
+                                    <Button DockPanel.Dock="Right" Grid.Column="2" Background="White" BorderThickness="0" Name="EditDishInListButton"
                                         Click="EditDishInListButton_Click" Height="35" VerticalAlignment="Center">
                                         <WrapPanel Margin="10,0">
                                             <Image Source="Images/editImage.png" Width="15" Margin="0,0,10,0" 
@@ -709,9 +707,10 @@
                                             <TextBlock VerticalAlignment="Center" FontSize="14">Edit</TextBlock>
                                         </WrapPanel>
                                     </Button>
-
-                                </Grid>
-
+                                    <TextBlock Grid.Column="1" Text="{Binding IngredientName}" Padding="5" 
+                                               FontSize="14" VerticalAlignment="Center"></TextBlock>
+                                </DockPanel>
+                                
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

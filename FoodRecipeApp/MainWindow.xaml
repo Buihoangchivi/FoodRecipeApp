@@ -87,7 +87,7 @@
                     Background="AntiqueWhite" BorderThickness="1" Margin="0,0,5,4">
                 <Button.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="4"/>
+                        <Setter Property="CornerRadius" Value="14"/>
                     </Style>
                 </Button.Resources>
                 <WrapPanel Margin="4">
@@ -100,7 +100,7 @@
                     Background="AntiqueWhite" BorderThickness="1" Margin="0,0,10,4">
                 <Button.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="4"/>
+                        <Setter Property="CornerRadius" Value="14"/>
                     </Style>
                 </Button.Resources>
                 <WrapPanel Margin="5,4,3,4">
@@ -117,7 +117,7 @@
                     Background="AntiqueWhite" BorderThickness="1" Margin="0,0,5,4">
                 <Button.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="4"/>
+                        <Setter Property="CornerRadius" Value="14"/>
                     </Style>
                 </Button.Resources>
                 <WrapPanel Margin="3,4,5,4">
@@ -130,7 +130,7 @@
                     Background="AntiqueWhite" BorderThickness="1" Margin="0,0,20,4">
                 <Button.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="4"/>
+                        <Setter Property="CornerRadius" Value="14"/>
                     </Style>
                 </Button.Resources>
                 <WrapPanel Margin="4">
@@ -208,8 +208,15 @@
                                             <ImageBrush ImageSource="{Binding PrimaryImagePath, Converter={StaticResource converter}}" RenderOptions.BitmapScalingMode="HighQuality"/>
                                         </Rectangle.Fill>
                                     </Rectangle>
-                                    <TextBlock Text="{Binding Name}" Width="175" TextAlignment="Left" TextWrapping="Wrap" FontSize="14" Padding="3,1"></TextBlock>
-                                    <Button Height="24" VerticalAlignment="Top" BorderThickness="0" Background="White" Click="Favorite_Click" Padding="2.8">
+                                    <TextBlock Text="{Binding Name}" Width="175" TextAlignment="Left" TextWrapping="Wrap" 
+                                               FontSize="14" Padding="3,1" MaxHeight="60"></TextBlock>
+                                    <Button Height="24" VerticalAlignment="Top" BorderThickness="0" Background="White"
+                                            Click="Favorite_Click" Padding="2.8">
+                                        <Button.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="14"/>
+                                            </Style>
+                                        </Button.Resources>
                                         <Button.Content>
                                             <WrapPanel>
                                                 <Image Source="Images/unloved.png" RenderOptions.BitmapScalingMode="HighQuality">
@@ -273,7 +280,7 @@
 
                 <Grid Margin="20,0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -284,7 +291,7 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Name="SelectedFoodName" Padding="5" FontSize="20" Grid.Row="0" Text="{Binding Name}"
-                               Grid.ColumnSpan="2" Foreground="ForestGreen"></TextBlock>
+                               Grid.ColumnSpan="2" Foreground="ForestGreen" TextWrapping="Wrap"></TextBlock>
                     <!--Loại thức ăn-->
                     <TextBlock Padding="5" FontSize="16" Grid.Row="1" Grid.Column="0" Foreground="Gray">Type</TextBlock>
                     <TextBlock Padding="5" FontSize="14" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="{Binding Type}"></TextBlock>
@@ -330,7 +337,7 @@
                                     Background="AntiqueWhite" BorderThickness="1" Margin="0,0,10,4">
                             <Button.Resources>
                                 <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="4"/>
+                                    <Setter Property="CornerRadius" Value="14"/>
                                 </Style>
                             </Button.Resources>
                             <WrapPanel Margin="5,4,3,4">
@@ -347,7 +354,7 @@
                                     Background="AntiqueWhite" BorderThickness="1" Margin="0,0,5,4">
                             <Button.Resources>
                                 <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="4"/>
+                                    <Setter Property="CornerRadius" Value="14"/>
                                 </Style>
                             </Button.Resources>
                             <WrapPanel Margin="3,4,5,4">
@@ -542,17 +549,17 @@
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
                                         <WrapPanel Grid.Row="0" Grid.Column="0" Margin="15,15,20,20">
-                                            <TextBlock Text="Step" FontSize="18"/>
+                                            <TextBlock Text="Step" FontSize="18" Foreground="Gray"/>
                                         </WrapPanel>
                                         <WrapPanel Grid.Row="0" Grid.Column="1" Margin="0,15,0,0">
                                             <TextBlock FontSize="18" Text="{Binding Order}"></TextBlock>
                                         </WrapPanel>
 
-                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Content" FontSize="18" Margin="15,0,0,0"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Content" FontSize="18" Margin="15,0,0,0" Foreground="Gray"/>
                                         <TextBox Grid.Row="1" Grid.Column="1" AcceptsReturn="True" Margin="0,5,0,20" Height="150" Padding="5" 
                                              FontSize="14" VerticalContentAlignment="Top" TextWrapping="Wrap" BorderThickness="2" 
                                              VerticalScrollBarVisibility="Auto" Text="{Binding Content}"/>
-                                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Photo" FontSize="18" Margin="15,5,0,0"/>
+                                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Photo" FontSize="18" Margin="15,5,0,0" Foreground="Gray"/>
 
                                         <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,0,0,20" Orientation="Horizontal">
                                             <Button Background="White" BorderThickness="0" Name="AddStepFoodPhoto" Click="AddStepFoodPhoto_Click"

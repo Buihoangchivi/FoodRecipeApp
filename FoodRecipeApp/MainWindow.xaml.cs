@@ -92,7 +92,7 @@ namespace FoodRecipeApp
 				}
 			}
 		}
-		private int _currentStep = 1;           //Bước hiện tại
+		private int _currentStep = 0;           //Bước hiện tại
 		public int CurrentStep
 		{
 			get
@@ -504,6 +504,8 @@ namespace FoodRecipeApp
 					StepsGrid.DataContext = ListFoodInfo[CurrentElementIndex].Steps[0];
 					ImagesPerStepItemsControl.ItemsSource = ListFoodInfo[CurrentElementIndex].Steps[0].ImagesPathPerStep;
 					//Hiển thị các bước nếu số bước lớn hơn 0
+					//Đếm số bước bắt đầu từ 1
+					CurrentStep = 1;
 					DirectionsGrid.Visibility = Visibility.Visible;
 				}
 				else

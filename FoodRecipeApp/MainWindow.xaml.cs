@@ -124,6 +124,24 @@ namespace FoodRecipeApp
 				}
 			}
 		}
+
+		private string _colorScheme = "";           //Trang hiện tại
+		public string ColorScheme
+		{
+			get
+			{
+				return _colorScheme;
+			}
+			set
+			{
+				_colorScheme = value;
+				if (PropertyChanged != null)
+				{
+					PropertyChanged(this, new PropertyChangedEventArgs("ColorScheme"));
+				}
+			}
+		}
+
 		private int CurrentElementIndex = 0;
 
 
@@ -224,7 +242,6 @@ namespace FoodRecipeApp
 
 			checkFavoriteIsClicked = false;
 			isMinimizeMenu = false;
-
 			//Default buttons
 			//clickedTypeButton = AllButton;
 			//clickedTypeButton.Background = Brushes.LightSkyBlue;
@@ -234,6 +251,8 @@ namespace FoodRecipeApp
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
+			ColorScheme = "ForestGreen";
+
 			//Đọc dữ liệu các món ăn từ data
 			XmlSerializer xsFood = new XmlSerializer(typeof(List<FoodInfomation>));
 			using (var reader = new StreamReader(@"data\Food.xml"))
@@ -426,6 +445,16 @@ namespace FoodRecipeApp
 					AddFood.DataContext = newFood;
 					ListStep = new BindingList<Step>();
 					ImageStepItemsControl.ItemsSource = ListStep;
+
+					//Thay đổi màu chữ cho các tiêu đề trong món ăn
+					AddFood_TitleTextBlock.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
+					AddFood_LinkVideoTextBlock.Foreground = AddFood_TitleTextBlock.Foreground;
+					AddFood_LevelTextBlock.Foreground = AddFood_TitleTextBlock.Foreground;
+					AddFood_TypeTextBlock.Foreground = AddFood_TitleTextBlock.Foreground;
+					AddFood_PhotosTextBlock.Foreground = AddFood_TitleTextBlock.Foreground;
+					AddFood_DescriptionTextBlock.Foreground = AddFood_TitleTextBlock.Foreground;
+					AddFood_IngredientsTextBlock.Foreground = AddFood_TitleTextBlock.Foreground;
+					AddFood_DirectionsTextBlock.Foreground = AddFood_TitleTextBlock.Foreground;
 				}
 				else if (button == DishButton)
 				{
@@ -444,8 +473,8 @@ namespace FoodRecipeApp
 				collection = wrapPanel.Children;
 				block = (TextBlock)collection[0];
 				text = (TextBlock)collection[2];
-				block.Background = Brushes.Red;
-				text.Foreground = Brushes.Red;
+				block.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
+				text.Foreground = block.Background;
 
 				//Cập nhật lại giao diện
 				UpdateUIFromData();
@@ -456,7 +485,7 @@ namespace FoodRecipeApp
 			}
 		}
 
-		private void Menu_Click(object sender, RoutedEventArgs e)
+		private void MenuButton_Click(object sender, RoutedEventArgs e)
 		{
 			if (isMinimizeMenu == false)
 			{
@@ -498,6 +527,12 @@ namespace FoodRecipeApp
 				//Binding dữ liệu để hiển thị chi tiết món ăn
 				FoodDetailGrid.DataContext = ListFoodInfo[CurrentElementIndex];
 
+				//Thay đổi màu chữ cho tiêu đề thông tin chi tiết món ăn
+				FoodInfo_NameTextBlock.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
+				FoodInfo_IngredientsTextBlock.Foreground = FoodInfo_NameTextBlock.Foreground;
+				FoodInfo_DirectionsTextBlock.Foreground = FoodInfo_NameTextBlock.Foreground;
+				FoodInfo_VideoTextBlock.Foreground = FoodInfo_NameTextBlock.Foreground;
+
 				//Binding dữ liệu các hình ảnh của bước hiện tại đang được hiển thị trên màn hình
 				if (ListFoodInfo[CurrentElementIndex].Steps.Count > 0)
 				{
@@ -519,6 +554,7 @@ namespace FoodRecipeApp
 
 				//Chức năng lùi về bước trước bị vô hiệu hóa khi đang ở bước đầu tiên
 				PreviousStepButton.IsEnabled = false;
+				PreviousStepButton.Foreground = Brushes.Black;
 
 				//Binding dữ liệu cho phân trang các bước của món ăn
 				StepPaginationBar.DataContext = this;
@@ -527,6 +563,7 @@ namespace FoodRecipeApp
 				if (CurrentStep == TotalStep)
 				{
 					NextStepButton.IsEnabled = false;
+					NextStepTextBlock.Foreground = Brushes.Black;
 				}
 				else
 				{
@@ -821,10 +858,12 @@ namespace FoodRecipeApp
 			if (CurrentStep == 2)
 			{
 				PreviousStepButton.IsEnabled = false;
+				PreviousStepTextBlock.Foreground = Brushes.Black;
 			}
 			else if (NextStepButton.IsEnabled == false)
 			{
 				NextStepButton.IsEnabled = true;
+				NextStepTextBlock.Foreground = Brushes.White;
 			}
 
 			//Lùi về bước trước
@@ -840,10 +879,12 @@ namespace FoodRecipeApp
 			if (CurrentStep == TotalStep - 1)
 			{
 				NextStepButton.IsEnabled = false;
+				NextStepTextBlock.Foreground = Brushes.Black;
 			}
 			else if (PreviousStepButton.IsEnabled == false)
 			{
 				PreviousStepButton.IsEnabled = true;
+				PreviousStepTextBlock.Foreground = Brushes.White;
 			}
 			//Tiến tới bước tiếp theo
 			CurrentStep++;
@@ -1150,24 +1191,36 @@ namespace FoodRecipeApp
 			if (CurrentPage == 1)
 			{
 				PreviousPageButton.IsEnabled = false;
+				PreviousPageTextBlock.Foreground = Brushes.Black;
+
 				FirstPageButton.IsEnabled = false;
+				FirstPageTextBlock.Foreground = Brushes.Black;
 			}
 			else if (PreviousPageButton.IsEnabled == false)
 			{
 				PreviousPageButton.IsEnabled = true;
+				PreviousPageTextBlock.Foreground = Brushes.White;
+
 				FirstPageButton.IsEnabled = true;
+				FirstPageTextBlock.Foreground = Brushes.White;
 			}
 
 			//Vô hiệu hóa nút đi tới trang sau và đi tới trang cuối khi trang hiện tại là trang cuối
 			if (CurrentPage == TotalPage)
 			{
 				NextPageButton.IsEnabled = false;
+				NextPageTextBlock.Foreground = Brushes.Black;
+
 				LastPageButton.IsEnabled = false;
+				LastPageTextBlock.Foreground = Brushes.Black;
 			}
 			else if (NextPageButton.IsEnabled == false)
 			{
 				NextPageButton.IsEnabled = true;
+				NextPageTextBlock.Foreground = Brushes.White;
+
 				LastPageButton.IsEnabled = true;
+				LastPageTextBlock.Foreground = Brushes.White;
 			}
 		}
 

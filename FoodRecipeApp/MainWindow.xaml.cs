@@ -33,18 +33,19 @@ namespace FoodRecipeApp
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		private Button clickedControlButton;
-		private List<FoodInfomation> ListFoodInfo = new List<FoodInfomation>();	//Danh sách thông tin tất cả các món ăn
-		BindingList<Step> ListStep = new BindingList<Step>();					//Danh sách các bước của món ăn mới được thêm
-		FoodInfomation newFood;													//Món ăn mới được thêm
+		private List<FoodInfomation> ListFoodInfo = new List<FoodInfomation>(); //Danh sách thông tin tất cả các món ăn
+		BindingList<Step> ListStep = new BindingList<Step>();                   //Danh sách các bước của món ăn mới được thêm
+		FoodInfomation newFood;                                                 //Món ăn mới được thêm
 		private CollectionView view;
 		BindingList<Dish> ListDish = new BindingList<Dish>();
 		private List<FoodInfomation> FoodOnScreen;                              //Danh sách food để hiện trên màn hình
 		private Condition FilterCondition = new Condition { Favorite = false, Type = "" };
 		private Regex YouTubeURLIDRegex = new Regex(@"[\?&]v=(?<v>[^&]+)");
+		private List<ColorSetting> ListColor;
 
 		private bool checkFavoriteIsClicked, isMinimizeMenu;
-		private int FoodperPage = 12;			//Số món ăn mỗi trang
-		private int _totalPage = 0;				//Tổng số trang
+		private int FoodperPage = 12;           //Số món ăn mỗi trang
+		private int _totalPage = 0;             //Tổng số trang
 		public int TotalPage
 		{
 			get
@@ -60,7 +61,7 @@ namespace FoodRecipeApp
 				}
 			}
 		}
-		private int _currentPage = 1;			//Trang hiện tại
+		private int _currentPage = 1;           //Trang hiện tại
 		public int CurrentPage
 		{
 			get
@@ -154,6 +155,12 @@ namespace FoodRecipeApp
 			public string ImagePath { get; set; }
 		}
 
+		//Class lưu trữ màu trong Color setting
+		public class ColorSetting
+		{
+			public string Color { get; set; }
+		}
+
 		//Class điều kiện để filter
 		class Condition
 		{
@@ -180,10 +187,10 @@ namespace FoodRecipeApp
 		{
 			public event PropertyChangedEventHandler PropertyChanged;
 
-			public int Order { get; set; }							//Thứ tự bước
-			public string Content { get; set; }						//Mô tả bước
+			public int Order { get; set; }                          //Thứ tự bước
+			public string Content { get; set; }                     //Mô tả bước
 
-			private BindingList<ImagePerStep> _imagesPathPerStep;	//Đường dẫn các ảnh của bước
+			private BindingList<ImagePerStep> _imagesPathPerStep;   //Đường dẫn các ảnh của bước
 			public BindingList<ImagePerStep> ImagesPathPerStep
 			{
 				get
@@ -206,7 +213,7 @@ namespace FoodRecipeApp
 		{
 			public int ID { get; set; }             //ID món ăn 
 			public string Name { get; set; }        //Tên món ăn
-			public string Ingredients { get; set; }	//Danh sách nguyên liệu
+			public string Ingredients { get; set; } //Danh sách nguyên liệu
 			public bool IsFavorite { get; set; }    //Món yêu thích
 			public string DateAdd { get; set; }     //Ngày thêm
 			public string VideoLink { get; set; }   //Link youtube
@@ -230,7 +237,7 @@ namespace FoodRecipeApp
 					}
 				}
 			}
-			public BindingList<Step> Steps { get; set; }	//Các bước thực hiện của món ăn
+			public BindingList<Step> Steps { get; set; }    //Các bước thực hiện của món ăn
 
 			public event PropertyChangedEventHandler PropertyChanged;
 
@@ -289,6 +296,19 @@ namespace FoodRecipeApp
 			foodButtonItemsControl.ItemsSource = foods;
 			view = (CollectionView)CollectionViewSource.GetDefaultView(ListFoodInfo);
 			DishListItemsControl.ItemsSource = ListDish;
+
+			//Tạo dữ liệu màu cho ListColor
+			ListColor = new List<ColorSetting>
+			{
+				new ColorSetting { Color = "#FFCA5010"}, new ColorSetting { Color = "#FFFF8C00"}, new ColorSetting { Color = "#FFE81123"}, new ColorSetting { Color = "#FFD13438"}, new ColorSetting { Color = "#FFFF4081"},
+				new ColorSetting { Color = "#FFC30052"}, new ColorSetting { Color = "#FFBF0077"}, new ColorSetting { Color = "#FF9A0089"}, new ColorSetting { Color = "#FF881798"}, new ColorSetting { Color = "#FF744DA9"},
+				new ColorSetting { Color = "#FF4CAF50"}, new ColorSetting { Color = "#FF10893E"}, new ColorSetting { Color = "#FF018574"}, new ColorSetting { Color = "#FF03A9F4"}, new ColorSetting { Color = "#FF304FFE"},
+				new ColorSetting { Color = "#FF0063B1"}, new ColorSetting { Color = "#FF6B69D6"}, new ColorSetting { Color = "#FF8E8CD8"}, new ColorSetting { Color = "#FF8764B8"}, new ColorSetting { Color = "#FF038387"},
+				new ColorSetting { Color = "#FF525E54"}, new ColorSetting { Color = "#FF7E735F"}, new ColorSetting { Color = "#FF9E9E9E"}, new ColorSetting { Color = "#FF515C6B"}, new ColorSetting { Color = "#FF000000"}
+			};
+
+			//Binding dữ liệu màu cho Setting Color Table
+			SettingColorItemsControl.ItemsSource = ListColor;
 		}
 
 
@@ -402,11 +422,15 @@ namespace FoodRecipeApp
 				{
 					AddFood.Visibility = Visibility.Collapsed;
 					AddFood.DataContext = null;
-					AddFoodScrollViewer.ScrollToHome();
+					AddFoodAnhDishScrollViewer.ScrollToHome();
 				}
 				else if (clickedControlButton == DishButton)
 				{
 					DishList.Visibility = Visibility.Collapsed;
+				}
+				else if (clickedControlButton == SettingButton)
+				{
+					SettingStackPanel.Visibility = Visibility.Collapsed;
 				}
 				else
 				{
@@ -459,6 +483,10 @@ namespace FoodRecipeApp
 				else if (button == DishButton)
 				{
 					DishList.Visibility = Visibility.Visible;
+				}
+				else if (button == SettingButton)
+				{
+					SettingStackPanel.Visibility = Visibility.Visible;
 				}
 				else
 				{
@@ -547,6 +575,7 @@ namespace FoodRecipeApp
 				{
 					//Không hiển thị các bước nếu số bước bằng 0
 					DirectionsGrid.Visibility = Visibility.Collapsed;
+					CurrentStep = 0;
 				}
 
 				//Hiển thị thanh phân trang cho số bước
@@ -554,7 +583,7 @@ namespace FoodRecipeApp
 
 				//Chức năng lùi về bước trước bị vô hiệu hóa khi đang ở bước đầu tiên
 				PreviousStepButton.IsEnabled = false;
-				PreviousStepButton.Foreground = Brushes.Black;
+				PreviousStepTextBlock.Foreground = Brushes.Black;
 
 				//Binding dữ liệu cho phân trang các bước của món ăn
 				StepPaginationBar.DataContext = this;
@@ -567,7 +596,8 @@ namespace FoodRecipeApp
 				}
 				else
 				{
-					//Do nothing
+					NextStepButton.IsEnabled = true;
+					NextStepTextBlock.Foreground = Brushes.White;
 				}
 
 				//Hiển thị video mô tả món ăn
@@ -658,7 +688,7 @@ namespace FoodRecipeApp
 			fileDialog.Multiselect = true;
 			fileDialog.Filter = "Image Files(*.JPG*)|*.JPG";
 			fileDialog.Title = "Select Image";
-			
+
 			if (fileDialog.ShowDialog() == true)
 			{
 				var container = FindParent<StackPanel>(sender as DependencyObject);
@@ -892,6 +922,15 @@ namespace FoodRecipeApp
 			//Binging dữ liệu
 			StepsGrid.DataContext = ListFoodInfo[CurrentElementIndex].Steps[CurrentStep - 1];
 			ImagesPerStepItemsControl.ItemsSource = ListFoodInfo[CurrentElementIndex].Steps[CurrentStep - 1].ImagesPathPerStep;
+		}
+
+		private void ColorButton_Click(object sender, RoutedEventArgs e)
+		{
+			var datatContex = (sender as Button).DataContext;
+			var color = (datatContex as ColorSetting).Color;
+			ColorScheme = color;
+			SettingTextBlock.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
+			SettingTitleTextBlock.Foreground = SettingTextBlock.Background;
 		}
 
 

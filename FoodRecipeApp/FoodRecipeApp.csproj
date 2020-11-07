@@ -171,6 +171,7 @@
     <Content Include="Images\searchText.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\setting.png" />
     <Content Include="Images\unloved.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

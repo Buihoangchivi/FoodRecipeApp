@@ -43,12 +43,6 @@
 
         <!--Menu Control-->
         <StackPanel x:Name="ControlStackPanel" DockPanel.Dock="Left" Background="#FFDDDDDD" Width="250">
-            <!--<WrapPanel Height="40" Width="250">
-                <TextBlock Width="4" Height="40"></TextBlock>
-                <Button Name="Menu" Click="Menu_Click" BorderThickness="0">
-                    <Image Source="Images/menuImage.png" Width="20" Margin="10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                </Button>
-            </WrapPanel>-->
 
             <Button Height="40" Name="MenuButton" Click="MenuButton_Click" BorderThickness="0" HorizontalContentAlignment="Left" Padding="0,1,1,1">
                 <WrapPanel>
@@ -86,6 +80,14 @@
                     <TextBlock VerticalAlignment="Center" Width="153" FontSize="15">Note</TextBlock>
                 </WrapPanel>
             </Button>
+
+            <Button Height="40" Name="SettingButton" Click="changeClickedControlButton_Click" BorderThickness="0" HorizontalContentAlignment="Left">
+                <WrapPanel>
+                    <TextBlock Name="SettingTextBlock" Width="5" Height="40"></TextBlock>
+                    <Image Source="Images/setting.png" Width="20" Margin="10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                    <TextBlock Name="SettingTitleTextBlock" VerticalAlignment="Center" Width="153" FontSize="15">Settings</TextBlock>
+                </WrapPanel>
+            </Button>
         </StackPanel>
 
         <!--Nút phân trang-->
@@ -103,7 +105,7 @@
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
-                <WrapPanel Margin="10,0">
+                <WrapPanel Margin="10,0,10,2.5">
                     <!--<Image Source="Images/firstPage.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>-->
                     <TextBlock Name="FirstPageTextBlock" FontSize="13">First Page</TextBlock>
                 </WrapPanel>
@@ -117,7 +119,7 @@
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
-                <WrapPanel Margin="10,0">
+                <WrapPanel Margin="10,0,10,2.5">
                     <!--<Image Name="PreviousPageTextBlock" Source="Images/previous.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>-->
                     <TextBlock Name="PreviousPageTextBlock" FontSize="13">Prev</TextBlock>
                 </WrapPanel>
@@ -135,7 +137,7 @@
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
-                <WrapPanel Margin="10,0">
+                <WrapPanel Margin="10,0,10,2.5">
                     <TextBlock Name="NextPageTextBlock" FontSize="13" Foreground="White">Next</TextBlock>
                 </WrapPanel>
             </Button>
@@ -148,7 +150,7 @@
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
-                <WrapPanel Margin="10,0">
+                <WrapPanel Margin="10,0,10,2.5">
                     <TextBlock Name="LastPageTextBlock" FontSize="13" Foreground="White">Last Page</TextBlock>
                 </WrapPanel>
             </Button>
@@ -277,23 +279,23 @@
 
         <!--Chi tiết món ăn-->
         <ScrollViewer Name="FoodDetailScrollViewer" Visibility="Collapsed">
-            <Grid Margin="15,6,0,0" x:Name="FoodDetailGrid">
+            <Grid Margin="15,40,0,0" x:Name="FoodDetailGrid">
                 <Grid.RowDefinitions>
-                    <RowDefinition MinHeight="300"></RowDefinition>
-                    <RowDefinition MinHeight="150"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
                 <!--Hình ảnh chính của món ăn-->
-                <Image Name="SelectedFoodImage" Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}" Margin="15,15,30,15"
-                       RenderOptions.BitmapScalingMode="HighQuality" Grid.Row="0" Grid.Column="1"></Image>
+                <Image Name="SelectedFoodImage" Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}" Margin="15"
+                       RenderOptions.BitmapScalingMode="HighQuality"></Image>
 
-                <Grid Margin="20,0">
+                <Grid Margin="20,0" Grid.Row="0" Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -355,8 +357,8 @@
                                     <Setter Property="CornerRadius" Value="10"/>
                                 </Style>
                             </Button.Resources>
-                            <WrapPanel Margin="10,0">
-                                <TextBlock Name="PreviousStepTextBlock" FontSize="13">Last Page</TextBlock>
+                            <WrapPanel Margin="10,0,10,2.5">
+                                <TextBlock Name="PreviousStepTextBlock" FontSize="13">Prev Step</TextBlock>
                             </WrapPanel>
                         </Button>
 
@@ -372,8 +374,8 @@
                                     <Setter Property="CornerRadius" Value="10"/>
                                 </Style>
                             </Button.Resources>
-                            <WrapPanel Margin="10,0">
-                                <TextBlock Name="NextStepTextBlock" FontSize="13" Foreground="White">Next Page</TextBlock>
+                            <WrapPanel Margin="10,0,10,2.5">
+                                <TextBlock Name="NextStepTextBlock" FontSize="13" Foreground="White">Next Step</TextBlock>
                             </WrapPanel>
                         </Button>
 
@@ -417,30 +419,7 @@
                     </Grid>
 
                 </Grid>
-                <!--<Grid Grid.Row="3" Grid.ColumnSpan="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock Padding="5" FontSize="20" Grid.Row="0" Foreground="ForestGreen">Photos</TextBlock>
-                    <Grid Grid.Row="1">
-                        <ItemsControl Name="FoodOtherImageItemControl">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Margin="5,0">
-                                        <Image Width="107" Height="107" Source="{Binding StepImagesPath, Converter={StaticResource converter}}"
-                                               RenderOptions.BitmapScalingMode="HighQuality"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </Grid>
-                </Grid>-->
+                
                 <Grid Grid.Row="3" Grid.ColumnSpan="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
@@ -452,7 +431,7 @@
             </Grid>
         </ScrollViewer>
 
-        <ScrollViewer x:Name="AddFoodScrollViewer" VerticalScrollBarVisibility="Hidden">
+        <ScrollViewer x:Name="AddFoodAnhDishScrollViewer" VerticalScrollBarVisibility="Hidden">
             <StackPanel>
 
                 <!--Thêm món ăn-->
@@ -654,7 +633,8 @@
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Padding="5" FontSize="20">Lists</TextBlock>
 
-                    <TextBlock Name="DishListNameTextBlock" Grid.Row="0" Grid.Column="1" Padding="5" FontSize="20" Text="{Binding DishName}"></TextBlock>
+                    <TextBlock Name="DishListNameTextBlock" Grid.Row="0" Grid.Column="1" Padding="20,5,5,5" 
+                               FontSize="20" Text="{Binding DishName}"></TextBlock>
 
                     <!--Khung thêm tên 1 List-->
                     <WrapPanel Grid.Row="1" Grid.Column="0" Margin="5">
@@ -697,7 +677,7 @@
                             <DataTemplate>
 
                                 <Button Name="DishListName" Content="{Binding DishName}" Width="250" Height="50" 
-                                    Background="LimeGreen" BorderThickness="0" Margin="5" Click="DishListName_Click"></Button>
+                                        BorderThickness="0" Margin="5" Click="DishListName_Click"></Button>
 
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -736,6 +716,24 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </Grid>
+
+                <!--Nút cài đặt-->
+                <StackPanel Name="SettingStackPanel" Margin="15,6,0,0" Visibility="Collapsed">
+                    <TextBlock FontSize="16" Margin="0,0,0,10">Select color scheme</TextBlock>
+                    <ItemsControl Name="SettingColorItemsControl" Margin="0,0,0,10" Width="290" HorizontalAlignment="Left">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Margin="0,0,8,8" Width="50" Height="50" Background="{Binding Color}"
+                                    BorderThickness="0" Click="ColorButton_Click"></Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
 
             </StackPanel>
         </ScrollViewer>

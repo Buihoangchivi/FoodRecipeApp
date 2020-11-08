@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -32,7 +33,7 @@ namespace FoodRecipeApp
 		//---------------------------------------- Khai báo các biến toàn cục --------------------------------------------//
 
 		public event PropertyChangedEventHandler PropertyChanged;
-		private Button clickedControlButton, clickedDishButton;
+		private Button clickedControlButton, clickedTypeButton, clickedDishButton;
 		private List<FoodInfomation> ListFoodInfo = new List<FoodInfomation>(); //Danh sách thông tin tất cả các món ăn
 		BindingList<Step> ListStep = new BindingList<Step>();                   //Danh sách các bước của món ăn mới được thêm
 		FoodInfomation newFood;                                                 //Món ăn mới được thêm
@@ -42,6 +43,7 @@ namespace FoodRecipeApp
 		private Condition FilterCondition = new Condition { Favorite = false, Type = "" };
 		private Regex YouTubeURLIDRegex = new Regex(@"[\?&]v=(?<v>[^&]+)");
 		private List<ColorSetting> ListColor;
+		private Stack<List<object>> windowsStack = new Stack<List<object>>();
 
 		private bool checkFavoriteIsClicked, isMinimizeMenu;
 		private int FoodperPage = 12;           //Số món ăn mỗi trang
@@ -249,18 +251,29 @@ namespace FoodRecipeApp
 
 			checkFavoriteIsClicked = false;
 			isMinimizeMenu = false;
+
+			ColorScheme = "ForestGreen";
+
 			//Default buttons
-			//clickedTypeButton = AllButton;
-			//clickedTypeButton.Background = Brushes.LightSkyBlue;
+			clickedTypeButton = AllButton;
+			clickedTypeButton.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
 			clickedControlButton = HomeButton;
 			clickedDishButton = null;
+
+			//Thêm màn hình Home vào stack
+			List<object> list = new List<object>
+			{
+				PaginationBar,
+				TypeBar,
+				foodButtonItemsControl,
+				clickedControlButton
+			};
+			windowsStack.Push(list);
 			//clickedControlButton.Background = Brushes.LightSkyBlue;
 		}
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			ColorScheme = "ForestGreen";
-
 			//Đọc dữ liệu các món ăn từ data
 			XmlSerializer xsFood = new XmlSerializer(typeof(List<FoodInfomation>));
 			using (var reader = new StreamReader(@"data\Food.xml"))
@@ -374,11 +387,11 @@ namespace FoodRecipeApp
 
 		private void changeClickedTypeButton_Click(object sender, RoutedEventArgs e)
 		{
-			//clickedTypeButton.Background = Brushes.DarkSlateGray;
-			//clickedTypeButton = button;
-			//button.Background = Brushes.LightSkyBlue;
+			clickedTypeButton.Foreground = Brushes.Black;
 
 			var button = (Button)sender;
+			clickedTypeButton = button;
+			button.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
 
 			//Hiển thị các món ăn thuộc loại thức ăn được chọn
 			if (button == AllButton)
@@ -415,66 +428,96 @@ namespace FoodRecipeApp
 				//Đóng giao diện cũ trước khi nhấn nút
 				if (clickedControlButton == HomeButton || clickedControlButton == FavoriteButton)
 				{
-					TypeBar.Visibility = Visibility.Collapsed;
-					foodButtonItemsControl.Visibility = Visibility.Collapsed;
-					PaginationBar.Visibility = Visibility.Collapsed;
-				}
-				else if (clickedControlButton == AddDishButton)
-				{
-					AddFood.Visibility = Visibility.Collapsed;
-					AddFood.DataContext = null;
-					AddFoodAnhDishScrollViewer.ScrollToHome();
+					var listStack = windowsStack.Pop();
+					var condition = new Condition { Favorite = FilterCondition.Favorite, Type = FilterCondition.Type };
+					listStack.Insert(listStack.Count - 1, condition);
+					windowsStack.Push(listStack);
 				}
 				else if (clickedControlButton == DishButton)
 				{
-					DishList.Visibility = Visibility.Collapsed;
-					clickedDishButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("LightGray");
-					var textBlock = GetChildOfType<TextBlock>(clickedDishButton);
-					textBlock.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("Black");
+					if (clickedDishButton != null)
+					{
+						clickedDishButton.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("LightGray");
+						var textBlock = GetChildOfType<TextBlock>(clickedDishButton);
+						textBlock.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("Black");
+					}
+					else
+					{
+						//Do nothing
+					}
+
 					DishListNameTextBlock.DataContext = null;
 					DishInListItemsControl.ItemsSource = null;
-				}
-				else if (clickedControlButton == SettingButton)
-				{
-					SettingStackPanel.Visibility = Visibility.Collapsed;
 				}
 				else
 				{
 					//Do nothing
 				}
 
+				//Đóng giao diện Panel hiện tại
+				ProcessPanelVisible(Visibility.Collapsed);
+
 				//Xóa màu của thanh đang được chọn
-				var wrapPanel = (WrapPanel)clickedControlButton.Content;
-				var collection = wrapPanel.Children;
-				var block = (TextBlock)collection[0];
-				var text = (TextBlock)collection[2];
-				block.Background = Brushes.Transparent;
-				text.Foreground = Brushes.Black;
+				//var wrapPanel = (WrapPanel)clickedControlButton.Content;
+				//var collection = wrapPanel.Children;
+				//var block = (TextBlock)collection[0];
+				//var text = (TextBlock)collection[2];
+				//block.Background = Brushes.Transparent;
+				//text.Foreground = Brushes.Black;
+
+				//Nếu nhấn sang cửa sổ thứ 2 thì hiển thị nút Back
+				if (windowsStack.Count == 1)
+				{
+					BackButton.Visibility = Visibility.Visible;
+				}
+				else
+				{
+					//Do nothing
+				}
+
+				List<object> list = new List<object>();
 
 				//Mở giao diện mới sau khi nhấn nút
 				if (button == HomeButton)
 				{
 					FilterCondition.Favorite = false;
-					TypeBar.Visibility = Visibility.Visible;
-					foodButtonItemsControl.Visibility = Visibility.Visible;
-					PaginationBar.Visibility = Visibility.Visible;
+
+					//Xóa hết lịch sử các cửa sổ khác khi nhấn nút Home
+					while (windowsStack.Count > 0)
+					{
+						windowsStack.Pop();
+					}
+					//Thêm màn hình Favorite vào stack
+					list.Add(PaginationBar);
+					list.Add(TypeBar);
+					list.Add(foodButtonItemsControl);
+					list.Add(FilterCondition);
+
+					//Nếu nhấn sang nút Home thì không còn trang nào phía trước
+					BackButton.Visibility = Visibility.Collapsed;
 				}
 				else if (button == FavoriteButton)
 				{
 					FilterCondition.Favorite = true;
-					TypeBar.Visibility = Visibility.Visible;
-					foodButtonItemsControl.Visibility = Visibility.Visible;
-					PaginationBar.Visibility = Visibility.Visible;
+
+					//Thêm màn hình Favorite vào stack
+					list.Add(PaginationBar);
+					list.Add(TypeBar);
+					list.Add(foodButtonItemsControl);
+					list.Add(FilterCondition);
 				}
 				else if (button == AddDishButton)
 				{
 					SortFoodList();
 					var index = GetMinID();
 					newFood = new FoodInfomation() { ID = index, VideoLink = "" };
-					AddFood.Visibility = Visibility.Visible;
+					//AddFood.Visibility = Visibility.Visible;
 					AddFood.DataContext = newFood;
 					ListStep = new BindingList<Step>();
 					ImageStepItemsControl.ItemsSource = ListStep;
+
+					//Thêm màn hình Add vào stack
+					list.Add(AddFood);
 
 					//Thay đổi màu chữ cho các tiêu đề trong món ăn
 					AddFood_TitleTextBlock.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
@@ -488,11 +531,12 @@ namespace FoodRecipeApp
 				}
 				else if (button == DishButton)
 				{
-					DishList.Visibility = Visibility.Visible;
+					//Thêm màn hình Note vào stack
+					list.Add(DishList);
 				}
 				else if (button == SettingButton)
 				{
-					SettingStackPanel.Visibility = Visibility.Visible;
+					list.Add(SettingStackPanel);
 				}
 				else
 				{
@@ -502,13 +546,20 @@ namespace FoodRecipeApp
 				//Cập nhật lại nút được chọn
 				clickedControlButton = button;
 
+				//Mở giao diện Panel vừa được chọn
+				list.Add(clickedControlButton);
+				windowsStack.Push(list);
+				ProcessPanelVisible(Visibility.Visible);
+
+
+
 				//Hiển thị màu của thanh mới vừa được chọn
-				wrapPanel = (WrapPanel)clickedControlButton.Content;
-				collection = wrapPanel.Children;
-				block = (TextBlock)collection[0];
-				text = (TextBlock)collection[2];
-				block.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
-				text.Foreground = block.Background;
+				//wrapPanel = (WrapPanel)clickedControlButton.Content;
+				//collection = wrapPanel.Children;
+				//block = (TextBlock)collection[0];
+				//text = (TextBlock)collection[2];
+				//block.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
+				//text.Foreground = block.Background;
 
 				//Cập nhật lại giao diện
 				UpdateUIFromData();
@@ -539,11 +590,70 @@ namespace FoodRecipeApp
 
 		private void BackButton_Click(object sender, RoutedEventArgs e)
 		{
-			BackButton.Visibility = Visibility.Collapsed;
-			FoodDetailScrollViewer.Visibility = Visibility.Collapsed;
-			TypeBar.Visibility = Visibility.Visible;
-			foodButtonItemsControl.Visibility = Visibility.Visible;
-			PaginationBar.Visibility = Visibility.Visible;
+			//BackButton.Visibility = Visibility.Collapsed;
+			//FoodDetailScrollViewer.Visibility = Visibility.Collapsed;
+			//TypeBar.Visibility = Visibility.Visible;
+			//foodButtonItemsControl.Visibility = Visibility.Visible;
+			//PaginationBar.Visibility = Visibility.Visible;
+
+			//Đóng giao diện hiện tại
+			ProcessPanelVisible(Visibility.Collapsed);
+
+			//Lấy giao diện hiện tại ra khỏi Stack
+			windowsStack.Pop();
+
+			//Cập nhật lại nút được chọn
+			var window = windowsStack.Peek();
+			clickedControlButton = (Button)window[window.Count - 1];
+			if (clickedControlButton == HomeButton || clickedControlButton == FavoriteButton)
+			{
+				//if (window[window.Count - 4].GetType().Name != "Button")
+				//{
+				FilterCondition = (Condition)window[window.Count - 2];
+				clickedTypeButton.Foreground = Brushes.Black;
+				switch (FilterCondition.Type)
+				{
+					case "":
+						AllButton.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
+						clickedTypeButton = AllButton;
+						break;
+					case "Food":
+						FoodButton.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
+						clickedTypeButton = FoodButton;
+						break;
+					case "Drinks":
+						DrinksButton.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
+						clickedTypeButton = DrinksButton;
+						break;
+					default:
+						break;
+				}
+				//}
+				//else
+				//{
+				//	FoodImage_Click(window[window.Count - 4] as Button, null);
+				//}
+			}
+			else
+			{
+				//Do nothing
+			}
+
+			//Cập nhật lại giao diện
+			UpdateUIFromData();
+
+			//Mở giao diện phía trước
+			ProcessPanelVisible(Visibility.Visible);
+
+			//Nếu đã quay về màn hình Home thì ẩn nút Back đi
+			if (windowsStack.Count == 1)
+			{
+				BackButton.Visibility = Visibility.Collapsed;
+			}
+			else
+			{
+				//Do nothing
+			}
 		}
 
 		private void FoodImage_Click(object sender, RoutedEventArgs e)
@@ -551,9 +661,12 @@ namespace FoodRecipeApp
 			if (checkFavoriteIsClicked == false)
 			{
 				//Đóng màn hình trước
-				foodButtonItemsControl.Visibility = Visibility.Collapsed;
-				TypeBar.Visibility = Visibility.Collapsed;
-				PaginationBar.Visibility = Visibility.Collapsed;
+				//foodButtonItemsControl.Visibility = Visibility.Collapsed;
+				//TypeBar.Visibility = Visibility.Collapsed;
+				//PaginationBar.Visibility = Visibility.Collapsed;
+
+				//Đóng giao diện Panel hiện tại
+				ProcessPanelVisible(Visibility.Collapsed);
 
 				//Lấy chỉ số của hình ảnh món ăn được nhấn
 				CurrentElementIndex = GetElementIndexInArray((Button)sender);
@@ -610,10 +723,33 @@ namespace FoodRecipeApp
 				Display(ListFoodInfo[CurrentElementIndex].VideoLink);
 
 				//Hiển thị màn hình chi tiết món ăn
-				FoodDetailScrollViewer.Visibility = Visibility.Visible;
+				//FoodDetailScrollViewer.Visibility = Visibility.Visible;
+
+				//if (e != null)
+				//{
+				if (windowsStack.Count == 1)
+				{
+					var listStack = windowsStack.Pop();
+					var condition = new Condition { Favorite = FilterCondition.Favorite, Type = FilterCondition.Type };
+					listStack.Insert(listStack.Count - 1, condition);
+					windowsStack.Push(listStack);
+				}
+				else
+				{
+					//Do nothing
+				}
+
+				//Mở giao diện chi tiết món ăn
+				windowsStack.Push(new List<object> { sender, FoodDetailScrollViewer, clickedControlButton });
+				ProcessPanelVisible(Visibility.Visible);
 
 				//Hiển thị nút quay lại
 				BackButton.Visibility = Visibility.Visible;
+				//}
+				//else
+				//{
+				//	//Do nothing
+				//}
 			}
 			else
 			{
@@ -1351,6 +1487,62 @@ namespace FoodRecipeApp
 				+ "<iframe src=\"" + url1 + "\" width=\"700\" height=\"400\" frameborder=\"0\" allowfullscreen></iframe>"
 				+ "</body></html>";
 			VideoPlayer.NavigateToString(page);
+		}
+		private void ProcessPanelVisible(Visibility state)
+		{
+			foreach (var panel in windowsStack.Peek())
+			{
+				switch (panel.GetType().Name)
+				{
+					case "DockPanel":
+						var dockPanel = (DockPanel)panel;
+						dockPanel.Visibility = state;
+						break;
+					case "StackPanel":
+						var stackPanel = (StackPanel)panel;
+						stackPanel.Visibility = state;
+						break;
+					case "ItemsControl":
+						var itemsControl = (ItemsControl)panel;
+						itemsControl.Visibility = state;
+						break;
+					case "Grid":
+						var grid = (Grid)panel;
+						grid.Visibility = state;
+						break;
+					case "ScrollViewer":
+						var scrollViewer = (ScrollViewer)panel;
+						scrollViewer.Visibility = state;
+						break;
+					case "Button":
+						//Hiển thị màu của thanh mới vừa được chọn
+						var wrapPanel = (WrapPanel)(panel as Button).Content;
+						var collection = wrapPanel.Children;
+						if (collection[0].GetType().Name == "TextBlock" && collection[0].GetType().Name == "TextBlock")
+						{
+							var block = (TextBlock)collection[0];
+							var text = (TextBlock)collection[2];
+							if (state == Visibility.Visible)
+							{
+								block.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
+								text.Foreground = block.Background;
+							}
+							else
+							{
+								block.Background = Brushes.Transparent;
+								text.Foreground = Brushes.Black;
+							}
+						}
+						else
+						{
+							//Do nothing
+						}
+						break;
+					default:
+						//Do nothing
+						break;
+				}
+			}
 		}
 
 		//private void SaveFoodData()

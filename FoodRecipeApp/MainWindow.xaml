@@ -19,27 +19,27 @@
     <DockPanel LastChildFill="True" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown">
 
         <!--Thanh tiêu đề-->
-        <DockPanel x:Name="TitleBar" DockPanel.Dock="Top" Height="35" Background="{Binding ColorScheme}">
-            <Button Name="BackButton" Width="46" BorderThickness="0" Padding="7" Background="{Binding ColorScheme}" 
+            <DockPanel x:Name="TitleBar" DockPanel.Dock="Top" Height="35" Background="{Binding ColorScheme}">
+                <Button Name="BackButton" Width="46" BorderThickness="0" Padding="7" Background="{Binding ColorScheme}" 
                     Click="BackButton_Click" Visibility="Collapsed" DockPanel.Dock="Left">
-                <Image Source="Images/backButton.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-            </Button>
-            <TextBlock HorizontalAlignment="Center" DockPanel.Dock="Left" Margin="10,0,0,0" 
+                    <Image Source="Images/backButton.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+                <TextBlock HorizontalAlignment="Center" DockPanel.Dock="Left" Margin="10,0,0,0" 
                        FontSize="15" VerticalAlignment="Center" Foreground="White">Food Recipe</TextBlock>
-            <Button x:Name="CloseButton" Width="47" Click="CloseButton_Click" BorderThickness="0" 
+                <Button x:Name="CloseButton" Width="47" Click="CloseButton_Click" BorderThickness="0" 
                     Padding="12" Background="{Binding ColorScheme}" DockPanel.Dock="Right">
-                <Image Source="Images/close.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-            </Button>
-            <Button x:Name="MaxButton" Width="47" Click="MaximizeButton_Click" BorderThickness="0" 
+                    <Image Source="Images/close.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+                <Button x:Name="MaxButton" Width="47" Click="MaximizeButton_Click" BorderThickness="0" 
                     Padding="12" Background="{Binding ColorScheme}" DockPanel.Dock="Right">
-                <Image Source="Images/maximize.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-            </Button>
-            <Button x:Name="MinButton" Width="47" Click="MinimizeButton_Click" BorderThickness="0"
+                    <Image Source="Images/maximize.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+                <Button x:Name="MinButton" Width="47" Click="MinimizeButton_Click" BorderThickness="0"
                     Padding="11" Background="{Binding ColorScheme}" DockPanel.Dock="Right">
-                <Image Source="Images/minimize.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-            </Button>
-            <TextBlock></TextBlock>
-        </DockPanel>
+                    <Image Source="Images/minimize.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+                <TextBlock></TextBlock>
+            </DockPanel>
 
         <!--Menu Control-->
         <StackPanel x:Name="ControlStackPanel" DockPanel.Dock="Left" Background="#FFDDDDDD" Width="250">
@@ -160,9 +160,12 @@
         <!--Thanh để lọc loại thức ăn-->
         <DockPanel Name="TypeBar" Height="40" Margin="15,0" DockPanel.Dock="Top" LastChildFill="True" Visibility="Visible">
             <StackPanel Orientation="Horizontal" Width="590" DockPanel.Dock="Left">
-                <Button Height="40" Width="120" x:Name="AllButton" Click="changeClickedTypeButton_Click" BorderThickness="0" Content="All"/>
-                <Button Height="40" Width="120" x:Name="FoodButton" Click="changeClickedTypeButton_Click" BorderThickness="0" Content="Food"/>
-                <Button Height="40" Width="120" x:Name="DrinksButton" Click="changeClickedTypeButton_Click" BorderThickness="0" Content="Drinks"/>
+                <Button Height="40" Width="120" x:Name="AllButton" Click="changeClickedTypeButton_Click" 
+                        BorderThickness="0" Content="All" FontSize="15"/>
+                <Button Height="40" Width="120" x:Name="FoodButton" Click="changeClickedTypeButton_Click" 
+                        BorderThickness="0" Content="Food" FontSize="15"/>
+                <Button Height="40" Width="120" x:Name="DrinksButton" Click="changeClickedTypeButton_Click" 
+                        BorderThickness="0" Content="Drinks" FontSize="15"/>
             </StackPanel>
             <StackPanel DockPanel.Dock="Right" Width="269">
                 <Border CornerRadius="6" Margin="0,3,5,0" BorderBrush="Gray" Padding="0,0,2,0" BorderThickness="3">

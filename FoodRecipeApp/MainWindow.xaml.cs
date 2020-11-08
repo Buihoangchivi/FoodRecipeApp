@@ -44,6 +44,7 @@ namespace FoodRecipeApp
 		private Regex YouTubeURLIDRegex = new Regex(@"[\?&]v=(?<v>[^&]+)");
 		private List<ColorSetting> ListColor;
 		private Stack<List<object>> windowsStack = new Stack<List<object>>();
+		private CollectionView DishIngredientView;
 
 		private bool checkFavoriteIsClicked, isMinimizeMenu;
 		private int FoodperPage = 12;           //Số món ăn mỗi trang
@@ -171,10 +172,27 @@ namespace FoodRecipeApp
 		}
 
 		//Class nguyên liệu cần chuẩn bị cho một món ăn
-		public class Ingredient
+		public class Ingredient : INotifyPropertyChanged
 		{
-			public string IngredientName { get; set; }
+			public event PropertyChangedEventHandler PropertyChanged;
+			private string _ingredientName;
+			public string IngredientName {
+                get
+                {
+					return _ingredientName;
+                }
+				set
+                {
+					_ingredientName = value;
+					if (PropertyChanged != null)
+					{
+						PropertyChanged(this, new PropertyChangedEventArgs("IngredientName"));
+					}
+                }
+			}
 			public bool IsDone { get; set; }
+			public string Type { get; set; }
+
 		}
 
 		//Class các món ăn cần mua nguyên liệu
@@ -899,7 +917,31 @@ namespace FoodRecipeApp
 
 		private void EditDishInListButton_Click(object sender, RoutedEventArgs e)
 		{
-
+			var buttonSent = sender as Button;
+			var ingredientToEdit = buttonSent.DataContext as Ingredient;
+			var editIngredientDialog = new EditIngredientDialog(ColorScheme, ingredientToEdit);
+			editIngredientDialog.ShowDialog();
+            if (editIngredientDialog.DialogResult == true)
+            {
+				for(int i = 0; i < ListDish.Count; i++)
+                {
+					ingredientToEdit.Type = editIngredientDialog.IngredientType;
+					ingredientToEdit.IngredientName = editIngredientDialog.IngredientName;
+                }	
+            }
+            else
+            {
+				//Xoá
+				var currentGroceries = DishInListItemsControl.ItemsSource as BindingList<Ingredient>;
+				for(int i = 0; i< currentGroceries.Count; i++)
+                {
+					if(ingredientToEdit == currentGroceries[i])
+                    {
+						currentGroceries.Remove(ingredientToEdit);
+                    }
+                }
+				
+            }
 		}
 
 		private void DishListName_Click(object sender, RoutedEventArgs e)
@@ -929,6 +971,12 @@ namespace FoodRecipeApp
 					DishListNameTextBlock.DataContext = ListDish[i];
 					break;
 				}
+			}
+			DishIngredientView = (CollectionView)CollectionViewSource.GetDefaultView(DishInListItemsControl.ItemsSource);
+			if (DishIngredientView.GroupDescriptions.Count == 0)
+			{
+				PropertyGroupDescription groupDescription = new PropertyGroupDescription("Type");
+				DishIngredientView.GroupDescriptions.Add(groupDescription);
 			}
 		}
 

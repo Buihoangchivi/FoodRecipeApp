@@ -467,7 +467,7 @@
                             <StackPanel>
                                 <TextBlock Padding="5" FontSize="20" Name="AddFood_LevelTextBlock">Level</TextBlock>
                                 <ComboBox Name="LevelComboBox" Margin="5,0,20,8" Width="100" FontSize="14" HorizontalAlignment="Left">
-                                    <ComboBoxItem IsSelected="True">
+                                    <ComboBoxItem Name="DefaultLevelComboxBoxItem" IsSelected="True">
                                         Easy
                                     </ComboBoxItem>
                                     <ComboBoxItem>
@@ -482,7 +482,7 @@
                             <StackPanel Grid.Column="1">
                                 <TextBlock Padding="5" FontSize="20" Name="AddFood_TypeTextBlock">Type</TextBlock>
                                 <ComboBox Name="TypeComboBox" Margin="5,0,20,8" Width="100" FontSize="14" HorizontalAlignment="Left">
-                                    <ComboBoxItem IsSelected="True">
+                                    <ComboBoxItem Name="DefaultTypeComboxBoxItem" IsSelected="True">
                                         Food
                                     </ComboBoxItem>
                                     <ComboBoxItem>

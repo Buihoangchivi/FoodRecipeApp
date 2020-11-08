@@ -191,6 +191,8 @@ namespace FoodRecipeApp
                 }
 			}
 			public bool IsDone { get; set; }
+
+
 			private string _type;
 			public string Type
 			{
@@ -207,7 +209,6 @@ namespace FoodRecipeApp
 					}
 				}
 			}
-
 		}
 
 		//Class các món ăn cần mua nguyên liệu
@@ -942,8 +943,10 @@ namespace FoodRecipeApp
                 {
 					ingredientToEdit.Type = editIngredientDialog.IngredientType;
 					ingredientToEdit.IngredientName = editIngredientDialog.IngredientName;
-                }	
-            }
+                }
+
+				UpdateIngredientGrouping();
+			}
             else
             {
 				//Xoá
@@ -987,12 +990,7 @@ namespace FoodRecipeApp
 					break;
 				}
 			}
-			DishIngredientView = (CollectionView)CollectionViewSource.GetDefaultView(DishInListItemsControl.ItemsSource);
-			if (DishIngredientView.GroupDescriptions.Count == 0)
-			{
-				PropertyGroupDescription groupDescription = new PropertyGroupDescription("Type");
-				DishIngredientView.GroupDescriptions.Add(groupDescription);
-			}
+			UpdateIngredientGrouping();
 		}
 
 		//Xử lý khi nhấn nút thêm 1 List nguyên liệu mới
@@ -1514,6 +1512,14 @@ namespace FoodRecipeApp
 				TotalItem += " item";
 			}
 			UpdatePageButtonStatus();
+		}
+
+		private void UpdateIngredientGrouping()
+        {
+			DishIngredientView = (CollectionView)CollectionViewSource.GetDefaultView(DishInListItemsControl.ItemsSource);
+			DishIngredientView.GroupDescriptions.Clear();
+			PropertyGroupDescription groupDescription = new PropertyGroupDescription("Type");
+			DishIngredientView.GroupDescriptions.Add(groupDescription);
 		}
 
 

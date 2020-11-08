@@ -191,7 +191,22 @@ namespace FoodRecipeApp
                 }
 			}
 			public bool IsDone { get; set; }
-			public string Type { get; set; }
+			private string _type;
+			public string Type
+			{
+				get
+				{
+					return _type;
+				}
+				set
+				{
+					_type = value;
+					if (PropertyChanged != null)
+					{
+						PropertyChanged(this, new PropertyChangedEventArgs("Type"));
+					}
+				}
+			}
 
 		}
 
@@ -1037,7 +1052,7 @@ namespace FoodRecipeApp
 					{
 						if (ListDish[i].DishName == DishListName)
 						{
-							ListDish[i].GroceriesList.Add(new Ingredient { IngredientName = text, IsDone = false });
+							ListDish[i].GroceriesList.Add(new Ingredient { IngredientName = text, IsDone = false, Type = "Other" });
 							break;
 						}
 					}

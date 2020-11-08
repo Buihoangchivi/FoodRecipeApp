@@ -14,6 +14,10 @@
 
     <Window.Resources>
         <local:Converter x:Key="converter"/>
+        <DataTemplate x:Key="groupingHeaderTemplate">
+            <TextBlock Foreground ="{Binding ColorScheme}"
+             FontWeight="Bold" FontSize="16"/>
+        </DataTemplate>
     </Window.Resources>
 
     <DockPanel LastChildFill="True" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown">
@@ -690,7 +694,7 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
 
-                    <ItemsControl Grid.Row="2" Grid.Column="1" Name="DishInListItemsControl">
+                    <ItemsControl Grid.Row="2" Grid.Column="1" Name="DishInListItemsControl"  Margin="15 0 0 0">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel />
@@ -698,7 +702,6 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-
                                 <DockPanel LastChildFill="True" Margin="10,0,15,5">
                                     <CheckBox DockPanel.Dock="Left" IsChecked="{Binding IsDone}" Grid.Column="0" Margin="5" 
                                               VerticalAlignment="Center" BorderThickness="2"></CheckBox>
@@ -713,9 +716,18 @@
                                     <TextBlock Grid.Column="1" Text="{Binding IngredientName}" Padding="5" 
                                                FontSize="14" VerticalAlignment="Center"></TextBlock>
                                 </DockPanel>
-                                
+
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
+                        <ItemsControl.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16"/>
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                            </GroupStyle>
+                        </ItemsControl.GroupStyle>
                     </ItemsControl>
                 </Grid>
 

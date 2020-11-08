@@ -336,7 +336,7 @@ namespace FoodRecipeApp
 			UpdatePageButtonStatus();
 
 			//Binding Số trang
-			SearchComboBox.ItemsSource = ListFoodInfo;
+			searchComboBox.ItemsSource = ListFoodInfo;
 			this.DataContext = this;
 
 			/*Lấy danh sách food*/
@@ -1265,62 +1265,76 @@ namespace FoodRecipeApp
 
 		//---------------------------------------- Các hàm xử lý sự kiện --------------------------------------------//
 
-		private void Cb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+		private string ConvertToUnSign(string input)
 		{
-			ComboBox cmb = (ComboBox)sender;
-
-			cmb.IsDropDownOpen = true;
-
-			if (!string.IsNullOrEmpty(cmb.Text))
+			input = input.Trim();
+			for (int i = 0x20; i < 0x30; i++)
 			{
-				string fullText = cmb.Text.Insert(GetChildOfType<TextBox>(cmb).CaretIndex, e.Text);
-				cmb.ItemsSource = ListFoodInfo.Where(s => s.Name.IndexOf(fullText, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
+				input = input.Replace(((char)i).ToString(), " ");
+			}
+			Regex regex = new Regex(@"\p{IsCombiningDiacriticalMarks}+");
+			string str = input.Normalize(NormalizationForm.FormD);
+			string str2 = regex.Replace(str, string.Empty).Replace('đ', 'd').Replace('Đ', 'D');
+			while (str2.IndexOf("?") >= 0)
+			{
+				str2 = str2.Remove(str2.IndexOf("?"), 1);
+			}
+			return str2;
+		}
+
+		private void searchTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			searchComboBox.IsDropDownOpen = true;
+
+			if (!string.IsNullOrEmpty(searchTextBox.Text))
+			{
+				string fullText = ConvertToUnSign(searchTextBox.Text.Insert(searchTextBox.CaretIndex, (e.Text)));
+				searchComboBox.ItemsSource = ListFoodInfo.Where(s => ConvertToUnSign(s.Name).IndexOf(fullText, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
 			}
 			else if (!string.IsNullOrEmpty(e.Text))
 			{
-				cmb.ItemsSource = ListFoodInfo.Where(s => s.Name.IndexOf(e.Text, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
+				searchComboBox.ItemsSource = ListFoodInfo.Where(s => ConvertToUnSign(s.Name).IndexOf(ConvertToUnSign(e.Text), StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
 			}
 			else
 			{
-				cmb.ItemsSource = ListFoodInfo;
+				searchComboBox.ItemsSource = ListFoodInfo;
 			}
 		}
 
-		private void PreviewKeyUp_EnhanceComboSearch(object sender, KeyEventArgs e)
+		private void PreviewKeyUp_EnhanceTextBoxSearch(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Back || e.Key == Key.Delete)
 			{
-				ComboBox cmb = (ComboBox)sender;
 
-				cmb.IsDropDownOpen = true;
 
-				if (!string.IsNullOrEmpty(cmb.Text))
+				searchComboBox.IsDropDownOpen = true;
+
+				if (!string.IsNullOrEmpty(searchTextBox.Text))
 				{
-					cmb.ItemsSource = ListFoodInfo.Where(s => s.Name.IndexOf(cmb.Text, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
+					searchComboBox.ItemsSource = ListFoodInfo.Where(s => ConvertToUnSign(s.Name).IndexOf(ConvertToUnSign(searchTextBox.Text), StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
 				}
 				else
 				{
-					cmb.ItemsSource = ListFoodInfo;
+					searchComboBox.ItemsSource = ListFoodInfo;
 				}
 			}
 		}
 
-		private void Pasting_EnhanceComboSearch(object sender, DataObjectPastingEventArgs e)
+		private void Pasting_EnhanceTextSearch(object sender, DataObjectPastingEventArgs e)
 		{
-			ComboBox cmb = (ComboBox)sender;
-
-			cmb.IsDropDownOpen = true;
+			searchComboBox.IsDropDownOpen = true;
 
 			string pastedText = (string)e.DataObject.GetData(typeof(string));
-			string fullText = cmb.Text.Insert(GetChildOfType<TextBox>(cmb).CaretIndex, pastedText);
+			//string fullText = searchComboBox.Text.Insert(GetChildOfType<TextBox>(searchComboBox).CaretIndex, pastedText);
+			string fullText = searchTextBox.Text.Insert(searchTextBox.CaretIndex, (pastedText));
 
 			if (!string.IsNullOrEmpty(fullText))
 			{
-				cmb.ItemsSource = ListFoodInfo.Where(s => s.Name.IndexOf(fullText, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
+				searchComboBox.ItemsSource = ListFoodInfo.Where(s => ConvertToUnSign(s.Name).IndexOf(ConvertToUnSign(fullText), StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
 			}
 			else
 			{
-				cmb.ItemsSource = ListFoodInfo;
+				searchComboBox.ItemsSource = ListFoodInfo;
 			}
 		}
 
@@ -1328,7 +1342,8 @@ namespace FoodRecipeApp
 		{
 			if (e.Key == Key.Down)
 			{
-				SearchComboBox.SelectedIndex++;
+				searchComboBox.SelectedIndex++;
+				
 			}
 		}
 
@@ -1363,15 +1378,22 @@ namespace FoodRecipeApp
 		{
 			if (e.Key == Key.Down)
 			{
-				SearchComboBox.Focus();
+				searchComboBox.Focus();
 
-				SearchComboBox.SelectedIndex = 0;
-				SearchComboBox.IsDropDownOpen = true;
+				searchComboBox.SelectedIndex = 0;
+				searchComboBox.IsDropDownOpen = true;
 			}
 			if (e.Key == Key.Escape)
 			{
-				SearchComboBox.IsDropDownOpen = false;
+				searchComboBox.IsDropDownOpen = false;
 			}
+		}
+
+		private void searchComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{		
+			int index = searchComboBox.SelectedIndex;
+			string textSelected = ListFoodInfo[index].Name;
+			searchTextBox.Text = textSelected;
 		}
 
 		//Cài đặt để có thể di chuyển cửa sổ khi nhấn giữ chuột và kéo Title Bar
@@ -1488,8 +1510,10 @@ namespace FoodRecipeApp
 			UpdatePageButtonStatus();
 		}
 
-		/*Cập nhật lại danh sách món ăn trên màn hình sau khi nhấn thích*/
-		private void UpdateFoodStatus()
+		
+
+        /*Cập nhật lại danh sách món ăn trên màn hình sau khi nhấn thích*/
+        private void UpdateFoodStatus()
 		{
 			view.Filter = Filter;
 			GetFilterList();
@@ -1514,7 +1538,9 @@ namespace FoodRecipeApp
 			UpdatePageButtonStatus();
 		}
 
-		private void UpdateIngredientGrouping()
+       
+
+        private void UpdateIngredientGrouping()
         {
 			DishIngredientView = (CollectionView)CollectionViewSource.GetDefaultView(DishInListItemsControl.ItemsSource);
 			DishIngredientView.GroupDescriptions.Clear();

@@ -184,22 +184,24 @@
                         </StackPanel>
                         <StackPanel>
                             <Grid>
-                                <ComboBox IsTextSearchEnabled="False" IsEditable="True" x:Name="SearchComboBox"
-                                      PreviewTextInput="Cb_OnPreviewTextInput"
-                                      PreviewKeyUp="PreviewKeyUp_EnhanceComboSearch"
-                                      DataObject.Pasting="Pasting_EnhanceComboSearch"
+                                <ComboBox IsTextSearchEnabled="False" IsEditable="True" x:Name="searchComboBox"
+                                      SelectionChanged="searchComboBox_SelectionChanged"
                                       KeyDown="dockingContentControl_KeyDown" Height="32" Width="190" 
                                       BorderThickness="0" VerticalContentAlignment="Center">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                                 <Button Content="{Binding Name}"/>
-                                                <Image Source="{Binding ImagePath, Converter={StaticResource converter}}" Margin="0, 0 , 0, 0" Width="100" Height="100"/>
+                                                <Image Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}" Margin="0, 0 , 0, 0" Width="100" Height="100"/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>
-                                <TextBox x:Name="searchTextBox" PreviewKeyDown="searchTextBox_PreviewKeyDown" Width="175" HorizontalAlignment="Left"></TextBox>
+                                <TextBox x:Name="searchTextBox" PreviewKeyDown="searchTextBox_PreviewKeyDown"
+                                         Width="175" HorizontalAlignment="Left"
+                                         PreviewTextInput="searchTextBox_PreviewTextInput"
+                                         PreviewKeyUp="PreviewKeyUp_EnhanceTextBoxSearch"
+                                         DataObject.Pasting="Pasting_EnhanceTextSearch"></TextBox>
                             </Grid>
 
                         </StackPanel>

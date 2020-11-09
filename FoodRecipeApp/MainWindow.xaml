@@ -205,7 +205,7 @@
                                                         </StackPanel>
                                                     </Button.Content>
                                                 </Button>
-                                                
+
                                             </StackPanel>
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
@@ -227,7 +227,7 @@
         <!--Hình ảnh và tên các món ăn-->
         <ScrollViewer VerticalScrollBarVisibility="Hidden">
             <Grid Margin="15,6,0,0">
-                <ItemsControl Name="foodButtonItemsControl" Visibility="Visible">
+                <ItemsControl Grid.Row="1" Name="foodButtonItemsControl" Visibility="Visible">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel />
@@ -301,156 +301,182 @@
 
         <!--Chi tiết món ăn-->
         <ScrollViewer Name="FoodDetailScrollViewer" Visibility="Collapsed">
-            <Grid Margin="15,40,0,0" x:Name="FoodDetailGrid">
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
 
-                <!--Hình ảnh chính của món ăn-->
-                <Image Name="SelectedFoodImage" Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}" Margin="15"
-                       RenderOptions.BitmapScalingMode="HighQuality"></Image>
+            <DockPanel LastChildFill="True">
 
-                <Grid Margin="20,0" Grid.Row="0" Grid.Column="1">
+                <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Top">
+                    <Button Background="White" BorderThickness="0" Click="EditDetailFoodInfoButton_Click" Height="35" VerticalAlignment="Top">
+                        <WrapPanel Margin="15,0">
+                            <Image Source="Images/editImage.png" Width="20" Margin="0,0,7,0" 
+                                       RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                            <TextBlock VerticalAlignment="Center" FontSize="15">Edit</TextBlock>
+                        </WrapPanel>
+                    </Button>
+                    <Button Background="White" BorderThickness="0" Click="DeleteFoodButton_Click"
+                                 Height="35" VerticalAlignment="Top">
+                        <WrapPanel Margin="15,0">
+                            <Image Source="Images/deleteRecipe.png" Width="22" Margin="0,0,4,0" 
+                                       RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                            <TextBlock VerticalAlignment="Center" FontSize="15">Delete</TextBlock>
+                        </WrapPanel>
+                    </Button>
+                </StackPanel>
+
+                <Grid Margin="15,0,0,0" x:Name="FoodDetailGrid">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150"></ColumnDefinition>
+                        <ColumnDefinition Width="300"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Name="FoodInfo_NameTextBlock" Padding="5" FontSize="20" Grid.Row="0" Text="{Binding Name}"
+
+                    <!--Hình ảnh chính của món ăn-->
+                    <Image Name="SelectedFoodImage" Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}" Margin="15"
+                       RenderOptions.BitmapScalingMode="HighQuality"></Image>
+
+                    <Grid Margin="20,0" Grid.Row="0" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Name="FoodInfo_NameTextBlock" Padding="5" FontSize="20" Grid.Row="0" Text="{Binding Name}"
                                Grid.ColumnSpan="2" TextWrapping="Wrap"></TextBlock>
-                    <!--Loại thức ăn-->
-                    <TextBlock Padding="5" FontSize="16" Grid.Row="1" Grid.Column="0" Foreground="Gray">Type</TextBlock>
-                    <TextBlock Padding="5" FontSize="14" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="{Binding Type}"></TextBlock>
+                        <!--Loại thức ăn-->
+                        <TextBlock Padding="5" FontSize="16" Grid.Row="1" Grid.Column="0" Foreground="Gray">Type</TextBlock>
+                        <TextBlock Padding="5" FontSize="14" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="{Binding Type}"></TextBlock>
 
-                    <!--Mức độ khó của món ăn-->
-                    <TextBlock Padding="5" FontSize="16" Grid.Row="2" Grid.Column="0" Foreground="Gray">Level</TextBlock>
-                    <TextBlock Padding="5" FontSize="15" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Text="{Binding Level}"></TextBlock>
+                        <!--Mức độ khó của món ăn-->
+                        <TextBlock Padding="5" FontSize="16" Grid.Row="2" Grid.Column="0" Foreground="Gray">Level</TextBlock>
+                        <TextBlock Padding="5" FontSize="15" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Text="{Binding Level}"></TextBlock>
 
-                    <!--Ngày tạo dữ liệu món ăn-->
-                    <TextBlock Padding="5" FontSize="16" Grid.Row="3" Grid.Column="0" Foreground="Gray">Date time</TextBlock>
-                    <TextBlock Padding="5" FontSize="15" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Text="{Binding DateAdd}"></TextBlock>
+                        <!--Ngày tạo dữ liệu món ăn-->
+                        <TextBlock Padding="5" FontSize="16" Grid.Row="3" Grid.Column="0" Foreground="Gray">Date time</TextBlock>
+                        <TextBlock Padding="5" FontSize="15" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Text="{Binding DateAdd}"></TextBlock>
 
-                    <!--Mô tả món ăn-->
-                    <TextBlock Padding="5" FontSize="16" Grid.Row="4" Grid.Column="0" Foreground="Gray">Description</TextBlock>
-                    <TextBlock Padding="5" FontSize="15" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Text="{Binding Discription}"></TextBlock>
-                </Grid>
-                <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
+                        <!--Mô tả món ăn-->
+                        <TextBlock Padding="5" FontSize="16" Grid.Row="4" Grid.Column="0" Foreground="Gray">Description</TextBlock>
+                        <TextBlock Padding="5" FontSize="15" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Text="{Binding Discription}"></TextBlock>
+                    </Grid>
+                    
+                    <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
 
-                    <!--Danh sách nguyên liệu của món ăn-->
-                    <TextBlock Padding="5" FontSize="20" Grid.Row="0" Name="FoodInfo_IngredientsTextBlock">Ingredients</TextBlock>
-                    <TextBlock Padding="5" FontSize="15" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Ingredients}"></TextBlock>
-                </Grid>
-                <Grid Name="StepsGrid" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,20,30,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
+                        <!--Danh sách nguyên liệu của món ăn-->
+                        <TextBlock Padding="5" FontSize="20" Grid.Row="0" Name="FoodInfo_IngredientsTextBlock">Ingredients</TextBlock>
+                        <TextBlock Padding="5" FontSize="15" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Ingredients}"></TextBlock>
+                    </Grid>
+                    
+                    <Grid Name="StepsGrid" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,20,30,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
 
-                    <!--Danh sách các bước của món ăn-->
-                    <TextBlock Padding="5" FontSize="20" Grid.Row="0" Name="FoodInfo_DirectionsTextBlock">Directions</TextBlock>
+                        <!--Danh sách các bước của món ăn-->
+                        <TextBlock Padding="5" FontSize="20" Grid.Row="0" Name="FoodInfo_DirectionsTextBlock">Directions</TextBlock>
 
-                    <!--Nút phân trang cho các bước-->
-                    <StackPanel DockPanel.Dock="Bottom" Grid.Row="1" Name="StepPaginationBar"
+                        <!--Nút phân trang cho các bước-->
+                        <StackPanel DockPanel.Dock="Bottom" Grid.Row="1" Name="StepPaginationBar"
                                     HorizontalAlignment="Right" Orientation="Horizontal" >
 
-                        <!--Nút quay về trang trước-->
-                        <Button Name="PreviousStepButton" Click="PreviousStepButton_Click"
+                            <!--Nút quay về trang trước-->
+                            <Button Name="PreviousStepButton" Click="PreviousStepButton_Click"
                                     Background="{Binding ColorScheme}" BorderThickness="1" Margin="0,0,10,5">
-                            <Button.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="10"/>
-                                </Style>
-                            </Button.Resources>
-                            <WrapPanel Margin="10,0,10,2.5">
-                                <TextBlock Name="PreviousStepTextBlock" FontSize="13">Prev Step</TextBlock>
-                            </WrapPanel>
-                        </Button>
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Button.Resources>
+                                <WrapPanel Margin="10,0,10,2.5">
+                                    <TextBlock Name="PreviousStepTextBlock" FontSize="13">Prev Step</TextBlock>
+                                </WrapPanel>
+                            </Button>
 
-                        <TextBlock Text="{Binding CurrentStep}" FontSize="18"></TextBlock>
-                        <TextBlock FontSize="18" Text=" of "></TextBlock>
-                        <TextBlock Text="{Binding TotalStep}" FontSize="18" Margin="0,0,10,0"></TextBlock>
+                            <TextBlock Text="{Binding CurrentStep}" FontSize="18"></TextBlock>
+                            <TextBlock FontSize="18" Text=" of "></TextBlock>
+                            <TextBlock Text="{Binding TotalStep}" FontSize="18" Margin="0,0,10,0"></TextBlock>
 
-                        <!--Nút nhảy tới trang sau-->
-                        <Button Name="NextStepButton" Click="NextStepButton_Click"
+                            <!--Nút nhảy tới trang sau-->
+                            <Button Name="NextStepButton" Click="NextStepButton_Click"
                                     Background="{Binding ColorScheme}" BorderThickness="1" Margin="0,0,20,5">
-                            <Button.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="10"/>
-                                </Style>
-                            </Button.Resources>
-                            <WrapPanel Margin="10,0,10,2.5">
-                                <TextBlock Name="NextStepTextBlock" FontSize="13" Foreground="White">Next Step</TextBlock>
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Button.Resources>
+                                <WrapPanel Margin="10,0,10,2.5">
+                                    <TextBlock Name="NextStepTextBlock" FontSize="13" Foreground="White">Next Step</TextBlock>
+                                </WrapPanel>
+                            </Button>
+
+                        </StackPanel>
+
+                        <Grid Grid.Row="2" Margin="5,0" Name="DirectionsGrid">
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <!--Đang hiển thị bước thứ mấy-->
+                            <WrapPanel>
+                                <TextBlock Padding="0,5" FontSize="17" Foreground="Gray" Text="Step "></TextBlock>
+                                <TextBlock Padding="0,5" FontSize="17" Foreground="Gray" TextWrapping="Wrap" Text="{Binding Order}"></TextBlock>
+                                <TextBlock Padding="0,5" FontSize="17" Foreground="Gray">:</TextBlock>
                             </WrapPanel>
-                        </Button>
 
-                    </StackPanel>
+                            <!--Mô tả nội dung của bước-->
+                            <TextBlock Grid.Row="1" Padding="0,5" FontSize="15" TextWrapping="Wrap" Text="{Binding Content}"></TextBlock>
 
-                    <Grid Grid.Row="2" Margin="5,0" Name="DirectionsGrid">
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <!--Đang hiển thị bước thứ mấy-->
-                        <WrapPanel>
-                            <TextBlock Padding="0,5" FontSize="17" Foreground="Gray" Text="Step "></TextBlock>
-                            <TextBlock Padding="0,5" FontSize="17" Foreground="Gray" TextWrapping="Wrap" Text="{Binding Order}"></TextBlock>
-                            <TextBlock Padding="0,5" FontSize="17" Foreground="Gray">:</TextBlock>
-                        </WrapPanel>
-
-                        <!--Mô tả nội dung của bước-->
-                        <TextBlock Grid.Row="1" Padding="0,5" FontSize="15" TextWrapping="Wrap" Text="{Binding Content}"></TextBlock>
-
-                        <!--Danh sách hình ảnh mô tả bước-->
-                        <ItemsControl Grid.Row="2" Name="ImagesPerStepItemsControl" Margin="0,20">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel>
-                                        <Border BorderBrush="DarkGray" BorderThickness="2" Margin="3.5">
-                                            <Image Width="260" Height="200" Source="{Binding ImagePath, Converter={StaticResource converter}}"
+                            <!--Danh sách hình ảnh mô tả bước-->
+                            <ItemsControl Grid.Row="2" Name="ImagesPerStepItemsControl" Margin="0,20">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Border BorderBrush="DarkGray" BorderThickness="2" Margin="3.5">
+                                                <Image Width="260" Height="200" Source="{Binding ImagePath, Converter={StaticResource converter}}"
                                            RenderOptions.BitmapScalingMode="HighQuality" Stretch="Fill"/>
-                                        </Border>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                                            </Border>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                        </Grid>
 
                     </Grid>
 
+                    <Grid Grid.Row="3" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <TextBlock Padding="5" FontSize="20" Grid.Row="0" Name="FoodInfo_VideoTextBlock">Video</TextBlock>
+                        <WebBrowser Name="VideoPlayer" Grid.Row="1" Height="450" HorizontalAlignment="Left" Margin="0,0,20,20"></WebBrowser>
+                    </Grid>
                 </Grid>
 
-                <Grid Grid.Row="3" Grid.ColumnSpan="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock Padding="5" FontSize="20" Grid.Row="0" Name="FoodInfo_VideoTextBlock">Video</TextBlock>
-                    <WebBrowser Name="VideoPlayer" Grid.Row="1" Height="450" HorizontalAlignment="Left" Margin="0,0,20,20"></WebBrowser>
-                </Grid>
-            </Grid>
+            </DockPanel>
+            
         </ScrollViewer>
 
         <ScrollViewer x:Name="AddFoodAnhDishScrollViewer" VerticalScrollBarVisibility="Hidden">

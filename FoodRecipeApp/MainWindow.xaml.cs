@@ -45,6 +45,7 @@ namespace FoodRecipeApp
 		private List<ColorSetting> ListColor;
 		private Stack<List<object>> windowsStack = new Stack<List<object>>();
 		private CollectionView DishIngredientView;
+		private bool isEditMode;
 
 		private bool checkFavoriteIsClicked, isMinimizeMenu;
 		private int FoodperPage = 12;           //Số món ăn mỗi trang
@@ -155,7 +156,23 @@ namespace FoodRecipeApp
 		//Class lưu trữ đường dẫn của từng ảnh của 1 bước khi thực hiện nấu món ăn
 		public class ImagePerStep
 		{
-			public string ImagePath { get; set; }
+			public event PropertyChangedEventHandler PropertyChanged;
+			private string _ImagePath;
+			public string ImagePath
+			{
+				get
+				{
+					return _ImagePath;
+				}
+				set
+				{
+					_ImagePath = value;
+					if (PropertyChanged != null)
+					{
+						PropertyChanged(this, new PropertyChangedEventArgs("ImagePath"));
+					}
+				}
+			}
 		}
 
 		//Class lưu trữ màu trong Color setting
@@ -176,19 +193,20 @@ namespace FoodRecipeApp
 		{
 			public event PropertyChangedEventHandler PropertyChanged;
 			private string _ingredientName;
-			public string IngredientName {
-                get
-                {
+			public string IngredientName
+			{
+				get
+				{
 					return _ingredientName;
-                }
+				}
 				set
-                {
+				{
 					_ingredientName = value;
 					if (PropertyChanged != null)
 					{
 						PropertyChanged(this, new PropertyChangedEventArgs("IngredientName"));
 					}
-                }
+				}
 			}
 			public bool IsDone { get; set; }
 
@@ -223,8 +241,38 @@ namespace FoodRecipeApp
 		{
 			public event PropertyChangedEventHandler PropertyChanged;
 
-			public int Order { get; set; }                          //Thứ tự bước
-			public string Content { get; set; }                     //Mô tả bước
+			private int _Order;   //Thứ tự bước
+			public int Order
+			{
+				get
+				{
+					return _Order;
+				}
+				set
+				{
+					_Order = value;
+					if (PropertyChanged != null)
+					{
+						PropertyChanged(this, new PropertyChangedEventArgs("Order"));
+					}
+				}
+			}
+			private string _Content;   //Mô tả bước
+			public string Content
+			{
+				get
+				{
+					return _Content;
+				}
+				set
+				{
+					_Content = value;
+					if (PropertyChanged != null)
+					{
+						PropertyChanged(this, new PropertyChangedEventArgs("Content"));
+					}
+				}
+			}
 
 			private BindingList<ImagePerStep> _imagesPathPerStep;   //Đường dẫn các ảnh của bước
 			public BindingList<ImagePerStep> ImagesPathPerStep
@@ -247,16 +295,150 @@ namespace FoodRecipeApp
 		//Class thông tin món ăn
 		public partial class FoodInfomation : INotifyPropertyChanged
 		{
-			public int ID { get; set; }             //ID món ăn 
-			public string Name { get; set; }        //Tên món ăn
-			public string Ingredients { get; set; } //Danh sách nguyên liệu
-			public bool IsFavorite { get; set; }    //Món yêu thích
-			public string DateAdd { get; set; }     //Ngày thêm
-			public string VideoLink { get; set; }   //Link youtube
-			public string Level { get; set; }       //Mức độ khó
-			public string Type { get; set; }        //Loại đồ ăn
-			public string Discription { get; set; } //Mô tả khái quát món ăn
-
+			private int _ID;       //ID món ăn 
+			public int ID
+			{
+				get
+				{
+					return _ID;
+				}
+				set
+				{
+					_ID = value;
+					if (PropertyChanged != null)
+					{
+						PropertyChanged(this, new PropertyChangedEventArgs("ID"));
+					}
+				}
+			}   
+			private string _Name;       //Tên món ăn
+			public string Name
+			{
+				get
+				{
+					return _Name;
+				}
+				set
+				{
+					_Name = value;
+					if (PropertyChanged != null)
+					{
+						PropertyChanged(this, new PropertyChangedEventArgs("Name"));
+					}
+				}
+			}
+			private string _Ingredients;       //Danh sách nguyên liệu
+			public string Ingredients
+			{
+				get
+				{
+					return _Ingredients;
+				}
+				set
+				{
+					_Ingredients = value;
+					if (PropertyChanged != null)
+					{
+						PropertyChanged(this, new PropertyChangedEventArgs("Ingredients"));
+					}
+				}
+			}
+			private bool _IsFavorite;       //Món yêu thích
+			public bool IsFavorite
+			{
+				get
+				{
+					return _IsFavorite;
+				}
+				set
+				{
+					_IsFavorite = value;
+					if (PropertyChanged != null)
+					{
+						PropertyChanged(this, new PropertyChangedEventArgs("IsFavorite"));
+					}
+				}
+			}
+			private string _DateAdd;       //Ngày thêm
+			public string DateAdd
+			{
+				get
+				{
+					return _DateAdd;
+				}
+				set
+				{
+					_DateAdd = value;
+					if (PropertyChanged != null)
+					{
+						PropertyChanged(this, new PropertyChangedEventArgs("DateAdd"));
+					}
+				}
+			}
+			private string _VideoLink;       //Link youtube
+			public string VideoLink
+			{
+				get
+				{
+					return _VideoLink;
+				}
+				set
+				{
+					_VideoLink = value;
+					if (PropertyChanged != null)
+					{
+						PropertyChanged(this, new PropertyChangedEventArgs("VideoLink"));
+					}
+				}
+			}
+			private string _Level;        //Mức độ khó
+			public string Level
+			{
+				get
+				{
+					return _Level;
+				}
+				set
+				{
+					_Level = value;
+					if (PropertyChanged != null)
+					{
+						PropertyChanged(this, new PropertyChangedEventArgs("Level"));
+					}
+				}
+			}
+			private string _Type;        //Loại đồ ăn
+			public string Type
+			{
+				get
+				{
+					return _Type;
+				}
+				set
+				{
+					_Type = value;
+					if (PropertyChanged != null)
+					{
+						PropertyChanged(this, new PropertyChangedEventArgs("Type"));
+					}
+				}
+			}
+			private string _Discription;        //Mô tả khái quát món ăn
+			public string Discription
+			{
+				get
+				{
+					return _Discription;
+				}
+				set
+				{
+					_Discription = value;
+					if (PropertyChanged != null)
+					{
+						PropertyChanged(this, new PropertyChangedEventArgs("Discription"));
+					}
+				}
+			}
 			private string _primaryImagePath;       //Đường dẫn ảnh chính
 			public string PrimaryImagePath
 			{
@@ -273,8 +455,22 @@ namespace FoodRecipeApp
 					}
 				}
 			}
-			public BindingList<Step> Steps { get; set; }    //Các bước thực hiện của món ăn
-
+			private BindingList<Step> _Steps;       //Các bước thực hiện của món ăn
+			public BindingList<Step> Steps
+			{
+				get
+				{
+					return _Steps;
+				}
+				set
+				{
+					_Steps = value;
+					if (PropertyChanged != null)
+					{
+						PropertyChanged(this, new PropertyChangedEventArgs("Steps"));
+					}
+				}
+			}
 			public event PropertyChangedEventHandler PropertyChanged;
 
 		}
@@ -293,6 +489,7 @@ namespace FoodRecipeApp
 			clickedTypeButton.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
 			clickedControlButton = HomeButton;
 			clickedDishButton = null;
+			isEditMode = false;
 
 			//Thêm màn hình Home vào stack
 			List<object> list = new List<object>
@@ -458,10 +655,17 @@ namespace FoodRecipeApp
 				//Đóng giao diện cũ trước khi nhấn nút
 				if (clickedControlButton == HomeButton || clickedControlButton == FavoriteButton)
 				{
+					//if (FoodDetailGrid.Visibility == Visibility.Collapsed)
+					//{
 					var listStack = windowsStack.Pop();
 					var condition = new Condition { Favorite = FilterCondition.Favorite, Type = FilterCondition.Type };
 					listStack.Insert(listStack.Count - 1, condition);
 					windowsStack.Push(listStack);
+					//}
+					//else //Nếu đang ở màn hình chi tiết món ăn thì đóng màn hình chi tiết món ăn lại
+					//{
+					//	FoodDetailGrid.Visibility = Visibility.Collapsed;
+					//}
 				}
 				else if (clickedControlButton == AddDishButton)
 				{
@@ -536,12 +740,20 @@ namespace FoodRecipeApp
 				{
 					AddFoodAnhDishScrollViewer.ScrollToHome();
 					SortFoodList();
-					var index = GetMinID();
-					newFood = new FoodInfomation() { ID = index, VideoLink = "" };
-					//AddFood.Visibility = Visibility.Visible;
-					AddFood.DataContext = newFood;
-					ListStep = new BindingList<Step>();
-					ImageStepItemsControl.ItemsSource = ListStep;
+					if (isEditMode == false)
+					{
+						var index = GetMinID();
+						newFood = new FoodInfomation() { ID = index, VideoLink = "" };
+						AddFood.DataContext = newFood;
+						ListStep = new BindingList<Step>();
+						ImageStepItemsControl.ItemsSource = ListStep;
+					}
+					else
+					{
+						AddFood.DataContext = ListFoodInfo[CurrentElementIndex];
+						ImageStepItemsControl.ItemsSource = ListFoodInfo[CurrentElementIndex].Steps;
+						ListStep = ListFoodInfo[CurrentElementIndex].Steps;
+					}
 
 					//Thêm màn hình Add vào stack
 					list.Add(AddFood);
@@ -687,7 +899,14 @@ namespace FoodRecipeApp
 					}
 					else
 					{
-						CurrentElementIndex = ListFoodInfo.Count - 1;
+						if (isEditMode == false)
+						{
+							CurrentElementIndex = ListFoodInfo.Count - 1;
+						}
+						else
+						{
+							//Do nothing
+						}
 					}
 				}
 
@@ -827,7 +1046,14 @@ namespace FoodRecipeApp
 			if (fileDialog.ShowDialog() == true)
 			{
 				string filePath = fileDialog.FileName;
-				newFood.PrimaryImagePath = filePath;
+				if (isEditMode == false)
+				{
+					newFood.PrimaryImagePath = filePath;
+				}
+				else
+				{
+					ListFoodInfo[CurrentElementIndex].PrimaryImagePath = filePath;
+				}
 			}
 			else
 			{
@@ -869,19 +1095,33 @@ namespace FoodRecipeApp
 		{
 			if (FoodTitleTextBox.Text != "")
 			{
-				newFood.DateAdd = DateTime.Now.ToString();
+				FoodInfomation food;
+				if (isEditMode == false)
+				{
+					food = newFood;
+				}
+				else
+				{
+					food = ListFoodInfo[CurrentElementIndex];
+				}
+				food.DateAdd = DateTime.Now.ToString();
 				var comboBoxItem = (ComboBoxItem)LevelComboBox.SelectedItem;
-				newFood.Level = (string)comboBoxItem.Content;
+				food.Level = (string)comboBoxItem.Content;
 				comboBoxItem = (ComboBoxItem)TypeComboBox.SelectedItem;
-				newFood.Type = (string)comboBoxItem.Content;
+				food.Type = (string)comboBoxItem.Content;
 				string newFolder = GetAppDomain();
-				string foodPicName = $"{newFood.ID}.jpg";
+				string foodPicName = $"{food.ID}.jpg";
 				string newPath = $"{newFolder}\\images\\{foodPicName}";
 
-				if (newFood.PrimaryImagePath != null)
+				if (food.PrimaryImagePath != null)
 				{
-					File.Copy(newFood.PrimaryImagePath, newPath);
-					newFood.PrimaryImagePath = $"images\\{foodPicName}";
+					//Nếu file đã tồn tại thì xóa để thêm mới
+					//while (File.Exists(newPath) == true)
+					//{
+					//	File.Replace(food.PrimaryImagePath, newPath, null);
+					//}
+					//File.Copy(food.PrimaryImagePath, newPath);
+					//food.PrimaryImagePath = $"images\\{foodPicName}";
 				}
 				else
 				{
@@ -890,16 +1130,27 @@ namespace FoodRecipeApp
 
 				SaveStepsImages();
 
-				newFood.Steps = ListStep;
-				ListFoodInfo.Add(newFood);
-
+				food.Steps = ListStep;
+				if (isEditMode == false)
+				{
+					ListFoodInfo.Add(newFood);
+				}
+				else
+				{
+					//Do nothing
+				}
+				
 				UpdateUIFromData();
-
+				SaveOrDiscardBorder.Visibility = Visibility.Collapsed;
 				ProcessPanelVisible(Visibility.Collapsed);
 				windowsStack.Pop();
-				FoodImage_Click(null, new RoutedEventArgs());
+				//FoodImage_Click(null, new RoutedEventArgs());
 
-				SaveOrDiscardBorder.Visibility = Visibility.Collapsed;
+
+				ProcessPanelVisible(Visibility.Visible);
+
+				isEditMode = false;
+				
 			}
 			else
 			{
@@ -907,7 +1158,7 @@ namespace FoodRecipeApp
 				AddFoodAnhDishScrollViewer.ScrollToHome();
 			}
 		}
-		
+
 		private void CancelFood_Click(object sender, RoutedEventArgs e)
 		{
 			SaveOrDiscardBorder.Visibility = Visibility.Visible;
@@ -955,29 +1206,29 @@ namespace FoodRecipeApp
 			var editIngredientDialog = new EditIngredientDialog(ColorScheme, ingredientToEdit);
 			editIngredientDialog.Owner = this;
 			editIngredientDialog.ShowDialog();
-            if (editIngredientDialog.DialogResult == true)
-            {
-				for(int i = 0; i < ListDish.Count; i++)
-                {
+			if (editIngredientDialog.DialogResult == true)
+			{
+				for (int i = 0; i < ListDish.Count; i++)
+				{
 					ingredientToEdit.Type = editIngredientDialog.IngredientType;
 					ingredientToEdit.IngredientName = editIngredientDialog.IngredientName;
-                }
+				}
 
 				UpdateIngredientGrouping();
 			}
-            else
-            {
+			else
+			{
 				//Xoá
 				var currentGroceries = DishInListItemsControl.ItemsSource as BindingList<Ingredient>;
-				for(int i = 0; i< currentGroceries.Count; i++)
-                {
-					if(ingredientToEdit == currentGroceries[i])
-                    {
+				for (int i = 0; i < currentGroceries.Count; i++)
+				{
+					if (ingredientToEdit == currentGroceries[i])
+					{
 						currentGroceries.Remove(ingredientToEdit);
-                    }
-                }
-				
-            }
+					}
+				}
+
+			}
 		}
 
 		private void DishListName_Click(object sender, RoutedEventArgs e)
@@ -1146,6 +1397,25 @@ namespace FoodRecipeApp
 			SettingTitleTextBlock.Foreground = SettingTextBlock.Background;
 		}
 
+		private void EditDetailFoodInfoButton_Click(object sender, RoutedEventArgs e)
+		{
+			isEditMode = true;
+			var tempButton = clickedControlButton;
+			changeClickedControlButton_Click(AddDishButton, null);
+			clickedControlButton = tempButton;
+			//ProcessPanelVisible(Visibility.Collapsed);
+			//windowsStack.Pop();
+			//ProcessPanelVisible(Visibility.Visible);
+		}
+
+		private void DeleteFoodButton_Click(object sender, RoutedEventArgs e)
+		{
+			ListFoodInfo.RemoveAt(CurrentElementIndex);
+			ProcessPanelVisible(Visibility.Collapsed);
+			windowsStack.Pop();
+			ProcessPanelVisible(Visibility.Visible);
+			UpdateUIFromData();
+		}
 
 
 		//---------------------------------------- Các hàm sắp xếp --------------------------------------------//
@@ -1368,7 +1638,7 @@ namespace FoodRecipeApp
 			if (e.Key == Key.Down)
 			{
 				searchComboBox.SelectedIndex++;
-				
+
 			}
 		}
 
@@ -1415,7 +1685,7 @@ namespace FoodRecipeApp
 		}
 
 		private void searchComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{		
+		{
 			int index = searchComboBox.SelectedIndex;
 			if (index >= 0)
 			{
@@ -1457,12 +1727,21 @@ namespace FoodRecipeApp
 		private void SaveStepsImages()
 		{
 			string newFolder = GetAppDomain();
+			FoodInfomation food;
+			if (isEditMode == false)
+			{
+				food = newFood;
+			}
+			else
+			{
+				food = ListFoodInfo[CurrentElementIndex];
+			}
 
 			foreach (var step in ListStep)
 			{
 				for (int i = 0; i < step.ImagesPathPerStep.Count; i++)
 				{
-					string stepPicName = $"{newFood.ID}_Step{step.Order}_Image{i + 1}.jpg";
+					string stepPicName = $"{food.ID}_Step{step.Order}_Image{i + 1}.jpg";
 					string newPath = $"{newFolder}\\images\\{stepPicName}";
 					File.Copy(step.ImagesPathPerStep[i].ImagePath, newPath);
 					step.ImagesPathPerStep[i].ImagePath = $"images\\{stepPicName}";
@@ -1539,10 +1818,10 @@ namespace FoodRecipeApp
 			UpdatePageButtonStatus();
 		}
 
-		
 
-        /*Cập nhật lại danh sách món ăn trên màn hình sau khi nhấn thích*/
-        private void UpdateFoodStatus()
+
+		/*Cập nhật lại danh sách món ăn trên màn hình sau khi nhấn thích*/
+		private void UpdateFoodStatus()
 		{
 			view.Filter = Filter;
 			GetFilterList();
@@ -1585,7 +1864,7 @@ namespace FoodRecipeApp
 		}
 
 		private void UpdateIngredientGrouping()
-        {
+		{
 			DishIngredientView = (CollectionView)CollectionViewSource.GetDefaultView(DishInListItemsControl.ItemsSource);
 			DishIngredientView.GroupDescriptions.Clear();
 			PropertyGroupDescription groupDescription = new PropertyGroupDescription("Type");
@@ -1640,25 +1919,18 @@ namespace FoodRecipeApp
 						//Hiển thị màu của thanh mới vừa được chọn
 						var wrapPanel = (WrapPanel)(panel as Button).Content;
 						var collection = wrapPanel.Children;
-						//if (collection[0].GetType().Name == "TextBlock" && collection[2].GetType().Name == "TextBlock")
-						//{
-							var block = (TextBlock)collection[0];
-							var text = (TextBlock)collection[2];
-							if (state == Visibility.Visible)
-							{
-								block.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
-								text.Foreground = block.Background;
-							}
-							else
-							{
-								block.Background = Brushes.Transparent;
-								text.Foreground = Brushes.Black;
-							}
-						//}
-						//else
-						//{
-						//	//Do nothing
-						//}
+						var block = (TextBlock)collection[0];
+						var text = (TextBlock)collection[2];
+						if (state == Visibility.Visible)
+						{
+							block.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
+							text.Foreground = block.Background;
+						}
+						else
+						{
+							block.Background = Brushes.Transparent;
+							text.Foreground = Brushes.Black;
+						}
 						break;
 					default:
 						//Do nothing

@@ -936,6 +936,7 @@ namespace FoodRecipeApp
 			var buttonSent = sender as Button;
 			var ingredientToEdit = buttonSent.DataContext as Ingredient;
 			var editIngredientDialog = new EditIngredientDialog(ColorScheme, ingredientToEdit);
+			editIngredientDialog.Owner = this;
 			editIngredientDialog.ShowDialog();
             if (editIngredientDialog.DialogResult == true)
             {
@@ -1541,8 +1542,6 @@ namespace FoodRecipeApp
 			}
 			UpdatePageButtonStatus();
 		}
-
-       
 
         private void UpdateIngredientGrouping()
         {

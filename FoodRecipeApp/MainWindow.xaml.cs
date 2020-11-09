@@ -1298,8 +1298,10 @@ namespace FoodRecipeApp
 
 		private void searchTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			searchComboBox.IsDropDownOpen = true;
-
+			if (e.Text != "\u001b")  //khác escapes
+			{
+				searchComboBox.IsDropDownOpen = true;
+			}
 			if (!string.IsNullOrEmpty(searchTextBox.Text))
 			{
 				string fullText = ConvertToUnSign(searchTextBox.Text.Insert(searchTextBox.CaretIndex, (e.Text)));

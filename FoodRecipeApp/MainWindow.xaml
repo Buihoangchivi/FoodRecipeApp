@@ -183,7 +183,7 @@
                             </Button>
                         </StackPanel>
                         <StackPanel>
-                            <Grid Name="ahihi">
+                            <Grid>
                                 <ComboBox IsTextSearchEnabled="False" IsEditable="True" Name="searchComboBox"
                                       SelectionChanged="searchComboBox_SelectionChanged"
                                       KeyDown="dockingContentControl_KeyDown" Height="32" Width="190"
@@ -197,8 +197,15 @@
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                <Button Name="SearchFoodButton" Content="{Binding Name}" Click="SearchFoodButton_Click"/>
-                                                <Image Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}" Margin="0, 0 , 0, 0" Width="100" Height="100"/>
+                                                <Button Click="SearchFoodButton_Click">
+                                                    <Button.Content>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center"></TextBlock>
+                                                            <Image Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}" Margin="0, 0 , 0, 0" Width="100" Height="100"/>
+                                                        </StackPanel>
+                                                    </Button.Content>
+                                                </Button>
+                                                
                                             </StackPanel>
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>

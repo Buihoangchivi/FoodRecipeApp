@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoodRecipeApp"
         mc:Ignorable="d"
-        Title="EditIngredientDialog" Height="230" Width="350" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" WindowStyle="None">
+        Title="EditIngredientDialog" Height="230" Width="350" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" WindowStyle="None" Background="#e8e4e3" BorderThickness="1">
     <StackPanel Margin="20 10 24 10">
         <Label FontSize="20" FontWeight="Bold">Edit Ingredient</Label>
         <Label Name="EditIngredientNameTextBox" Height="30" VerticalAlignment="Center">Item</Label>

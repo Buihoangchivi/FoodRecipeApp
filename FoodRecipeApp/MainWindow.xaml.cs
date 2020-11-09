@@ -468,6 +468,7 @@ namespace FoodRecipeApp
 					AddFood.DataContext = null;
 					DefaultLevelComboxBoxItem.IsSelected = true;
 					DefaultTypeComboxBoxItem.IsSelected = true;
+					SaveOrDiscardBorder.Visibility = Visibility.Collapsed;
 				}
 				else if (clickedControlButton == DishButton)
 				{
@@ -894,6 +895,20 @@ namespace FoodRecipeApp
 			ProcessPanelVisible(Visibility.Collapsed);
 			windowsStack.Pop();
 			FoodImage_Click(null, new RoutedEventArgs());
+
+			SaveOrDiscardBorder.Visibility = Visibility.Collapsed;
+		}
+		
+		private void CancelFood_Click(object sender, RoutedEventArgs e)
+		{
+			SaveOrDiscardBorder.Visibility = Visibility.Visible;
+			AddFoodAnhDishScrollViewer.ScrollToEnd();
+		}
+
+		private void DiscardChanges_Click(object sender, RoutedEventArgs e)
+		{
+			SaveOrDiscardBorder.Visibility = Visibility.Collapsed;
+			BackButton_Click(null, null);
 		}
 
 		private void Favorite_Click(object sender, RoutedEventArgs e)
@@ -1054,11 +1069,6 @@ namespace FoodRecipeApp
 			{
 				//Do nothing
 			}
-		}
-
-		private void CancelFood_Click(object sender, RoutedEventArgs e)
-		{
-
 		}
 
 		private void FirstPageButton_Click(object sender, RoutedEventArgs e)

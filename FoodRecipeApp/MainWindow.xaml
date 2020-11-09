@@ -23,27 +23,27 @@
     <DockPanel LastChildFill="True" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown">
 
         <!--Thanh tiêu đề-->
-            <DockPanel x:Name="TitleBar" DockPanel.Dock="Top" Height="35" Background="{Binding ColorScheme}">
-                <Button Name="BackButton" Width="46" BorderThickness="0" Padding="7" Background="{Binding ColorScheme}" 
+        <DockPanel x:Name="TitleBar" DockPanel.Dock="Top" Height="35" Background="{Binding ColorScheme}">
+            <Button Name="BackButton" Width="46" BorderThickness="0" Padding="7" Background="{Binding ColorScheme}" 
                     Click="BackButton_Click" Visibility="Collapsed" DockPanel.Dock="Left">
-                    <Image Source="Images/backButton.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                </Button>
-                <TextBlock HorizontalAlignment="Center" DockPanel.Dock="Left" Margin="10,0,0,0" 
+                <Image Source="Images/backButton.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+            </Button>
+            <TextBlock HorizontalAlignment="Center" DockPanel.Dock="Left" Margin="10,0,0,0" 
                        FontSize="15" VerticalAlignment="Center" Foreground="White">Food Recipe</TextBlock>
-                <Button x:Name="CloseButton" Width="47" Click="CloseButton_Click" BorderThickness="0" 
+            <Button x:Name="CloseButton" Width="47" Click="CloseButton_Click" BorderThickness="0" 
                     Padding="12" Background="{Binding ColorScheme}" DockPanel.Dock="Right">
-                    <Image Source="Images/close.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                </Button>
-                <Button x:Name="MaxButton" Width="47" Click="MaximizeButton_Click" BorderThickness="0" 
+                <Image Source="Images/close.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+            </Button>
+            <Button x:Name="MaxButton" Width="47" Click="MaximizeButton_Click" BorderThickness="0" 
                     Padding="12" Background="{Binding ColorScheme}" DockPanel.Dock="Right">
-                    <Image Source="Images/maximize.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                </Button>
-                <Button x:Name="MinButton" Width="47" Click="MinimizeButton_Click" BorderThickness="0"
+                <Image Source="Images/maximize.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+            </Button>
+            <Button x:Name="MinButton" Width="47" Click="MinimizeButton_Click" BorderThickness="0"
                     Padding="11" Background="{Binding ColorScheme}" DockPanel.Dock="Right">
-                    <Image Source="Images/minimize.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                </Button>
-                <TextBlock></TextBlock>
-            </DockPanel>
+                <Image Source="Images/minimize.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+            </Button>
+            <TextBlock></TextBlock>
+        </DockPanel>
 
         <!--Menu Control-->
         <StackPanel x:Name="ControlStackPanel" DockPanel.Dock="Left" Background="#FFDDDDDD" Width="250">
@@ -434,7 +434,7 @@
                     </Grid>
 
                 </Grid>
-                
+
                 <Grid Grid.Row="3" Grid.ColumnSpan="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
@@ -614,7 +614,7 @@
 
                         <!--Hai nút lưu và hủy thêm món-->
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button Margin="20,0,0,15" Background="White" BorderThickness="0" Name="SaveFood" 
+                            <Button Margin="0,0,0,5" Background="White" BorderThickness="0" Name="SaveFood" 
                                 Click="SaveFood_Click" Height="35" VerticalAlignment="Top">
                                 <WrapPanel Margin="15,0">
                                     <Image Source="Images/saveImage.png" Width="20" Margin="0,0,10,0" 
@@ -631,7 +631,23 @@
                                 </WrapPanel>
                             </Button>
                         </StackPanel>
+
+                        <!--Khung hiển thị 2 lựa chọn lưu hay không lưu dữ liệu khi nhấn Cancel-->
+                        <Border Name="SaveOrDiscardBorder" Margin="0,5,0,20" BorderBrush="Gray" BorderThickness="0.5" HorizontalAlignment="Right"
+                                Background="{x:Static SystemColors.ControlLightLightBrush}" Visibility="Collapsed">
+                            <Border.BitmapEffect>
+                                <DropShadowBitmapEffect Color="Black" Direction="270" ShadowDepth="10" Opacity="0.3" Softness="2"/>
+                            </Border.BitmapEffect>
+                            <StackPanel>
+                                <Button HorizontalContentAlignment="Left" Margin="0,8,0,0" Padding="10,5,0,5"
+                                Background="White" BorderThickness="0" FontSize="15" Width="145" Click="SaveFood_Click">Save changes</Button>
+                                <Button HorizontalContentAlignment="Left" Margin="0,0,0,8" Padding="10,5,0,5"
+                                Background="White" BorderThickness="0" FontSize="15" Click="DiscardChanges_Click">Discard changes</Button>
+                            </StackPanel>
+                        </Border>
+
                     </StackPanel>
+
                 </Grid>
 
                 <!--Thêm nguyên liệu-->

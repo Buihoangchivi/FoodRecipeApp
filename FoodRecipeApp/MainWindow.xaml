@@ -183,8 +183,8 @@
                             </Button>
                         </StackPanel>
                         <StackPanel>
-                            <Grid>
-                                <ComboBox IsTextSearchEnabled="False" IsEditable="True" x:Name="searchComboBox"
+                            <Grid Name="ahihi">
+                                <ComboBox IsTextSearchEnabled="False" IsEditable="True" Name="searchComboBox"
                                       SelectionChanged="searchComboBox_SelectionChanged"
                                       KeyDown="dockingContentControl_KeyDown" Height="32" Width="190"
                                       BorderThickness="0" VerticalContentAlignment="Center">
@@ -197,13 +197,13 @@
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                <Button Content="{Binding Name}"/>
+                                                <Button Name="SearchFoodButton" Content="{Binding Name}" Click="SearchFoodButton_Click"/>
                                                 <Image Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}" Margin="0, 0 , 0, 0" Width="100" Height="100"/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>
-                                <TextBox x:Name="searchTextBox" PreviewKeyDown="searchTextBox_PreviewKeyDown"
+                                <TextBox Name="searchTextBox" PreviewKeyDown="searchTextBox_PreviewKeyDown"
                                          Width="175" HorizontalAlignment="Left"
                                          PreviewTextInput="searchTextBox_PreviewTextInput"
                                          PreviewKeyUp="PreviewKeyUp_EnhanceTextBoxSearch"

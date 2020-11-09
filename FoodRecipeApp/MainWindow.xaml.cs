@@ -1226,8 +1226,18 @@ namespace FoodRecipeApp
 
 		private int GetElementIndexInArray(Button button)
 		{
-			var wrapPanel = (WrapPanel)button.Content;
-			var curFood = wrapPanel.DataContext as FoodInfomation;
+			var curFood = new FoodInfomation();
+			//Nếu nhấn hình ảnh món ăn ở màn hình Home
+			if (button.Content.GetType().Name == "WrapPanel")
+			{
+				var wrapPanel = (WrapPanel)button.Content;
+				curFood = (FoodInfomation)wrapPanel.DataContext;
+			}
+			else //Nếu nhấn món ăn ở trong nút Search
+			{
+				curFood = (FoodInfomation)button.DataContext;
+			}
+
 			var result = 0;
 			for (int i = 0; i < ListFoodInfo.Count; i++)
 			{
@@ -1543,7 +1553,12 @@ namespace FoodRecipeApp
 			UpdatePageButtonStatus();
 		}
 
-        private void UpdateIngredientGrouping()
+		private void SearchFoodButton_Click(object sender, RoutedEventArgs e)
+		{
+			FoodImage_Click(sender, null);
+		}
+
+		private void UpdateIngredientGrouping()
         {
 			DishIngredientView = (CollectionView)CollectionViewSource.GetDefaultView(DishInListItemsControl.ItemsSource);
 			DishIngredientView.GroupDescriptions.Clear();

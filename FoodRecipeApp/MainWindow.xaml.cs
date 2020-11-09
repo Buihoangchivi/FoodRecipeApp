@@ -1392,8 +1392,12 @@ namespace FoodRecipeApp
 		private void searchComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{		
 			int index = searchComboBox.SelectedIndex;
-			string textSelected = ListFoodInfo[index].Name;
-			searchTextBox.Text = textSelected;
+			if (index >= 0)
+			{
+				var selectedFood = searchComboBox.SelectedItem as FoodInfomation;
+				string textSelected = selectedFood.Name;
+				searchTextBox.Text = textSelected;
+			}
 		}
 
 		//Cài đặt để có thể di chuyển cửa sổ khi nhấn giữ chuột và kéo Title Bar

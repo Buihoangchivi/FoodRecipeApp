@@ -643,10 +643,6 @@ namespace FoodRecipeApp
 					FoodImage_Click(null, null);
 				}
 			}
-			//else if (window[0].GetType().Name == "Int32")
-			//{
-			//	FoodImage_Click(null, null);
-			//}
 			else
 			{
 				//Do nothing
@@ -683,7 +679,14 @@ namespace FoodRecipeApp
 				}
 				else
 				{
-					CurrentElementIndex = (int)windowsStack.Peek()[0];
+					if (e == null)
+					{
+						CurrentElementIndex = (int)windowsStack.Peek()[0];
+					}
+					else
+					{
+						CurrentElementIndex = ListFoodInfo.Count - 1;
+					}
 				}
 
 				//Binding dữ liệu để hiển thị chi tiết món ăn
@@ -753,7 +756,7 @@ namespace FoodRecipeApp
 					//Do nothing
 				}
 
-				if (sender != null)
+				if (sender != null || e != null)
 				{
 					//Mở giao diện chi tiết món ăn
 					windowsStack.Push(new List<object> { CurrentElementIndex, FoodDetailScrollViewer, clickedControlButton });
@@ -888,19 +891,9 @@ namespace FoodRecipeApp
 
 			UpdateUIFromData();
 
-			BackButton_Click(null, null);
-
-			//var list = new List<object>
-			//{
-			//	ListFoodInfo.Count - 1,
-			//	FoodDetailScrollViewer,
-			//	AddDishButton
-			//};
-			//windowsStack.Push(list);
-			//windowsStack.Push(list);
-			//BackButton_Click(null, null);
-			//ProcessPanelVisible(Visibility.Collapsed);
-			//windowsStack.Pop();
+			ProcessPanelVisible(Visibility.Collapsed);
+			windowsStack.Pop();
+			FoodImage_Click(null, new RoutedEventArgs());
 		}
 
 		private void Favorite_Click(object sender, RoutedEventArgs e)

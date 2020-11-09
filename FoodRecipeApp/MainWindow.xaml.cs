@@ -421,7 +421,7 @@ namespace FoodRecipeApp
 
 		private void changeClickedTypeButton_Click(object sender, RoutedEventArgs e)
 		{
-			clickedTypeButton.Foreground = Brushes.Black;
+			clickedTypeButton.Foreground = Brushes.Gray;
 
 			var button = (Button)sender;
 			clickedTypeButton = button;

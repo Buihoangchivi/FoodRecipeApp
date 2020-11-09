@@ -165,11 +165,11 @@
         <DockPanel Name="TypeBar" Height="40" Margin="15,0" DockPanel.Dock="Top" LastChildFill="True" Visibility="Visible">
             <StackPanel Orientation="Horizontal" Width="590" DockPanel.Dock="Left">
                 <Button Height="40" Width="120" x:Name="AllButton" Click="changeClickedTypeButton_Click" 
-                        BorderThickness="0" Content="All" FontSize="15"/>
+                        BorderThickness="0" Content="All" FontSize="15" Background="White" Foreground="Gray"/>
                 <Button Height="40" Width="120" x:Name="FoodButton" Click="changeClickedTypeButton_Click" 
-                        BorderThickness="0" Content="Food" FontSize="15"/>
+                        BorderThickness="0" Content="Food" FontSize="15" Background="White" Foreground="Gray"/>
                 <Button Height="40" Width="120" x:Name="DrinksButton" Click="changeClickedTypeButton_Click" 
-                        BorderThickness="0" Content="Drinks" FontSize="15"/>
+                        BorderThickness="0" Content="Drinks" FontSize="15" Background="White" Foreground="Gray"/>
             </StackPanel>
             <StackPanel DockPanel.Dock="Right" Width="269">
                 <Border CornerRadius="6" Margin="0,3,5,0" BorderBrush="Gray" Padding="0,0,2,0" BorderThickness="3">
@@ -205,9 +205,9 @@
                                 </ComboBox>
                                 <TextBox Name="searchTextBox" PreviewKeyDown="searchTextBox_PreviewKeyDown"
                                          Width="175" HorizontalAlignment="Left"
-                                         PreviewTextInput="searchTextBox_PreviewTextInput"
-                                         PreviewKeyUp="PreviewKeyUp_EnhanceTextBoxSearch"
-                                         DataObject.Pasting="Pasting_EnhanceTextSearch"></TextBox>
+                                         PreviewTextInput="searchTextBox_PreviewTextInput" FontSize="14"
+                                         PreviewKeyUp="PreviewKeyUp_EnhanceTextBoxSearch" VerticalContentAlignment="Center"
+                                         DataObject.Pasting="Pasting_EnhanceTextSearch" BorderThickness="0"></TextBox>
                             </Grid>
 
                         </StackPanel>

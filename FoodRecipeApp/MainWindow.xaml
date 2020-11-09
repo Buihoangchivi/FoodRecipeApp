@@ -728,7 +728,7 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
 
-                    <ItemsControl Grid.Row="2" Grid.Column="1" Name="DishInListItemsControl"  Margin="15 0 0 0">
+                    <ItemsControl Grid.Row="2" Grid.Column="1" Name="DishInListItemsControl"  Margin="15 0 0 0" Foreground="{Binding ColorScheme}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel />
@@ -748,7 +748,7 @@
                                         </WrapPanel>
                                     </Button>
                                     <TextBlock Grid.Column="1" Text="{Binding IngredientName}" Padding="5" 
-                                               FontSize="14" VerticalAlignment="Center"></TextBlock>
+                                               FontSize="14" VerticalAlignment="Center" Foreground="Black"></TextBlock>
                                 </DockPanel>
 
                             </DataTemplate>
@@ -757,7 +757,7 @@
                             <GroupStyle>
                                 <GroupStyle.HeaderTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16"/>
+                                        <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="15"/>
                                     </DataTemplate>
                                 </GroupStyle.HeaderTemplate>
                             </GroupStyle>

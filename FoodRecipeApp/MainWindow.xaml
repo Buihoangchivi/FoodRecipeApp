@@ -186,8 +186,14 @@
                             <Grid>
                                 <ComboBox IsTextSearchEnabled="False" IsEditable="True" x:Name="searchComboBox"
                                       SelectionChanged="searchComboBox_SelectionChanged"
-                                      KeyDown="dockingContentControl_KeyDown" Height="32" Width="190" 
+                                      KeyDown="dockingContentControl_KeyDown" Height="32" Width="190"
                                       BorderThickness="0" VerticalContentAlignment="Center">
+                                    <!--Set chiều rộng cho dropdown list-->
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Setter Property="Width" Value="190"></Setter>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">

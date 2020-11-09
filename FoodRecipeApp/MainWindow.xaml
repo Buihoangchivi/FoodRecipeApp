@@ -464,8 +464,11 @@
 
                     <StackPanel Grid.Row="0" Grid.Column="0">
                         <TextBlock Padding="5" FontSize="20" Name="AddFood_TitleTextBlock">Title</TextBlock>
+                        <TextBlock Name="EnterFoodNameTextBlock" Margin="5,0,0,10" Foreground="Red" 
+                                   FontSize="16" Visibility="Collapsed">Enter a name for the recipe.</TextBlock>
                         <TextBox Name="FoodTitleTextBox" Margin="5,0,20,5" Padding="5" FontSize="14" Text="{Binding Name}"
-                             VerticalContentAlignment="Center" TextWrapping="Wrap" BorderThickness="2"></TextBox>
+                                 VerticalContentAlignment="Center" TextWrapping="Wrap" BorderThickness="2"
+                                 TextChanged="FoodTitleTextBox_TextChanged"></TextBox>
 
                         <TextBlock Padding="5" FontSize="20" Name="AddFood_LinkVideoTextBlock">Link Youtube</TextBlock>
                         <TextBox Name="YoutubeLinkTextBox" Margin="5,0,20,5" Padding="5" FontSize="14" Text="{Binding VideoLink}"

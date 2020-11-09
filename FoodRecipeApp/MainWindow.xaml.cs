@@ -469,6 +469,7 @@ namespace FoodRecipeApp
 					DefaultLevelComboxBoxItem.IsSelected = true;
 					DefaultTypeComboxBoxItem.IsSelected = true;
 					SaveOrDiscardBorder.Visibility = Visibility.Collapsed;
+					EnterFoodNameTextBlock.Visibility = Visibility.Collapsed;
 				}
 				else if (clickedControlButton == DishButton)
 				{
@@ -866,37 +867,45 @@ namespace FoodRecipeApp
 
 		private void SaveFood_Click(object sender, RoutedEventArgs e)
 		{
-			newFood.DateAdd = DateTime.Now.ToString();
-			var comboBoxItem = (ComboBoxItem)LevelComboBox.SelectedItem;
-			newFood.Level = (string)comboBoxItem.Content;
-			comboBoxItem = (ComboBoxItem)TypeComboBox.SelectedItem;
-			newFood.Type = (string)comboBoxItem.Content;
-			string newFolder = GetAppDomain();
-			string foodPicName = $"{newFood.ID}.jpg";
-			string newPath = $"{newFolder}\\images\\{foodPicName}";
-
-			if (newFood.PrimaryImagePath != null)
+			if (FoodTitleTextBox.Text != "")
 			{
-				File.Copy(newFood.PrimaryImagePath, newPath);
-				newFood.PrimaryImagePath = $"images\\{foodPicName}";
+				newFood.DateAdd = DateTime.Now.ToString();
+				var comboBoxItem = (ComboBoxItem)LevelComboBox.SelectedItem;
+				newFood.Level = (string)comboBoxItem.Content;
+				comboBoxItem = (ComboBoxItem)TypeComboBox.SelectedItem;
+				newFood.Type = (string)comboBoxItem.Content;
+				string newFolder = GetAppDomain();
+				string foodPicName = $"{newFood.ID}.jpg";
+				string newPath = $"{newFolder}\\images\\{foodPicName}";
+
+				if (newFood.PrimaryImagePath != null)
+				{
+					File.Copy(newFood.PrimaryImagePath, newPath);
+					newFood.PrimaryImagePath = $"images\\{foodPicName}";
+				}
+				else
+				{
+					//Do nothing
+				}
+
+				SaveStepsImages();
+
+				newFood.Steps = ListStep;
+				ListFoodInfo.Add(newFood);
+
+				UpdateUIFromData();
+
+				ProcessPanelVisible(Visibility.Collapsed);
+				windowsStack.Pop();
+				FoodImage_Click(null, new RoutedEventArgs());
+
+				SaveOrDiscardBorder.Visibility = Visibility.Collapsed;
 			}
 			else
 			{
-				//Do nothing
+				EnterFoodNameTextBlock.Visibility = Visibility.Visible;
+				AddFoodAnhDishScrollViewer.ScrollToHome();
 			}
-
-			SaveStepsImages();
-
-			newFood.Steps = ListStep;
-			ListFoodInfo.Add(newFood);
-
-			UpdateUIFromData();
-
-			ProcessPanelVisible(Visibility.Collapsed);
-			windowsStack.Pop();
-			FoodImage_Click(null, new RoutedEventArgs());
-
-			SaveOrDiscardBorder.Visibility = Visibility.Collapsed;
 		}
 		
 		private void CancelFood_Click(object sender, RoutedEventArgs e)
@@ -1559,6 +1568,18 @@ namespace FoodRecipeApp
 		private void SearchFoodButton_Click(object sender, RoutedEventArgs e)
 		{
 			FoodImage_Click(sender, null);
+		}
+
+		private void FoodTitleTextBox_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			if (FoodTitleTextBox.Text != "" && EnterFoodNameTextBlock.Visibility == Visibility.Visible)
+			{
+				EnterFoodNameTextBlock.Visibility = Visibility.Collapsed;
+			}
+			else
+			{
+				//Do nothing
+			}
 		}
 
 		private void UpdateIngredientGrouping()

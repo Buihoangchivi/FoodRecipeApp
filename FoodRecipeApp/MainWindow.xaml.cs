@@ -919,51 +919,7 @@ namespace FoodRecipeApp
 				FoodInfo_DirectionsTextBlock.Foreground = FoodInfo_NameTextBlock.Foreground;
 				FoodInfo_VideoTextBlock.Foreground = FoodInfo_NameTextBlock.Foreground;
 
-				//Binding dữ liệu các hình ảnh của bước hiện tại đang được hiển thị trên màn hình
-				if (ListFoodInfo[CurrentElementIndex].Steps.Count > 0)
-				{
-					StepsGrid.DataContext = ListFoodInfo[CurrentElementIndex].Steps[0];
-					ImagesPerStepItemsControl.ItemsSource = ListFoodInfo[CurrentElementIndex].Steps[0].ImagesPathPerStep;
-
-					//Đếm số bước bắt đầu từ 1
-					CurrentStep = 1;
-
-					//Hiển thị các bước nếu số bước lớn hơn 0
-					DirectionsGrid.Visibility = Visibility.Visible;
-				}
-				else
-				{
-					//Không hiển thị các bước nếu số bước bằng 0
-					DirectionsGrid.Visibility = Visibility.Collapsed;
-
-					//Đếm số bước bắt đầu từ 0
-					CurrentStep = 0;
-				}
-
-				//Hiển thị thanh phân trang cho số bước
-				TotalStep = ListFoodInfo[CurrentElementIndex].Steps.Count;
-
-				//Chức năng lùi về bước trước bị vô hiệu hóa khi đang ở bước đầu tiên
-				PreviousStepButton.IsEnabled = false;
-				PreviousStepTextBlock.Foreground = Brushes.Black;
-
-				//Binding dữ liệu cho phân trang các bước của món ăn
-				StepPaginationBar.DataContext = this;
-
-				//Chức năng tiến lên bước sau bị vô hiệu hóa khi đang ở bước cuối cùng
-				if (CurrentStep == TotalStep)
-				{
-					NextStepButton.IsEnabled = false;
-					NextStepTextBlock.Foreground = Brushes.Black;
-				}
-				else
-				{
-					NextStepButton.IsEnabled = true;
-					NextStepTextBlock.Foreground = Brushes.White;
-				}
-
-				//Hiển thị video mô tả món ăn
-				Display(ListFoodInfo[CurrentElementIndex].VideoLink);
+				UpdatePaginationForDetailFoodUI();
 
 				if (windowsStack.Count == 1)
 				{
@@ -1146,7 +1102,7 @@ namespace FoodRecipeApp
 				windowsStack.Pop();
 				//FoodImage_Click(null, new RoutedEventArgs());
 
-
+				UpdatePaginationForDetailFoodUI();
 				ProcessPanelVisible(Visibility.Visible);
 
 				isEditMode = false;
@@ -1354,10 +1310,19 @@ namespace FoodRecipeApp
 				PreviousStepButton.IsEnabled = false;
 				PreviousStepTextBlock.Foreground = Brushes.Black;
 			}
-			else if (NextStepButton.IsEnabled == false)
+			else
+			{
+				//Do nothing
+			}
+
+			if (NextStepButton.IsEnabled == false)
 			{
 				NextStepButton.IsEnabled = true;
 				NextStepTextBlock.Foreground = Brushes.White;
+			}
+			else
+			{
+				//Do nothing
 			}
 
 			//Lùi về bước trước
@@ -1375,10 +1340,19 @@ namespace FoodRecipeApp
 				NextStepButton.IsEnabled = false;
 				NextStepTextBlock.Foreground = Brushes.Black;
 			}
-			else if (PreviousStepButton.IsEnabled == false)
+			else
+			{
+				//Do nothing
+			}
+			
+			if (PreviousStepButton.IsEnabled == false)
 			{
 				PreviousStepButton.IsEnabled = true;
 				PreviousStepTextBlock.Foreground = Brushes.White;
+			}
+			else
+			{
+				//Do nothing
 			}
 			//Tiến tới bước tiếp theo
 			CurrentStep++;
@@ -1844,6 +1818,55 @@ namespace FoodRecipeApp
 				TotalItem += " item";
 			}
 			UpdatePageButtonStatus();
+		}
+
+		private void UpdatePaginationForDetailFoodUI()
+		{
+			//Binding dữ liệu các hình ảnh của bước hiện tại đang được hiển thị trên màn hình
+			if (ListFoodInfo[CurrentElementIndex].Steps.Count > 0)
+			{
+				StepsGrid.DataContext = ListFoodInfo[CurrentElementIndex].Steps[0];
+				ImagesPerStepItemsControl.ItemsSource = ListFoodInfo[CurrentElementIndex].Steps[0].ImagesPathPerStep;
+
+				//Đếm số bước bắt đầu từ 1
+				CurrentStep = 1;
+
+				//Hiển thị các bước nếu số bước lớn hơn 0
+				DirectionsGrid.Visibility = Visibility.Visible;
+			}
+			else
+			{
+				//Không hiển thị các bước nếu số bước bằng 0
+				DirectionsGrid.Visibility = Visibility.Collapsed;
+
+				//Đếm số bước bắt đầu từ 0
+				CurrentStep = 0;
+			}
+
+			//Hiển thị thanh phân trang cho số bước
+			TotalStep = ListFoodInfo[CurrentElementIndex].Steps.Count;
+
+			//Chức năng lùi về bước trước bị vô hiệu hóa khi đang ở bước đầu tiên
+			PreviousStepButton.IsEnabled = false;
+			PreviousStepTextBlock.Foreground = Brushes.Black;
+
+			//Binding dữ liệu cho phân trang các bước của món ăn
+			StepPaginationBar.DataContext = this;
+
+			//Chức năng tiến lên bước sau bị vô hiệu hóa khi đang ở bước cuối cùng
+			if (CurrentStep == TotalStep)
+			{
+				NextStepButton.IsEnabled = false;
+				NextStepTextBlock.Foreground = Brushes.Black;
+			}
+			else
+			{
+				NextStepButton.IsEnabled = true;
+				NextStepTextBlock.Foreground = Brushes.White;
+			}
+
+			//Hiển thị video mô tả món ăn
+			Display(ListFoodInfo[CurrentElementIndex].VideoLink);
 		}
 
 		private void SearchFoodButton_Click(object sender, RoutedEventArgs e)

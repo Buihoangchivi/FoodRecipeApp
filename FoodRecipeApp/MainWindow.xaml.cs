@@ -514,7 +514,7 @@ namespace FoodRecipeApp
 
 			foreach (var food in ListFoodInfo)
 			{
-				if (food.PrimaryImagePath.Contains("images\\temp"))
+				if (food.PrimaryImagePath!=null && food.PrimaryImagePath.Contains("images\\temp"))
 				{
 					string newFolder = GetAppDomain();
 					string foodPicName = $"{food.ID}.jpg";

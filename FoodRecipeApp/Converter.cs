@@ -13,9 +13,18 @@ namespace FoodRecipeApp
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string relative = (string)value;
-            string folder = AppDomain.CurrentDomain.BaseDirectory;
-            string absolutePath = $"{folder}{relative}";
-            return absolutePath;
+            if (relative != null && !relative.Contains(":\\"))
+            {
+                string folder = AppDomain.CurrentDomain.BaseDirectory;
+                string absolutePath = $"{folder}{relative}";
+                return absolutePath;
+            }
+            else
+            {
+                string folder = "";
+                string absolutePath = $"{folder}{relative}";
+                return absolutePath;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

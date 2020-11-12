@@ -556,7 +556,7 @@
                                 </WrapPanel>
                             </Button>
                         </StackPanel>
-                        <Image Name="PrimaryFoodImage" Grid.Row="1" MaxHeight="200" Margin="70,20" Source="{Binding PrimaryImagePath}"
+                        <Image Name="PrimaryFoodImage" Grid.Row="1" MaxHeight="200" Margin="70,20" Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}"
                            RenderOptions.BitmapScalingMode="HighQuality"></Image>
                     </Grid>
                     <StackPanel Grid.Row="1" Grid.Column="0">
@@ -617,7 +617,7 @@
                                         </StackPanel>
 
                                         <!--Danh sách hình ảnh mô tả bước-->
-                                        <ItemsControl Name="ImageListPerStepItemsControl" Margin="0,5,0,25" Grid.Row="3" Grid.ColumnSpan="2">
+                                        <ItemsControl Name="ImageListPerStepItemsControl" Margin="0,5,0,25" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding ImagesPathPerStep}">
                                             <ItemsControl.ItemsPanel>
                                                 <ItemsPanelTemplate>
                                                     <WrapPanel />
@@ -627,7 +627,7 @@
                                                 <DataTemplate>
                                                     <StackPanel>
                                                         <Image Width="266" Margin="5,0,0,5" Height="200" 
-                                                                   Source="{Binding ImagePath}"
+                                                                   Source="{Binding ImagePath, Converter={StaticResource converter}}"
                                                                    RenderOptions.BitmapScalingMode="HighQuality" Stretch="Fill">
                                                         </Image>
                                                     </StackPanel>

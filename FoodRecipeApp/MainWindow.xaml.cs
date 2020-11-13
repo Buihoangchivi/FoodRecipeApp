@@ -1493,7 +1493,7 @@ namespace FoodRecipeApp
 		{
 			string newFolder = GetAppDomain();
 			string foodPicName = $"{ListFoodInfo[CurrentElementIndex].ID}.jpg";
-			string newPath = $"{newFolder}\\images\\{foodPicName}";
+			string newPath = $"{newFolder}images\\{foodPicName}";
 			if (File.Exists(newPath) == true)
 			{
 				File.Delete(newPath);
@@ -1830,24 +1830,39 @@ namespace FoodRecipeApp
 
 			foreach (var step in newFood.Steps)
 			{
-				int index = 0;
-				string stepPicName = $"{food.ID}_Step{step.Order}_Image{index + 1}.jpg";
-				string newPath = $"{newFolder}images\\{stepPicName}";
 
-				/*Xoá ảnh cũ tránh dư thừa ảnh*/
-				while (File.Exists(newPath)) { 
-					File.Delete(newPath);
-					index++;
-					stepPicName = $"{food.ID}_Step{step.Order}_Image{index + 1}.jpg";
-					newPath = $"{newFolder}images\\{stepPicName}";
-				}
+				string stepPicName;
+				string newPath;
+
 				/*Copy lại ảnh mới*/
 				for (int i = 0; i < step.ImagesPathPerStep.Count; i++)
 				{
 					stepPicName = $"{food.ID}_Step{step.Order}_Image{i + 1}.jpg";
 					newPath = $"{newFolder}images\\{stepPicName}";
-					File.Copy(step.ImagesPathPerStep[i].ImagePath, newPath);
-					step.ImagesPathPerStep[i].ImagePath = $"images\\{stepPicName}";
+					if ($"{newFolder}{step.ImagesPathPerStep[i].ImagePath}" != newPath)
+					{
+						if (File.Exists(newPath))
+						{
+							File.Replace(step.ImagesPathPerStep[i].ImagePath, newPath, null);
+						}
+						else
+						{
+							File.Copy(step.ImagesPathPerStep[i].ImagePath, newPath);
+						}
+						step.ImagesPathPerStep[i].ImagePath = $"images\\{stepPicName}";
+					}
+					
+				}
+				/*Xoá ảnh cũ tránh dư thừa ảnh*/
+				int index = step.ImagesPathPerStep.Count;
+				stepPicName = $"{food.ID}_Step{step.Order}_Image{index + 1}.jpg";
+				newPath = $"{newFolder}images\\{stepPicName}";
+				while (File.Exists(newPath))
+				{
+					File.Delete(newPath);
+					index++;
+					stepPicName = $"{food.ID}_Step{step.Order}_Image{index + 1}.jpg";
+					newPath = $"{newFolder}images\\{stepPicName}";
 				}
 			}
 		}

@@ -512,54 +512,50 @@ namespace FoodRecipeApp
 				ListFoodInfo = (List<FoodInfomation>)xsFood.Deserialize(reader);
 			}
 
-			foreach (var food in ListFoodInfo)
-			{
-				if (food.PrimaryImagePath!=null && food.PrimaryImagePath.Contains("images\\temp"))
-				{
-					string newFolder = GetAppDomain();
-					string foodPicName = $"{food.ID}.jpg";
-					string newPath = $"{newFolder}\\images\\{foodPicName}";
-					if (File.Exists(newPath) == true)
-					{
-						File.Delete(newPath);
-						int index = 0;
-						while (true)
-						{
-							foodPicName = $"images\\temp_{index}_{food.ID}.jpg";
-							if (foodPicName == food.PrimaryImagePath)
-							{
-								break;
-							}
-							else
-							{
-								//foodPicName = $"images\\temp_{index}_{food.ID}.jpg";
-								newPath = $"{newFolder}\\{foodPicName}";
-								if (File.Exists(newPath) == true)
-								{
-									File.Delete(newPath);
-								}
-							}
-							index++;
-						}
-						foodPicName = $"{food.ID}.jpg";
-						newPath = $"{newFolder}\\images\\{foodPicName}";
-						File.Copy(food.PrimaryImagePath, newPath);
-						if (File.Exists(food.PrimaryImagePath) == true)
-						{
-							File.Delete(food.PrimaryImagePath);
-						}
-						food.PrimaryImagePath = $"images\\{foodPicName}";
-					}
-					else
-					{
-						//Do nothing
-					}
-				}
-				else
-				{
-					//Do nothing
-				}
-			}
+			//foreach (var food in ListFoodInfo)
+			//{
+			//	if (food.PrimaryImagePath!=null && food.PrimaryImagePath.Contains("temp"))
+			//	{
+			//		string newFolder = GetAppDomain();
+			//		string foodPicName = $"{food.ID}.jpg";
+			//		string newPath = $"{newFolder}\\images\\{foodPicName}";
+			//		if (File.Exists(newPath) == true)
+			//		{
+			//			File.Delete(newPath);
+			//			int index = 0;
+			//			while (true)
+			//			{
+			//				foodPicName = $"images\\temp_{index}_{food.ID}.jpg";
+			//				if (foodPicName == food.PrimaryImagePath)
+			//				{
+			//					break;
+			//				}
+			//				else
+			//				{
+			//					//foodPicName = $"images\\temp_{index}_{food.ID}.jpg";
+			//					newPath = $"{newFolder}\\{foodPicName}";
+			//					if (File.Exists(newPath) == true)
+			//					{
+			//						File.Delete(newPath);
+			//					}
+			//				}
+			//				index++;
+			//			}
+			//			foodPicName = $"{food.ID}.jpg";
+			//			newPath = $"{newFolder}\\images\\{foodPicName}";
+			//			File.Move(food.PrimaryImagePath, newPath);
+			//			food.PrimaryImagePath = $"images\\{foodPicName}";
+			//		}
+			//		else
+			//		{
+			//			//Do nothing
+			//		}
+			//	}
+			//	else
+			//	{
+			//		//Do nothing
+			//	}
+			//}
 
 			FoodOnScreen = ListFoodInfo;
 
@@ -704,7 +700,7 @@ namespace FoodRecipeApp
 			{
 
 				//Đóng giao diện cũ trước khi nhấn nút
-				if (clickedControlButton == HomeButton || clickedControlButton == FavoriteButton)
+				if (!isEditMode &&( clickedControlButton == HomeButton || clickedControlButton == FavoriteButton))
 				{
 					//if (FoodDetailGrid.Visibility == Visibility.Collapsed)
 					//{
@@ -801,35 +797,37 @@ namespace FoodRecipeApp
 						//EnterFoodNameTextBlock.Visibility = Visibility.Collapsed;
 
 						var index = GetMinID();
-						newFood = new FoodInfomation() { ID = index, VideoLink = "" };
+						newFood = new FoodInfomation() { ID = index, VideoLink = "", Steps= new BindingList<Step>()};
 					}
 					else
 					{
 						var food = ListFoodInfo[CurrentElementIndex];
-						newFood = new FoodInfomation()
-						{
-							PrimaryImagePath = food.PrimaryImagePath,
-							DateAdd = food.DateAdd,
-							Discription = food.Discription,
-							ID = food.ID,
-							Ingredients = food.Ingredients,
-							IsFavorite = food.IsFavorite,
-							Level = food.Level,
-							Name = food.Name,
-							Steps = food.Steps,
-							Type = food.Type,
-							VideoLink = food.VideoLink
-						};
-						//AddFood.DataContext = ListFoodInfo[CurrentElementIndex];
-						//ImageStepItemsControl.ItemsSource = ListFoodInfo[CurrentElementIndex].Steps;
-						foreach (var step in food.Steps)
-						{
-							ListStep.Add(step);
-						}
+						newFood = food;
+						//newFood = new FoodInfomation()
+						//{
+						//	PrimaryImagePath = food.PrimaryImagePath,
+						//	DateAdd = food.DateAdd,
+						//	Discription = food.Discription,
+						//	ID = food.ID,
+						//	Ingredients = food.Ingredients,
+						//	IsFavorite = food.IsFavorite,
+						//	Level = food.Level,
+						//	Name = food.Name,
+						//	Steps = food.Steps,
+						//	Type = food.Type,
+						//	VideoLink = food.VideoLink
+						//};
+						////AddFood.DataContext = ListFoodInfo[CurrentElementIndex];
+						////ImageStepItemsControl.ItemsSource = ListFoodInfo[CurrentElementIndex].Steps;
+						//foreach (var step in food.Steps)
+						//{
+						//	ListStep.Add(step);
+						//}
 					}
 
 					AddFood.DataContext = newFood;
-					ImageStepItemsControl.ItemsSource = ListStep;
+					ImageStepItemsControl.ItemsSource = newFood.Steps;
+					//ListStep = newFood.Steps;
 
 					//Thêm màn hình Add vào stack
 					list.Add(AddFood);
@@ -1064,19 +1062,20 @@ namespace FoodRecipeApp
 
 		private void AddStepButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (ListStep.Count == 0)
+			//newFood.Steps = new BindingList<Step>();
+			if (newFood.Steps.Count == 0)
 			{
 				var newStep = new Step() { Order = 1, ImagesPathPerStep = new BindingList<ImagePerStep>() };
-				ListStep.Add(newStep);
+				newFood.Steps.Add(newStep);
 			}
 			else
 			{
 				var newStep = new Step()
 				{
-					Order = ListStep[ListStep.Count - 1].Order + 1,
+					Order = newFood.Steps[newFood.Steps.Count - 1].Order + 1,
 					ImagesPathPerStep = new BindingList<ImagePerStep>()
 				};
-				ListStep.Add(newStep);
+				newFood.Steps.Add(newStep);
 			}
 		}
 
@@ -1147,27 +1146,37 @@ namespace FoodRecipeApp
 				newFood.Type = (string)comboBoxItem.Content;
 				string newFolder = GetAppDomain();
 				string foodPicName = $"{newFood.ID}.jpg";
-				string newPath = $"{newFolder}\\images\\{foodPicName}";
+				string newPath = $"{newFolder}images\\{foodPicName}";
 
 				if (newFood.PrimaryImagePath != null)
 				{
 					//Nếu file đã tồn tại thì xóa để thêm mới
 					if (File.Exists(newPath) == true)
 					{
-						int index = 0;
-						do
+						//int index = 0;
+						//do
+						//{
+						//	foodPicName = $"temp_{index}_{newFood.ID}.jpg";
+						//	newPath = $"{newFolder}\\images\\{foodPicName}";
+						//	index++;
+						//}
+						//while (File.Exists(newPath) == true);
+						//File.Delete(newPath);
+						if ($"{newFolder}{newFood.PrimaryImagePath}" != newPath)
 						{
-							foodPicName = $"temp_{index}_{newFood.ID}.jpg";
-							newPath = $"{newFolder}\\images\\{foodPicName}";
-							index++;
+							File.Replace(newFood.PrimaryImagePath, newPath, null);
 						}
-						while (File.Exists(newPath) == true);
+                        else
+                        {
+							//do nothing
+                        }
 					}
 					else
 					{
-						//Do nothing
+						
+						File.Copy(newFood.PrimaryImagePath, newPath);
 					}
-					File.Copy(newFood.PrimaryImagePath, newPath);
+					
 					newFood.PrimaryImagePath = $"images\\{foodPicName}";
 				}
 				else
@@ -1177,7 +1186,8 @@ namespace FoodRecipeApp
 
 				SaveStepsImages();
 
-				newFood.Steps = ListStep;
+
+				//newFood.Steps = ListStep;
 				if (isEditMode == false)
 				{
 					ListFoodInfo.Add(newFood);
@@ -1816,12 +1826,26 @@ namespace FoodRecipeApp
 				food = ListFoodInfo[CurrentElementIndex];
 			}
 
-			foreach (var step in ListStep)
+			var a = ListStep;
+
+			foreach (var step in newFood.Steps)
 			{
+				int index = 0;
+				string stepPicName = $"{food.ID}_Step{step.Order}_Image{index + 1}.jpg";
+				string newPath = $"{newFolder}\\images\\{stepPicName}";
+
+				/*Xoá ảnh cũ tránh dư thừa ảnh*/
+				while (File.Exists(newPath)) { 
+					File.Delete(newPath);
+					index++;
+					stepPicName = $"{food.ID}_Step{step.Order}_Image{index + 1}.jpg";
+					newPath = $"{newFolder}\\images\\{stepPicName}";
+				}
+				/*Copy lại ảnh mới*/
 				for (int i = 0; i < step.ImagesPathPerStep.Count; i++)
 				{
-					string stepPicName = $"{food.ID}_Step{step.Order}_Image{i + 1}.jpg";
-					string newPath = $"{newFolder}\\images\\{stepPicName}";
+					stepPicName = $"{food.ID}_Step{step.Order}_Image{i + 1}.jpg";
+					newPath = $"{newFolder}\\images\\{stepPicName}";
 					File.Copy(step.ImagesPathPerStep[i].ImagePath, newPath);
 					step.ImagesPathPerStep[i].ImagePath = $"images\\{stepPicName}";
 				}

@@ -1181,6 +1181,8 @@ namespace FoodRecipeApp
 				UpdatePaginationForDetailFoodUI();
 				ProcessPanelVisible(Visibility.Visible);
 
+				var currentControl = windowsStack.Peek();
+				clickedControlButton = (Button)currentControl[currentControl.Count - 1];
 				isEditMode = false;
 				ControlStackPanel.Visibility = Visibility.Visible;
 				AddFoodAnhDishScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;

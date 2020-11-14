@@ -11,8 +11,18 @@
             <BeginStoryboard>
                 <Storyboard>
                     <DoubleAnimation Storyboard.TargetProperty="(Window.Opacity)"
-                                 From="0.0" To="1.0" Duration="0:0:2"
+                                 From="0.0" To="1.0" Duration="0:0:1.2"
                                  AutoReverse="False"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Button.Click">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="(Window.Opacity)"
+                                     From="1.0" To="0.0" Duration="0:0:1.2"
+                                     AutoReverse="False"
+                                     Completed="ContinueButton_Completed"/>
                 </Storyboard>
             </BeginStoryboard>
         </EventTrigger>
@@ -69,14 +79,15 @@
                            Foreground="White"
                            Text="__________________________________"/>
 
-                <Button Name="btnContinue"
+                <Button Name="ContinueButton"
                         Margin="0 0 0 30"
                         DockPanel.Dock="Bottom"
                         Style="{StaticResource ContinueButton}"
                         Foreground="White"
+                        FontSize="17"
                         Width="100"
                         Height="40"
-                        Click="btnContinue_Click">Continue
+                        Content="Continue">
                 </Button>
                 <TextBlock DockPanel.Dock="Bottom"
                            Margin="10 10 10 40"

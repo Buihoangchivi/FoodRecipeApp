@@ -79,11 +79,13 @@ namespace FoodRecipeApp
         }
 
 
-        private void btnContinue_Click(object sender, RoutedEventArgs e)
+
+        private void ContinueButton_Completed(object sender, EventArgs e)
         {
             var screen = new MainWindow();
-            screen.Show();
             this.Close();
+            screen.Show();
         }
+
     }
 }

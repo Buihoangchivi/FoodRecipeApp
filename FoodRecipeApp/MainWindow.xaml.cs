@@ -512,50 +512,6 @@ namespace FoodRecipeApp
 				ListFoodInfo = (List<FoodInfomation>)xsFood.Deserialize(reader);
 			}
 
-			//foreach (var food in ListFoodInfo)
-			//{
-			//	if (food.PrimaryImagePath!=null && food.PrimaryImagePath.Contains("temp"))
-			//	{
-			//		string newFolder = GetAppDomain();
-			//		string foodPicName = $"{food.ID}.jpg";
-			//		string newPath = $"{newFolder}\\images\\{foodPicName}";
-			//		if (File.Exists(newPath) == true)
-			//		{
-			//			File.Delete(newPath);
-			//			int index = 0;
-			//			while (true)
-			//			{
-			//				foodPicName = $"images\\temp_{index}_{food.ID}.jpg";
-			//				if (foodPicName == food.PrimaryImagePath)
-			//				{
-			//					break;
-			//				}
-			//				else
-			//				{
-			//					//foodPicName = $"images\\temp_{index}_{food.ID}.jpg";
-			//					newPath = $"{newFolder}\\{foodPicName}";
-			//					if (File.Exists(newPath) == true)
-			//					{
-			//						File.Delete(newPath);
-			//					}
-			//				}
-			//				index++;
-			//			}
-			//			foodPicName = $"{food.ID}.jpg";
-			//			newPath = $"{newFolder}\\images\\{foodPicName}";
-			//			File.Move(food.PrimaryImagePath, newPath);
-			//			food.PrimaryImagePath = $"images\\{foodPicName}";
-			//		}
-			//		else
-			//		{
-			//			//Do nothing
-			//		}
-			//	}
-			//	else
-			//	{
-			//		//Do nothing
-			//	}
-			//}
 
 			FoodOnScreen = ListFoodInfo;
 
@@ -1180,7 +1136,9 @@ namespace FoodRecipeApp
 						//File.Delete(newPath);
 						if ($"{newFolder}{newFood.PrimaryImagePath}" != newPath)
 						{
-							File.Replace(newFood.PrimaryImagePath, newPath, null);
+							File.Delete(newPath);
+
+							File.Copy(newFood.PrimaryImagePath, newPath);
 						}
                         else
                         {
@@ -1189,7 +1147,6 @@ namespace FoodRecipeApp
 					}
 					else
 					{
-						
 						File.Copy(newFood.PrimaryImagePath, newPath);
 					}
 					
@@ -1524,6 +1481,13 @@ namespace FoodRecipeApp
 			{
 				File.Delete(newPath);
 			}
+			foreach(Step step in ListFoodInfo[CurrentElementIndex].Steps)
+            {
+				for(int i = 0; i < step.ImagesPathPerStep.Count; i++)
+                {
+					File.Delete(step.ImagesPathPerStep[i].ImagePath);
+                }
+            }
 			ListFoodInfo.RemoveAt(CurrentElementIndex);
 			ProcessPanelVisible(Visibility.Collapsed);
 			windowsStack.Pop();
@@ -1758,14 +1722,7 @@ namespace FoodRecipeApp
 			}
 		}
 
-		private void dockingContentControl_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.Key == Key.Down)
-			{
-				searchComboBox.SelectedIndex++;
-
-			}
-		}
+	
 
 		private void DishListTextBox_TextChanged(object sender, TextChangedEventArgs e)
 		{
@@ -1799,13 +1756,13 @@ namespace FoodRecipeApp
 			if (e.Key == Key.Down)
 			{
 				searchComboBox.Focus();
-
 				searchComboBox.SelectedIndex = 0;
 				searchComboBox.IsDropDownOpen = true;
 			}
 			if (e.Key == Key.Escape)
 			{
 				searchComboBox.IsDropDownOpen = false;
+				
 			}
 		}
 
@@ -1818,7 +1775,30 @@ namespace FoodRecipeApp
 				string textSelected = selectedFood.Name;
 				searchTextBox.Text = textSelected;
 			}
+
+			
 		}
+
+		private void searchComboBox_PreviewKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key==Key.Enter)
+            {
+
+				Button button = new Button();
+				button.DataContext = searchComboBox.SelectedItem as FoodInfomation;
+				button.Content = "button";
+				SearchFoodButton_Click(button, null);
+			}
+			//if (e.Key==Key.Escape)
+   //         {
+			//	searchTextBox.Text = "";
+			//	searchTextBox.Focus();
+   //         }
+		}
+
+	
+
+		
 
 		//Cài đặt để có thể di chuyển cửa sổ khi nhấn giữ chuột và kéo Title Bar
 		private void DockPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -1879,12 +1859,13 @@ namespace FoodRecipeApp
 					{
 						if (File.Exists(newPath))
 						{
-							File.Replace(step.ImagesPathPerStep[i].ImagePath, newPath, null);
+							File.Delete(newPath);
 						}
 						else
 						{
-							File.Copy(step.ImagesPathPerStep[i].ImagePath, newPath);
+							//do nothing
 						}
+						File.Copy(step.ImagesPathPerStep[i].ImagePath, newPath);
 						step.ImagesPathPerStep[i].ImagePath = $"images\\{stepPicName}";
 					}
 					
@@ -2075,12 +2056,10 @@ namespace FoodRecipeApp
 		}
 
 
+        //---------------------------------------- Các hàm xử lý khác --------------------------------------------//
 
 
-
-		//---------------------------------------- Các hàm xử lý khác --------------------------------------------//
-
-		public void Display(string url)
+        public void Display(string url)
 		{
 			Match m = YouTubeURLIDRegex.Match(url);
 			String id = m.Groups["v"].Value;

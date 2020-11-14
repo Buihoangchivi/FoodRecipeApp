@@ -186,9 +186,10 @@
                         </StackPanel>
                         <StackPanel>
                             <Grid>
-                                <ComboBox IsTextSearchEnabled="False" IsEditable="True" Name="searchComboBox"
+                                <ComboBox IsTextSearchEnabled="False"  Name="searchComboBox"  Background="White"
                                       SelectionChanged="searchComboBox_SelectionChanged"
-                                      KeyDown="dockingContentControl_KeyDown" Height="32" Width="190"
+                                      PreviewKeyDown='searchComboBox_PreviewKeyDown'
+                                      Height="32" Width="190"
                                       BorderThickness="0" VerticalContentAlignment="Center">
                                     <!--Set chiều rộng cho dropdown list-->
                                     <ComboBox.ItemContainerStyle>
@@ -199,7 +200,7 @@
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                <Button Click="SearchFoodButton_Click">
+                                                <Button Click="SearchFoodButton_Click" >
                                                     <Button.Content>
                                                         <StackPanel Orientation="Horizontal">
                                                             <TextBlock Text="{Binding Name}" VerticalAlignment="Center"></TextBlock>

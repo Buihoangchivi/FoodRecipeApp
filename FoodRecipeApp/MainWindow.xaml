@@ -31,16 +31,75 @@
             <TextBlock HorizontalAlignment="Center" DockPanel.Dock="Left" Margin="10,0,0,0" 
                        FontSize="15" VerticalAlignment="Center" Foreground="White">Food Recipe</TextBlock>
             <Button x:Name="CloseButton" Width="47" Click="CloseButton_Click" BorderThickness="0" 
-                    Padding="12" Background="{Binding ColorScheme}" DockPanel.Dock="Right">
-                <Image Source="Images/close.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                    DockPanel.Dock="Right">
+                 <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="{Binding ColorScheme}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Image Source="Images/close.png" RenderOptions.BitmapScalingMode="HighQuality" Margin="12"></Image>
             </Button>
+
             <Button x:Name="MaxButton" Width="47" Click="MaximizeButton_Click" BorderThickness="0" 
-                    Padding="12" Background="{Binding ColorScheme}" DockPanel.Dock="Right">
-                <Image Source="Images/maximize.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                    DockPanel.Dock="Right">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="{Binding ColorScheme}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#4CC8C4C4"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Image Source="Images/maximize.png" RenderOptions.BitmapScalingMode="HighQuality" Margin="12"></Image>
             </Button>
+
             <Button x:Name="MinButton" Width="47" Click="MinimizeButton_Click" BorderThickness="0"
-                    Padding="11" Background="{Binding ColorScheme}" DockPanel.Dock="Right">
-                <Image Source="Images/minimize.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                    DockPanel.Dock="Right">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="{Binding ColorScheme}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#4CC8C4C4"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Image Source="Images/minimize.png" RenderOptions.BitmapScalingMode="HighQuality" Margin="11"></Image>
             </Button>
             <TextBlock></TextBlock>
         </DockPanel>

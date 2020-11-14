@@ -826,6 +826,12 @@ namespace FoodRecipeApp
 				}
 				else if (button == SettingButton)
 				{
+					var value = ConfigurationManager.AppSettings["ShowSplashScreen"];
+					bool showSplashStatus = bool.Parse(value);
+                    if (showSplashStatus == true)
+                    {
+						ShowSplashScreenCheckBox.IsChecked = true;
+                    }
 					list.Add(SettingStackPanel);
 				}
 				else
@@ -1526,6 +1532,20 @@ namespace FoodRecipeApp
 
 		}
 
+		private void ShowSplashScreen_check(object sender, RoutedEventArgs e)
+		{
+			var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+			config.AppSettings.Settings["ShowSplashScreen"].Value = "true";
+			config.Save(ConfigurationSaveMode.Minimal);
+		}
+
+		private void ShowSplashScreen_uncheck(object sender, RoutedEventArgs e)
+		{
+			var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+			config.AppSettings.Settings["ShowSplashScreen"].Value = "false";
+			config.Save(ConfigurationSaveMode.Minimal);
+		}
+
 
 		//---------------------------------------- Các hàm sắp xếp --------------------------------------------//
 
@@ -2089,7 +2109,7 @@ namespace FoodRecipeApp
 
 
 
-		//---------------------------------------- Các hàm xử lý khác --------------------------------------------//
+        //---------------------------------------- Các hàm xử lý khác --------------------------------------------//
 
 
 		public void Display(string url)

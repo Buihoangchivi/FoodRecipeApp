@@ -16,7 +16,7 @@
                 </Storyboard>
             </BeginStoryboard>
         </EventTrigger>
-        <EventTrigger RoutedEvent="Button.Click">
+        <EventTrigger RoutedEvent="Button.Click" SourceName="ContinueButton">
             <BeginStoryboard>
                 <Storyboard>
                     <DoubleAnimation Storyboard.TargetProperty="(Window.Opacity)"
@@ -116,9 +116,7 @@
                   Foreground="Silver"
                   FontSize="12"
                   Checked="NotShowSplashScreen_check" Unchecked="NotShowSplashScreen_uncheck"
-                  VerticalContentAlignment="Center" Canvas.Left="364" Canvas.Top="558">
-            Do not show this window anymore
-        </CheckBox>
+                  VerticalContentAlignment="Center" Canvas.Left="364" Canvas.Top="558" Content="Do not show this window anymore"/>
     </Canvas>
     <Window.Background>
         <ImageBrush Opacity="0.30" ImageSource="{Binding PicPath}" Stretch="UniformToFill"/>

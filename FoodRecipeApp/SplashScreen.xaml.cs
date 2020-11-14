@@ -29,15 +29,7 @@ namespace FoodRecipeApp
     {
         public string PicPath { get; set; }
 
-        private bool closeStoryBoardCompleted = false;
-
         public SplashScreen()
-        {
-            InitializeComponent();
-        }
-
-        public string Select { get; set; }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             var value = ConfigurationManager.AppSettings["ShowSplashScreen"];
             var status = bool.Parse(value);
@@ -49,6 +41,13 @@ namespace FoodRecipeApp
                 screen.Show();
                 this.Close();
             }
+            InitializeComponent();
+        }
+
+        public string Select { get; set; }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            
             Random rng = new Random();
             int sel = rng.Next(4);
             string sel_c = sel.ToString();

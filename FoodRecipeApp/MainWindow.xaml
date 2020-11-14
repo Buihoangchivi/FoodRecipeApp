@@ -1045,6 +1045,14 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
+                    <CheckBox Name="ShowSplashScreenCheckBox"
+                              HorizontalAlignment="Left"
+                              Foreground="Black"
+                              FontSize="14"
+                              Checked="ShowSplashScreen_check" Unchecked="ShowSplashScreen_uncheck"
+                              VerticalContentAlignment="Center">
+                         Show Splash Screen
+                    </CheckBox>
                 </StackPanel>
 
             </StackPanel>

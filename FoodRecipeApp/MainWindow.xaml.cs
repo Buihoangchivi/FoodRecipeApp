@@ -2061,11 +2061,24 @@ namespace FoodRecipeApp
 			DishIngredientView.GroupDescriptions.Add(groupDescription);
 		}
 
+		private void DeleteTextInSearchButton_MouseEnter(object sender, MouseEventArgs e)
+		{
+			if (e.LeftButton == MouseButtonState.Pressed)
+			{
+				DeleteTextInSearchButton_Click(null, null);
+			}
+			else
+			{
+				//Do nothing
+			}
+		}
 
-        //---------------------------------------- Các hàm xử lý khác --------------------------------------------//
 
 
-        public void Display(string url)
+		//---------------------------------------- Các hàm xử lý khác --------------------------------------------//
+
+
+		public void Display(string url)
 		{
 			Match m = YouTubeURLIDRegex.Match(url);
 			String id = m.Groups["v"].Value;

@@ -721,6 +721,8 @@ namespace FoodRecipeApp
 					DefaultTypeComboxBoxItem.IsSelected = true;
 					SaveOrDiscardBorder.Visibility = Visibility.Collapsed;
 					EnterFoodNameTextBlock.Visibility = Visibility.Collapsed;
+					ControlStackPanel.Visibility = Visibility.Visible;
+					AddFoodAnhDishScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
 				}
 				else if (clickedControlButton == DishButton)
 				{
@@ -786,6 +788,8 @@ namespace FoodRecipeApp
 				else if (button == AddDishButton)
 				{
 					AddFoodAnhDishScrollViewer.ScrollToHome();
+					ControlStackPanel.Visibility = Visibility.Collapsed;
+					AddFoodAnhDishScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
 					SortFoodList();
 					ListStep = new BindingList<Step>();
 					if (isEditMode == false)
@@ -898,6 +902,7 @@ namespace FoodRecipeApp
 				isEditMode = false;
 				//CheckAndReplaceTempImageFile();
 				ControlStackPanel.Visibility = Visibility.Visible;
+				AddFoodAnhDishScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
 			}
 			else
 			{
@@ -909,6 +914,17 @@ namespace FoodRecipeApp
 
 			//Lấy giao diện hiện tại ra khỏi Stack
 			windowsStack.Pop();
+
+			if (ControlStackPanel.Visibility == Visibility.Collapsed)
+			{
+				ControlStackPanel.Visibility = Visibility.Visible;
+				AddFoodAnhDishScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+				SaveOrDiscardBorder.Visibility = Visibility.Collapsed;
+			}
+			else
+			{
+				//Do nothing
+			}
 
 			//Cập nhật lại nút được chọn
 			var window = windowsStack.Peek();
@@ -1210,6 +1226,7 @@ namespace FoodRecipeApp
 
 				isEditMode = false;
 				ControlStackPanel.Visibility = Visibility.Visible;
+				AddFoodAnhDishScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
 			}
 			else
 			{
@@ -1220,7 +1237,14 @@ namespace FoodRecipeApp
 
 		private void CancelFood_Click(object sender, RoutedEventArgs e)
 		{
-			SaveOrDiscardBorder.Visibility = Visibility.Visible;
+			if (SaveOrDiscardBorder.Visibility == Visibility.Collapsed)
+			{
+				SaveOrDiscardBorder.Visibility = Visibility.Visible;
+			}
+			else
+			{
+				SaveOrDiscardBorder.Visibility = Visibility.Collapsed;
+			}
 			AddFoodAnhDishScrollViewer.ScrollToEnd();
 		}
 
@@ -1229,6 +1253,7 @@ namespace FoodRecipeApp
 			CheckAndReplaceTempImageFile();
 			isEditMode = false;
 			ControlStackPanel.Visibility = Visibility.Visible;
+			AddFoodAnhDishScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
 			SaveOrDiscardBorder.Visibility = Visibility.Collapsed;
 			BackButton_Click(null, null);
 		}
@@ -1481,6 +1506,7 @@ namespace FoodRecipeApp
 		{
 			isEditMode = true;
 			ControlStackPanel.Visibility = Visibility.Collapsed;
+			AddFoodAnhDishScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
 			var tempButton = clickedControlButton;
 			changeClickedControlButton_Click(AddDishButton, null);
 			clickedControlButton = tempButton;
@@ -1504,6 +1530,16 @@ namespace FoodRecipeApp
 			ProcessPanelVisible(Visibility.Visible);
 			UpdateUIFromData();
 			isEditMode = false;
+		}
+
+		private void DeleteTextInSearchButton_Click(object sender, RoutedEventArgs e)
+		{
+			searchTextBox.Text = "";
+		}
+
+		private void SearchTextButton_Click(object sender, RoutedEventArgs e)
+		{
+
 		}
 
 
@@ -2037,6 +2073,8 @@ namespace FoodRecipeApp
 			PropertyGroupDescription groupDescription = new PropertyGroupDescription("Type");
 			DishIngredientView.GroupDescriptions.Add(groupDescription);
 		}
+
+
 
 
 

@@ -175,10 +175,12 @@
                 <Border CornerRadius="6" Margin="0,3,5,0" BorderBrush="Gray" Padding="0,0,2,0" BorderThickness="3">
                     <DockPanel LastChildFill="True">
                         <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                            <Button Width="30" BorderThickness="0" Padding="8" Background="White" Height="29">
+                            <Button Name="DeleteTextInSearchButton" Width="30" BorderThickness="0" Padding="8" 
+                                    Background="White" Height="29" Click="DeleteTextInSearchButton_Click">
                                 <Image Source="Images/deleteText.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                             </Button>
-                            <Button Width="30" BorderThickness="0" Padding="7" Background="White" Height="29">
+                            <Button Name="SearchTextButton" Width="30" BorderThickness="0" Padding="7" 
+                                    Background="White" Height="29" Click="SearchTextButton_Click">
                                 <Image Source="Images/searchText.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                             </Button>
                         </StackPanel>

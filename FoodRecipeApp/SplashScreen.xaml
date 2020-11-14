@@ -1,0 +1,115 @@
+﻿<Window x:Class="FoodRecipeApp.SplashScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FoodRecipeApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="600" Loaded="Window_Loaded" ResizeMode="NoResize" FontSize="20" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="(Window.Opacity)"
+                                 From="0.0" To="1.0" Duration="0:0:2"
+                                 AutoReverse="False"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    <Window.Resources>
+        <Style x:Key="ContinueButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" CornerRadius="15">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">
+                                    <GradientStop Color="#42c2f5" Offset="0.25"></GradientStop>
+                                    <GradientStop Color="#03a1fc" Offset="0.5"></GradientStop>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.8" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Canvas>
+        <Border BorderBrush="White"
+            BorderThickness="1" Canvas.Left="10" Canvas.Top="10" Width="580" Height="580">
+            <DockPanel Margin="10" LastChildFill="True">
+                <TextBlock DockPanel.Dock="Top"
+                           Margin="10 50 10 20"
+                           FontFamily="Segoe UI Black"
+                           FontSize="50"
+                           Foreground="#f0f2f1"
+                           HorizontalAlignment="Center"
+                           Text="FOOD RECIPES"/>
+                <TextBlock DockPanel.Dock="Top"
+                           Margin="10 0 10 -20"
+                           FontFamily="Segoe UI Semibold"
+                           FontSize="30"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           Text="Welcome to Food Recipes App"/>
+                <TextBlock DockPanel.Dock="Top"
+                           Margin="15 0 10 50"
+                           FontFamily="Segoe UI Semibold"
+                           FontSize="30"
+                           HorizontalAlignment="Center"
+                           Foreground="White"
+                           Text="__________________________________"/>
+
+                <Button Name="btnContinue"
+                        Margin="0 0 0 30"
+                        DockPanel.Dock="Bottom"
+                        Style="{StaticResource ContinueButton}"
+                        Foreground="White"
+                        Width="100"
+                        Height="40"
+                        Click="btnContinue_Click">Continue
+                </Button>
+                <TextBlock DockPanel.Dock="Bottom"
+                           Margin="10 10 10 40"
+                           FontFamily="Segoe UI Semibold"
+                           FontSize="30"
+                           HorizontalAlignment="Center"
+                           Foreground="White"
+                           Text="__________________________________"/>
+                <Border Margin="30 15 30 20"
+                        BorderBrush="Azure"
+                        BorderThickness="0.5"
+                        Width ="400"
+                        Padding="12">
+                    <TextBlock Name="AmazingInfoTextBlock"
+                           TextWrapping="WrapWithOverflow"
+                           FontFamily="Calibri"
+                           FontSize="15"
+                           FontStyle="Italic"
+                           Foreground="#f0f2f1" LineHeight="10"
+                           VerticalAlignment="Center"
+                           TextAlignment="Justify"/>
+                </Border>
+            </DockPanel>
+        </Border>
+        <CheckBox HorizontalAlignment="Right"
+                  Foreground="Silver"
+                  FontSize="12"
+                  Checked="NotShowSplashScreen_check" Unchecked="NotShowSplashScreen_uncheck"
+                  VerticalContentAlignment="Center" Canvas.Left="364" Canvas.Top="558">
+            Do not show this window anymore
+        </CheckBox>
+    </Canvas>
+    <Window.Background>
+        <ImageBrush Opacity="0.30" ImageSource="{Binding PicPath}" Stretch="UniformToFill"/>
+    </Window.Background>
+</Window>

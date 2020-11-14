@@ -21,6 +21,7 @@ using System.Windows.Shapes;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using Microsoft.Win32;
+using System.Configuration;
 
 namespace FoodRecipeApp
 {
@@ -236,7 +237,7 @@ namespace FoodRecipeApp
 			public BindingList<Ingredient> GroceriesList { get; set; }  //Tên các nguyên liệu trong danh sách trên
 		}
 
-		//Class các bước thực hiện trong một món ăn
+		//Class các bước thực hiện trong một món ănư
 		public class Step : INotifyPropertyChanged
 		{
 			public event PropertyChangedEventHandler PropertyChanged;
@@ -482,7 +483,8 @@ namespace FoodRecipeApp
 			checkFavoriteIsClicked = false;
 			isMinimizeMenu = false;
 
-			ColorScheme = "ForestGreen";
+			//ColorScheme = "ForestGreen";
+			ColorScheme = ConfigurationManager.AppSettings["ColorScheme"];
 
 			//Default buttons
 			clickedTypeButton = AllButton;
@@ -567,6 +569,10 @@ namespace FoodRecipeApp
 		{
 			SaveListFood();
 			SaveListDish();
+			var config = ConfigurationManager.OpenExeConfiguration(
+				ConfigurationUserLevel.None);
+			config.AppSettings.Settings["ColorScheme"].Value = ColorScheme;
+			config.Save(ConfigurationSaveMode.Minimal);
 			Application.Current.Shutdown();
 
 		}

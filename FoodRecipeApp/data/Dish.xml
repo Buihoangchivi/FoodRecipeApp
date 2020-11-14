@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfDish xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Dish>
+    <DishName>a</DishName>
+    <GroceriesList>
+      <Ingredient>
+        <IngredientName>5</IngredientName>
+        <IsDone>false</IsDone>
+        <Type>Other</Type>
+      </Ingredient>
+      <Ingredient>
+        <IngredientName>6</IngredientName>
+        <IsDone>false</IsDone>
+        <Type>Vegetable</Type>
+      </Ingredient>
+    </GroceriesList>
+  </Dish>
+  <Dish>
+    <DishName>b</DishName>
+    <GroceriesList>
+      <Ingredient>
+        <IngredientName>7</IngredientName>
+        <IsDone>false</IsDone>
+        <Type>Spice</Type>
+      </Ingredient>
+      <Ingredient>
+        <IngredientName>8</IngredientName>
+        <IsDone>false</IsDone>
+        <Type>Meat</Type>
+      </Ingredient>
+    </GroceriesList>
+  </Dish>
+  <Dish>
+    <DishName>c</DishName>
+    <GroceriesList />
+  </Dish>
+  <Dish>
+    <DishName>dfasfas</DishName>
+    <GroceriesList>
+      <Ingredient>
+        <IngredientName>f</IngredientName>
+        <IsDone>false</IsDone>
+        <Type>Meat</Type>
+      </Ingredient>
+    </GroceriesList>
+  </Dish>
+</ArrayOfDish>

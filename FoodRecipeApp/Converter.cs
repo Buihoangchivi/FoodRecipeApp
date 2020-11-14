@@ -15,21 +15,27 @@ namespace FoodRecipeApp
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string relative = (string)value;
-            string absolutePath;
+            string absolutePath = "";
             if (relative != null && !relative.Contains(":\\"))
             {
                 string folder = AppDomain.CurrentDomain.BaseDirectory;
                 absolutePath = $"{folder}{relative}";
             }
-            else
+            else if (relative != null)
             {
-                string folder = "";
-                absolutePath = $"{folder}{relative}";
+                absolutePath = $"{relative}";
             }
             if (relative != null)
             {
                 var image = ConvertToImage(absolutePath);
-                return image;
+                if (image != null)
+                {
+                    return image;
+                }
+                else
+                {
+                    return "";
+                }
             }
             else
             {
@@ -40,16 +46,18 @@ namespace FoodRecipeApp
         public static BitmapImage ConvertToImage(string path)
         {
            
-                BitmapImage bitmapImage = null;
-
+            BitmapImage bitmapImage = null;
+            if (File.Exists(path))
+            {
                 bitmapImage = new BitmapImage();
                 bitmapImage.BeginInit();
                 bitmapImage.StreamSource = new FileStream(path, FileMode.Open, FileAccess.Read);
                 bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
                 bitmapImage.EndInit();
                 bitmapImage.StreamSource.Dispose();
-           
-                return bitmapImage;
+            }
+
+            return bitmapImage;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

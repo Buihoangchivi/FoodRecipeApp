@@ -509,19 +509,33 @@ namespace FoodRecipeApp
 		{
 			//Đọc dữ liệu các món ăn từ data
 			XmlSerializer xsFood = new XmlSerializer(typeof(List<FoodInfomation>));
-			using (var reader = new StreamReader(@"data\Food.xml"))
+			try
 			{
-				ListFoodInfo = (List<FoodInfomation>)xsFood.Deserialize(reader);
+				using (var reader = new StreamReader(@"data\Food.xml"))
+				{
+					ListFoodInfo = (List<FoodInfomation>)xsFood.Deserialize(reader);
+				}
+			}
+            catch
+            {
+				ListFoodInfo = new List<FoodInfomation>();
 			}
 
 
 			FoodOnScreen = ListFoodInfo;
 
 			XmlSerializer xsDish = new XmlSerializer(typeof(BindingList<Dish>));
-			using (var reader = new StreamReader(@"data\Dish.xml"))
+			try
 			{
-				ListDish = (BindingList<Dish>)xsDish.Deserialize(reader);
+				using (var reader = new StreamReader(@"data\Dish.xml"))
+				{
+					ListDish = (BindingList<Dish>)xsDish.Deserialize(reader);
+				}
 			}
+            catch
+            {
+				ListDish = new BindingList<Dish>();
+            }
 
 			//Khởi tạo phân trang
 			TotalPage = (ListFoodInfo.Count - 1) / FoodperPage + 1;

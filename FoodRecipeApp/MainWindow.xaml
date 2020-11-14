@@ -107,46 +107,161 @@
         <!--Menu Control-->
         <StackPanel x:Name="ControlStackPanel" DockPanel.Dock="Left" Background="#FFDDDDDD" Width="250">
 
-            <Button Height="40" Name="MenuButton" Click="MenuButton_Click" BorderThickness="0" HorizontalContentAlignment="Left" Padding="0,1,1,1">
+            <Button Height="45" Name="MenuButton" Click="MenuButton_Click" BorderThickness="0" 
+                    HorizontalContentAlignment="Left" Padding="0,1,1,1">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FFDDDDDD"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Left"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFC8C4C4"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
                 <WrapPanel>
-                    <TextBlock Width="4" Height="40"></TextBlock>
+                    <TextBlock Width="4" Height="45"></TextBlock>
                     <Image Source="Images/menuImage.png" Width="20" Margin="10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                     <TextBlock VerticalAlignment="Center" Width="153" FontSize="15"></TextBlock>
                 </WrapPanel>
             </Button>
 
-            <Button Height="40" Name="HomeButton" Click="changeClickedControlButton_Click" BorderThickness="0" HorizontalContentAlignment="Left" Padding="0,1,1,1">
+            <Button Height="45" Name="HomeButton" Click="changeClickedControlButton_Click" BorderThickness="0" HorizontalContentAlignment="Left" Padding="0,1,1,1">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FFDDDDDD"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFC8C4C4"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
                 <WrapPanel>
-                    <TextBlock Width="4" Height="40" Background="{Binding ColorScheme}"></TextBlock>
+                    <TextBlock Width="4" Height="45" Background="{Binding ColorScheme}"></TextBlock>
                     <Image Source="Images/homeImage.png" Width="20" Margin="10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                     <TextBlock VerticalAlignment="Center" Width="153" FontSize="15" Foreground="{Binding ColorScheme}">Home</TextBlock>
                 </WrapPanel>
             </Button>
-            <Button Height="40" Name="FavoriteButton" Click="changeClickedControlButton_Click" BorderThickness="0" HorizontalContentAlignment="Left">
+            <Button Height="45" Name="FavoriteButton" Click="changeClickedControlButton_Click" BorderThickness="0" HorizontalContentAlignment="Left">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FFDDDDDD"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFC8C4C4"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
                 <WrapPanel>
-                    <TextBlock Width="5" Height="40"/>
+                    <TextBlock Width="5" Height="45"/>
                     <Image Source="Images/favoriteImage.png" Width="20" Margin="10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                     <TextBlock VerticalAlignment="Center" Width="153" FontSize="15">Favorite</TextBlock>
                 </WrapPanel>
             </Button>
-            <Button Height="40" Name="AddDishButton" Click="changeClickedControlButton_Click" BorderThickness="0" HorizontalContentAlignment="Left">
+            <Button Height="45" Name="AddDishButton" Click="changeClickedControlButton_Click" BorderThickness="0" HorizontalContentAlignment="Left">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FFDDDDDD"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFC8C4C4"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
                 <WrapPanel>
-                    <TextBlock Width="5" Height="40"></TextBlock>
+                    <TextBlock Width="5" Height="45"></TextBlock>
                     <Image Source="Images/addImage.png" Width="20" Margin="10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                     <TextBlock VerticalAlignment="Center" Width="153" FontSize="15">Add</TextBlock>
                 </WrapPanel>
             </Button>
-            <Button Height="40" Name="DishButton" Click="changeClickedControlButton_Click" BorderThickness="0" HorizontalContentAlignment="Left">
+            <Button Height="45" Name="DishButton" Click="changeClickedControlButton_Click" BorderThickness="0" HorizontalContentAlignment="Left">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FFDDDDDD"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFC8C4C4"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
                 <WrapPanel>
-                    <TextBlock Width="5" Height="40"></TextBlock>
+                    <TextBlock Width="5" Height="45"></TextBlock>
                     <Image Source="Images/IngredientImage.png" Width="20" Margin="10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                     <TextBlock VerticalAlignment="Center" Width="153" FontSize="15">Note</TextBlock>
                 </WrapPanel>
             </Button>
 
-            <Button Height="40" Name="SettingButton" Click="changeClickedControlButton_Click" BorderThickness="0" HorizontalContentAlignment="Left">
+            <Button Height="45" Name="SettingButton" Click="changeClickedControlButton_Click" BorderThickness="0" HorizontalContentAlignment="Left">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FFDDDDDD"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFC8C4C4"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
                 <WrapPanel>
-                    <TextBlock Name="SettingTextBlock" Width="5" Height="40"></TextBlock>
+                    <TextBlock Name="SettingTextBlock" Width="5" Height="45"></TextBlock>
                     <Image Source="Images/setting.png" Width="20" Margin="10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                     <TextBlock Name="SettingTitleTextBlock" VerticalAlignment="Center" Width="153" FontSize="15">Settings</TextBlock>
                 </WrapPanel>
@@ -224,11 +339,71 @@
         <DockPanel Name="TypeBar" Height="40" Margin="15,0" DockPanel.Dock="Top" LastChildFill="True" Visibility="Visible">
             <StackPanel Orientation="Horizontal" Width="590" DockPanel.Dock="Left">
                 <Button Height="40" Width="120" x:Name="AllButton" Click="changeClickedTypeButton_Click" 
-                        BorderThickness="0" Content="All" FontSize="15" Background="White" Foreground="Gray"/>
+                        BorderThickness="0" Content="All" FontSize="15" Foreground="Gray">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#66D3D3D3"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
                 <Button Height="40" Width="120" x:Name="FoodButton" Click="changeClickedTypeButton_Click" 
-                        BorderThickness="0" Content="Food" FontSize="15" Background="White" Foreground="Gray"/>
+                        BorderThickness="0" Content="Food" FontSize="15" Foreground="Gray">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#66D3D3D3"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
                 <Button Height="40" Width="120" x:Name="DrinksButton" Click="changeClickedTypeButton_Click" 
-                        BorderThickness="0" Content="Drinks" FontSize="15" Background="White" Foreground="Gray"/>
+                        BorderThickness="0" Content="Drinks" FontSize="15" Foreground="Gray">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#66D3D3D3"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </StackPanel>
             <StackPanel DockPanel.Dock="Right" Width="269">
                 <Border CornerRadius="6" Margin="0,3,5,0" BorderBrush="Gray" Padding="0,0,2,0" BorderThickness="3">

@@ -594,31 +594,28 @@ namespace FoodRecipeApp
 		{
 			var imgName = "";
 
-			if (this.WindowState == WindowState.Maximized)
+			if (WindowState == WindowState.Maximized)
 			{
-				this.WindowState = WindowState.Normal;
+				WindowState = WindowState.Normal;
 				imgName = "Images/maximize.png";
 			}
 			else
 			{
-				this.WindowState = WindowState.Maximized;
+				WindowState = WindowState.Maximized;
 				imgName = "Images/restoreDown.png";
 			}
 
 			//Lấy nguồn ảnh
-			Image img = new Image
-			{
-				Source = new BitmapImage(new Uri(
+			var img = new BitmapImage(new Uri(
 						imgName,
 						UriKind.Relative)
-				)
-			};
+				);
 
 			//Thiết lập ảnh chất lượng cao
 			RenderOptions.SetBitmapScalingMode(img, BitmapScalingMode.HighQuality);
 
 			//Thay đổi icon
-			MaxButton.Content = img;
+			(MaxButton.Content as Image).Source = img;
 		}
 
 
@@ -1464,6 +1461,7 @@ namespace FoodRecipeApp
 			var color = (datatContex as ColorSetting).Color;
 			ColorScheme = color;
 			SettingTextBlock.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
+			clickedTypeButton.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
 			SettingTitleTextBlock.Foreground = SettingTextBlock.Background;
 		}
 

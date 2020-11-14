@@ -28,6 +28,7 @@ namespace FoodRecipeApp
     public partial class SplashScreen : Window
     {
         public string PicPath { get; set; }
+        Random rng = new Random();
 
         public SplashScreen()
         {
@@ -48,7 +49,7 @@ namespace FoodRecipeApp
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             
-            Random rng = new Random();
+            
             int sel = rng.Next(4);
             string sel_c = sel.ToString();
             var folder = AppDomain.CurrentDomain.BaseDirectory;

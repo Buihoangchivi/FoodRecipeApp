@@ -22,6 +22,7 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using Microsoft.Win32;
 using System.Configuration;
+using System.Windows.Media.Animation;
 
 namespace FoodRecipeApp
 {
@@ -559,7 +560,7 @@ namespace FoodRecipeApp
 			foodButtonItemsControl.ItemsSource = foods;
 			view = (CollectionView)CollectionViewSource.GetDefaultView(ListFoodInfo);
 			DishListItemsControl.ItemsSource = ListDish;
-
+			ListFoodAppearAnimation();
 			//Tạo dữ liệu màu cho ListColor
 			ListColor = new List<ColorSetting>
 			{
@@ -864,6 +865,7 @@ namespace FoodRecipeApp
 				FoodperPage = 15;
 				UpdateFoodStatus();
 				isMinimizeMenu = true;
+				
 			}
 			else
 			{
@@ -1254,6 +1256,7 @@ namespace FoodRecipeApp
 				foodButtonItemsControl.ItemsSource = foods;
 			}
 			UpdatePageButtonStatus();
+			ListFoodAppearAnimation();
 		}
 
 		/*Về trang trước*/
@@ -1266,6 +1269,7 @@ namespace FoodRecipeApp
 				foodButtonItemsControl.ItemsSource = foods;
 			}
 			UpdatePageButtonStatus();
+			ListFoodAppearAnimation();
 		}
 
 		private void EditDishInListButton_Click(object sender, RoutedEventArgs e)
@@ -1406,6 +1410,7 @@ namespace FoodRecipeApp
 			var foods = FoodOnScreen.Skip((CurrentPage - 1) * FoodperPage).Take(FoodperPage);
 			foodButtonItemsControl.ItemsSource = foods;
 			UpdatePageButtonStatus();
+			ListFoodAppearAnimation();
 		}
 
 		private void LastPageButton_Click(object sender, RoutedEventArgs e)
@@ -1414,6 +1419,7 @@ namespace FoodRecipeApp
 			var foods = FoodOnScreen.Skip((CurrentPage - 1) * FoodperPage).Take(FoodperPage);
 			foodButtonItemsControl.ItemsSource = foods;
 			UpdatePageButtonStatus();
+			ListFoodAppearAnimation();
 		}
 
 		private void PreviousStepButton_Click(object sender, RoutedEventArgs e)
@@ -1714,6 +1720,11 @@ namespace FoodRecipeApp
 			{
 				string fullText = ConvertToUnSign(searchTextBox.Text.Insert(searchTextBox.CaretIndex, (e.Text)));
 				searchComboBox.ItemsSource = ListFoodInfo.Where(s => ConvertToUnSign(s.Name).IndexOf(fullText, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
+                if (searchComboBox.Items.Count == 0)
+                {
+					SearchNotificationComboBox.IsDropDownOpen = true;
+					searchComboBox.IsDropDownOpen = false;
+                }
 			}
 			else if (!string.IsNullOrEmpty(e.Text))
 			{
@@ -1736,6 +1747,12 @@ namespace FoodRecipeApp
 				if (!string.IsNullOrEmpty(searchTextBox.Text))
 				{
 					searchComboBox.ItemsSource = ListFoodInfo.Where(s => ConvertToUnSign(s.Name).IndexOf(ConvertToUnSign(searchTextBox.Text), StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
+					if (searchComboBox.Items.Count == 0)
+					{
+						SearchNotificationComboBox.IsDropDownOpen = true;
+						searchComboBox.IsDropDownOpen = false;
+					}
+					
 				}
 				else
 				{
@@ -1748,13 +1765,17 @@ namespace FoodRecipeApp
 		{
 			searchComboBox.IsDropDownOpen = true;
 
-			string pastedText = (string)e.DataObject.GetData(typeof(string));
-			//string fullText = searchComboBox.Text.Insert(GetChildOfType<TextBox>(searchComboBox).CaretIndex, pastedText);
+			string pastedText = (string)e.DataObject.GetData(typeof(string));			
 			string fullText = searchTextBox.Text.Insert(searchTextBox.CaretIndex, (pastedText));
 
 			if (!string.IsNullOrEmpty(fullText))
 			{
 				searchComboBox.ItemsSource = ListFoodInfo.Where(s => ConvertToUnSign(s.Name).IndexOf(ConvertToUnSign(fullText), StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
+				if (searchComboBox.Items.Count == 0)
+				{
+					SearchNotificationComboBox.IsDropDownOpen = true;
+					searchComboBox.IsDropDownOpen = false;
+				}
 			}
 			else
 			{
@@ -1819,22 +1840,31 @@ namespace FoodRecipeApp
 			
 		}
 
-		private void searchComboBox_PreviewKeyDown(object sender, KeyEventArgs e)
+		public override void OnApplyTemplate()
 		{
-			if (e.Key==Key.Enter)
-            {
-
-				Button button = new Button();
-				button.DataContext = searchComboBox.SelectedItem as FoodInfomation;
-				button.Content = "button";
-				SearchFoodButton_Click(button, null);
-			}
-			//if (e.Key==Key.Escape)
-   //         {
-			//	searchTextBox.Text = "";
-			//	searchTextBox.Focus();
-   //         }
+			base.OnApplyTemplate();
+			KeyUp += OnKeyUp;
 		}
+
+		void OnKeyUp(object sender, KeyEventArgs e)
+		{
+
+			if (e.Key == Key.Enter)
+			{
+				if (searchComboBox.SelectedIndex >= 0)
+                {
+					Button button = new Button();
+					button.DataContext = searchComboBox.SelectedItem as FoodInfomation;
+					button.Content = "button";
+					searchComboBox.SelectedIndex = -1;
+					SearchFoodButton_Click(button, null);
+					
+				}
+					
+			}
+		}
+
+	
 
 	
 
@@ -1990,8 +2020,10 @@ namespace FoodRecipeApp
 			{
 				TotalItem += " item";
 			}
-			UpdatePageButtonStatus();
-		}
+
+			UpdatePageButtonStatus();		
+
+        }
 
 
 
@@ -2019,6 +2051,7 @@ namespace FoodRecipeApp
 				TotalItem += " item";
 			}
 			UpdatePageButtonStatus();
+			ListFoodAppearAnimation();
 		}
 
 		private void UpdatePaginationForDetailFoodUI()
@@ -2109,10 +2142,11 @@ namespace FoodRecipeApp
 
 
 
+
         //---------------------------------------- Các hàm xử lý khác --------------------------------------------//
 
 
-		public void Display(string url)
+        public void Display(string url)
 		{
 			Match m = YouTubeURLIDRegex.Match(url);
 			String id = m.Groups["v"].Value;
@@ -2120,10 +2154,11 @@ namespace FoodRecipeApp
 			string page =
 				 "<html>"
 				+ "<head><meta http-equiv='X-UA-Compatible' content='IE=11' />"
-				+ "<body>" + "\r\n"
+				+ "<body scroll=\"no\">" + "\r\n"
 				+ "<iframe src=\"" + url1 + "\" width=\"700\" height=\"400\" frameborder=\"0\" allowfullscreen></iframe>"
 				+ "</body></html>";
 			VideoPlayer.NavigateToString(page);
+
 		}
 		private void ProcessPanelVisible(Visibility state)
 		{
@@ -2230,5 +2265,17 @@ namespace FoodRecipeApp
 		//	}
 		//	doc.Save(filePath);
 		//}
+
+		private void ListFoodAppearAnimation()
+        {
+			//< ThicknessAnimation  Storyboard.TargetProperty = "Margin" From = "15,60,0,0" To = "15,6,0,0" AccelerationRatio = ".9" Duration = "0:0:1" />
+			ThicknessAnimation animation = new ThicknessAnimation();
+			animation.AccelerationRatio = 0.9;
+			animation.From = new Thickness(15, 60, 0, 0);
+			animation.To = new Thickness(15, 6, 0, 0);
+			animation.Duration = TimeSpan.FromSeconds(0.5);
+			ListFoodGrid.BeginAnimation(Grid.MarginProperty, animation);
+		}
 	}
 }
+

@@ -18,8 +18,9 @@
             <TextBlock Foreground ="{Binding ColorScheme}"
              FontWeight="Bold" FontSize="16"/>
         </DataTemplate>
+    
     </Window.Resources>
-
+    
     <DockPanel LastChildFill="True" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown">
 
         <!--Thanh tiêu đề-->
@@ -106,8 +107,8 @@
 
         <!--Menu Control-->
         <StackPanel x:Name="ControlStackPanel" DockPanel.Dock="Left" Background="#FFDDDDDD" Width="250">
-
-            <Button Height="45" Name="MenuButton" Click="MenuButton_Click" BorderThickness="0" 
+           
+                <Button Height="45" Name="MenuButton" Click="MenuButton_Click" BorderThickness="0" 
                     HorizontalContentAlignment="Left" Padding="0,1,1,1">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
@@ -421,26 +422,60 @@
                         </StackPanel>
                         <StackPanel>
                             <Grid>
-                                <ComboBox IsTextSearchEnabled="False"  Name="searchComboBox"  Background="White"
-                                      SelectionChanged="searchComboBox_SelectionChanged"
-                                      PreviewKeyDown='searchComboBox_PreviewKeyDown'
+                                <ComboBox Name="SearchNotificationComboBox">
+                                    <ComboBoxItem>Không có kết quả</ComboBoxItem>
+                                </ComboBox>
+                                <ComboBox IsTextSearchEnabled="False" IsEditable="True" Name="searchComboBox"  Background="White"
+                                      SelectionChanged="searchComboBox_SelectionChanged"                                    
                                       Height="32" Width="190"
+                                      
                                       BorderThickness="0" VerticalContentAlignment="Center">
                                     <!--Set chiều rộng cho dropdown list-->
+                                    
                                     <ComboBox.ItemContainerStyle>
                                         <Style TargetType="ComboBoxItem">
                                             <Setter Property="Width" Value="190"></Setter>
+                                            <Setter Property="Padding" Value="0"></Setter>
+                                            <!--<Style.Triggers>
+                                                <EventTrigger RoutedEvent="DataGrid.PreviewKeyUp">
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(ComboBoxItem.Background).(SolidColorBrush.Color)">
+                                                                <LinearColorKeyFrame Value="Blue" KeyTime="00:00:0.2" />
+                                                            </ColorAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger>
+                                            </Style.Triggers>-->
                                         </Style>
                                     </ComboBox.ItemContainerStyle>
+
                                     <ComboBox.ItemTemplate>
+                                        
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                <Button Click="SearchFoodButton_Click" >
+                                            <DataTemplate.Triggers>
+                                                <EventTrigger RoutedEvent="MouseEnter">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(ComboBoxItem.Background).(SolidColorBrush.Color)">
+                                                            <LinearColorKeyFrame Value="Blue" KeyTime="00:00:0.2" />
+                                                        </ColorAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                                </EventTrigger>
+                                            </DataTemplate.Triggers>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Click="SearchFoodButton_Click" Background="Transparent" BorderThickness="0" Width="190">
                                                     <Button.Content>
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center"></TextBlock>
-                                                            <Image Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}" Margin="0, 0 , 0, 0" Width="100" Height="100"/>
-                                                        </StackPanel>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="70"/>
+                                                                <ColumnDefinition Width="120"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Image Grid.Column="0" Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}" Width="70" Height="70" Stretch="Fill"
+                                                                   RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Margin="0"/>
+                                                            <TextBlock Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center" Margin="20 0 0 0" FontSize="14"></TextBlock>
+                                                        </Grid>
                                                     </Button.Content>
                                                 </Button>
 
@@ -454,7 +489,7 @@
                                          PreviewKeyUp="PreviewKeyUp_EnhanceTextBoxSearch" VerticalContentAlignment="Center"
                                          DataObject.Pasting="Pasting_EnhanceTextSearch" BorderThickness="0"></TextBox>
                             </Grid>
-
+                            
                         </StackPanel>
                     </DockPanel>
                 </Border>
@@ -464,7 +499,7 @@
 
         <!--Hình ảnh và tên các món ăn-->
         <ScrollViewer VerticalScrollBarVisibility="Hidden">
-            <Grid Margin="15,6,0,0">
+            <Grid Margin="15,6,0,0" Name="ListFoodGrid">
                 <ItemsControl Grid.Row="1" Name="foodButtonItemsControl" Visibility="Visible">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -560,7 +595,7 @@
                     </Button>
                 </StackPanel>
 
-                <Grid Margin="15,0,0,0" x:Name="FoodDetailGrid">
+                <Grid Margin="15,0,0,0" x:Name="FoodDetailGrid" >
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>

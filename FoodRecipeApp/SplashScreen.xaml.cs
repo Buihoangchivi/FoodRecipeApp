@@ -49,7 +49,6 @@ namespace FoodRecipeApp
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             
-            
             int sel = rng.Next(4);
             string sel_c = sel.ToString();
             var folder = AppDomain.CurrentDomain.BaseDirectory;

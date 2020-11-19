@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Height="650" Width="1152" MinWidth="810" MinHeight="500" Loaded="Window_Loaded"
         WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Window.Icon>
+        <BitmapImage UriSource="images/icon.ico" RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased"></BitmapImage>
+    </Window.Icon>
 
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"/>

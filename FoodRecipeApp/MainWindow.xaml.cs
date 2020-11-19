@@ -39,6 +39,7 @@ namespace FoodRecipeApp
 		private List<FoodInfomation> ListFoodInfo = new List<FoodInfomation>(); //Danh sách thông tin tất cả các món ăn
 		BindingList<Step> ListStep = new BindingList<Step>();                   //Danh sách các bước của món ăn mới được thêm
 		FoodInfomation newFood;                                                 //Món ăn mới được thêm
+		FoodInfomation editFood;
 		private CollectionView view;
 		BindingList<Dish> ListDish = new BindingList<Dish>();
 		private List<FoodInfomation> FoodOnScreen;                              //Danh sách food để hiện trên màn hình
@@ -781,30 +782,51 @@ namespace FoodRecipeApp
 					{
 						var food = ListFoodInfo[CurrentElementIndex];
 						newFood = food;
-						//newFood = new FoodInfomation()
-						//{
-						//	PrimaryImagePath = food.PrimaryImagePath,
-						//	DateAdd = food.DateAdd,
-						//	Discription = food.Discription,
-						//	ID = food.ID,
-						//	Ingredients = food.Ingredients,
-						//	IsFavorite = food.IsFavorite,
-						//	Level = food.Level,
-						//	Name = food.Name,
-						//	Steps = food.Steps,
-						//	Type = food.Type,
-						//	VideoLink = food.VideoLink
-						//};
-						////AddFood.DataContext = ListFoodInfo[CurrentElementIndex];
-						////ImageStepItemsControl.ItemsSource = ListFoodInfo[CurrentElementIndex].Steps;
-						//foreach (var step in food.Steps)
-						//{
-						//	ListStep.Add(step);
-						//}
+						editFood = new FoodInfomation()
+						{
+							PrimaryImagePath = food.PrimaryImagePath,
+							DateAdd = food.DateAdd,
+							Discription = food.Discription,
+							ID = food.ID,
+							Ingredients = food.Ingredients,
+							IsFavorite = food.IsFavorite,
+							Level = food.Level,
+							Name = food.Name,
+							Steps = new BindingList<Step>(),
+							Type = food.Type,
+							VideoLink = food.VideoLink
+                        };
+                        //AddFood.DataContext = ListFoodInfo[CurrentElementIndex];
+                        //ImageStepItemsControl.ItemsSource = ListFoodInfo[CurrentElementIndex].Steps;
+                        foreach (var step in food.Steps)
+                        {
+                            editFood.Steps.Add(step);
+                        }
+						for (int i = 0; i < LevelComboBox.Items.Count; i++)
+						{
+							var comboboxItem = LevelComboBox.Items[i] as ComboBoxItem;
+							if (newFood.Level == (string)comboboxItem.Content)
+							{
+								LevelComboBox.SelectedIndex = i;
+								break;
+							}
+						}
+
+						for (int i = 0; i < LevelComboBox.Items.Count; i++)
+						{
+							var comboboxItem = TypeComboBox.Items[i] as ComboBoxItem;
+							if (newFood.Type == (string)comboboxItem.Content)
+							{
+								TypeComboBox.SelectedIndex = i;
+								break;
+							}
+						}
 					}
 
 					AddFood.DataContext = newFood;
 					ImageStepItemsControl.ItemsSource = newFood.Steps;
+
+					
 					//ListStep = newFood.Steps;
 
 					//Thêm màn hình Add vào stack
@@ -946,7 +968,7 @@ namespace FoodRecipeApp
 
 			//Cập nhật lại giao diện
 			UpdateUIFromData();
-
+			ListFoodAppearAnimation();
 			//Mở giao diện phía trước
 			ProcessPanelVisible(Visibility.Visible);
 
@@ -1076,10 +1098,19 @@ namespace FoodRecipeApp
 			}
 		}
 
+		private void DeleteStepButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (newFood.Steps.Count > 0)
+			{
+
+				newFood.Steps.Remove(newFood.Steps[newFood.Steps.Count - 1]);
+			}
+		}
+
 		private void AddPrimaryFoodPhoto_Click(object sender, RoutedEventArgs e)
 		{
 			var fileDialog = new OpenFileDialog();
-			fileDialog.Filter = "Image Files(*.JPG*)|*.JPG";
+			fileDialog.Filter = "Image Files(*.JPG*;*.JPEG*)|*.JPG;*.JPEG*";
 			fileDialog.Title = "Select Image";
 
 			if (fileDialog.ShowDialog() == true)
@@ -1098,7 +1129,7 @@ namespace FoodRecipeApp
 		{
 			var fileDialog = new OpenFileDialog();
 			fileDialog.Multiselect = true;
-			fileDialog.Filter = "Image Files(*.JPG*)|*.JPG";
+			fileDialog.Filter = "Image Files(*.JPG*;*.JPEG*)|*.JPG;*.JPEG*";
 			fileDialog.Title = "Select Image";
 
 			if (fileDialog.ShowDialog() == true)
@@ -1234,6 +1265,7 @@ namespace FoodRecipeApp
 
 		private void DiscardChanges_Click(object sender, RoutedEventArgs e)
 		{
+			ListFoodInfo[CurrentElementIndex] = editFood;
 			CheckAndReplaceTempImageFile();
 			isEditMode = false;
 			ControlStackPanel.Visibility = Visibility.Visible;
@@ -1531,12 +1563,9 @@ namespace FoodRecipeApp
 		private void DeleteTextInSearchButton_Click(object sender, RoutedEventArgs e)
 		{
 			searchTextBox.Text = "";
+			searchTextBox.Focus();
 		}
 
-		private void SearchTextButton_Click(object sender, RoutedEventArgs e)
-		{
-
-		}
 
 		private void ShowSplashScreen_check(object sender, RoutedEventArgs e)
 		{
@@ -2020,7 +2049,7 @@ namespace FoodRecipeApp
 			{
 				TotalItem += " item";
 			}
-
+			ListFoodAppearAnimation();
 			UpdatePageButtonStatus();		
 
         }
@@ -2051,7 +2080,6 @@ namespace FoodRecipeApp
 				TotalItem += " item";
 			}
 			UpdatePageButtonStatus();
-			ListFoodAppearAnimation();
 		}
 
 		private void UpdatePaginationForDetailFoodUI()
@@ -2160,7 +2188,9 @@ namespace FoodRecipeApp
 			VideoPlayer.NavigateToString(page);
 
 		}
-		private void ProcessPanelVisible(Visibility state)
+
+
+        private void ProcessPanelVisible(Visibility state)
 		{
 			var window = windowsStack.Peek();
 			foreach (var panel in window)

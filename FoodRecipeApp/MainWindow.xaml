@@ -18,7 +18,6 @@
             <TextBlock Foreground ="{Binding ColorScheme}"
              FontWeight="Bold" FontSize="16"/>
         </DataTemplate>
-    
     </Window.Resources>
     
     <DockPanel LastChildFill="True" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown">
@@ -415,76 +414,71 @@
                                     MouseEnter="DeleteTextInSearchButton_MouseEnter">
                                 <Image Source="Images/deleteText.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                             </Button>
-                            <Button Name="SearchTextButton" Width="30" BorderThickness="0" Padding="7" 
-                                    Background="White" Height="29" Click="SearchTextButton_Click">
-                                <Image Source="Images/searchText.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                            </Button>
                         </StackPanel>
                         <StackPanel>
                             <Grid>
-                                <ComboBox Name="SearchNotificationComboBox">
+                                
+                                <ComboBox Name="SearchNotificationComboBox" Width="219">
                                     <ComboBoxItem>Không có kết quả</ComboBoxItem>
                                 </ComboBox>
-                                <ComboBox IsTextSearchEnabled="False" IsEditable="True" Name="searchComboBox"  Background="White"
+                                <ComboBox IsTextSearchEnabled="False" IsEditable="True" Name="searchComboBox"
                                       SelectionChanged="searchComboBox_SelectionChanged"                                    
-                                      Height="32" Width="190"
-                                      
+                                      Height="32" Width="226"
                                       BorderThickness="0" VerticalContentAlignment="Center">
                                     <!--Set chiều rộng cho dropdown list-->
                                     
                                     <ComboBox.ItemContainerStyle>
                                         <Style TargetType="ComboBoxItem">
-                                            <Setter Property="Width" Value="190"></Setter>
+                                            <Setter Property="Width" Value="226"></Setter>
                                             <Setter Property="Padding" Value="0"></Setter>
-                                            <!--<Style.Triggers>
-                                                <EventTrigger RoutedEvent="DataGrid.PreviewKeyUp">
-                                                    <BeginStoryboard>
-                                                        <Storyboard>
-                                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(ComboBoxItem.Background).(SolidColorBrush.Color)">
-                                                                <LinearColorKeyFrame Value="Blue" KeyTime="00:00:0.2" />
-                                                            </ColorAnimationUsingKeyFrames>
-                                                        </Storyboard>
-                                                    </BeginStoryboard>
-                                                </EventTrigger>
-                                            </Style.Triggers>-->
+                                            <Style.Triggers>
+                                                <Trigger Property="IsHighlighted" Value="True">
+                                                    <Setter Property="Background" Value="Red"/>
+                                                    <Setter Property="BorderThickness" Value="5"></Setter>
+                                                </Trigger>
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter Property="Background" Value="Red"/>
+                                                    <Setter Property="BorderThickness" Value="5"></Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
                                         </Style>
                                     </ComboBox.ItemContainerStyle>
 
                                     <ComboBox.ItemTemplate>
-                                        
                                         <DataTemplate>
-                                            <DataTemplate.Triggers>
-                                                <EventTrigger RoutedEvent="MouseEnter">
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(ComboBoxItem.Background).(SolidColorBrush.Color)">
-                                                            <LinearColorKeyFrame Value="Blue" KeyTime="00:00:0.2" />
-                                                        </ColorAnimationUsingKeyFrames>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                                </EventTrigger>
-                                            </DataTemplate.Triggers>
                                             <StackPanel Orientation="Horizontal">
-                                                <Button Click="SearchFoodButton_Click" Background="Transparent" BorderThickness="0" Width="190">
+                                                <Button Click="SearchFoodButton_Click" BorderThickness="0" Width="226" Background="White">
                                                     <Button.Content>
                                                         <Grid>
                                                             <Grid.ColumnDefinitions>
                                                                 <ColumnDefinition Width="70"/>
-                                                                <ColumnDefinition Width="120"/>
+                                                                <ColumnDefinition Width="149"/>
                                                             </Grid.ColumnDefinitions>
                                                             <Image Grid.Column="0" Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}" Width="70" Height="70" Stretch="Fill"
                                                                    RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Margin="0"/>
-                                                            <TextBlock Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center" Margin="20 0 0 0" FontSize="14"></TextBlock>
+                                                            <TextBlock Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center" Margin="-10 0 0 0" FontSize="13" TextWrapping="WrapWithOverflow" Width="120"></TextBlock>
                                                         </Grid>
                                                     </Button.Content>
+                                                    <Button.Style>
+                                                        <Style TargetType="{x:Type Button}">
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                                        <Border Background="{TemplateBinding Background}">
+                                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                        </Border>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Style>
+                                                    </Button.Style>
                                                 </Button>
-
                                             </StackPanel>
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>
                                 <TextBox Name="searchTextBox" PreviewKeyDown="searchTextBox_PreviewKeyDown"
-                                         Width="175" HorizontalAlignment="Left"
+                                         Width="210" HorizontalAlignment="Left"
                                          PreviewTextInput="searchTextBox_PreviewTextInput" FontSize="14"
                                          PreviewKeyUp="PreviewKeyUp_EnhanceTextBoxSearch" VerticalContentAlignment="Center"
                                          DataObject.Pasting="Pasting_EnhanceTextSearch" BorderThickness="0"></TextBox>
@@ -913,13 +907,22 @@
                         </ItemsControl>
 
                         <!--Nút thêm bước mới-->
-                        <Button Grid.ColumnSpan="2" HorizontalAlignment="Center" Background="White" Name="AddStepButton" Click="AddStepButton_Click"
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Grid.ColumnSpan="2" HorizontalAlignment="Center" Background="White" Name="AddStepButton" Click="AddStepButton_Click"
                             BorderThickness="0" Height="35" Margin="0,0,0,15">
-                            <WrapPanel Margin="15,0">
-                                <Image Source="Images/addImage.png" Width="20" Margin="0,0,10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                                <TextBlock VerticalAlignment="Center" FontSize="15">Add direction</TextBlock>
-                            </WrapPanel>
-                        </Button>
+                                <WrapPanel Margin="15,0">
+                                    <Image Source="Images/addImage.png" Width="20" Margin="0,0,10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                    <TextBlock VerticalAlignment="Center" FontSize="15">Add direction</TextBlock>
+                                </WrapPanel>
+                            </Button>
+                            <Button Grid.ColumnSpan="2" HorizontalAlignment="Center" Background="White" Name="DeleteStepButton" Click="DeleteStepButton_Click"
+                            BorderThickness="0" Height="35" Margin="0,0,0,15">
+                                <WrapPanel Margin="15,0">
+                                    <Image Source="Images/deleteText.png" Width="20" Margin="0,0,10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                    <TextBlock VerticalAlignment="Center" FontSize="15">Delete last direction</TextBlock>
+                                </WrapPanel>
+                            </Button>
+                        </StackPanel>
 
                         <!--Hai nút lưu và hủy thêm món-->
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

@@ -2,22 +2,81 @@
 <ArrayOfFoodInfomation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <FoodInfomation>
     <ID>1</ID>
-    <Name>hfss</Name>
-    <Ingredients>hshsh</Ingredients>
+    <Name>Cá Hồi Măng Tây Sốt Cam</Name>
+    <Ingredients>Khẩu phần 1 người, bao gồm:
++ Cá hồi - 200gr
++ Nước cốt cam - 1/2 chén
++ Măng tây - 150gr
++ Bột năng - 1 muỗng cà phê
++ Dầu olive - 2 muỗng canh</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:14:17 AM</DateAdd>
-    <VideoLink>https://www.youtube.com/watch?v=-nsFVcwqttQ</VideoLink>
-    <Level>Easy</Level>
+    <DateAdd>11/19/2020 3:27:31 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=4vtlEXnzkVU</VideoLink>
+    <Level>Normal</Level>
     <Type>Food</Type>
-    <Discription>sfhs</Discription>
+    <Discription>Cá hồi là thực phẩm thơm ngon, bổ dưỡng rất được các bếp trưởng phương Tây ưa chuộng. Một trong những món ngon từ cá hồi được nhiều gia đình yêu thích là cá hồi măng tây sốt cam. Món ăn lạ miệng này chinh phục tín đồ ẩm thực nhờ cá hồi mềm ngọt đậm đà hương vị, vỏ ngoài được chiên vàng ăn kèm nước sốt cam thơm phức và độ giòn rụm của măng tây . Vị béo ngậy của cá hồi kết hợp với cái thanh mát, chua chua ngọt ngọt của cam tươi giúp món ăn hấp dẫn mà không ngấy, thích hợp với cả trẻ nhỏ và người lớn. Cùng tham khảo cách làm cá hồi sốt cam tươi đơn giản mà thơm ngon chẳng kém ăn ở nhà hàng hạng sang.</Discription>
     <PrimaryImagePath>images\1.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>sfhh</Content>
+        <Content>Sơ chế cá hồi và măng tây: Cá hồi sơ chế rửa sạch và để ráo nước, lấy khăn sạch hoặc giấy thấm qua miếng cá một chút cho khô để khi áp chảo sẽ không bị bắn. Sau đó cắt cá thành miếng dày khoảng 2cm rồi đem cá ướp cùng với 1/2 thìa nhỏ muối, 1/4 thìa cà phê tiêu và một chút dầu olive, mỗi mặt để khoảng 10 phút cho thấm gia vị. Măng tây rửa sạch, cắt bỏ phần gốc khoảng 2cm.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
             <ImagePath>images\1_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\1_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\1_Step1_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\1_Step1_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Chế biến sốt cam: Cam ép lấy nước, cho vào khoảng 1 muỗng cà phê đường, bạn nhớ chừa lại 1 lát nhỏ để trang trí nhé. Cho chút dầu olive vào chảo hun nóng rồi phi tỏi băm nhuyễn khoảng 3 phút, đổ phần nước cốt cam vào. Đợi khi phần cốt cam sôi lên, khuấy bột năng với 5ml nước rồi hòa chung cho đến khi hỗn hợp sốt cam sệt lại, nêm nếm với muối, tiêu, đường cho vừa ăn.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\1_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\1_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\1_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\1_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Chế biến cá hồi và măng tây: Dùng chảo chống dính bắt lên bếp, cho 1 muỗng cà phê dầu olive. Dầu nóng, cho lát cá hồi đã tẩm gia vị vào. Khoảng 8 phút cho mỗi mặt để 2 bên mặt cá đều vàng, để lửa lớn, sau đó bỏ ra dĩa. Cho tiếp phần măng tây vào chảo đảo đều tay trong khoảng 4 phút để măng vẫn giữ được độ xanh và giòn.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\1_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\1_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Trình bày cá ra đĩa, trang trí bằng những lát cam vàng và một ít sốt lên bề mặt cá. Món cá hồi sốt cam sẽ ngon hơn khi dùng với cơm trắng hoặc bánh mì. Chúc các bạn thành công và ngon miệng!</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\1_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\1_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\1_Step4_Image3.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
@@ -25,22 +84,115 @@
   </FoodInfomation>
   <FoodInfomation>
     <ID>2</ID>
-    <Name>ga </Name>
-    <Ingredients>24</Ingredients>
+    <Name>Lẩu gà ớt hiểm</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Thịt gà - 500 Gr
++ Ớt -50 Gr
++ Muối hột - 20 Gr
++ Sả -20 Gr
++ Hành tím -10 Gr
++ Hành tây - 20 Gr
++ Củ cải trắng - 50 Gr
++ Củ cải đỏ -50 Gr
++ Bắp non - 50 Gr
++ Nấm đông cô - 50 Gr
++ Táo tàu - 50 Gr
++ Nước dừa tươi 500 ml
++ Nước - 1 Lít
++ Rau tần ô (cải cúc) - 100 Gr
++ Cải thảo - 100 Gr
++ Xà lách xoong - 100 Gr
++ Mì trứng - 100 Gr</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 10:26:18 AM</DateAdd>
-    <VideoLink>43</VideoLink>
+    <DateAdd>11/19/2020 3:03:20 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=gOq4M_eOY50</VideoLink>
     <Level>Easy</Level>
     <Type>Food</Type>
-    <Discription>23</Discription>
+    <Discription>Lẩu Gà Ớt Hiểm là món ăn đậm chất dân dã miền Tây. Cách nấu lẩu gà ớt hiểm với vị cay nồng từ ớt xanh hòa quyện cùng nước dùng ngọt thanh và các gia vị nấu lẩu gà khác, thực sự là một món ăn bổ dưỡng, khác hẳn các loại lẩu gà khác đấy nhé. Ngày se lạnh, làm ngay nồi lẩu gà ớt hiểm nóng hổi mời cả nhà quây quần bên nhau thì còn gì bằng.</Discription>
     <PrimaryImagePath>images\2.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>234</Content>
+        <Content>Cho 20gr muối hạt và 5gr ớt hiểm vào cối, giã nhuyễn rồi chia làm 2 phần, một phần để ướp gà, một phần để làm muối chấm. 500gr thịt gà ta (khoảng nửa con) mua về rửa sạch, chặt miếng vừa ăn. Ướp thịt gà với 10gr muối ớt, 10gr hành tím băm, 1 muỗng cà phê hạt nêm, 4 muỗng cà phê nước tương. Trộn đều và để khoảng 15 phút cho thịt gà thấm gia vị.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
             <ImagePath>images\2_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\2_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\2_Step1_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\2_Step1_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Đun sôi dầu ăn sau đó chiên sơ sả đập dập trong chảo cho thơm rồi vớt ra cho gà đã ướp vào. Chiên gà săn lại cho đến khi thịt chín vàng đều thì vớt ra.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\2_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\2_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\2_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\2_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Rang ớt hiểm xanh trong chảo đến khi ớt xém vàng mặt thì tắt bếp. Bước này để tạo mùi thơm đậm cho ớt khi bỏ vào nước lẩu lúc sau, giúp nước lẩu gà ớt hiểm có vị cay nồng của ớt nhiều hơn.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\2_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\2_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>
+Bắc nồi lên bếp cho vào 1 lít nước. Cho lần lượt 5gr hành tím, 20gr hành tây, 50gr củ cải trắng, 50gr củ cải đỏ, 50gr bắp non nấu đến khi sôi, sau đó cho gà đã chiên, 50gr nấm đông cô, 50gr táo đỏ và 500ml nước dừa tươi vào đun trong lửa vừa đến khi gà mềm. Trong quá trình nấu nhớ vớt bọt để nước lẩu được trong. Đến khi nước lẩu gà sôi lần nữa, cho 50gr ớt hiểm xanh và 20gr kỷ tử vào nồi, nêm nếm gia vị vừa ăn với 1 muỗng cà phê muối, 2 muỗng cà phê hạt nêm, 2 muỗng cà phê đường và 1 muỗng cà phê bột ngọt. Đun lẩu gà ớt hiểm thêm khoảng 10 phút nữa là có thể thưởng thức</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\2_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\2_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\2_Step4_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\2_Step4_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>5</Order>
+        <Content>Lẩu gà ớt hiểm là một món ngon dành cho gia đình vào dịp cuối tuần. Cách nấu gà ớt hiểm này sẽ hấp dẫn hơn khi dùng kèm với mì trứng cùng các loại rau như tần ô, cải thảo, xà lách xoong...Vị cay nồng của ớt, vị ngọt của gà, hòa quyện cùng nước lẩu đậm đà với các loại rau củ và nấm sẽ tạo nên hương vị đặc trưng khó tả. Còn gì bằng ngày mưa lành lạnh thưởng thức một chén lẩu gà ớt hiểm nóng hổi bên gia đình.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\2_Step5_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\2_Step5_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\2_Step5_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\2_Step5_Image4.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
@@ -48,827 +200,2546 @@
   </FoodInfomation>
   <FoodInfomation>
     <ID>3</ID>
-    <Name>33</Name>
+    <Name>Cocoa Milkshake</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Sữa tươi không đường - 500 ml
++ Đường - 4 muỗng canh
++ Socola đen - 75 gr
++ Bột bắp - 2 muỗng canh
++ Bột cacao - 2 muỗng canh
++ Đá bi - 200 gr</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:17:03 AM</DateAdd>
-    <VideoLink />
-    <Level>Easy</Level>
-    <Type>Food</Type>
+    <DateAdd>11/19/2020 3:40:48 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=zOlCpPgukOc</VideoLink>
+    <Level>Normal</Level>
+    <Type>Drinks</Type>
+    <Discription>Cocoa Milkshake là thức uống khá phổ biến ở ẩm thực đường phố Ấn Độ. Cocoa milkshake có vị đậm đà của bột cacao, vị beo béo của sữa tươi và một chút đắng nhẹ từ socola đen, đây chắc chắn là một món thức uống lý tưởng cho bạn trong những ngày hè oi bức. Bạn hãy tham khảo công thức bên dưới để làm món thức uống này nhé!</Discription>
     <PrimaryImagePath>images\3.jpg</PrimaryImagePath>
-    <Steps />
+    <Steps>
+      <Step>
+        <Order>1</Order>
+        <Content>Hỗn hợp cacao: Cho 2 muỗng canh bột bắp, 4 muỗng canh đường trắng, 2 muỗng canh bột cacao, 6 muỗng canh sữa tươi không đường vào chén rồi trộn đều.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\3_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\3_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\3_Step1_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\3_Step1_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Bắc nồi lên bếp, cho 500 ml sữa tươi không đường đun sôi lăn tăn, cho từ từ hỗn hợp cacao vào khuấy đều, đun với lửa vừa khoảng 3 phút, sau đó cho tiếp 75g socola đen vào khuấy đều và nấu thêm 5phút nữa, tắt bếp để nguội.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\3_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\3_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\3_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\3_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Cocoa Milkshake: Cho đá và coco vào shaker, lắc đều khoảng 1 phút là hoàn thành.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\3_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\3_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\3_Step3_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\3_Step3_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Rót cocoa milkshake ra ly đá và thưởng thức ngay món thức uống thơm ngon, đậm đà. Khi thưởng thức, bạn sẽ cảm nhận được ngay vị đậm đà của bột cacao, vị beo béo của sữa tươi và một chút đắng nhẹ từ socola đen. Đây chắc chắn là một món thức uống lý tưởng giúp cho bạn trong những ngày trời oi bức.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\3_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\3_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\3_Step4_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\3_Step4_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+    </Steps>
   </FoodInfomation>
   <FoodInfomation>
     <ID>4</ID>
-    <Name>fầ</Name>
+    <Name>Trứng Cuộn Xúc Xích</Name>
+    <Ingredients>Khẩu phần 2 người, bao gồm:
++ Trứng gà - 5 quả
++ Cà rốt - 30 gr
++ Hành lá - 30gr
++ Phô mai lát - 6 miếng
++ Muối - 1/2 muỗng cà phê
++ Xúc xích Deli Sumo</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:28:42 AM</DateAdd>
-    <VideoLink>âfa</VideoLink>
+    <DateAdd>11/19/2020 3:05:54 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=cwvX4g1CZWk</VideoLink>
     <Level>Easy</Level>
     <Type>Food</Type>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>1</ID>
-    <Name>hfss</Name>
-    <Ingredients>hshsh</Ingredients>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:14:17 AM</DateAdd>
-    <VideoLink>https://www.youtube.com/watch?v=-nsFVcwqttQ</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Discription>sfhs</Discription>
-    <PrimaryImagePath>images\1.jpg</PrimaryImagePath>
+    <Discription>Trứng cuộn xúc xích chỉ với vài bước thực hiện đơn giản là bạn đã có bữa ăn sáng đẹp mắt và đầy đủ chất dinh dưỡng, giúp cho một ngày làm việc hiệu quả. Cùng nhanh tay lưu lại công thức món trứng cuộn xúc xích của Le Gourmet để chuẩn bị cho mình hay gia đình giúp bữa ăn thêm phong phú nhé!</Discription>
+    <PrimaryImagePath>images\4.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>sfhh</Content>
+        <Content>Cho 5 quả trứng gà đánh đều rồi lọc qua rây cho mịn.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\1_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\4_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\4_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\4_Step1_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\4_Step1_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Trong tô trứng gà đã lọc mịn cho thêm 30gr cà rốt băm nhỏ, 30gr hành lá băm nhỏ, 1/2 muỗng cà phê muối, khuấy đều</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\4_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\4_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\4_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\4_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Bắc chảo cho 1 muỗng canh dầu ăn, tráng mỏng hỗn hợp trứng gà rồi đặt 2 miếng phô mai lát cùng 1 cây xúc xích Deli Sumo vào, cho thêm 1 lớp trứng mỏng vào rồi dùng muôi lật để cuộn tròn trứng.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\4_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\4_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\4_Step3_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\4_Step3_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>
+Món trứng cuộn xúc xích thích hợp ăn cùng cơm nóng hay chấm cùng sốt tương theo sở thích, thưởng thức nóng giúp món ăn được ngon hơn.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\4_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\4_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\4_Step4_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\4_Step4_Image4.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>2</ID>
-    <Name>ga </Name>
-    <Ingredients>24</Ingredients>
+    <ID>5</ID>
+    <Name>Thịt Heo Nướng Mỡ Hẹ</Name>
+    <Ingredients>Khẩu phần 2 người, bao gồm:
++ Thịt ba chỉ rút sườn - 300 gr
++ Mỡ heo cắt nhỏ - 100 gr
++ Sả cắt lát - 1 cây
++ Tỏi củ - 3 củ
++ Hành tím - 3 củ
++ Gốc ngò - 6 cọng
++ Ớt sừng - 1 trái nhỏ
++ Nước cốt chanh - 1 muỗng canh
++ Hẹ tăm thái nhỏ - 3 muỗng canh</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 10:26:18 AM</DateAdd>
-    <VideoLink>43</VideoLink>
+    <DateAdd>11/19/2020 3:07:20 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=155QRwSXFBw</VideoLink>
     <Level>Easy</Level>
     <Type>Food</Type>
-    <Discription>23</Discription>
-    <PrimaryImagePath>images\2.jpg</PrimaryImagePath>
+    <Discription>Món thịt heo nướng mỡ hẹ với những lát thịt vừa giòn giòn, lớp mỡ hẹ béo béo hòa hợp ăn ý cùng bánh hỏi và nước mắm đậm đà đã làm cho món ăn thêm phần đặc sắc hơn. Hãy vào bếp để khám phá cách làm món thịt heo nướng mỡ hẹ cùng Ajinomoto nhé!</Discription>
+    <PrimaryImagePath>images\5.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>234</Content>
+        <Content>Làm xốt ướp thịt: Cho vào máy xay 1 cây sả cắt lát, 3 củ tỏi, 3 củ hành tím, 6 cọng gốc ngò, 1 trái ớt sừng cắt lát, 2 muỗng Hạt nêm Aji-ngon® Heo, 1/2 muỗng cà phê Bột ngọt Aji-no-moto®, 1/2 muỗng cà phê tiêu, 1 muỗng cà phê nước mắm,1 muỗng canh dầu ăn, và 1 muỗng canh nước cốt chanh, 1 muỗng canh dầu điều rồi đem xay nhuyễn.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\2_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\5_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step1_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step1_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Luộc thịt 5 phút trong nước sôi với 1 ít muối, 1/2 muỗng cà phê Hạt nêm Aji-ngon® Heo, 5 lát gừng, vớt ra ngâm trong nước đá, để ráo.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Dùng nĩa xăm đều vào phần da và thịt, sau đó cho hết phần xốt gia vị xay vào ướp khoảng 15-20 phút. Cho thịt vào lò nướng với nhiệt độ 230 độ khoảng 15 phút. Sau 7-10 phút trở mặt 1 lần cho thịt chín vàng.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Làm mỡ hẹ: Trộn hẹ tăm cắt nhỏ với 1 ít muối. Thắng mỡ heo, để nguội bớt rồi đổ mỡ vào chén hẹ tăm, trộn đều cho hẹ vừa chín.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step4_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step4_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>5</Order>
+        <Content>Làm nước mắm chua ngọt: trộn đều 1/2 muỗng canh giấm gạo lên men Lisa® với 1 muỗng canh đường, 1 muỗng canh nước mắm, 5 muỗng canh nước lọc và 1 muỗng canh tỏi ớt băm.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step5_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step5_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step5_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step5_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>6</Order>
+        <Content>Phết mỡ hẹ lên bánh hỏi, cuộn lại, thịt thái lát miếng nhỏ rồi xếp ra dĩa. Ăn kèm rau thơm, xà lách và nước mắm chua ngọt. Cùng thưởng thức món thịt heo nướng mỡ hẹ để cảm nhận sự hòa quyện đầy kích thích vị giác.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step6_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step6_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step6_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\5_Step6_Image4.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>3</ID>
-    <Name>33</Name>
+    <ID>6</ID>
+    <Name>Sườn Chay Chiên Sả Ớt</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Sườn non chay - 100 gr
++ Sả băm - 50 gr
++ Hành tím băm - 1 muỗng canh
++ Ớt băm - 1/2 muỗng canh
++ Nước mắm - 1.5 muỗng canh
++ Đường - 1.5 muỗng canh
++ Hạt nêm - 1 muỗng cà phê
++ Tương ớt - 1 muỗng canh
++Nước lọc - 30ml</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:17:03 AM</DateAdd>
-    <VideoLink />
+    <DateAdd>11/19/2020 3:08:58 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=sX8rCDnPC2c</VideoLink>
     <Level>Easy</Level>
     <Type>Food</Type>
-    <PrimaryImagePath>images\3.jpg</PrimaryImagePath>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>4</ID>
-    <Name>fầ</Name>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:28:42 AM</DateAdd>
-    <VideoLink>âfa</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>1</ID>
-    <Name>hfss</Name>
-    <Ingredients>hshsh</Ingredients>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:14:17 AM</DateAdd>
-    <VideoLink>https://www.youtube.com/watch?v=-nsFVcwqttQ</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Discription>sfhs</Discription>
-    <PrimaryImagePath>images\1.jpg</PrimaryImagePath>
+    <Discription>Sườn chay chiên sả ớt, món ăn thanh đạm nhưng vẫn mang hương vị đậm đà và hấp dẫn, miếng sườn chay chiên giòn xốp trong miệng vô cùng mới lạ, phủ lên lớp sả ớt thơm nồng, làm cho món ăn càng thêm hoàn hảo. Chỉ mất vài phút vào bếp là bạn đã có ngay món ăn ngon miệng nay rồi. </Discription>
+    <PrimaryImagePath>images\6.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>sfhh</Content>
+        <Content>Ngâm 100gr sườn non chay vào nước cho nở mềm rồi vắt ráo nước, thái thánh miếng vừa ăn, sau đó đem đi chiên vàng đều 2 mặt, rồi vớt ra để ráo dầu.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\1_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\6_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\6_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\6_Step1_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\6_Step1_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Cho 1 canh dầu ăn vào chảo đun nóng, cho 1 muỗng canh hành tím băm, 50gr sả băm vào phi thơm. cho thêm 30ml nước lọc, 1.5 muỗng canh nước mắm, 1 muỗng canh tương ớt, 1 muỗng cà phê hạt nêm, 1.5 muỗng canh đường, dùng đũa khuấy đều cho hôn hợp hơi sệt. Rồi trút phần sườn non chay đã chiên vàng vào và đảo đều cho phần hỗn hợp áo đều miếng sườn.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\6_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\6_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\6_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\6_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Tắt bếp, cho sườn ra dĩa rắc vào lắc ớt để món ăn bắt mắt hơn và dùng chung với cơm nóng và dưa leo ăn kèm.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\6_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\6_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\6_Step3_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\6_Step3_Image4.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>2</ID>
-    <Name>ga </Name>
-    <Ingredients>24</Ingredients>
+    <ID>7</ID>
+    <Name>Ba Rọi Xông Khói Cuộn Ức Gà Sốt Kem</Name>
+    <Ingredients>Khẩu phần 2 người, bao gồm:
++ Ba rọi xông khói - 300 gr
++ Ức gà - 600 gr
++ Đường - 1 muỗng canh
++ Muối - 1 muỗng canh
++ Tiêu - 1 muỗng canh
++ Bột tỏi - 1 muỗng canh
++ Bột ớt - 1 muỗng canh
++ Bột năng - 1 muỗng canh
++ Bơ lạt - 10 gr
++ Kem sữa -100 ml
++ Sữa tươi -50 ml
++ Ngò tây -50 gr</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 10:26:18 AM</DateAdd>
-    <VideoLink>43</VideoLink>
+    <DateAdd>11/19/2020 3:10:24 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=9HQjvOH0OdE</VideoLink>
     <Level>Easy</Level>
     <Type>Food</Type>
-    <Discription>23</Discription>
-    <PrimaryImagePath>images\2.jpg</PrimaryImagePath>
+    <Discription>Ba rọi xông khói cuộn ức gà là một món ăn độc đáo mang lại hương vị mới mẻ và cực kỳ quyến rũ cho bữa ăn gia đình. Vị ngọt thơm tự nhiên của thịt gà được giữ nguyên vẹn vì được bao bọc bởi lớp thịt xông khói cuộn óng ả. Thêm sốt kem quyện vào toả hương thơm phưng phức, khiến bất kỳ ai cũng khó lòng cưỡng lại. Theo dõi công thức bên dưới để biết cách làm ngay nhé</Discription>
+    <PrimaryImagePath>images\7.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>234</Content>
+        <Content>600gr ức gà mua về rửa sạch, để ráo. Cắt ức gà thành miếng vừa ăn, sau đó ướp với 1 muỗng canh bột tỏi, 1 muỗng canh muối, 1 muỗng canh tiêu, 1 muỗng canh đường, 1 muỗng canh bột ớt. Ướp thịt trong 15 phút cho thấm gia vị.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\2_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\7_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\7_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\7_Step1_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\7_Step1_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Cuộn ức gà đã ướp với ba rọi xông khói Le Gourmet, cuộn chặt tay để thịt không bị bung ra. Cho cuộn thịt vào áp chảo với lửa vừa đến khi vàng đều các mặt thì lấy ra.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\7_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\7_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\7_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\7_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Làm sốt kem: Cho vào chảo 10gr bơ lạt, đun chảy sau đó cho vào 50ml sữa tươi, 100ml kem sữa, 1/2 muỗng cà phê muối, 1/2 muỗng cà phê tiêu. Khuấy đều đến khi sôi thì tắt bếp.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\7_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\7_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\7_Step3_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\7_Step3_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Cho cuộn thịt ra đĩa, trang trí với salad xung quanh. Khi ăn rưới đều sốt kem lên cuộn thịt rồi thưởng thức. Ba rọi xông khói cuộn thịt là một món ăn vô cùng hấp dẫn, ba rọi xém vàng quyện cùng thịt gà mềm và sốt kem béo ngậy chắc chắn sẽ làm hài lòng các thành viên gia đình bạn.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\7_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\7_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\7_Step4_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\7_Step4_Image4.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>3</ID>
-    <Name>33</Name>
+    <ID>8</ID>
+    <Name>Sữa Đậu Xanh Lá Dứa</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Đậu xanh không vỏ - 400 gr
++ Lá dứa - 200 gr
++ Sữa đặc - 400 gr
++ Nước cốt dừa - 400 ml</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:17:03 AM</DateAdd>
-    <VideoLink />
+    <DateAdd>11/19/2020 3:25:15 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=YtGQF_2yk_A</VideoLink>
     <Level>Easy</Level>
-    <Type>Food</Type>
-    <PrimaryImagePath>images\3.jpg</PrimaryImagePath>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>4</ID>
-    <Name>fầ</Name>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:28:42 AM</DateAdd>
-    <VideoLink>âfa</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>1</ID>
-    <Name>hfss</Name>
-    <Ingredients>hshsh</Ingredients>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:14:17 AM</DateAdd>
-    <VideoLink>https://www.youtube.com/watch?v=-nsFVcwqttQ</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Discription>sfhs</Discription>
-    <PrimaryImagePath>images\1.jpg</PrimaryImagePath>
+    <Type>Drinks</Type>
+    <Discription>Với những nguyên liệu đơn giản, bạn hoàn toàn có thể vào bếp trổ tài món sữa đậu xanh lá dứa đầy dinh dưỡng này cho cả gia đình thưởng thức vào ngày mỗi ngày. Dưới đây là công thức làm sữa đậu xanh lá dứa thơm ngon, mát lành, tốt cho sức khỏe và vô cùng đơn giản mà Cooky muốn truyền tải tới cho các bạn.</Discription>
+    <PrimaryImagePath>images\8.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>sfhh</Content>
+        <Content>Rửa 400gr đậu xanh qua vài lần với nước để làm sạch đậu. Ngâm đậu xanh 5 tiếng trong một tô nước sạch ngâm đậu với nước pha thêm chút muối, bắt nồi lên bếp bạn cho đậu xanh và nước lọc khoảng 500ml vào nấu khi đậu mềm.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\1_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\8_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\8_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Cho đậu xanh đã nấu chín vào máy xay sinh tố, cho thêm nước vào 1/3 nữa rồi xay nhuyễn. Cho đậu xay ra rây để lọc lấy nước đậu mịn nhuyễn và bỏ phần bã đậu. Lá dứa bạn lấy 200gr rửa sạch cắt gốc rồi bỏ vào máy xay sinh tố, cũng cho 1/3 nước lọc vào xay nhuyễn, lọc nước cốt lá dứa qua rây bỏ phần bã.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\8_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\8_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\8_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Cho đậu xanh đã lọc qua rây mịn vào nồi, cho thêm nước cốt lá dứa đã lọc, 400ml nước cốt dừa và 400gr sữa đặc rồi bắc lên bếp, bạn vừa đun vừa khuấy đều để sữa không bị cháy dưới nồi. Đun sữa trong 15 phút, bạn có thể thay đổi lượng ngọt cho vừa khẩu vị. Sau đó, bạn nhấc nồi ra khỏi bếp dùng liền sữa khi nóng hoặc đợi nguội rồi cho thêm đá dùng lạnh theo sở thích. Nếu không dùng hết ngay sữa bạn nhớ cho sữa vào bình thủy tinh, bảo quản trong tủ lạnh dùng dần trong 1 tuần.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\8_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\8_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Sữa đậu xanh lá dứa là một thức uống rất thơm ngon và bổ dưỡng cho sức khỏe, vô cùng dễ uống và phù hợp với tất cả mọi người. Đặc biệt trong sữa có vị thơm bùi của đậu xanh kết hợp với hương thơm lá dứa và vị béo ngậy của nước cốt dừa, hứa hẹn trở thành một món sữa hoàn hảo cho bất kỳ thời tiết mưa lạnh hoặc giải nhiệt mùa nóng bức.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\8_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\8_Step4_Image2.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>2</ID>
-    <Name>ga </Name>
-    <Ingredients>24</Ingredients>
+    <ID>9</ID>
+    <Name>Cà Phê Dalgona</Name>
+    <Ingredients>Khẩu phần 1 người, bao gồm:
++ Sữa tươi không đường - 150 ml
++ Đường trắng - 1 Muỗng canh
++ Cà phê hoà tan - 2 Muỗng canh
++ Nước sôi</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 10:26:18 AM</DateAdd>
-    <VideoLink>43</VideoLink>
+    <DateAdd>11/19/2020 3:25:28 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=duJMErdoOXU</VideoLink>
     <Level>Easy</Level>
-    <Type>Food</Type>
-    <Discription>23</Discription>
-    <PrimaryImagePath>images\2.jpg</PrimaryImagePath>
+    <Type>Drinks</Type>
+    <Discription>Cà phê bọt biển hay còn gọi là cà phê Dalgona là một món cà phê đang rất hot tại Hàn Quốc. Cách làm cực kì đơn giản và những nguyên liệu sẵn có tại nhà. Với hương thơm đầy mê hoặc từ cà phê được đánh bông lên cộng thêm vị sữa tươi béo ngậy, đã tạo nên một ly cà phê độc đáo, thơm ngon và lạ mắt. Hãy cùng Cooky bắt trend năm nay nào. </Discription>
+    <PrimaryImagePath>images\9.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>234</Content>
+        <Content>Đầu tiên, cho 2 muỗng cà phê bột cà phê đen hoà tan vào âu thêm 1 muỗng đường cát trắng, sau đó thêm 50 ml nước sôi vào. Tuỳ theo sở thích uống ngọt, bạn có thể cho thêm đường nếu muốn.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\2_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\9_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\9_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Dùng muỗng khuấy đều, sau đó dùng phới lồng đánh bông lên cho đến khi không còn lợn cợn hạt đường và thấy bông cứng là thành công.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\9_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\9_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Cho đá vào ly, rót từ từ 150 ml sữa tươi vào. Sau đó cho hỗn hợp cà phê đã đánh bông lên trên. Có thể rắc thêm ít bột sô cô la để trang trí cho đẹp mắt. Vậy là bạn đã hoàn thành xong ly cà phê Dalgona độc đáo và thơm ngon rồi.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\9_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\9_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\9_Step3_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\9_Step3_Image4.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>3</ID>
-    <Name>33</Name>
+    <ID>10</ID>
+    <Name>Súp Bánh Bạch Tuộc Nhật</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Bạch tuộc - 500 gr
++ Gừng - 10 gr
++ Bột chiên bánh - 200 gr
++ Nước - 300 ml
++ Cải thảo - 300 gr
++ Cà rốt - 150 gr
++ Bắp Mỹ - 100 gr
++ Nấm kim châm - 100 gr
++ Gừng - 10 gr
++ Muối - 1 muỗng cà phê
++ Hạt nêm -1 muỗng canh</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:17:03 AM</DateAdd>
-    <VideoLink />
+    <DateAdd>11/19/2020 3:13:58 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=8ZKoh3pvbQM</VideoLink>
     <Level>Easy</Level>
     <Type>Food</Type>
-    <PrimaryImagePath>images\3.jpg</PrimaryImagePath>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>4</ID>
-    <Name>fầ</Name>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:28:42 AM</DateAdd>
-    <VideoLink>âfa</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>1</ID>
-    <Name>hfss</Name>
-    <Ingredients>hshsh</Ingredients>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:14:17 AM</DateAdd>
-    <VideoLink>https://www.youtube.com/watch?v=-nsFVcwqttQ</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Discription>sfhs</Discription>
-    <PrimaryImagePath>images\1.jpg</PrimaryImagePath>
+    <Discription>Súp bánh bạch tuộc Nhật là món ăn vừa lạ vừa quen. Món canh súp này được biến tấu từ những chiếc bánh bạch tuộc nướng quen thuộc từ đường phố. Những chiếc bánh bạch tuộc dai ngon được thả vào nồi nước nấu từ rau củ sẽ mang lại cho bạn một món súp thanh mát và bổ dưỡng. Cùng vào bếp và thực hành ngay món ăn lạ miệng này nhé!</Discription>
+    <PrimaryImagePath>images\10.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>sfhh</Content>
+        <Content>Cho vào nồi nước sôi 500gr bạch tuộc baby và 10gr gừng để khử mùi tanh. Luộc chín bạch tuộc trong 10 phút rồi tiến hành cắt nhỏ bạch tuộc.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\1_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\10_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\10_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\10_Step1_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\10_Step1_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Pha 200gr bột chiên bánh Vedan với 260gr nước rồi trộn đều. Băm nhỏ bắp cải trắng, cà rốt cắt hạt lựu nhỏ, hành lá băm nhỏ. Cho bạch tuộc, bắp cải trắng, hành lá và gừng ngâm chua vào tô bột rồi trộn đều.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\10_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\10_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\10_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\10_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\10_Step2_Image5.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\10_Step2_Image6.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Bật lò nướng takoyaki lên, dùng giấy thấm dầu thoa dầu đều khắp khuôn. Đổ hỗn hợp bột lên cỡ nửa khuôn, nướng bánh bạch tuộc khoảng 3 phút. Sau 3 phút, lật bánh nghiêng một góc và đổ thêm bột, dùng que tre lật bánh nướng cho tròn đều. Nướng đến khi bánh chín và ngả màu vàng là được. Làm lần lượt cho đến khi hết hỗn hợp bột.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\10_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\10_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Khi bánh chín vàng cho ra đĩa để riêng. Sau đó, bắc nồi nước sôi lên bếp, cho vào cải thảo, cà rốt, nấm kim châm và bắp Mỹ nấu sôi, nêm gia vị với muối, hạt nêm rồi cuối cùng cho viên bạch tuộc vào.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\10_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\10_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\10_Step4_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\10_Step4_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>5</Order>
+        <Content>Múc súp bánh bạch tuộc ra tô, trang trí với ngò rí và thưởng thức khi còn nóng.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\10_Step5_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\10_Step5_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\10_Step5_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\10_Step5_Image4.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>2</ID>
-    <Name>ga </Name>
-    <Ingredients>24</Ingredients>
+    <ID>11</ID>
+    <Name>Keto</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Xúc xích - 4 cây
++ Trứng gà - 2 quả
++ Bơ - 1/2 trái
++ Rau cải mầm - 20 gr
++ Dầu bơ - 10 ml
++ Cà chua bi - 100 gr
++ Hành tím băm - 50 gr
++ Ngò tây -60 gr
++ Nước cốt chanh - 1 trái
++ Muối - 1/2 muỗng cà phê</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 10:26:18 AM</DateAdd>
-    <VideoLink>43</VideoLink>
+    <DateAdd>11/19/2020 3:15:13 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=A205a7DU5S4</VideoLink>
     <Level>Easy</Level>
     <Type>Food</Type>
-    <Discription>23</Discription>
-    <PrimaryImagePath>images\2.jpg</PrimaryImagePath>
+    <Discription>Keto là một món ăn được kết hợp giữa xúc xích, trứng và một số rau củ thơm ngon và bổ dưỡng. Món có vị đậm đà từ xúc xích vườn bia Le Gourmet được kết hợp với vị béo béo trứng cùng hỗn hợp rau củ thanh mát. Bạn hãy tham khảo ngay công thức bên dưới để làm ngay món này giúp cho những bữa ăn của gia đình thêm phần thú vị, đổi mới nhé!</Discription>
+    <PrimaryImagePath>images\11.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>234</Content>
+        <Content>Rửa sạch các nguyên liệu. Đem 100 gram cà chua bi, 60 gram ngò tây và 50 hành tím củ cắt nhỏ. Bơ cắt thành miếng vừa ăn.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\2_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\11_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\11_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Hỗn hợp cà chua: Cho cà chua, ngò tây, hành tím, nước cốt chanh và 1/2 muỗng cà phê muối vào chén, trộn đều.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\11_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\11_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\11_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\11_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Bắt chảo lên bếp, cho 20 ml dầu bơ vào đun nóng. Đến khi dầu nóng, cho tiếp 4 cây xúc xích vườn bia Le Gourmet vào và áp chảo khoảng 3 phút, chú ý trở mặt để xúc xích vàng đều các mặt.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\11_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\11_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Bắc chảo dầu nóng, cho 2 quả trứng gà chảo rồi dùng đũa khuấy đều cho trứng tơi, khuấy đều tay đến khi trứng, tắt bếp.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\11_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\11_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>5</Order>
+        <Content>Cuối cùng, xếp trứng khuấy, hỗn hợp cà chua, bơ và xúc xích vào hộp và thưởng thức. Keto có vị đậm đà từ xúc xích vườn bia Le Gourmet được kết hợp với vị béo béo trứng cùng hỗn hợp rau củ thanh mát. Như vậy, với cách làm trên bạn chỉ dành một ít thời gian là đã ngay một bữa sáng đầy đủ chất dinh dưỡng giúp cho những thành viên trong gia đình có một ngày mới tràn đầy năng lượng.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\11_Step5_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\11_Step5_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\11_Step5_Image3.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>3</ID>
-    <Name>33</Name>
+    <ID>12</ID>
+    <Name>Đuôi Heo Chiên Giòn Sốt Mắm Tắc</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Đuôi heo - 300 gr
++ Gừng - 5 gr
++ Nước cốt tắc - 50 ml
++ Muối - 1/2 muỗng canh
++ Nước mắm - 50 ml
++ Đường trắng - 50 gr
++ Tỏi băm - 10 gr
++ Ớt băm - 10 gr
++ Sả - 20 gr
++ Trái tắc - 10 gr</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:17:03 AM</DateAdd>
-    <VideoLink />
+    <DateAdd>11/19/2020 3:16:11 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=jTLjU-9hED8</VideoLink>
     <Level>Easy</Level>
     <Type>Food</Type>
-    <PrimaryImagePath>images\3.jpg</PrimaryImagePath>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>4</ID>
-    <Name>fầ</Name>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:28:42 AM</DateAdd>
-    <VideoLink>âfa</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>1</ID>
-    <Name>hfss</Name>
-    <Ingredients>hshsh</Ingredients>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:14:17 AM</DateAdd>
-    <VideoLink>https://www.youtube.com/watch?v=-nsFVcwqttQ</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Discription>sfhs</Discription>
-    <PrimaryImagePath>images\1.jpg</PrimaryImagePath>
+    <Discription>Đuôi heo thường dùng cho các món hầm, tiềm. Để thay đổi khẩu vị, có thể dùng đuôi heo để làm món đuôi heo chiên giòn sốt mắm tắc. Món đuôi heo chiên giòn sốt mắm tắc dưới đây sẽ là món nhậu tuyệt vời cho các anh xã của các chị em.  Đuôi heo có lớp vỏ giòn tan, thơm phức, kết hợp vị chua ngọt từ sốt mắm tắc mang lại cho người ăn cảm giác ngon miệng hấp dẫn. </Discription>
+    <PrimaryImagePath>images\12.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>sfhh</Content>
+        <Content>Đuôi heo chọn đuôi dài và có phần da nhiều. 300gr đuôi heo (3 cái) mua về rửa sạch, luộc 30 phút trên bếp với 5gr gừng để khử mùi tanh. Sau đó rửa sạch, thấm khô và phết nước tắc pha muối rồi phơi ngoài nắng khoảng 2-3 tiếng đến khi mặt da thật khô ráo.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\1_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\12_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\12_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\12_Step1_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\12_Step1_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Pha nước sốt tắc: Đun sôi 50gr nước mắm và 50gr đường trên bếp đến khi đường tan hoàn toàn thì tắt bếp, để nguội. Cuối cùng là cho vào nước mắm 10gr tỏi băm, 10gr ớt băm, 20gr sả, thả thêm vài lát tắc cắt nhỏ rồi trộn đều là đã có một phần nước chấm ngon đúng điệu rồi.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\12_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\12_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\12_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\12_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Đuôi heo sau khi phơi ráo mặt đem lên chảo chiên ngập dầu trên lửa vừa, đến khi vàng đều các mặt và mặt da giòn thì vớt ra giấy thấm dầu để ráo. Sau đó cắt ra thành những miếng vừa ăn.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\12_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\12_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\12_Step3_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\12_Step3_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Gắp đuôi heo ra dĩa, trang trí hỗn hợp sả chiên xung quanh. Món đuôi heo chiên giòn chấm kèm sốt mắm tắc thơm nồng và ăn với đồ chua sẽ rất ngon đấy. Những ngày cận Tết nhâm nhi món này với bạn bè thì còn gì bằng nhỉ, cùng vào bếp và thử ngay thôi!</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\12_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\12_Step4_Image2.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>2</ID>
-    <Name>ga </Name>
-    <Ingredients>24</Ingredients>
+    <ID>13</ID>
+    <Name>Đậu Hũ Non Sốt Nấm</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Nấm hương khô - 50 gr
++ Nấm mèo khô - 50 gr
++ Đậu hũ trứng - 2 cây
++ Hành tím băm - 15 gr
++ Hành lá - 20gr
++ Nước tương - 1 muỗng canh
++ Bột bắp 5gr</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 10:26:18 AM</DateAdd>
-    <VideoLink>43</VideoLink>
-    <Level>Easy</Level>
+    <DateAdd>11/19/2020 3:26:18 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=xdnaefXiOVQ</VideoLink>
+    <Level>Normal</Level>
     <Type>Food</Type>
-    <Discription>23</Discription>
-    <PrimaryImagePath>images\2.jpg</PrimaryImagePath>
+    <Discription>Đậu hũ non sốt nấm với vị béo hoà quyện cùng vị ngọt nấm hương và vị giòn nấm mèo sẽ khiến bữa ăn gia đình bạn rất hao cơm. Cùng Cooky xem cách thực hiện món đậu hũ non sốt nấm cho những ngày thèm bữa cơm thanh đạm cùng gia đình mình nhé!</Discription>
+    <PrimaryImagePath>images\13.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>234</Content>
+        <Content>50gr nấm hương khô và 50gr nấm mèo khô ngâm nở, giữ lại phần nước ngâm và băm nhỏ từng loại nấm.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\2_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\13_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\13_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\13_Step1_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\13_Step1_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Cho phần nước ngâm nấm vào chén 5gr bột bắp, khuấy tan.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\13_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\13_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\13_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\13_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Bắt chảo phi thơm 15gr hành tím băm, cho nấm mèo và nấm hương đã băm nhỏ vào xào cùng 1 muỗng canh nước tương trong 5 phút. Rồi cho tiếp phần nước ngâm nấm và bột bắp đã khuấy tan vào, dùng đũa đảo đều để sốt không bị vón cục.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\13_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\13_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\13_Step3_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\13_Step3_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Cắt 2 cây đậu hũ trứng rồi cho vào chảo, đậy nắp nấu thêm 5 phút cho sốt thấm đều, rắc 20gr hành lá cắt nhỏ rồi tắt bếp.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\13_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\13_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\13_Step4_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\13_Step4_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>5</Order>
+        <Content>Trình bày đậu hũ non sốt nấm ra dĩa và sẽ thêm ngon nếu như được thưởng thức khi còn nóng, có thể dùng kèm với cơm trắng cho bữa ăn gia đình thêm vị mới.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\13_Step5_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\13_Step5_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\13_Step5_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\13_Step5_Image4.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>3</ID>
-    <Name>33</Name>
+    <ID>14</ID>
+    <Name>Sủi cảo khô</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Hoành thánh lá - 200 gram
++ Thịt nạc dăm xay -300 gram
++ Cá thác lác nạo -100 gram
++ Trứng gà -1 quả
++ Tôm thẻ - 500 gram
++ Hành lá - 20 gram
++ Nước tương -80 ml
++ Tỏi băm - 1 muỗng canh
++ Hành tím băm - 1 muỗng canh
++ Tiêu - 1/2 muỗng canh
++ Đường - 1 muỗng canh
++ Dầu mè - 1 muỗng canh
++ Dầu hào - 1 muỗng canh
++ Dấm đen - 1 muỗng canh
++ Nước lọc - 50 ml
++ Bột năng pha loãng - 20 ml</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:17:03 AM</DateAdd>
-    <VideoLink />
+    <DateAdd>11/19/2020 3:18:59 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=Cgf5oyrK9Dk</VideoLink>
     <Level>Easy</Level>
     <Type>Food</Type>
-    <PrimaryImagePath>images\3.jpg</PrimaryImagePath>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>4</ID>
-    <Name>fầ</Name>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:28:42 AM</DateAdd>
-    <VideoLink>âfa</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>1</ID>
-    <Name>hfss</Name>
-    <Ingredients>hshsh</Ingredients>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:14:17 AM</DateAdd>
-    <VideoLink>https://www.youtube.com/watch?v=-nsFVcwqttQ</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Discription>sfhs</Discription>
-    <PrimaryImagePath>images\1.jpg</PrimaryImagePath>
+    <Discription>Sủi cảo là món ăn ngon khá phổ biến ở nước ta, có nguồn gốc từ Trung Quốc. Sủi cảo có rất nhiều cách chế biến như hấp, chiên,...  Nhưng hôm nay, Cooky sẽ hướng dẫn cho bạn một cách chế biến món sủi cảo rất mới lạ, độc đáo, đó chính là sủi cảo khô. Những viên sủi cảo vòng óng, tròn ụ với phần vỏ dai dai, mềm mượt, phần nhân bên trong có thịt tôm vừa giòn vừa tươi được bao bọc bởi phần thịt được nêm nếm vừa vị, chan lên sủi cảo là nước sốt đậm đà. Bạn hãy tham khảo ngay cách làm bên dưới đây nhé!</Discription>
+    <PrimaryImagePath>images\14.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>sfhh</Content>
+        <Content>Nhân thịt: Cho 300 gram thịt heo xay, 100 gram chả cá thác lác, 1 quả trứng gà, 1 muỗng canh tỏi băm, 1 muỗng canh hành tím băm, 30 ml nước tương, 1 muỗng cà phê đường, 1 muỗng cà phê hạt nêm, nửa muỗng cà phê muối, 1 muỗng cà phê tiêu, 1 muỗng cà phê dầu mè vào tô rồi trộn đều cho các nguyên liệu hòa quyện vào nhau.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\1_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\14_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\14_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Cho nửa muỗng canh nhân thịt vào giữa lá hoành thánh, sau đó cho tôm lên trên rồi dùng tay thấm một ít nước lên mép rồi gấp mí lá hoành thánh lại. Tiếp đến, bắc nồi nước sôi, cho hoành thánh vào luộc đến khi hoành thánh nổi lên trên mặt nước, vớt ra để cho ráo nước (Trong trường hợp bạn không thể dùng ngay, bạn nên trộn 1 muỗng canh dầu ăn để hoành thánh không bị dính vào nhau)</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\14_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\14_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\14_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\14_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Nước sốt: Cho 50 ml nước tương, 50 ml nước lọc, 1 muỗng cà phê hạt nêm, 1 muỗng cà phê dầu mè, 1 muỗng canh dấm đen, 1 muỗng canh đường, 20 ml bột năng (pha loãng) vào chảo đun sôi, nêm nếm lại cho vừa ăn, tắt bếp.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\14_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\14_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Trộn hoành thánh đã trụng với nước sốt rồi cho ra đĩa, rắc tớp mỡ, hành phi, hành lá lên trên. Món dùng kèm với nước súp rau cải xanh. Chỉ cần dành một ít thời gian là bạn đã ngay những viên sủi cảo vòng óng, tròn ụ với phần vỏ dai dai, mềm mượt, phần nhân bên trong có thịt tôm vừa giòn vừa tươi được bao bọc bởi phần thịt được nêm nếm vừa vị, chan lên sủi cảo là nước sốt đậm đà. Bạn hãy bổ sung món này vào thực đơn của gia đình nhé!</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\14_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\14_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\14_Step4_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\14_Step4_Image4.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>2</ID>
-    <Name>ga </Name>
-    <Ingredients>24</Ingredients>
+    <ID>15</ID>
+    <Name>Chè xoài</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Đường phèn - 200 gr
++ Nước lọc - 1 lít
++ Đường kính - 100 gr
++ Nước cốt dừa - 400 ml
++ Thạch xoài chín - 2 quả
++ Bột báng - 50 gr
++ Bột rau câu giòn - 100 gr</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 10:26:18 AM</DateAdd>
-    <VideoLink>43</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Discription>23</Discription>
-    <PrimaryImagePath>images\2.jpg</PrimaryImagePath>
+    <DateAdd>11/19/2020 3:26:52 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=f_HIz4NYwQM</VideoLink>
+    <Level>Normal</Level>
+    <Type>Drinks</Type>
+    <Discription>Món chè xoài với cách làm đơn giản thì các bạn có thể tự tay làm tại nhà mà vẫn ngon như ngoài quán.</Discription>
+    <PrimaryImagePath>images\15.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>234</Content>
+        <Content>Trước tiên đem bột báng rửa sạch và luộc cho tới khi bột chuyển sang màu trong là được.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\2_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\15_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Tiếp theo mình rửa, cắt xoài thành những miếng nhỏ, sau đó xay nhuyễn và lọc qua rây. Việc lọc qua rây này sẽ giúp thạch được mịn và không bị lợn cợn.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\15_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\15_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Với 800ml, các bạn cho hỗn hợp bột rau câu và 100g đường vào khuấy đều cho tan. Sau khi bột rau câu sôi, cho xoài vào và đun sôi 3-5p là mình đã có món thạch xoài. Các bạn đổ ra khay và ngâm vào khay nước đá cho nhanh đông lại nhé.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\15_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\15_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Phần nước chè: Chúng ta cho 200g đường phèn vào 400ml nước, đun cho tới khi đường tan thì cho cốt dừa vào và cuối cùng các bạn cho bột báng vào đun cho tới khi sôi lại nhé.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\15_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\15_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\15_Step4_Image3.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>5</Order>
+        <Content>Thạch đã đông lại rồi, mình cắt thạch thành những khúc nhỏ vừa ăn, sau đó cho phần nước chè vào, cuối cùng cho đá vào là xong.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\15_Step5_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\15_Step5_Image2.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>3</ID>
-    <Name>33</Name>
+    <ID>16</ID>
+    <Name>Trà Trân Châu Đậu Biếc</Name>
+    <Ingredients>Khẩu phần 2 người, bao gồm:
++ Bột rau câu giòn - 3 gr
++ Bột rau câu dẻo - 10 gr
++ Đường trắng - 145 gr
++ Dầu ăn - 150 ml
++ Nước cốt chanh dây - 15 ml
++ Hoa đậu biếc - 15 gr</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:17:03 AM</DateAdd>
-    <VideoLink />
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <PrimaryImagePath>images\3.jpg</PrimaryImagePath>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>4</ID>
-    <Name>fầ</Name>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:28:42 AM</DateAdd>
-    <VideoLink>âfa</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>1</ID>
-    <Name>hfss</Name>
-    <Ingredients>hshsh</Ingredients>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:14:17 AM</DateAdd>
-    <VideoLink>https://www.youtube.com/watch?v=-nsFVcwqttQ</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Discription>sfhs</Discription>
-    <PrimaryImagePath>images\1.jpg</PrimaryImagePath>
+    <DateAdd>11/19/2020 3:27:20 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=d5l3XLMWKn8</VideoLink>
+    <Level>Normal</Level>
+    <Type>Drinks</Type>
+    <Discription>Trà hoa Đậu Biếc hay còn được gọi với cái tên thân thương trà Lam Hồ Điệp với màu tim tím đặc trưng. Loại trà này cũng mang lại những công dụng tuyệt vời đối với cơ thể chúng ta. Một loài hoa sở hữu hàm lượng chất chống oxy hóa cao, cũng như cải thiện thị lực và một số bệnh liên quan đến võng mạc. Nào cùng khám phá công thức làm trà trân châu đậu biếc đẹp mắt và tốt cho sức khỏe nhé!</Discription>
+    <PrimaryImagePath>images\16.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>sfhh</Content>
+        <Content>Trộn 10gr rau câu dẻo vào 130gr đường cát cho hòa quyện. Nấu 500ml nước rồi cho 3gr rau câu giòn vào khuấy tan, tiếp theo cho hỗn hợp đường rau câu dẻo vào, khuấy liên tục cho tan hết rau câu.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\1_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\16_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\16_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\16_Step1_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\16_Step1_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Hãm 15gr hoa đậu biếc với 100ml nước sôi là ta đã có trà hoa đậu biếc. Đổ 100ml trà đậu biếc vào nồi rau câu trộn đều, đến khi sôi rồi tắt bếp và rót vào chai nhựa sạch có đầu nhọn (như chai tương ăn phở, hoặc bạn có thể dùng chai tương ớt rửa sạch cũng được)</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\16_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\16_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\16_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\16_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Chuẩn bị 1 tô lớn nước lạnh, sau đó đổ 150ml dầu ăn vào. Nhỏ từng giọt rau câu vào tô, giọt rau câu qua lớp dầu sẽ tạo thành hình viên tròn đều, sau đó sẽ chìm xuống phần nước đá để đông cứng lại, thành viên trân châu đậu biếc. Bạn nhớ rửa trân châu lại bằng nước cho sạch lớp dầu ăn nhé.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\16_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\16_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\16_Step3_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\16_Step3_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Pha 1 muỗng canh đường vào 100ml nước trà đậu biếc. Khuấy tan và cho thêm 15ml chanh vào, vậy là ta đã có trà đậu biếc chua chua ngọt ngọt.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\16_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\16_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\16_Step4_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\16_Step4_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>5</Order>
+        <Content>Vậy là trà trân châu đậu biếc đã hoàn thành với vị chua chua ngọt ngọt, uống kèm trân châu dai dai với màu sắc đẹp mắt sẽ khiến bạn uống mãi không dừng. Cách làm cũng rất đơn giản đúng không nào? Hoặc bạn cũng có thể biến tấu thành trà sữa trân châu đậu biếc với lớp milkfoam.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\16_Step5_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\16_Step5_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\16_Step5_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\16_Step5_Image4.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>2</ID>
-    <Name>ga </Name>
-    <Ingredients>24</Ingredients>
+    <ID>17</ID>
+    <Name>Bún vịt xào măng</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Thịt vịt - 700 gr
++ Măng tươi - 400 gr
++ Nước mắm - 2 muỗng canh
++ Đường - 1 muỗng canh
++ Bột ngọt - 1 muỗng cà phê
++ Hành tím băm - 2 muỗng canh
++ Đầu hành lá - 1 muỗng canh
++ Gừng - 10 gr
++ Rượu trắng - 50 ml
++ Hành lá - 10 gr
++ Bún tươi - 500 gr
++ Rau sống - 300 gr
++ Muối - 1 muỗng canh
++ Hạt nêm - 1 muỗng canh</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 10:26:18 AM</DateAdd>
-    <VideoLink>43</VideoLink>
+    <DateAdd>11/19/2020 3:22:21 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=F1zxOS1aNLc</VideoLink>
     <Level>Easy</Level>
     <Type>Food</Type>
-    <Discription>23</Discription>
-    <PrimaryImagePath>images\2.jpg</PrimaryImagePath>
+    <Discription>Bún vịt xáo măng vừa lạ miệng vừa quen thuộc, thích hợp thưởng thức trong những ngày se lạnh. Với phần thịt vịt chín mềm, đậm vị, nước dùng thanh ngọt, thơm thơm, hơi béo. Mùi măng thơm nức mũi cùng mùi gừng nóng ấm. Tất cả hòa quyện thành món ăn hoàn hảo. </Discription>
+    <PrimaryImagePath>images\17.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>234</Content>
+        <Content>Đầu tiên, cho 700grí thịt vịt vào âu, thêm vào 50ml rượu trắng, 1 muỗng canh muối, 10gr gừng đập dập. Sau đó chà sát da vịt để khử mùi hôi, rồi đem đi xả sạch với nước. Chặt thịt vịt thành từng miếng vừa ăn.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\2_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\17_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step1_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step1_Image4.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step1_Image5.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step1_Image6.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Ướp vào thịt vịt 1 muỗng canh nước mắm, 1 muỗng canh hạt nêm, 1 muỗng cà phê bột ngọt, ướp trong vòng 15 phút cho thịt thấm gia vị.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Trong khi đợi thịt thấm, bắt chảo lên bếp phi thơm 1 muỗng canh hành tím băm, cho 400gr măng tươi đã được luộc sẵn, xé sợi nhỏ vừa ăn vào xào sơ, nêm thêm 1 muỗng canh đường, 1 muỗng canh nước mắm xào cho tấm gia vị.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step3_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step3_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Tiếp đó, bắt chảo lên bếp, cho dầu vào chảo đun nóng, cho thịt vịt đã ướp vào chiên ngập dầu đến khi vàng 2 mặt thì vớt ra.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>5</Order>
+        <Content>Phi thơm 1 muỗng canh hành tím băm, 1 muỗng canh đầu hành lá băm, trút thịt vịt đã chiên vào đảo sơ, đổ vào 1 lít nước lọc sâm sấp thịt, rồi hầm trong vòng 30 phút cho thịt mềm. Kế tiếp, cho phần măng xào vào hầm tiếp 10 phút, sau đó tắt bếp.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step5_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step5_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step5_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step5_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>6</Order>
+        <Content>Pha nước chấm: Cho 3 muỗng canh nước mắm vào chén, 1 muỗng canh nước cốt chanh, thêm 1,5 muỗng canh đường khuấy tan, cho tiếp 1 muỗng canh gừng băm nhỏ, 1/2 muỗng canh ớt băm.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step6_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step6_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step6_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step6_Image4.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step6_Image5.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step6_Image6.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>7</Order>
+        <Content>Cho bún tươi vào tô, cho thịt vịt và măng lên trên rồi múc nước dùng chan vào, rồi rắc hành lá lên trên. Món ăn được dùng kèm với rau sống và chấm với nước mắm gừng.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step7_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step7_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step7_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\17_Step7_Image4.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>3</ID>
-    <Name>33</Name>
+    <ID>18</ID>
+    <Name>Chả giò tôm bắp</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Bắp Mỹ - 1/2 trái
++ Tôm tươi - 200 gr
++ Thịt băm - 100 gr
++ Cà rốt - 1 củ
++ Nấm mèo - 20 gr
++ Hành tím - 3 củ
++ Bánh tráng bía - 1 gói
++ Nước mắm - 1/2 muỗng canh
++ Hạt nêm - 1/2 muỗng canh
++ Đường trắng - 1 muỗng cà phê
++ Tiêu - 1/2 muỗng canh
++ Dầu ăn - 300 ml</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:17:03 AM</DateAdd>
-    <VideoLink />
+    <DateAdd>11/19/2020 3:23:51 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=ebSrNP_IETw</VideoLink>
     <Level>Easy</Level>
     <Type>Food</Type>
-    <PrimaryImagePath>images\3.jpg</PrimaryImagePath>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>4</ID>
-    <Name>fầ</Name>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:28:42 AM</DateAdd>
-    <VideoLink>âfa</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>1</ID>
-    <Name>hfss</Name>
-    <Ingredients>hshsh</Ingredients>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:14:17 AM</DateAdd>
-    <VideoLink>https://www.youtube.com/watch?v=-nsFVcwqttQ</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Discription>sfhs</Discription>
-    <PrimaryImagePath>images\1.jpg</PrimaryImagePath>
+    <Discription>Chả giò từ lâu đã là món ăn quen thuộc của người dân Việt từ nam chí bắc. Những dịp lễ tết mà vắng bóng chả giò liền có cảm giác mâm cỗ nhà mình không trọn vẹn ngay. Với một chút biến tấu bằng cách thêm bắp ngọt và tôm vào cùng với những nguyên liệu quen thuộc của món chả giò, công thức đặc biệt mới mẻ này thật sự tạo nên một hương vị rất mới nhưng cũng rất ngon.</Discription>
+    <PrimaryImagePath>images\18.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>sfhh</Content>
+        <Content>Đầu tiên bạn rửa sạch tôm, lột vỏ bỏ đầu và chỉ lưng rồi băm nhỏ. Bắp ngọt tách lấy hạt. Nấm mèo ngâm với nước ấm rồi băm nhỏ. Các nguyên liệu như cà rốt, hành tím, đầu hành, gốc ngò bạn rửa sạch rồi cũng băm nhỏ</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\1_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\18_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\18_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Cho tất cả các nguyên liệu vừa sơ chế ở bước 1 vào một tô lớn cùng với thịt băm, nêm 1/2 muỗng canh nước mắm, 1/2 muỗng canh hạt nêm, 1/2 muỗng canh tiêu xay, 1 muỗng cà phê đường vào rồi trộn đều, để 10 phút cho ngấm gia vị.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\18_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\18_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Cho nhân vào bánh tráng bía, cuốn lại chặt tay rôì đem chiên ở lửa vừa. Đến khi chả giò vàng giòn thì gắp ra cho vào dĩa có lót giấy thấm dầu.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\18_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\18_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\18_Step3_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\18_Step3_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Chả giò tôm bắp giòn rụm, mang hương vị thơm ngon của tôm thịt và các loại rau củ, tạo cảm giác không bị ngấy như thông thường vì món chả giò được chiên với rất nhiều dầu mỡ. Đặc biệt nhất là khi vô tình cắn vào những hạt bắp vàng ươm sẽ thấy vị bắp rất ngọt thanh và dễ chịu. Thêm một chén nước mắm chua ngọt và một tô bún là ta đã có món bún chả giò thơm ngon. Nếu không bạn có thể chấm chả giò với tương ớt thôi là cũng đủ cảm nhận được nét hấp dẫn của những cuốn giả giòn tan này rồi.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\18_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\18_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\18_Step4_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\18_Step4_Image4.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>2</ID>
-    <Name>ga </Name>
-    <Ingredients>24</Ingredients>
+    <ID>19</ID>
+    <Name>Sữa mè đen</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Mè đen - 250 gr
++ Đường phèn - 80 gr
++ Sữa tươi không đường - 600 ml
++ Sữa đặc - 150 gr
++ Lá dứa - 10 Lá
++ Nước - 1 Lít</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 10:26:18 AM</DateAdd>
-    <VideoLink>43</VideoLink>
+    <DateAdd>11/19/2020 3:27:08 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=db6z-bE5-dw</VideoLink>
     <Level>Easy</Level>
-    <Type>Food</Type>
-    <Discription>23</Discription>
-    <PrimaryImagePath>images\2.jpg</PrimaryImagePath>
+    <Type>Drinks</Type>
+    <Discription>Sữa Mè Đen (vừng đen) là một trong những thức uống từ sữa hạt thơm ngon, tốt cho sức khỏe và làm đẹp da, cự tốt cho bà bầu. Cách nấu sữa mè đen cho bà bầu mịn ngọt, béo thơm ưng ý thì bạn nên lưu ý cách rang mè đen cho dậy mùi thơm trước khi đem xay nhuyễn. Lưu ngay cách làm sữa mè đen cho bà bầu chi tiết đơn giản mời cả nhà ngay nhé!</Discription>
+    <PrimaryImagePath>images\19.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>234</Content>
+        <Content>Cách làm sữa mè đen thơm ngon: Đảo đều mè đen trong rổ để loại bỏ bụi và cát, nhặt bỏ dị vật. Cho 250gr mè đen vào chảo và rang chín đến khi nghe mùi thơm. Khi rang nên để lửa vừa nhỏ và dùng vá đảo đều liên tục vì mè đen rất dễ cháy.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\2_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\19_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\19_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Cho mè đã rang chín vào cối xay cùng 1lít nước, sau khi xay mịn, dùng rây lọc lấy nước mè đen.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\19_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\19_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\19_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\19_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Cách làm sữa mè đen: Bắc nồi lên bếp đun sôi cùng 1 bó lá dứa, cho tiếp 80gr đường phèn, thêm 150gr sữa đặc và 600ml sữa tươi vào khuấy đều đến khi sữa sôi thì tắt bếp. Trong quá trình đun sôi, thường xuyên hớt bọt để sữa đẹp mắt và ngon hơn.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\19_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\19_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Cách làm sữa mè đen đơn giản, có mùi thơm rất hấp dẫn của mè và lá dứa, dùng uống ấm nóng hay thêm đá đều ngon. Các bạn hãy thường xuyên sử dụng sữa mè đen để có một sức khỏe tốt, đặc biệt cực bổ dưỡng cho bà bầu nhé! Với cách nấu sữa mè đen cho bà bầu chia sẻ ở trên, bạn có thể làm tự làm sữa mè đen tại nhà, vừa ngon, vừa đảm bảo an toàn vệ sinh.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\19_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\19_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\19_Step4_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\19_Step4_Image4.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>3</ID>
-    <Name>33</Name>
+    <ID>20</ID>
+    <Name>Gỏi Củ Hũ Dừa Tôm Thịt</Name>
+    <Ingredients>Nước mắm - 100 gr
+Đường trắng - 100 gr
+Bột ngọt - 10 gr
+Nước cốt chanh - 50 ml
+Tương ớt - 3 muỗng canh
+Tỏi băm - 30 gr
+Ớt băm - 30 gr
+Ngò băm - 30 gr
+Thịt ba chỉ - 200 gr
+Tôm tươi - 200 gr
+Củ hũ dừa - 300 gr
+Cà rốt - 150 gr
+Dưa leo - 150 gr
+Hành phi - 50 gr
+Đậu phộng rang - 30 gr
+Rau răm - 30 gr
+Rượu trắng - 1 muỗng canh
+Gừng - 3 lát
+Muối - 1/2 muỗng cà phê
+Hành tím - 2 Củ</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:17:03 AM</DateAdd>
-    <VideoLink />
-    <Level>Easy</Level>
+    <DateAdd>11/19/2020 2:54:14 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=RtuxFYTv7A8</VideoLink>
+    <Level>Difficult</Level>
     <Type>Food</Type>
-    <PrimaryImagePath>images\3.jpg</PrimaryImagePath>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>4</ID>
-    <Name>fầ</Name>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:28:42 AM</DateAdd>
-    <VideoLink>âfa</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>1</ID>
-    <Name>hfss</Name>
-    <Ingredients>hshsh</Ingredients>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:14:17 AM</DateAdd>
-    <VideoLink>https://www.youtube.com/watch?v=-nsFVcwqttQ</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Discription>sfhs</Discription>
-    <PrimaryImagePath>images\1.jpg</PrimaryImagePath>
+    <Discription>Gỏi củ hũ dừa tôm thịt mà Cooky giới thiệu hôm nay chính là cách làm gỏi củ hủ dừa cơ bản nhất, món khai vị "tuyệt chiêu" chỉ bằng con tôm, miếng thịt quen thuộc, kèm chút rau răm đậu phộng dân dã, ngon lành. Cách làm gỏi củ hũ dừa tôm thịt được ngon đậm đà chắc chắn là nhờ phần nước sốt trộn gỏi siêu đặc biệt ngay dưới đây đó.</Discription>
+    <PrimaryImagePath>images\20.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>sfhh</Content>
+        <Content>Rửa sạch củ hũ dừa (củ hủ dừa), xắt thành từng sợi dài vừa ăn, đừng mỏng quá sẽ làm giảm độ giòn. Chuẩn bị một thau nước lạnh, cho vào 1 muỗng cà phê đường và nặn vài lát chanh rồi cho củ hủ dừa vào ngâm để tạo vị ngọt và không làm cho gỏi củ hủ dừa bị thâm (củ hủ dừa để ngoài rất dễ bị thâm). Cà rốt gọt vỏ, dưa leo bỏ hạt và cũng cắt thành sợi như củ hủ dừa. Rau răm xắt nhỏ.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\1_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\20_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\20_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Rửa sạch tôm, cho vào nồi luộc với một ít rượu trắng và vài lát gừng để thịt tôm được thơm và giảm bớt mùi tanh. Khi tôm luộc chín thì bóc bỏ vỏ và xẻ thịt tôm làm đôi.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\20_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\20_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Thịt ba chỉ rửa sạch với một ít muối. Cho vào nồi luộc với vài lát hành tím để thịt có mùi thơm. Khi thịt chín vớt ra để nguội một chút rồi cắt thành những lát thịt mỏng vừa ăn.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\20_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\20_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Nấu nước mắm cho gỏi củ hủ dừa tôm thịt: cho nước mắm, đường trắng và bột ngọt vào nồi, khuấy đều đến khi đường và bột ngọt tan thì tắt bếp, để nguội.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\20_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\20_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>5</Order>
+        <Content>Pha nước mắm trộn gỏi củ hủ dừa tôm thịt: cho tương ớt, tỏi băm, ớt băm, ngò băm và nước chanh vào tô nước mắm nấu, khuấy đều lên là ta có hỗn hợp nước mắm trộn gỏi thơm ngon có thể áp dụng cho rất nhiều loại gỏi như gỏi ngó sen, gỏi bưởi,...</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\20_Step5_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\20_Step5_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>6</Order>
+        <Content>Trong 2 thố lớn, một thố chúng ta cho củ hủ dừa, dưa leo và cà rốt, thố còn lại cho thịt heo và tôm vào. Mỗi thố chúng ta cho vào 3 muỗng canh nước mắm trộn gỏi và ngâm khoảng 15 phút để cho ngấm, Sau 15 phút ta chắt hết nước trong hỗn hợp rau củ và tôm thịt để chuẩn bị trộn gỏi.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\20_Step6_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\20_Step6_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>7</Order>
+        <Content>Cách trộn gỏi củ hủ dừa tôm thịt: trong một cái thố lớn, cho rau củ, tôm thịt và 3 muỗng canh nước mắm vào trộn lên. Sau đó cho rau răm, đậu phộng rang và hành phi vào trộn đều. Vậy là món gỏi củ hủ dừa thơm ngon bắt mắt đã được hoàn thành rồi đó.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\20_Step7_Image1.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>8</Order>
+        <Content>Món gỏi củ hủ dừa tôm thịt đúng điệu khi ăn với bánh phồng tôm và chấm với nước mắm chua ngọt rất tuyệt vời. Có thể trang trí thêm vài cọng ngò, đậu phộng béo thơm giòn giòn nè, cả nhà chắc chắn sẽ bất ngờ lắm đó. Cách làm món gỏi củ hủ dừa tôm thịt cũng không hề khó đúng không, các bạn nhớ lưu lại để trổ tài khi có dịp nhé!</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\20_Step8_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\20_Step8_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\20_Step8_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\20_Step8_Image4.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>2</ID>
-    <Name>ga </Name>
-    <Ingredients>24</Ingredients>
+    <ID>21</ID>
+    <Name>Sữa Gạo Lứt</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Gạo lứt - 300 gr
++ Hạnh nhân - 50 gr
++ Đường nâu - 200 gr
++ Sữa tươi không đường - 500 ml
++ Muối hột - 1 muỗng cà phê
++ Bột quế - 1/3 muỗng cà phê</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 10:26:18 AM</DateAdd>
-    <VideoLink>43</VideoLink>
+    <DateAdd>11/19/2020 3:47:33 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=WwimP3MLmIg</VideoLink>
     <Level>Easy</Level>
-    <Type>Food</Type>
-    <Discription>23</Discription>
-    <PrimaryImagePath>images\2.jpg</PrimaryImagePath>
+    <Type>Drinks</Type>
+    <Discription>Sữa Gạo Lứt (sữa gạo lức) là thức uống từ hạt vô cùng thơm ngon. Cách làm sữa gạo lứt rất đơn giản, nguyên liệu dễ tìm. Tùy theo sở thích uống sữa của cả nhà mà bạn có thể gia giảm lượng đường cho vừa miệng. Nếu gặp khó khăn trong việc tìm kiếm địa chỉ bán sữa gạo lứt ngoài tiệm thì bạn có thể tham khảo ngay cách nấu sữa gạo lứt đơn giản từ Cooky nhé.</Discription>
+    <PrimaryImagePath>images\21.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>234</Content>
+        <Content>Sàng 300gr gạo lức trong rổ cho loại bỏ bụi bẩn.Vo gạo lứt 2 lần với nước sạch rồi để ráo nước. Đổ gạo lứt vào chảo, rang với lửa nhỏ cho đến khi bắt đầu nghe mùi thơm, hạt gạo trở nên bóng đẹp và có khoảng chừng 20% hạt gạo đã nở trắng là bạn tắt bếp.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\2_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\21_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\21_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Cách làm sữa gạo lứt: Bắc lên bếp 2 lít nước lọc, cho gạo lứt vừa rang vào nồi cùng với 50gr hạnh nhân, 200gr đường nâu, 1 muỗng cà phê muối hột và 1/3 muỗng cà phê bột quế. Đậy nắp nấu lửa nhỏ 1 tiếng cho gạo lứt chín mềm.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\21_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\21_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\21_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\21_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Khi gạo lứt đã chín, bạn tắt bếp để nguội bớt. Chia hỗn hợp gạo lứt ra từng phần nhỏ cho vào máy xay mịn cùng với 500ml nước lọc (tùy dung tích máy xay nhà bạn mà số lần chia ra nhiều hay ít).</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\21_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\21_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\21_Step3_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\21_Step3_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Đổ gạo lứt đã xay vào túi vải mùng, dùng tay vắt khô lọc lấy nước gạo vào nồi đến khi bên trong miếng vải chỉ còn xác thì dừng lại. Tiến hành lọc vắt lần lượt cho đến hết. Thêm 500ml sữa tươi không đường vào nồi, đem đi nấu đến khi sữa gạo lứt bốc khói thì tắt bếp.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\21_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\21_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\21_Step4_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\21_Step4_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>5</Order>
+        <Content>Sữa gạo lứt là loại thức uống thơm ngon, rẻ mà lại dễ làm, và đặc biệt không tạo cảm giác béo như các loại sữa thông thường khác. Bạn có thể chế biến sữa gạo lứt và dùng mỗi ngày để làm đẹp, tăng cường sức khỏe cho bản thân và gia đình. Cách làm sữa gạo lứt không khó và còn giúp đảm bảo an toàn vệ sinh thực phẩm cho cả nhà nữa đó. Các mẹ còn chờ gì nữa mà không nhanh tay thử ngay cách nấu sữa gạo lứt này nào.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\21_Step5_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\21_Step5_Image2.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>3</ID>
-    <Name>33</Name>
+    <ID>22</ID>
+    <Name>Bì cuống bánh tráng</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Thịt heo - 300 gr
++ Da heo - 150 gr
++ Bánh tráng - 1 gói
++ Xà lách - 4 cây
++ Nước mắm - 3 muỗng canh
++ Đường trắng - 2.5 muỗng cà phê
++ Ớt băm - 1 muỗng cà phê
++ Dầu ăn - 100 ml
++ Thính gạo -150 gr
++ Hạt nêm - 2 muỗng cà phê
++ Hành tím băm - 1 muỗng cà phê
++ Tỏi băm - 2 muỗng cà phê
++ Tiêu - 1/2 muỗng cà phê
++ Nước dừa - 100 ml</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:17:03 AM</DateAdd>
-    <VideoLink />
-    <Level>Easy</Level>
+    <DateAdd>11/19/2020 3:55:03 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=sH8Ww-8Lwkc</VideoLink>
+    <Level>Normal</Level>
     <Type>Food</Type>
-    <PrimaryImagePath>images\3.jpg</PrimaryImagePath>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>4</ID>
-    <Name>fầ</Name>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:28:42 AM</DateAdd>
-    <VideoLink>âfa</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>1</ID>
-    <Name>hfss</Name>
-    <Ingredients>hshsh</Ingredients>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:14:17 AM</DateAdd>
-    <VideoLink>https://www.youtube.com/watch?v=-nsFVcwqttQ</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Discription>sfhs</Discription>
-    <PrimaryImagePath>images\1.jpg</PrimaryImagePath>
+    <Discription>Bì cuốn là món ăn rất thích họp trong những dịp cuối tuần cùng đông đủ cách thành viên gai đình. 1 cây bì cuốn đơn giản nhưng đầy đủ dinh dưỡng từ rau, thịt, bánh tráng. Đặc biệt không thể thiếu đi vai trò quan trọng của nước chấm chua ngọt hấp dẫn</Discription>
+    <PrimaryImagePath>images\22.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>sfhh</Content>
+        <Content>Da heo làm sạch, rửa sạch, cho vào nồi cùng 500ml nước, 1 muỗng cà phê hạt nêm, luộc khoảng 20 phút. Khi da heo chín thì vớt ngay ra ngâm vào tô nước đá 5-10 phút cho da được giòn.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\1_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\22_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\22_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Thịt heo rửa sạch, thấm khô, ướp với 1 muỗng cà phê tỏi băm, 1 muỗng cà phê hành tím băm, 1 muỗng canh nước mắm, 1 muỗng cà phê hạt nêm, 1/2 muỗng cà phê đường và 1/2 muỗng cà phê tiêu trong khoảng 30 phút cho thịt ngấm.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\22_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\22_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Đun nóng 100ml dầu ăn trong chảo, cho thịt đã ướp vào chiên cho săn đều các mặt. Sau đó, rót bớt dầu trong chảo, thêm vào 100ml nước dừa, đun sôi với lửa lớn. Khi nước gần cạn thì đun liu riu nhỏ lửa cho thịt có màu cánh gián đẹp mắt là được.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\22_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\22_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Thái sợi nhỏ da heo và thịt, cho vào tô lớn, thêm vào 150g thính gạo, trộn đều lên.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\22_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\22_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>5</Order>
+        <Content>Trải bánh tráng ra mặt phẳng, phết nước để làm mềm mặt bánh, thêm vào rau tùy thích, da và thịt heo đã trộn thính rồi cuộn lại thành cuốn to. Làm tương tự cho đế hết nguyên liệu.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\22_Step5_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\22_Step5_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\22_Step5_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\22_Step5_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>6</Order>
+        <Content>Trong chén nhỏ, trộn đều 2 muỗng canh nước mắm với 3 muỗng canh nước lọc, 2 muỗng cà phê đường, 1 muỗng cà phê tỏi băm, 1 muỗng cà phê ớt băm để làm nước chấm. Nếu muốn ngon hơn, bạn có thể thêm vào đồ chua làm từ cà rốt và củ cải.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\22_Step6_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\22_Step6_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>7</Order>
+        <Content>Bày trí bì cuốn ra đĩa, chấm cùng nước mắm chua ngọt cay thơm hấp dẫn. Bì cuốn là món ăn rất thích họp trong những dịp cuối tuần cùng đông đủ cách thành viên gai đình. 1 cây bì cuốn đơn giản nhưng đầy đủ dinh dưỡng từ rau, thịt, bánh tráng.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\22_Step7_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\22_Step7_Image2.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>2</ID>
-    <Name>ga </Name>
-    <Ingredients>24</Ingredients>
+    <ID>23</ID>
+    <Name>Bánh Quẩy Đường</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Bột gạo - 170 gr
++ Bột nếp - 130 gr
++ Đường trắng - 130 gr
++ Trứng gà - 1 quả
++ Nước nóng - 200 ml
++ Dầu ăn - 1 muỗng canh
++ Vani - 1 muỗng cà phê
++ Muối - 1/2 muỗng cà phê</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 10:26:18 AM</DateAdd>
-    <VideoLink>43</VideoLink>
-    <Level>Easy</Level>
+    <DateAdd>11/19/2020 5:45:31 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=2C47XC1GGBg</VideoLink>
+    <Level>Difficult</Level>
     <Type>Food</Type>
-    <Discription>23</Discription>
-    <PrimaryImagePath>images\2.jpg</PrimaryImagePath>
+    <Discription>Bánh quẩy đường (bánh quẩy thừng) là món ăn vặt tuổi thơ được rất nhiều người yêu thích. Chiếc bánh quẩy vàng thơm, giòn tan, được bọc bên ngoài bởi một lớp đường ngọt ngào sẽ khiến cho bạn "say đắm" ngay từ lần đầu khi được thưởng thức. Bên cạnh đó, cách làm bánh quẩy rất đơn giản, dễ làm, nguyên liệu gần gủi, dễ tìm. Bạn hãy tham khảo công thức bên dưới, vào bếp làm ngay món bánh ngọt này nhé!</Discription>
+    <PrimaryImagePath>images\23.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>234</Content>
+        <Content>Cho 130 gram bột nếp, 170 gram bột gạo, 30 gram đường, 1 quả trứng gà, 1 muỗng canh dầu ăn, 1 muỗng cà phê vani, nửa muỗng cà phê muối và 200 ml nước nóng vào tô lớn, trộn đều sao cho bột tạo thành khối dẻo mịn. Bọc kín tô bột rồi để bột nghỉ 30 phút. Nếu khô quá thêm chút nước nóng, nếu dẻo quá thì thêm bột gạo.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\2_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\23_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\23_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\23_Step1_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\23_Step1_Image4.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\23_Step1_Image5.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\23_Step1_Image6.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Ngắt một ít bột, vê bột thành hình que có độ dài tùy thích rồi gập đôi lại rồi xoắn chúng lại với nhau như hình, làm như vậy cho đến khi hết phần bột.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\23_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\23_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\23_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\23_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Bắc chảo dầu nóng, thả từng bánh quẩy vào chiên ngập dầu cho bánh vàng giòn thì rớt ra, để ráo dầu.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\23_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\23_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Cho 100g đường và 40ml nước lọc, đun đến khi đường tan hết thì cho bánh quẩy vào đảo đều cho đến khi đường khô lại và bám vào bánh quẩy, tắt bếp. Để bánh nguội sẽ càng giòn và ngon hơn.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\23_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\23_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>5</Order>
+        <Content>Dọn bánh ra đĩa và thưởng thức những chiếc bánh quẩy đường vàng thơm. Khi ăn vào bạn sẽ cảm nhận được vị ngọt dịu, béo ngon, giòn tan, được bao bọc bởi 1 lớp đường bên ngoài sẽ khiến bạn càng ăn càng mê. Như vậy, với cách làm trên bạn chỉ cần dành một ít thời gian là đã có ngay những chiếc bánh quẩy đường thơm ngon cho cả gia đình thưởng thức vào những ngày cuối tuần rồi đấy.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\23_Step5_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\23_Step5_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\23_Step5_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\23_Step5_Image4.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>3</ID>
-    <Name>33</Name>
+    <ID>24</ID>
+    <Name>Bánh Flan Trà Sữa Trân Châu Đường Nâu</Name>
+    <Ingredients>Khẩu phần 5 người, bao gồm:
++ Trà đen - 20 gr
++ Nước - 650 ml
++ Sữa tươi không đường - 200 ml
++ Sữa đặc - 200 ml
++ Kem béo - 100 ml
++ Đường trắng 30 gr
++ Trứng gà - 6 quả
++ Lòng đỏ trứng gà - 4 cái
++ Đường trắng - 70 gr
++ Nước cốt chanh -20 ml</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:17:03 AM</DateAdd>
-    <VideoLink />
-    <Level>Easy</Level>
+    <DateAdd>11/19/2020 5:56:31 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=YqgDpVxgA7E</VideoLink>
+    <Level>Difficult</Level>
     <Type>Food</Type>
-    <PrimaryImagePath>images\3.jpg</PrimaryImagePath>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>4</ID>
-    <Name>fầ</Name>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:28:42 AM</DateAdd>
-    <VideoLink>âfa</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>1</ID>
-    <Name>hfss</Name>
-    <Ingredients>hshsh</Ingredients>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:14:17 AM</DateAdd>
-    <VideoLink>https://www.youtube.com/watch?v=-nsFVcwqttQ</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Discription>sfhs</Discription>
-    <PrimaryImagePath>images\1.jpg</PrimaryImagePath>
+    <Discription>Bạn thích bánh flan, bạn cũng thích nhâm nhi trà sữa với trân châu đường nâu ngọt lịm. Vậy tại sao không kết hợp 2 món ăn hấp dẫn này lại với nhau để tạo thành món bánh flan trà sữa trân châu đường đen hấp dẫn. Nhà Cooky còn hướng dẫn các bạn làm món bánh flan này với size cỡ bự nữa đó nha, đảm bảo ăn hoài không hết luôn, thỏa mãn cơn thèm bánh flan lẫn trà sữa của các tín đồ mê ăn vặt nha!</Discription>
+    <PrimaryImagePath>images\24.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>sfhh</Content>
+        <Content>Trộn 20gr trà hoa trân số 09 với 20gr trà đen Phúc Long, rồi nấu trên lửa nhỏ khoảng 15 phút. Tắt bếp và ủ trà từ 1-2 tiếng. Sau đó lọc phần bã trà qua rây để lấy nước.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\1_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\24_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\24_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\24_Step1_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\24_Step1_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Đun nóng nhẹ trên bếp 200ml sữa tươi không đường, 200ml sữa đặc, 100ml kem béo và 30gr đường. Khuấy đều cho tan rồi cho hỗn hợp sữa đã đun vào 300ml nước trà đen đã lọc để tạo thành hỗn hợp trà sữa.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\24_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\24_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Cho vào tô 6 quả trứng gà và 4 lòng đỏ trứng, khuấy tan nhẹ để tránh tạo bọt khí. Cho hỗn hợp trà sữa vào phần trứng, khuấy đều cho hòa quyện rồi đem lọc qua rây nhiều lần để phần flan được mịn nhất.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\24_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\24_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\24_Step3_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\24_Step3_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Làm Caramen: Cho 70gr đường và 50ml nước vào chảo đun trên bếp. Trong quá trình đun nhớ để yên không khuấy. Khi hỗn hợp bắt đầu chuyển sang màu vàng nhạt thì vắt nước cốt chanh vào, lắc nhẹ chảo để đường tan đều. Khi màu đường chuyển sang màu nâu cánh gián đẹp mắt thì tắt bếp. Cho phần caramen vào khuôn và để trong tủ đông khoảng 1 tiếng.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\24_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\24_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\24_Step4_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\24_Step4_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>5</Order>
+        <Content>Cho hỗn hợp flan vào khuôn, bọc giấy bạc trên mặt và nướng cách thủy 2 tiếng với nhiệt độ là 155 độ C. Phần nước sôi đổ vào các bạn nhớ đổ ngập 3/4 khuôn nhé để phần flan được nóng và chín đều.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\24_Step5_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\24_Step5_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>6</Order>
+        <Content>Chiếc bánh flan khổng lồ đã sẵn sàng trên đĩa, rưới một ít trân châu đường đen và đá nhuyễn là ta có thể thưởng thức ngay rồi nè! Hãy cảm nhận vị béo ngậy của chiếc bánh flan được hòa quyện cùng vị ngọt thơm của vị trà sữa, lại còn được kết hợp cùng trân châu đường đen dẻo dai, ngọt dịu, thật sự rất tuyệt vời. Công thức Cooky đã có sẵn, còn chờ gì mà không bắt tay vào làm ngay thôi!</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\24_Step6_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\24_Step6_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\24_Step6_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\24_Step6_Image4.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>2</ID>
-    <Name>ga </Name>
-    <Ingredients>24</Ingredients>
+    <ID>25</ID>
+    <Name>Thịt viên thập cẩm chiên</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Thịt heo xay - 500 gr
++ Trứng vịt - 1 quả
++ Bắp mỹ - 50 gr
++ Cà rốt - 50 gr
++ Nấm mèo - 4 tai
++ Hành lá - 10 gr
++ Đường - 1 muỗng cà phê
++ Hạt nêm - 1 muỗng cà phê
++ Tiêu - 1 muỗng cà phê
++ Dầu hào - 1 muỗng canh
++ Bột năng -1 muỗng canh</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 10:26:18 AM</DateAdd>
-    <VideoLink>43</VideoLink>
+    <DateAdd>11/19/2020 6:02:45 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=FMt_HHfOQkw</VideoLink>
     <Level>Easy</Level>
     <Type>Food</Type>
-    <Discription>23</Discription>
-    <PrimaryImagePath>images\2.jpg</PrimaryImagePath>
+    <Discription>Thịt viên chiên thập cẩm là món ăn thơm ngon, đơn giản và dễ làm. Món có vị béo, đậm đà từ thịt, kết hợp cùng ngọt tự nhiên của rau củ sẽ khiến cho bạn càng ăn càng mê. Đây chắc chắn sẽ là món ăn rất "được lòng" các bạn nhỏ trong gia đình. Bạn hãy tham khảo ngay công thức bên dưới và ngay món này cho các bé nhé!</Discription>
+    <PrimaryImagePath>images\25.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>234</Content>
+        <Content>Rửa sạch nguyên liệu. Cà rốt cắt hạt lựu. Bắp mỹ tách hạt. Rồi đem cà rốt và bắp mỹ luộc 3 phút, vớt ra để ráo nước. Nấm mèo ngâm nở rồi cắt nhuyễn. Hành lá cắt nhỏ.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\2_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\25_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\25_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Cho 500 gram thịt heo xay, 50 gram bắp mỹ, 50 gram cà rốt, 4 tai nấm mèo, 10 gram hành lá, 1 muỗng cà phê tiêu, 1 muỗng cà phê đường, 1 muỗng cà phê hạt nêm, 1 muỗng canh dầu hào, 1 quả trứng vịt, 1 muỗng canh bột năng vào trộn đều cho các nguyên liệu hòa quyện với nhau. Sau đó, nắn thành những viên vừa ăn.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\25_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\25_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\25_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\25_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\25_Step2_Image5.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\25_Step2_Image6.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Bắc chảo dầu nóng, cho những viên thịt vào chảo chiên vàng hai mặt thịt, sau đo, vớt ra giấy thấm bớt dầu là hoàn thành.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\25_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\25_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Dọn món ra đĩa. Món ăn kèm với cơm và rau sống. Món có vị béo, đậm đà từ thịt, kết hợp cùng ngọt tự nhiên của rau củ sẽ khiến cho bạn càng ăn càng mê. Như vậy, với cách làm trên bạn chỉ cần dành một ít thời gian là đã có ngay một món mới lạ, độc đáo giúp cho những cơm gia đình càng thêm thú vị</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\25_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\25_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\25_Step4_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\25_Step4_Image4.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>3</ID>
-    <Name>33</Name>
+    <ID>26</ID>
+    <Name>Thịt chưng mắm tép</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Thịt nạc băm - 500 gr
++ Mắm Tép - 200 gr
++ Đường - 3 muỗng cà phê
++ Nước Mắm - 1 muỗng cà phê
++ Tiêu - 1 muỗng cà phê
++ Dầu ăn - 1 muỗng canh
++ Sả bằm 10 gr
++ Tỏi bằm 10 gr
++ Hành tím bằm - 10 gr
++ Riềng sợi -5 gr
++ Hành lá - 1 ít</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:17:03 AM</DateAdd>
-    <VideoLink />
-    <Level>Easy</Level>
+    <DateAdd>11/19/2020 6:09:57 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=cy8RVoP4g_Y</VideoLink>
+    <Level>Normal</Level>
     <Type>Food</Type>
-    <PrimaryImagePath>images\3.jpg</PrimaryImagePath>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>4</ID>
-    <Name>fầ</Name>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:28:42 AM</DateAdd>
-    <VideoLink>âfa</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Steps />
-  </FoodInfomation>
-  <FoodInfomation>
-    <ID>1</ID>
-    <Name>hfss</Name>
-    <Ingredients>hshsh</Ingredients>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:14:17 AM</DateAdd>
-    <VideoLink>https://www.youtube.com/watch?v=-nsFVcwqttQ</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Discription>sfhs</Discription>
-    <PrimaryImagePath>images\1.jpg</PrimaryImagePath>
+    <Discription>Thịt Chưng Mắm Tép  món ăn ngon chuẩn vị Bắc, đậm đà hương vị quê hương. Rất được lòng thực khách và được các mẹ nội trợ thường xuyên chế biến trong mâm cơm gia đình mình. Vị mằn mặn, béo béo, ngậy ngậy và mùi thơm đặc trưng của Mắm kết hợp với thịt và riềng dễ dàng dùng kèm cùng nhiều món ăn. Chắc chắn là sự lựa chọn không thể thiếu trong mâm cơm gia đình nhà bạn rồi. Hãy cùng Cooky lưu vào sổ tay nội trợ cách làm Mắp tép Chưng Thịt hấp dẫn chiêu đãi gia đình mình nhé.</Discription>
+    <PrimaryImagePath>images\26.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>sfhh</Content>
+        <Content>Trước tiên bạn chuẩn bị ướp thịt trước nhé. Cho riềng thái sợi, đường tiêu và nước mắm vào trộn đều. Để thịt ngấm gia vị 15 phút.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\1_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\26_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\26_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\26_Step1_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\26_Step1_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Làm nóng chảo, bạn cho dầu ăn vào. Dầu nóng thì xào thơm hằm băm, tỏi băm, và sả băm. Sau đó thì cho thịt đã ướp lúc nãy vào, xào săn. Nếu bạn thấy thịt khô quá có thể cho thêm một chút xíu nước và dầu ăn. Đến khi thịt ngã màu vàng nâu thì bạn cho tiếp mắm tép vào. Đảo đều tiếp 3 phút nữa thì tắt bếp, sau đó cho hành lá vào cho thơm. Xong rồi, dọn món và thưởng thức nào. Mắm tép có vị mặn đặc trưng và thịt lúc đầu cũng đã ướp rồi nên khi xào không cần nêm đậm nữa.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\26_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\26_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\26_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\26_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Với cách làm thịt chưng mắm tép đơn giản, bạn có thể tự tay làm và thưởng thức ngay trong bữa cơm hằng ngày ấm cúng của gia đình mình, vừa tiết kiệm lại vừa ngon. Tùy theo khẩu vị mà bạn có thể thêm ớt băm vào để món ăn thêm hương vị hấp dẫn. Món Mắp tép đặc trưng khẩu vị người miền Bắc bạn ăn kèm cơm và 1 chút rau luộc chuẩn bị thêm 1 ấm chè là hết sảy.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\26_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\26_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\26_Step3_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\26_Step3_Image4.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>2</ID>
-    <Name>ga </Name>
-    <Ingredients>24</Ingredients>
+    <ID>27</ID>
+    <Name>Nước chanh hương sả hạt chia</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Chanh - 3 trái
++ Hạt chia -5 muỗng cà phê
++ Sả - 4 cây
++ Đường trắng - 200 gr</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 10:26:18 AM</DateAdd>
-    <VideoLink>43</VideoLink>
+    <DateAdd>11/19/2020 6:17:54 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=HbGR3YEy4-Q</VideoLink>
     <Level>Easy</Level>
-    <Type>Food</Type>
-    <Discription>23</Discription>
-    <PrimaryImagePath>images\2.jpg</PrimaryImagePath>
+    <Type>Drinks</Type>
+    <Discription>Nước Chanh Hạt Chia Hương Sả là thức uống detox ngon lành lại đơn giản tại nhà. Cách pha nước chanh hạt chia này không chỉ giúp giải nóng, thanh nhiệt hiệu quả mà còn có công dụng cực tốt cho sức khỏe. Ngày nắng nóng, uống một ly nước chanh hạt chia thơm lừng mùi sả, sẽ giúp cơ thể sảng khoái trong ngày nắng nóng đấy. Chị em lưu ngay cách pha nước chanh hạt chia này nhé.</Discription>
+    <PrimaryImagePath>images\27.jpg</PrimaryImagePath>
     <Steps>
       <Step>
         <Order>1</Order>
-        <Content>234</Content>
+        <Content>Sả cắt bỏ phần lá và thân già rồi cắt khúc nhỏ 5cm. Cho sả vào nồi nấu cùng với 200gr đường và 250ml nước đến khi sôi thì hạ nhỏ lửa, đun liu riu 15 phút rồi tắt bếp. Vậy là đã xong phần syrup sả cho nước chanh hạt chia. Bạn có thể làm nhiều hơn cho vào chai bảo quản trong tủ lạnh để dùng dần.</Content>
         <ImagesPathPerStep>
           <ImagePerStep>
-            <ImagePath>images\2_Step1_Image1.jpg</ImagePath>
+            <ImagePath>images\27_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\27_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\27_Step1_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\27_Step1_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Chanh vắt lấy nước cốt. Mình sử dụng chanh Úc nên quả lớn hơn chanh thường, 3 trái vắt được khoảng 180ml nước cốt chanh.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\27_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\27_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Cách pha nước chanh hạt chia: Cho vào bình nước chanh vừa vắt cùng với 250ml nước lọc, 1/2 số sirup sả rồi khuấy đều. Nêm nếm và thêm bớt syrup sả tùy khẩu vị. Đến đây bạn có thể cho trực tiếp hạt chia vào hoặc ngâm chia với nước ấm cho nở trước rồi vớt vào bình, khuấy đều rồi thêm đá là có thể dùng được rồi.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\27_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\27_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\27_Step3_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\27_Step3_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Khi cho hạt chia vào nước hạt sẽ nở ra, tạo cảm giác rất vui miệng khi uống. Thêm nữa là vị của nước chanh hạt chia chua chua ngọt ngọt, đặc biệt với hương sả thoang thoảng mang đến sự thư thái và mát lành. Hạt chia có giá trị dinh dưỡng rất lớn, kết hợp với nước chanh cũng là một loại nước thần thánh đối với sức khỏe chúng ta, tạo ra một loại thức uống đặc biệt tốt và chứa nhiều lợi ích. Sử dụng nước chanh hạt chia hàng ngày để có được một cơ thể khỏe mạnh và săn chắc bạn nhé!</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\27_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\27_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\27_Step4_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\27_Step4_Image4.jpg</ImagePath>
           </ImagePerStep>
         </ImagesPathPerStep>
       </Step>
     </Steps>
   </FoodInfomation>
   <FoodInfomation>
-    <ID>3</ID>
-    <Name>33</Name>
+    <ID>28</ID>
+    <Name>Nước củ năng mía lau hạt chia</Name>
+    <Ingredients>Khẩu phần 4 người, bao gồm:
++ Mía lau - 200 gr
++ Củ năng - 300 gr
++ Hạt chia - 20 gr
++ Lá dứa - 1 nhánh
++ Đường phèn - 100 gr
++ Nước - 2 Lít</Ingredients>
     <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:17:03 AM</DateAdd>
-    <VideoLink />
+    <DateAdd>11/19/2020 6:24:12 PM</DateAdd>
+    <VideoLink>www.youtube.com/watch?v=yNJMiofeHuc</VideoLink>
     <Level>Easy</Level>
-    <Type>Food</Type>
-    <PrimaryImagePath>images\3.jpg</PrimaryImagePath>
-    <Steps />
+    <Type>Drinks</Type>
+    <Discription>Nước mía lau hạt chia là một thức uống giải nhiệt cơ thể ngọt mát cực hấp dẫn. Cách làm nước mía lau kết hợp củ năng vừa dẻo vừa giòn sần sật, vị ngọt thoảng nhẹ của mía lau và đường phèn, hạt chia thì cực kỳ tốt cho việc thanh lọc cơ thể. Uống một miếng nước mía lau hạt chia vào những trưa hè oi bức thì đúng là "chuẩn chỉ" phải không nào.</Discription>
+    <PrimaryImagePath>images\28.jpg</PrimaryImagePath>
+    <Steps>
+      <Step>
+        <Order>1</Order>
+        <Content>Rửa sạch 200gr mía lau, chẻ thành từng khúc nhỏ cho dễ ra nước. Gọt vỏ 300gr củ năng, rửa sạch, cắt hạt lựu rồi ngâm trong nước muối pha loãng để củ năng được trắng không bị thâm. Ngâm 20gr hạt chia trong một bình nước cho hạt chia nở nhiều.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\28_Step1_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\28_Step1_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\28_Step1_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\28_Step1_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>2</Order>
+        <Content>Bắc nồi lớn, cho vào 2 lít nước cùng mía lau và củ năng đã gọt, thêm 1 nhánh lá dứa để nước khi nấu được thơm hơn. Nấu cho củ năng và mía lau cho ra nước ngọt khoảng 10 phút trên lửa lớn, đến khi sôi thì vớt lá dứa ra (vì nấu lâu lá dứa sẽ đắng). Sau đó vớt bọt cho nước được trong rồi hạ lửa nhỏ, nấu chừng 45 phút đến khi củ năng dẻo và cắn thử còn giòn là được.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\28_Step2_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\28_Step2_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\28_Step2_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\28_Step2_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>3</Order>
+        <Content>Khi củ năng đã chín cho vào nồi 100gr đường phèn, nếm thử xem độ ngọt đã vừa khẩu vị bạn chưa nhé. Nước củ năng mía lau hạt chia khi nấu xong sẽ có màu trong và có vị ngọt thanh mát tự nhiên.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\28_Step3_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\28_Step3_Image2.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+      <Step>
+        <Order>4</Order>
+        <Content>Khi nước mía lau củ năng nguội hẳn ta cho phần hạt chia đã ngâm vào khuấy đều. Để nước mía lau củ năng hạt chia nguội rồi để tủ lạnh. Nước mía lau uống nguyên chất không cần thêm đá cũng ngon nhé. Trời bắt đầu vào hè nên cơ thể dễ bị mất nước. Cách làm nước mía lau không khó, làm ngay mời cả nhà giải nhiệt nhé.</Content>
+        <ImagesPathPerStep>
+          <ImagePerStep>
+            <ImagePath>images\28_Step4_Image1.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\28_Step4_Image2.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\28_Step4_Image3.jpg</ImagePath>
+          </ImagePerStep>
+          <ImagePerStep>
+            <ImagePath>images\28_Step4_Image4.jpg</ImagePath>
+          </ImagePerStep>
+        </ImagesPathPerStep>
+      </Step>
+    </Steps>
   </FoodInfomation>
-  <FoodInfomation>
-    <ID>4</ID>
-    <Name>fầ</Name>
-    <IsFavorite>false</IsFavorite>
-    <DateAdd>11/14/2020 11:28:42 AM</DateAdd>
-    <VideoLink>âfa</VideoLink>
-    <Level>Easy</Level>
-    <Type>Food</Type>
-    <Steps />
-  </FoodInfomation>	
 </ArrayOfFoodInfomation>

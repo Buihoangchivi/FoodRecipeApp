@@ -507,8 +507,45 @@ namespace FoodRecipeApp
 			//clickedControlButton.Background = Brushes.LightSkyBlue;
 		}
 
+		private void SortList(bool Type, bool Order)
+		{
+			//Type = false: Date
+			//Type = true: Name
+			//Order = false: Decrease
+			//Order = true: Increase
+			FoodInfomation temp;
+			for (int i = 0; i < ListFoodInfo.Count - 1; i++)
+			{
+				for (int j = i + 1; j < ListFoodInfo.Count; j++)
+				{
+					if (Type == false)
+					{
+						if (((Order == true) && (DateTime.Compare(Convert.ToDateTime(ListFoodInfo[i].DateAdd), Convert.ToDateTime(ListFoodInfo[j].DateAdd)) > 0))
+							|| ((Order == false) && (DateTime.Compare(Convert.ToDateTime(ListFoodInfo[i].DateAdd), Convert.ToDateTime(ListFoodInfo[j].DateAdd)) < 0)))
+						{
+							temp = ListFoodInfo[i];
+							ListFoodInfo[i] = ListFoodInfo[j];
+							ListFoodInfo[j] = temp;
+						}
+					}
+					else
+					{
+						if (((Order == true) && (string.Compare(ListFoodInfo[i].Name, ListFoodInfo[j].Name) > 0))
+							|| ((Order == false) && (string.Compare(ListFoodInfo[i].Name, ListFoodInfo[j].Name) < 0)))
+						{
+							temp = ListFoodInfo[i];
+							ListFoodInfo[i] = ListFoodInfo[j];
+							ListFoodInfo[j] = temp;
+						}
+					}
+				}
+			}
+		}
+
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
+			var rng = new Random();
+
 			//Đọc dữ liệu các món ăn từ data
 			XmlSerializer xsFood = new XmlSerializer(typeof(List<FoodInfomation>));
 			try
@@ -523,6 +560,7 @@ namespace FoodRecipeApp
 				ListFoodInfo = new List<FoodInfomation>();
 			}
 
+			SortList(rng.Next(2) != 0, rng.Next(2) != 0);
 
 			FoodOnScreen = ListFoodInfo;
 
@@ -677,17 +715,10 @@ namespace FoodRecipeApp
 				//Đóng giao diện cũ trước khi nhấn nút
 				if (!isEditMode &&( clickedControlButton == HomeButton || clickedControlButton == FavoriteButton))
 				{
-					//if (FoodDetailGrid.Visibility == Visibility.Collapsed)
-					//{
 					var listStack = windowsStack.Pop();
 					var condition = new Condition { Favorite = FilterCondition.Favorite, Type = FilterCondition.Type };
 					listStack.Insert(listStack.Count - 1, condition);
 					windowsStack.Push(listStack);
-					//}
-					//else //Nếu đang ở màn hình chi tiết món ăn thì đóng màn hình chi tiết món ăn lại
-					//{
-					//	FoodDetailGrid.Visibility = Visibility.Collapsed;
-					//}
 				}
 				else if (clickedControlButton == AddDishButton)
 				{
@@ -856,6 +887,10 @@ namespace FoodRecipeApp
 						ShowSplashScreenCheckBox.IsChecked = true;
                     }
 					list.Add(SettingStackPanel);
+				}
+				else if (button == AboutButton)
+				{
+					list.Add(AboutStackPanel);
 				}
 				else
 				{

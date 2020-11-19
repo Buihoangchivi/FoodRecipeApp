@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoodRecipeApp"
         mc:Ignorable="d"
-        Height="650" Width="1152" MinWidth="810" MinHeight="500" Loaded="Window_Loaded"
+        Height="690" Width="1152" MinWidth="810" MinHeight="500" Loaded="Window_Loaded"
         WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Window.Icon>
         <BitmapImage UriSource="images/icon.ico" RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased"></BitmapImage>
@@ -269,6 +269,33 @@
                     <TextBlock Name="SettingTitleTextBlock" VerticalAlignment="Center" Width="153" FontSize="15">Settings</TextBlock>
                 </WrapPanel>
             </Button>
+
+            <Button Height="45" Name="AboutButton" Click="changeClickedControlButton_Click" BorderThickness="0" HorizontalContentAlignment="Left">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FFDDDDDD"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFC8C4C4"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <WrapPanel>
+                    <TextBlock Name="AboutTextBlock" Width="5" Height="45"></TextBlock>
+                    <Image Source="Images/about.png" Width="20" Margin="10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                    <TextBlock Name="AboutTitleTextBlock" VerticalAlignment="Center" Width="153" FontSize="15">About</TextBlock>
+                </WrapPanel>
+            </Button>
         </StackPanel>
 
         <!--Nút phân trang-->
@@ -459,7 +486,9 @@
                                                             </Grid.ColumnDefinitions>
                                                             <Image Grid.Column="0" Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}" Width="70" Height="70" Stretch="Fill"
                                                                    RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Margin="0"/>
-                                                            <TextBlock Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center" Margin="-10 0 0 0" FontSize="13" TextWrapping="WrapWithOverflow" Width="120"></TextBlock>
+                                                            <TextBlock Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center"
+                                                                       Margin="-10 0 0 0" FontSize="13" TextWrapping="Wrap" 
+                                                                       Width="120"></TextBlock>
                                                         </Grid>
                                                     </Button.Content>
                                                     <Button.Style>
@@ -505,7 +534,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Button Width="204" Background="White" Margin="0,0,8,10" Click="FoodImage_Click" BorderThickness="0" >
+                            <Button Width="204" VerticalContentAlignment="Top" Background="White" Margin="0,0,8,10" Click="FoodImage_Click" BorderThickness="0" >
                                 <Button.Resources>
                                     <Style TargetType="Border">
                                         <Setter Property="CornerRadius" Value="10"/>
@@ -518,7 +547,7 @@
                                         </Rectangle.Fill>
                                     </Rectangle>
                                     <TextBlock Text="{Binding Name}" Width="175" TextAlignment="Left" TextWrapping="Wrap" 
-                                               FontSize="14" Padding="3,1" MaxHeight="60"></TextBlock>
+                                               FontSize="14" Padding="3,1" MaxHeight="300"></TextBlock>
                                     <Button Height="24" VerticalAlignment="Top" BorderThickness="0" Background="White"
                                             Click="Favorite_Click" Padding="2.8">
                                         <Button.Resources>
@@ -1094,6 +1123,21 @@
                               VerticalContentAlignment="Center">
                          Show Splash Screen
                     </CheckBox>
+                </StackPanel>
+
+                <!--Nút thông tin nhóm lập trình-->
+                <StackPanel Name="AboutStackPanel" Margin="15,6,0,0" Visibility="Collapsed">
+                    <TextBlock FontSize="16" Margin="0,20,0,10" FontWeight="Bold">Windows programming - 18_31</TextBlock>
+                    <TextBlock FontSize="16" Margin="0,0,0,30">VNUHCM - University of Science</TextBlock>
+                    <TextBlock FontSize="16" Margin="0,0,0,10" FontWeight="Bold">Contact</TextBlock>
+                    <TextBlock FontSize="16" Margin="0,0,0,30">
+                        <Hyperlink>18120082@student.hcmus.edu.vn</Hyperlink>
+                    </TextBlock>
+                    <TextBlock FontSize="16" Margin="0,0,0,10" FontWeight="Bold">Developers</TextBlock>
+                    <TextBlock FontSize="16" Margin="0,0,0,10">Phạm Tấn - 18120082</TextBlock>
+                    <TextBlock FontSize="16" Margin="0,0,0,10">Bùi Văn Vĩ - 18120106</TextBlock>
+                    <TextBlock FontSize="16" Margin="0,0,0,30">Nguyễn Thanh Duy - 18120171</TextBlock>
+                    <TextBlock FontSize="16" Margin="0,0,0,10">Copyright © 2020</TextBlock>
                 </StackPanel>
 
             </StackPanel>
